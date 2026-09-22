@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-zh="Casarte Design | 背景规范" data-i18n-en="Casarte Design | Background Guidelines">Casarte Design | 背景规范</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-primary: #E9BD85;
+            --brand-light: #F8EBD8;
+            --text-main: #1D1D1F;
+            --text-secondary: #86868B;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #F8EBD8;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* 弥散光晕动画背景 */
+        .aura-background {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: #F8EBD8;
+        }
+        .aura-blob {
+            position: absolute;
+            filter: blur(120px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        .aura-blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #F8EBD8; animation-delay: 0s; }
+        .aura-blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #F8EBD8; animation-delay: -5s; }
+        .aura-blob-3 { top: 40%; left: 60%; width: 40vw; height: 40vw; background: #F8EBD8; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 15%) scale(1.1); }
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            border-radius: 0;
+        }
+
+        /* 图片卡片容器基础样式 */
+        .img-container-box {
+            background-color: #0A0A0A;
+            border: 1px solid rgba(233, 189, 133, 0.3);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .img-container-box:hover {
+            border-color: rgba(233, 189, 133, 0.8);
+        }
+
+        /* 可点击可放大图片的 Hover 提示样式 */
+        .zoomable-img {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        .zoomable-img:hover {
+            transform: scale(1.01);
+        }
+
+        /* 占位图框通用样式 */
+        .placeholder-box {
+            background-color: #0A0A0A;
+            border: 1px dashed rgba(233, 189, 133, 0.4);
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+        .placeholder-box:hover {
+            border-color: rgba(233, 189, 133, 0.8);
+        }
+
+        .usage-card { 
+            background: rgba(255,255,255,.72); 
+            border: 1px solid rgba(203,213,225,.72); 
+            border-radius: 0; 
+            padding: 18px; 
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+
+        .haier-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--brand-primary);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <div class="aura-background">
+        <div class="aura-blob aura-blob-1"></div>
+        <div class="aura-blob aura-blob-2"></div>
+        <div class="aura-blob aura-blob-3"></div>
+    </div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-white/50">
+        <div class="flex items-center">
+            <a href="haier_os_design_system.html" class="mr-3 p-2 bg-black/5 hover:bg-black/10 rounded-none transition-colors flex items-center text-gray-700"></a>
+            <div class="haier-logo-container w-8 h-8 mr-2 text-[12px]">Haier</div>
+            <h1 class="font-bold text-base text-gray-800">背景规范</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 bg-black/5 hover:bg-black/10 rounded-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <div class="flex h-screen pt-16 md:pt-0">
+        <!-- 侧边栏（由 haier-nav.js 自动填充） -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 glass-panel rounded-none border-r border-white/50 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
+
+        <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1200px] mx-auto pb-24">
+                
+                <!-- 返回主页按钮 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-4 py-2 bg-white/50 hover:bg-white/90 rounded-none transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md">
+                        <span class="text-sm font-semibold" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
+                </div>
+
+                <!-- 1. 页面主标题区 -->
+                <section class="mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900" data-i18n-zh="背景" data-i18n-en="Background">背景</h1>
+                    <p class="text-lg text-text-secondary w-full leading-relaxed">定义不同定位机器的 UI 背景光影元素及布局逻辑，塑造统一且富有品质感的产品视觉体验。</p>
+                </section>
+
+                <hr class="border-t border-black/5 mb-12">
+
+                <!-- 2. 背景说明 Section -->
+                <section class="mb-16">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-900" data-i18n-zh="1. 背景说明" data-i18n-en="1. Background Overview">1. 背景说明</h2>
+                    <p class="text-gray-600 mb-8 w-full text-sm leading-relaxed">
+                        针对高端、中端及低端家电设备的显示区域特点，设计了 4 种背景光影元素。每种背景元素可根据实际硬件显示区域自由调整比例和大小效果。（点击下方图片可查看完整大图）
+                    </p>
+
+                    <div class="glass-panel p-6 sm:p-10 space-y-8">
+                        <!-- 背景 1 -->
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-bold text-gray-900 text-base">背景 1 <span class="text-xs font-normal text-white bg-[#E9BD85] px-2 py-0.5 rounded-none ml-2">高端机器使用</span></h3>
+                                <span class="text-xs text-gray-400 font-mono">21:5 超宽比例 (4095×975)</span>
+                            </div>
+                            <div class="img-container-box w-full aspect-[21/5]">
+                                <img src="assets/background/background-1.png" alt="背景 1" class="zoomable-img w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- 背景 2 & 背景 3 并排展示 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 背景 2 -->
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="font-bold text-gray-900 text-base">背景 2 <span class="text-xs font-normal text-white bg-[#A87843] px-2 py-0.5 rounded-none ml-2">中端机器使用</span></h3>
+                                    <span class="text-xs text-gray-400 font-mono">16:7 两侧分布 (1986×869)</span>
+                                </div>
+                                <div class="img-container-box w-full aspect-[16/7]">
+                                    <img src="assets/background/background-2.png" alt="背景 2" class="zoomable-img w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <!-- 背景 3 -->
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="font-bold text-gray-900 text-base">背景 3 <span class="text-xs font-normal text-white bg-[#A87843] px-2 py-0.5 rounded-none ml-2">中端机器使用</span></h3>
+                                    <span class="text-xs text-gray-400 font-mono">16:7 上下/中心分布</span>
+                                </div>
+                                <div class="img-container-box w-full aspect-[16/7]">
+                                    <img src="assets/background/background-3.png" alt="背景 3" class="zoomable-img w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 背景 4 -->
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-bold text-gray-900 text-base">背景 4 <span class="text-xs font-normal text-white bg-[#593619] px-2 py-0.5 rounded-none ml-2">低端机器使用</span></h3>
+                                <span class="text-xs text-gray-400 font-mono">21:4 渐变光晕线条 (4095×780)</span>
+                            </div>
+                            <div class="img-container-box w-full aspect-[21/4]">
+                                <img src="assets/background/background-4.png" alt="背景 4" class="zoomable-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. 如何使用 Section -->
+                <section class="mb-16">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-900" data-i18n-zh="2. 如何使用" data-i18n-en="2. Usage Guidelines">2. 如何使用</h2>
+                    <p class="text-gray-600 mb-8 w-full text-sm leading-relaxed">
+                        每个背景根据不同渠道及套系需求，可适配 <strong>7种图标形态</strong>（按机型定位划分）与 <strong>4种界面布局</strong>（无定位划分，依实际场景适配）。
+                    </p>
+
+                    <!-- 组合逻辑矩阵表 / 交叉映射表 -->
+                    <div class="glass-panel p-6 sm:p-8 mb-8">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">背景 × 图标 × 布局 搭配逻辑矩阵</h3>
+                        <p class="text-gray-600 text-sm mb-6 w-full">明确各档位机器与背景、图标及布局的对应规范。</p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr class="border-b border-gray-200/60 bg-white/40">
+                                        <th class="p-3 font-bold text-gray-800">机器定位</th>
+                                        <th class="p-3 font-bold text-gray-800">适配背景</th>
+                                        <th class="p-3 font-bold text-gray-800">适配图标形态 (7种)</th>
+                                        <th class="p-3 font-bold text-gray-800">适配布局方式 (4种)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200/40">
+                                    <tr class="hover:bg-white/30 transition-colors">
+                                        <td class="p-3 font-semibold text-[#E9BD85]">高端机器</td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono">背景 1</span></td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono mr-1">A1</span> <span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono">A2</span> 高端图标</td>
+                                        <td class="p-3 text-gray-600 text-xs" rowspan="3">
+                                            <strong>所有机器通用适配 4 种布局：</strong><br/>
+                                            • 居中布局：居中1、居中2<br/>
+                                            • 靠右布局：靠右1、靠右2
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-white/30 transition-colors">
+                                        <td class="p-3 font-semibold text-[#A87843]">中端机器</td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono">背景 2</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono ml-1">背景 3</span></td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono mr-1">A3</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono">A4</span> 中端图标</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/30 transition-colors">
+                                        <td class="p-3 font-semibold text-[#593619]">低端机器</td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono">背景 4</span></td>
+                                        <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A5</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A6</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono">A7</span> 低端图标</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 交叉相乘逻辑展示 -->
+                    <div class="glass-panel p-6 sm:p-10 space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">背景与图标、布局组合示意</h3>
+                            <p class="text-gray-600 text-sm mb-6 w-full">通过【背景档位】与【图标形态】严格对应，叠加【4种自由布局】，构建出符合各销售渠道与不同套系场景的完美界面组合。（点击大图放大查看细节）</p>
+                        </div>
+
+                        <!-- 组合展示图区 1：高端组合 -->
+                        <div class="p-5 bg-white/40">
+                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-none bg-[#E9BD85]"></span> 高端组合示例 (背景1 × A1/A2图标 × 居中/靠右布局)
+                            </h4>
+                            <div class="img-container-box w-full aspect-[13807/3816]">
+                                <img src="assets/background/combination-1.png" alt="高端组合示例" class="zoomable-img w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- 组合展示图区 2：中端组合 -->
+                        <div class="p-5 bg-white/40">
+                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-none bg-[#A87843]"></span> 中端组合示例 (背景2/3 × A3/A4图标 × 居中/靠右布局)
+                            </h4>
+                            <div class="img-container-box w-full aspect-[13807/5705]">
+                                <img src="assets/background/combination-2.png" alt="中端组合示例" class="zoomable-img w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- 组合展示图区 3：低端组合 -->
+                        <div class="p-5 bg-white/40">
+                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-none bg-[#593619]"></span> 低端组合示例 (背景4 × A5/A6/A7图标 × 居中/靠右布局)
+                            </h4>
+                            <div class="img-container-box w-full aspect-[13807/4894]">
+                                <img src="assets/background/combination-3.png" alt="低端组合示例" class="zoomable-img w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-200">
+                <p class="font-light">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 图片放大预览 Modal 弹窗组件 -->
+    <div id="image-lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-all duration-300">
+        <!-- 关闭按钮 -->
+        <button id="close-lightbox" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl font-light z-50 p-2 focus:outline-none" aria-label="关闭预览">
+            ✕
+        </button>
+        <!-- 放大展示区域 -->
+        <div class="relative max-w-[95vw] max-h-[90vh] flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="放大图预览" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-white/10 rounded-none cursor-zoom-out">
+        </div>
+    </div>
+
+    <!-- 导入导航与全局逻辑脚本 -->
+    <script src="haier-nav.js"></script>
+
+    <!-- 图片点击放大交互脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.getElementById('close-lightbox');
+            const zoomableImages = document.querySelectorAll('.zoomable-img');
+
+            // 打开 Lightbox
+            zoomableImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt || '放大图片预览';
+                    lightbox.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // 禁止底页滚动
+                });
+            });
+
+            // 关闭 Lightbox 函数
+            const closeLightbox = () => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+                document.body.style.overflow = ''; // 恢复底页滚动
+            };
+
+            // 点击背景或图片关闭
+            lightbox.addEventListener('click', closeLightbox);
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+
+            // 按 Esc 键退出放大
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
