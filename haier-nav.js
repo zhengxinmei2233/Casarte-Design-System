@@ -16,6 +16,7 @@ const HAIER_NAV_GROUPS = [
       { label: '2.1.2 字体', href: 'typography_details.html', page: 'typography_details.html', child: true },
       { label: '2.1.3 图标', href: 'iconography_details.html', page: 'iconography_details.html', child: true },
       { label: '2.1.4 材质', href: 'materials_lighting_details.html', page: 'materials_lighting_details.html', child: true },
+      { label: '2.1.5 背景', href: 'background_details.html', page: 'background_details.html', child: true },
       { label: '2.2 布局基础', id: 'foundations-layout', page: 'foundations.html', disabled: true },
       { label: '2.2.1 信息架构', href: 'spatial_depth_details.html', page: 'spatial_depth_details.html', child: true },
       { label: '2.2.2 核心要素', href: 'hero_element_details.html', page: 'hero_element_details.html', child: true },
@@ -114,15 +115,13 @@ const HAIER_NAV_LABEL_EN = {
   '1. 原则 Principles': '1. Principles',
   '1.1 品牌': '1.1 Brand',
   '1.2 设计体验原则': '1.2 UX Principles',
-  '1.2.1 品牌战略': '1.2.1 Brand Strategy',
-  '1.2.2 品牌设计原则': '1.2.2 Brand Design Principles',
-  '1.2.3 核心设计方向': '1.2.3 Core Design Directions',
   '2. 基础 Foundations': '2. Foundations',
   '2.1 视觉基础': '2.1 Visual Foundations',
-  '2.1.1 色彩规范': '2.1.1 Color',
-  '2.1.2 字体规范': '2.1.2 Typography',
-  '2.1.3 图标规范': '2.1.3 Iconography',
+  '2.1.1 色彩': '2.1.1 Color',
+  '2.1.2 字体': '2.1.2 Typography',
+  '2.1.3 图标': '2.1.3 Iconography',
   '2.1.4 材质': '2.1.4 Material',
+  '2.1.5 背景': '2.1.5 Background',
   '2.2 布局基础': '2.2 Layout',
   '2.2.1 信息架构': '2.2.1 Information Architecture',
   '2.2.2 核心要素': '2.2.2 Hero Element',
@@ -130,79 +129,16 @@ const HAIER_NAV_LABEL_EN = {
   '2.2.4 栅格': '2.2.4 Grid System',
   '3. 组件 Components': '3. Components',
   '3.1 操作类': '3.1 Actions',
-  '3.1.1 按钮': '3.1.1 Buttons',
-  '3.1.2 开关': '3.1.2 Switch / Toggle',
   '3.2 选择类': '3.2 Selection',
-  '3.2.1 单选按钮': '3.2.1 Radio Button',
-  '3.2.2 复选框': '3.2.2 Checkbox',
-  '3.2.3 滚轮选择器': '3.2.3 Wheel Picker',
   '3.3 输入类': '3.3 Inputs',
-  '3.3.1 文本框': '3.3.1 Text Field',
-  '3.3.2 下拉选择': '3.3.2 Dropdown / Select',
-  '3.3.3 调控': '3.3.3 Control',
   '3.4 导航类': '3.4 Navigation',
-  '3.4.1 应用栏': '3.4.1 App Bar',
-  '3.4.2 导航': '3.4.2 Navigation',
-  '3.4.3 标签页': '3.4.3 Tabs',
-  '3.4.4 面包屑': '3.4.4 Breadcrumbs',
-  '3.4.5 分页': '3.4.5 Pagination',
-  '3.4.6 步骤条': '3.4.6 Steps',
   '3.5 数据展示': '3.5 Data Display',
-  '3.5.1 卡片': '3.5.1 Card',
-  '3.5.2 列表 / 列表项': '3.5.2 List / List Tile',
-  '3.5.3 头像': '3.5.3 Avatar',
-  '3.5.4 分割线': '3.5.4 Divider',
-  '3.5.5 徽标': '3.5.5 Badge',
   '3.6 反馈与浮层': '3.6 Feedback & Overlays',
-  '3.6.1 对话框 / 模态框': '3.6.1 Dialog / Modal',
-  '3.6.2 底部面板': '3.6.2 Bottom Sheet',
-  '3.6.3 消息条 / 轻提示': '3.6.3 Snackbar / Toast',
-  '3.6.4 工具提示': '3.6.4 Tooltip',
-  '3.6.5 进度指示器': '3.6.5 Progress Indicator',
-  '按钮': 'Buttons',
-  '开关': 'Switch / Toggle',
-  '单选按钮': 'Radio Button',
-  '复选框': 'Checkbox',
-  '滚轮选择器': 'Wheel Picker',
-  '文本框': 'Text Field',
-  '下拉选择': 'Dropdown / Select',
-  '调控': 'Control',
-  '应用栏': 'App Bar',
-  '导航': 'Navigation',
-  '标签页': 'Tabs',
-  '面包屑': 'Breadcrumbs',
-  '分页': 'Pagination',
-  '步骤条': 'Steps',
-  '卡片': 'Card',
-  '列表 / 列表项': 'List / List Tile',
-  '头像': 'Avatar',
-  '分割线': 'Divider',
-  '徽标': 'Badge',
-  '对话框 / 模态框': 'Dialog / Modal',
-  '底部面板': 'Bottom Sheet',
-  '消息条 / 轻提示': 'Snackbar / Toast',
-  '工具提示': 'Tooltip',
-  '进度指示器': 'Progress Indicator',
   '4. 硬件 Hardware': '4. Hardware',
-  '4.1 TFT 屏幕': '4.1 TFT Screens',
-  '4.2 LED 屏幕': '4.2 LED Screens',
-  '4.3 其它屏幕形态': '4.3 Other Screens',
   '5. 动效 Motion': '5. Motion',
-  '5.1 背景动效': '5.1 Background Motion',
-  '5.2 转场 Transitions': '5.2 Transitions',
-  '5.3 微交互': '5.3 Micro-interactions',
   '多感官交互 Sensory': 'Sensory Interaction',
-  '灯光 Lighting': 'Lighting',
-  '触摸 Touch': 'Touch',
-  '音效 Audio': 'Audio',
   '7. AI': '7. AI',
-  '7.1 AI 视觉标准': '7.1 AI Visual Standards',
-  '7.2 AI 使用标准': '7.2 AI Usage Guidelines',
   '8. 资产与推行 Assets': '8. Assets & Governance',
-  '8.1 强制规范标准': '8.1 Mandatory Standards',
-  '8.2 UT数据推导与沉淀': '8.2 UT Data',
-  '8.3 Figma资产授权': '8.3 Figma Assets',
-  '8.4 统一度验收机制': '8.4 Consistency QA',
   '9. 更新日志 Log': '9. Changelog',
 };
 
@@ -215,6 +151,7 @@ const HAIER_NAV_LABEL_EN = {
   if (!sidebar) return;
 
   const currentPage = window.location.pathname.split('/').pop() || 'haier_os_design_system.html';
+  // 默认首次打开强制为中文
   const currentLanguage = localStorage.getItem('haier-guideline-language') || 'zh';
   const sensorySubpages = new Set(['lighting.html', 'touch.html', 'audio.html']);
   let scrollSpyPausedUntil = 0;
@@ -247,6 +184,7 @@ const HAIER_NAV_LABEL_EN = {
     '图标规范': 'Iconography',
     '图标': 'Iconography',
     '材质': 'Material',
+    '背景': 'Background',
     '层级（空间深度）': 'Hierarchy',
     '信息架构': 'Information Architecture',
     '核心要素': 'Hero Element',
@@ -276,6 +214,7 @@ const HAIER_NAV_LABEL_EN = {
     'typography_details.html': 'Casarte Design | Typography',
     'iconography_details.html': 'Casarte Design | Iconography',
     'materials_lighting_details.html': 'Casarte Design | Material',
+    'background_details.html': 'Casarte Design | Background Guidelines',
     'spatial_depth_details.html': 'Casarte Design | Information Architecture',
     'hero_element_details.html': 'Casarte Design | Hero Element',
     'spacing_layout_details.html': 'Casarte Design | Spacing & Layout',
@@ -318,16 +257,17 @@ const HAIER_NAV_LABEL_EN = {
     if (!link && container) {
       const wrapper = document.createElement('div');
       wrapper.className = 'guideline-top-actions flex items-center justify-between mb-8';
-      wrapper.innerHTML = '<a href="haier_os_design_system.html" class="px-4 py-2 bg-white/50 hover:bg-white/90 rounded-full transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md"><span class="text-sm font-semibold"></span></a>';
+      wrapper.innerHTML = '<a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white border border-white/20 rounded-none"><span class="text-sm font-medium tracking-wide"></span></a>';
       container.prepend(wrapper);
       link = wrapper.querySelector('a');
     }
 
     if (!link) return;
     link.href = 'haier_os_design_system.html';
-    link.className = 'guideline-home-link px-4 py-2 bg-white/50 hover:bg-white/90 rounded-full transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md';
+    // 强制去除圆角，改为 rounded-none
+    link.className = 'guideline-home-link px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white border border-white/20 rounded-none';
     const label = link.querySelector('span') || link;
-    if (label !== link) label.className = 'text-sm font-semibold';
+    if (label !== link) label.className = 'text-sm font-medium tracking-wide';
     label.dataset.i18nZh = '返回主页';
     label.dataset.i18nEn = 'Home';
     label.textContent = currentLanguage === 'zh' ? '返回主页' : 'Home';
@@ -368,8 +308,9 @@ const HAIER_NAV_LABEL_EN = {
     const switcher = document.createElement('div');
     switcher.id = 'language-switcher';
     switcher.className = 'fixed top-6 right-6 md:static md:ml-auto z-50 pointer-events-none';
+    // 强制【EN】按钮圆角为0 (rounded-none)
     switcher.innerHTML = `
-      <button type="button" class="pointer-events-auto min-w-[72px] px-5 py-2 rounded-full bg-white/80 hover:bg-white text-gray-700 hover:text-[#C89B58] border border-white/60 shadow-sm backdrop-blur-md text-xs font-semibold transition-colors" aria-label="切换中英文" data-language-toggle>
+      <button type="button" class="pointer-events-auto min-w-[72px] px-5 py-2 rounded-none bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-semibold transition-colors" aria-label="切换中英文" data-language-toggle>
         <span data-language-label>${currentLanguage === 'zh' ? 'EN' : '中文'}</span>
       </button>
     `;
@@ -398,56 +339,51 @@ const HAIER_NAV_LABEL_EN = {
     style.id = 'haier-navigation-style-overrides';
     style.textContent = `
       :root {
-        --brand-primary: #E9BD85;
-        --brand-hover: #C89B58;
-        --brand-light: #FAF2E8;
+        --bg-deep: #0D0D0F;
+        --panel-bg: rgba(22, 22, 26, 0.75);
+        --border-gray: rgba(255, 255, 255, 0.1);
+        --text-gold: #E9BD85;
       }
 
       body {
-        background: #fcfbfa !important;
+        background-color: var(--bg-deep) !important;
+        color: #F5F5F7 !important;
       }
 
-      /* 磨砂光晕背景适配卡萨帝香槟金调 */
-      .aura-background {
+      /* 极简高级微光背景 */
+      .ambient-bg {
         position: fixed !important;
-        inset: 0 !important;
-        background:
-          radial-gradient(circle at 12% 0, #f8ede0 0, transparent 40%),
-          radial-gradient(circle at 90% 85%, #f5e9d9 0, transparent 42%),
-          #fcfbfa !important;
+        top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+        z-index: -1 !important;
+        background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%) !important;
       }
 
-      .aura-background .aura-blob {
+      .aura-background {
         display: none !important;
       }
 
+      /* 左侧导航栏采用微区分的深色面板背景 */
       #sidebar,
+      body > header.gallery-panel,
       body > header.glass-panel {
-        background: rgba(255, 255, 255, 0.85) !important;
-        backdrop-filter: blur(22px) !important;
-        -webkit-backdrop-filter: blur(22px) !important;
-        border-color: rgba(255, 255, 255, 0.9) !important;
-        box-shadow: 0 12px 36px rgba(233, 189, 133, 0.08) !important;
+        background: #141418 !important;
+        backdrop-filter: blur(40px) !important;
+        -webkit-backdrop-filter: blur(40px) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 4px 0 30px rgba(0, 0, 0, 0.5) !important;
+        border-radius: 0 !important;
       }
 
       #sidebar {
         overflow-y: auto !important;
-        scrollbar-width: none;
-        scrollbar-color: #e5d8c8 transparent;
-        transition: transform 0.28s ease, opacity 0.28s ease !important;
-      }
-
-      #sidebar:hover {
         scrollbar-width: thin;
-        scrollbar-color: #e5d8c8 transparent;
+        scrollbar-color: #2A2A30 transparent;
+        transition: transform 0.28s ease, opacity 0.28s ease !important;
+        border-radius: 0 !important;
       }
 
       #sidebar::-webkit-scrollbar {
-        width: 0;
-      }
-
-      #sidebar:hover::-webkit-scrollbar {
-        width: 8px;
+        width: 6px;
       }
 
       #sidebar::-webkit-scrollbar-track {
@@ -455,8 +391,8 @@ const HAIER_NAV_LABEL_EN = {
       }
 
       #sidebar::-webkit-scrollbar-thumb {
-        background: #e5d8c8;
-        border-radius: 10px;
+        background: #2A2A30;
+        border-radius: 0;
       }
 
       #main-content {
@@ -469,8 +405,8 @@ const HAIER_NAV_LABEL_EN = {
       }
 
       .guideline-page-title {
-        margin-bottom: 1rem !important;
-        color: #111827 !important;
+        margin-bottom: 1.5rem !important;
+        color: #FFFFFF !important;
         font-size: 2.25rem !important;
         line-height: 2.5rem !important;
         font-weight: 700 !important;
@@ -479,7 +415,7 @@ const HAIER_NAV_LABEL_EN = {
 
       .guideline-page-description {
         max-width: 48rem !important;
-        color: #86868b !important;
+        color: #D1D5DB !important;
         font-size: 1.125rem !important;
         line-height: 1.625 !important;
         font-weight: 400 !important;
@@ -505,14 +441,14 @@ const HAIER_NAV_LABEL_EN = {
       .guideline-home-link {
         min-width: auto !important;
         padding: 0.5rem 1rem !important;
-        border-radius: 9999px !important;
-        color: #374151 !important;
+        border-radius: 0 !important; /* 返回主页按钮无圆角 */
+        color: #FFFFFF !important;
         font-size: 0.875rem !important;
         line-height: 1.25rem !important;
       }
 
       .guideline-home-link:hover {
-        color: #C89B58 !important;
+        color: var(--text-gold) !important;
       }
 
       [data-sidebar-collapse],
@@ -521,18 +457,18 @@ const HAIER_NAV_LABEL_EN = {
         justify-content: center;
         width: 2.25rem;
         height: 2.25rem;
-        border: 1px solid rgba(233, 189, 133, 0.3);
-        border-radius: 0.75rem;
-        background: rgba(255, 255, 255, 0.7);
-        color: #667085;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 !important; /* 侧边栏折叠/展开按钮无圆角 */
+        background: #1C1C22;
+        color: #9CA3AF;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
         transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
       }
 
       [data-sidebar-collapse]:hover,
       #sidebar-restore-button:hover {
-        color: #C89B58;
-        background: rgba(255, 255, 255, 0.96);
+        color: var(--text-gold);
+        background: #25252C;
       }
 
       #sidebar-restore-button {
@@ -578,43 +514,28 @@ const HAIER_NAV_LABEL_EN = {
       a:hover,
       .sidebar-group-trigger:hover,
       .sidebar-nav-item:hover {
-        color: var(--brand-hover) !important;
-      }
-
-      [class~="hover:text-blue-600"]:hover,
-      [class~="hover:text-blue-700"]:hover,
-      .group:hover [class~="group-hover:text-blue-600"],
-      .group:hover [class~="group-hover:text-blue-600/70"],
-      .group:hover [class~="group-hover:text-blue-700"],
-      .icon-tab:hover,
-      .tab-btn:hover {
-        color: var(--brand-hover) !important;
-      }
-
-      [class~="hover:bg-blue-600"]:hover,
-      .group:hover [class~="group-hover:bg-blue-600"] {
-        background-color: var(--brand-hover) !important;
+        color: var(--text-gold) !important;
       }
 
       .icon-slot:hover {
-        color: var(--brand-hover) !important;
-        box-shadow: inset 0 0 0 1px var(--brand-hover) !important;
+        color: var(--text-gold) !important;
+        box-shadow: inset 0 0 0 1px var(--text-gold) !important;
       }
 
-      /* 卡萨帝 Logo 直角小方块容器（带品牌色底色与自适应防空白内边距） */
+      /* 卡萨帝 Logo 容器适配 */
       .haier-logo-container {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 4rem !important;
-        height: 4rem !important;
-        flex: 0 0 4rem !important;
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        flex: 0 0 3.5rem !important;
         font-size: 0 !important;
-        background: var(--brand-primary) !important;
+        background: var(--text-gold) !important;
         border: 0 !important;
         border-radius: 0 !important;
         overflow: hidden !important;
-        padding: 0.5rem !important;
+        padding: 0.4rem !important;
         box-sizing: border-box !important;
       }
 
@@ -626,27 +547,23 @@ const HAIER_NAV_LABEL_EN = {
         border-radius: 0 !important;
       }
 
-      /* 侧边栏整体背景渐变 */
-      #sidebar {
-        background: linear-gradient(180deg, #ffffff 0%, #fcf7f1 100%) !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border-radius: 0 !important;
-        border-right: 1px solid #f2e7d8 !important;
-      }
-
       .sidebar-nav-item.nav-child {
         border-left: 0 !important;
         padding-left: 1.75rem !important;
+        border-radius: 0 !important;
       }
 
       .sidebar-nav-item {
         border-left-width: 0 !important;
         font-weight: 400 !important;
+        color: #9CA3AF !important;
+        border-radius: 0 !important;
       }
 
       .sidebar-group-trigger {
         font-weight: 400 !important;
+        color: #9CA3AF !important;
+        border-radius: 0 !important;
       }
 
       .sidebar-group-panel .sidebar-nav-item:not(.nav-child) {
@@ -654,20 +571,16 @@ const HAIER_NAV_LABEL_EN = {
       }
 
       .sidebar-nav-item.nav-disabled {
-        color: rgba(107, 114, 128, 0.55) !important;
+        color: rgba(156, 163, 175, 0.4) !important;
         cursor: default !important;
         pointer-events: none !important;
       }
 
-      .sidebar-nav-item.nav-child.active {
-        border-left-color: transparent !important;
-      }
-
-      /* 菜单高亮与激活选中态（金色） */
+      /* 菜单高亮与激活选中态（金色主题） */
       .sidebar-nav-item.active {
-        color: #B28241 !important;
-        background: linear-gradient(90deg, var(--brand-light) 0%, transparent 100%) !important;
-        border-left: 3px solid var(--brand-primary) !important;
+        color: var(--text-gold) !important;
+        background: rgba(233, 189, 133, 0.1) !important;
+        border-left: 3px solid var(--text-gold) !important;
         border-radius: 0 !important;
         font-weight: 600 !important;
       }
@@ -677,7 +590,7 @@ const HAIER_NAV_LABEL_EN = {
 
   const navItemTemplate = (item) => {
     if (item.disabled) {
-      return `<span class="sidebar-nav-item nav-disabled block px-4 py-2.5 text-sm font-normal rounded-xl transition-colors" data-nav-id="${item.id || ''}">${navLabel(item.label)}</span>`;
+      return `<span class="sidebar-nav-item nav-disabled block px-4 py-2.5 text-sm font-normal rounded-none transition-colors" data-nav-id="${item.id || ''}">${navLabel(item.label)}</span>`;
     }
 
     const [itemPage, itemHash] = item.href.split('#');
@@ -687,10 +600,10 @@ const HAIER_NAV_LABEL_EN = {
       (!itemPage && itemHash && itemHash === currentHash);
     const childPrefix = '';
     const baseClasses = item.standalone
-      ? 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-500/80 hover:text-[#C89B58] rounded-xl transition-colors'
+      ? 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-400 hover:text-[#E9BD85] rounded-none transition-colors'
       : item.child
-        ? 'sidebar-nav-item nav-child block px-4 py-2 text-sm font-normal text-gray-600 hover:text-[#C89B58] pl-7 rounded-r-lg transition-colors'
-        : 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-700 hover:text-[#C89B58] rounded-xl transition-colors';
+        ? 'sidebar-nav-item nav-child block px-4 py-2 text-sm font-normal text-gray-400 hover:text-[#E9BD85] pl-7 rounded-none transition-colors'
+        : 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-300 hover:text-[#E9BD85] rounded-none transition-colors';
 
     return `<a href="${normalizeHref(item.href)}" class="${baseClasses}${isCurrentPage ? ' active' : ''}" data-nav-id="${item.id || ''}" data-nav-page="${item.page || ''}">${childPrefix}${navLabel(item.label)}</a>`;
   };
@@ -700,7 +613,7 @@ const HAIER_NAV_LABEL_EN = {
 
     return `
       <div class="sidebar-nav-group" data-nav-group="${group.id}">
-        <button type="button" class="sidebar-group-trigger w-full flex items-center justify-between gap-3 px-4 py-2.5 mt-2 text-left text-sm font-normal text-gray-500/80 hover:text-[#C89B58] hover:bg-white/40 rounded-xl transition-colors" aria-expanded="${isOpen}" aria-controls="nav-panel-${group.id}" data-nav-toggle="${group.id}">
+        <button type="button" class="sidebar-group-trigger w-full flex items-center justify-between gap-3 px-4 py-2.5 mt-2 text-left text-sm font-normal text-gray-400 hover:text-[#E9BD85] hover:bg-white/5 rounded-none transition-colors" aria-expanded="${isOpen}" aria-controls="nav-panel-${group.id}" data-nav-toggle="${group.id}">
           <span>${navLabel(group.label)}</span>
           <svg class="w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
@@ -711,19 +624,19 @@ const HAIER_NAV_LABEL_EN = {
   };
 
   sidebar.innerHTML = `
-    <div class="relative p-8 pb-4">
-      <button type="button" class="hidden md:flex absolute top-6 right-5" aria-label="收起左侧导航" title="收起导航" data-sidebar-collapse>
+    <div class="relative p-6 pb-4">
+      <button type="button" class="hidden md:flex absolute top-5 right-4" aria-label="收起左侧导航" title="收起导航" data-sidebar-collapse>
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
       </button>
-      <a href="haier_os_design_system.html" class="haier-logo-container w-16 h-16 mb-4 text-xl shadow-md" aria-label="Casarte Design 首页"><img src="assets/icons/casarte-logo-03.png" alt="Casarte"></a>
-      <h1 class="text-2xl font-bold tracking-tight text-gray-900">Casarte Design</h1>
-      <p class="text-sm text-gray-500 mt-1">NEXT UX Guideline 1.0.0</p>
+      <a href="haier_os_design_system.html" class="haier-logo-container w-14 h-14 mb-3 text-xl shadow-md" aria-label="Casarte Design 首页"><img src="assets/icons/casarte-logo-03.png" alt="Casarte"></a>
+      <h1 class="text-xl font-bold tracking-tight text-white">Casarte Design</h1>
+      <p class="text-xs text-gray-400 mt-0.5">NEXT UX Guideline 1.0.0</p>
     </div>
-    <nav class="flex-1 px-4 pb-12 space-y-1" aria-label="章节目录">
+    <nav class="flex-1 px-3 pb-12 space-y-1" aria-label="章节目录">
       ${HAIER_NAV_GROUPS.map(groupTemplate).join('')}
-      <div class="mt-2 pt-2 border-t border-amber-900/10">
+      <div class="mt-2 pt-2 border-t border-white/10">
         ${HAIER_NAV_STANDALONE_ITEMS.map(navItemTemplate).join('')}
-    </div>
+      </div>
     </nav>`;
 
   const sidebarRestoreButton = document.createElement('button');
@@ -794,7 +707,7 @@ const HAIER_NAV_LABEL_EN = {
     sidebar.classList.toggle('hidden', !open && window.innerWidth < 768);
     sidebar.classList.toggle('flex', open || window.innerWidth >= 768);
     sidebar.classList.toggle('z-50', open);
-    sidebar.classList.toggle('bg-white/90', open);
+    sidebar.classList.toggle('bg-[#141418]', open);
     sidebar.setAttribute('aria-hidden', String(!open && window.innerWidth < 768));
     mobileButton?.setAttribute('aria-expanded', String(open));
     backdrop?.classList.toggle('hidden', !open);

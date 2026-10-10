@@ -3,99 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haier Design | 材质</title>
+    <title data-i18n-zh="Casarte Design | 材质规范" data-i18n-en="Casarte Design | Material">Casarte Design | 材质规范</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --brand-primary:#E9BD85; --brand-light:#F8EBD8; --text-main:#1D1D1F; --text-secondary:#86868B; --glass-bg:rgba(255,255,255,.6); --glass-border:rgba(255,255,255,.4); }
-        body { font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; background:#F6F6F6; color:var(--text-main); overflow-x:hidden; }
-        .aura-background { position:fixed; inset:0; z-index:-1; overflow:hidden; background:#F6F6F6; }
-        .aura-blob { position:absolute; filter:blur(120px); opacity:.6; animation:float 20s infinite ease-in-out alternate; }
-        .aura-blob-1 { top:-10%; left:-10%; width:50vw; height:50vw; background:#FDE1BE; }
-        .aura-blob-2 { bottom:-20%; right:-10%; width:60vw; height:60vw; background:#F6F6F6; animation-delay:-5s; }
-        .aura-blob-3 { top:40%; left:60%; width:40vw; height:40vw; background:#F6F6F6; animation-delay:-10s; }
-        @keyframes float { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(10%,15%) scale(1.1)} }
-        .glass-panel { background:var(--glass-bg); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid var(--glass-border); box-shadow:0 8px 32px rgba(0,0,0,.04); border-radius:24px; }
-        .sidebar-nav-item { transition:all .3s ease; border-left:3px solid transparent; }
-        .sidebar-nav-item.active { color:var(--brand-primary); font-weight:600; border-left-color:var(--brand-primary); background:linear-gradient(90deg,var(--brand-light) 0%,transparent 100%); }
-        .token-block { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.8rem; line-height: 1.4; word-break: break-all; }
-        .haier-logo-container { display:flex; align-items:center; justify-content:center; background-color:#E9BD85; color:white; font-family:Arial,Helvetica,sans-serif; font-weight:bold; border-radius:8px; }
+        :root {
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
+            overflow-x: hidden;
+        }
+
+        /* 极简高级微光背景 */
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+        }
+
+        /* 统一的高级灰色外框面板 (所有大模块卡片) */
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
+        }
+
+        /* 一键复制 Token 代码框 */
+        .token-box {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.82rem;
+            background: #08080A;
+            color: #F5F5F7;
+            padding: 12px 14px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(233, 189, 133, 0.25);
+            position: relative;
+        }
+        .token-box:hover {
+            border-color: var(--text-gold);
+            background: #141418;
+            box-shadow: 0 4px 20px rgba(233, 189, 133, 0.15);
+        }
+        .token-box:active { transform: scale(0.98); }
+
+        .copy-tip {
+            position: absolute;
+            right: 14px;
+            top: -28px;
+            background: #10B981;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 2px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .token-box.copied .copy-tip { opacity: 1; }
+
+        /* 横向材质透光对比展台底座 */
+        .comparison-stage {
+            position: relative;
+            height: 260px;
+            width: 100%;
+            background: linear-gradient(135deg, #2D1E12 0%, #120D0A 50%, #423020 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+            border: 1px solid var(--border-gray);
+        }
+        .comparison-stage::before {
+            content: "CASARTE DESIGN SYSTEM — MATERIAL LAYERS";
+            position: absolute;
+            left: 24px;
+            bottom: 16px;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            color: rgba(233, 189, 133, 0.4);
+            font-weight: 600;
+            z-index: 1;
+        }
+        .comparison-stage::after {
+            content: "C";
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 180px;
+            font-weight: 200;
+            color: rgba(233, 189, 133, 0.1);
+            font-family: serif;
+            pointer-events: none;
+        }
+
+        /* 4 种材质在统一展台上的覆盖块 */
+        .stage-layer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            border-right: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .stage-layer:last-child { border-right: none; }
+
+        .layer-solid { background: rgba(255, 255, 255, 1); color: #111; }
+        .layer-focus { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); color: #111; }
+        .layer-media { background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.7); }
+        .layer-soft  { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: #FFF; text-shadow: 0 1px 3px rgba(0,0,0,0.7); }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.05em;
+        }
+
+        /* 阴影展厅基座 */
+        .shadow-gallery-pod {
+            background: rgba(22, 22, 26, 0.75);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+        }
+
+        /* 5 阶微光阴影面板 */
+        .sc-0 { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: none; }
+        .sc-1 { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
+        .sc-2 { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 14px 35px rgba(0,0,0,0.65); }
+        .sc-3 { background: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 24px 55px rgba(0,0,0,0.78); }
+        .sc-4 { background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 38px 85px rgba(0,0,0,0.92); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
     </style>
 </head>
+
 <body class="antialiased">
-    <div class="aura-background"><div class="aura-blob aura-blob-1"></div><div class="aura-blob aura-blob-2"></div><div class="aura-blob aura-blob-3"></div></div>
-    <header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center"><div class="flex items-center"><div class="haier-logo-container w-10 h-10 mr-3 text-[14px]">Haier</div><h1 class="font-bold text-lg">Haier Design</h1></div><button id="mobile-menu-btn" class="p-2 bg-black/5 rounded-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></header>
+    <div class="ambient-bg"></div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
+        <div class="flex items-center">
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="材质规范" data-i18n-en="Material">材质规范</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </header>
+
     <div class="flex h-screen pt-16 md:pt-0">
-        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 glass-panel rounded-none border-r border-white/50 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
-        <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
-            <div class="max-w-[1200px] mx-auto pb-24">
-                <div class="hidden md:flex items-center mb-8"><a href="haier_os_design_system.html" class="px-4 py-2 bg-white/50 hover:bg-white/90 rounded-xl transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md"><span class="text-sm font-semibold" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span></a></div>
-                <section class="mb-12"><h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900">材质</h1><p class="text-lg text-text-secondary max-w-3xl leading-relaxed">材质光影 Token 作为系统视觉基调，确保跨设备渲染一致。</p></section>
-                <hr class="border-t border-black/5 mb-8">
-                <section class="glass-panel p-6 md:p-10 mb-10">
-                    <div class="mb-6"><h2 class="text-2xl font-bold text-gray-900 mb-2">材质</h2><p class="text-sm text-gray-500">作为系统视觉基调，我们定义了浅色与深色各 4 套标准材质 Token，供开发直接映射，确保跨设备渲染的磨玻璃特效一致。</p></div>
-                    
-                    <div class="space-y-8">
-                        <!-- 浅色模块 (Frame 75) -->
-                        <div class="p-8 md:p-12 relative rounded-none" style="background-color: #FAE8D1;">
-                            <h3 class="text-2xl font-normal text-gray-800 mb-8">浅色</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
-                                <!-- Solid -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 1);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Solid</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 1);</div>
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Casarte Design 导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
+
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
+                
+                <!-- 头部 -->
+                <div>
+                    <div class="hidden md:flex items-center mb-8">
+                        <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
+                            <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                        </a>
+                    </div>
+
+                    <div class="border-b border-gray-800 pb-8">
+                        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="材质" data-i18n-en="Material">材质</h1>
+                        <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。" data-i18n-en="Materials establish spatial relationships through light transmission, blur, contrast, and shadow. Casarte's multi-terminal interface relies on clarity, tranquility, and credibility: materials distinguish content from functions, while shadows represent authentic floating hierarchies.">
+                            材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- ================= 模块 1：核心设计原则 ================= -->
+                <section id="module-core-principles" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">01</span>
+                        <div class="space-y-1">
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="核心设计原则" data-i18n-en="Core Design Principles">核心设计原则</h2>
+                            <p class="text-sm text-gray-400" data-i18n-zh="材质不是装饰滤镜。先确定元素在任务中的语义与层级，再选择视觉表现；任何效果都不能牺牲状态识别、文本对比度和操作确定性。" data-i18n-en="Materials are not decorative filters. Determine semantics and hierarchy before selecting visuals; no effect should compromise state recognition, contrast, or usability.">材质不是装饰滤镜。先确定元素在任务中的语义与层级，再选择视觉表现；任何效果都不能牺牲状态识别、文本对比度和操作确定性。</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="gallery-panel p-8 border-l-2 border-l-[#E9BD85]">
+                            <h3 class="text-lg font-bold text-white mb-3" data-i18n-zh="内容优先" data-i18n-en="Content First">内容优先</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed" data-i18n-zh="设备状态、环境数据和主要任务始终清晰。材质只能帮助理解，不得与内容争夺注意力。" data-i18n-en="Device status, environmental data, and primary tasks remain clear. Materials aid comprehension without competing for attention.">设备状态、环境数据和主要任务始终清晰。材质只能帮助理解，不得与内容争夺注意力。</p>
+                        </div>
+                        <div class="gallery-panel p-8 border-l-2 border-l-[#E9BD85]">
+                            <h3 class="text-lg font-bold text-white mb-3" data-i18n-zh="语义选材" data-i18n-en="Semantic Selection">语义选材</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed" data-i18n-zh="同一用途跨端使用同一材质角色，不以“更亮、更透明、更高端”作为选择依据。" data-i18n-en="Use consistent material roles across terminals for the same purpose, avoiding selections based purely on brightness or transparency.">同一用途跨端使用同一材质角色，不以“更亮、更透明、更高端”作为选择依据。</p>
+                        </div>
+                        <div class="gallery-panel p-8 border-l-2 border-l-[#E9BD85]">
+                            <h3 class="text-lg font-bold text-white mb-3" data-i18n-zh="克制分层" data-i18n-en="Restrained Layering">克制分层</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed" data-i18n-zh="内容层保持稳定，功能层按需浮现。一个视图原则上只保留一个最高悬浮层级。" data-i18n-en="Content layers remain stable while functional layers emerge as needed. Each view generally maintains only one highest floating tier.">内容层保持稳定，功能层按需浮现。一个视图原则上只保留一个最高悬浮层级。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+
+                <!-- ================= 模块 2：层级材质 ================= -->
+                <section id="module-layer-materials" class="space-y-10">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">02</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="层级材质" data-i18n-en="Layer Materials">层级材质</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="针对家电屏、移动端、TV 与中控屏的高频场景，材质分为稳定内容层与临时功能层。透明度越高，信息承载能力越低；文本越多，材质越应接近不透明。" data-i18n-en="For high-frequency scenes across appliance screens, mobile devices, TVs, and central control panels, materials are divided into stable content layers and temporary functional layers.">针对家电屏、移动端、TV 与中控屏的高频场景，材质分为稳定内容层与临时功能层。透明度越高，信息承载能力越低；文本越多，材质越应接近不透明。</p>
+                        </div>
+                    </div>
+
+                    <!-- 统一横向透光效果对比视窗 -->
+                    <div class="comparison-stage">
+                        <div class="stage-layer layer-solid">
+                            <span class="text-base font-bold tracking-wider mb-1">Solid</span>
+                            <span class="text-xs font-medium opacity-80" data-i18n-zh="100% 不透 / 无模糊" data-i18n-en="100% Opaque / No Blur">100% 不透 / 无模糊</span>
+                        </div>
+                        <div class="stage-layer layer-focus">
+                            <span class="text-base font-bold tracking-wider mb-1">Focus</span>
+                            <span class="text-xs font-medium opacity-90">60% + blur 18px</span>
+                        </div>
+                        <div class="stage-layer layer-media">
+                            <span class="text-base font-bold tracking-wider mb-1">Media</span>
+                            <span class="text-xs font-medium opacity-90">30% + blur 8px</span>
+                        </div>
+                        <div class="stage-layer layer-soft">
+                            <span class="text-base font-bold tracking-wider mb-1">Soft</span>
+                            <span class="text-xs font-medium opacity-90">20% + blur 16px</span>
+                        </div>
+                    </div>
+
+                    <!-- 4 个规范小卡片 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <!-- Solid -->
+                        <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                    <h4 class="text-xl font-bold text-white">Solid</h4>
+                                    <span class="text-xs text-gray-400 font-medium" data-i18n-zh="不透明底层" data-i18n-en="Opaque Base">不透明底层</span>
                                 </div>
-                                <!-- Focus -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Focus</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 0.6);<br>backdrop-filter: blur(18px);</div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                    <div class="space-y-1 text-sm text-gray-300">
+                                        <div>Fill: Fill #FFFFFF (100%)</div>
+                                        <div>Effects: —</div>
+                                    </div>
                                 </div>
-                                <!-- Media -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Media</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 0.3);<br>backdrop-filter: blur(8px);</div>
-                                </div>
-                                <!-- Soft -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Soft</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 0.2);<br>backdrop-filter: blur(16px);</div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
+                                <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 1);')">
+                                    <span class="truncate mr-2">rgba(255, 255, 255, 1);</span>
+                                    <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                    <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 深色模块 (Frame 76) -->
-                        <div class="p-8 md:p-12 relative rounded-none" style="background-color: #593619;">
-                            <h3 class="text-2xl font-normal text-white/90 mb-8">深色</h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
-                                <!-- Solid -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 1);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Solid</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 1);</div>
+                        <!-- Focus -->
+                        <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                    <h4 class="text-xl font-bold text-white">Focus</h4>
+                                    <span class="text-xs text-gray-400 font-medium" data-i18n-zh="临时控制 / 浮层" data-i18n-en="Temporary Control">临时控制 / 浮层</span>
                                 </div>
-                                <!-- Focus -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);">
-                                    <h4 class="text-2xl font-normal text-gray-800">Focus</h4>
-                                    <div class="token-block text-gray-700 h-12 flex items-start">background: rgba(255, 255, 255, 0.5);<br>backdrop-filter: blur(18px);</div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                    <div class="space-y-1 text-sm text-gray-300">
+                                        <div>Fill: Fill #FFFFFF (60%)</div>
+                                        <div>Effects: Background blur 18px</div>
+                                    </div>
                                 </div>
-                                <!-- Media -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                                    <h4 class="text-2xl font-normal text-white">Media</h4>
-                                    <div class="token-block text-white/90 h-12 flex items-start">background: rgba(255, 255, 255, 0.4);<br>backdrop-filter: blur(8px);</div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
+                                <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px);')">
+                                    <span class="truncate mr-2">rgba(255,255,255,0.6); blur(18px);</span>
+                                    <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                    <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
-                                <!-- Soft -->
-                                <div class="p-6 h-[260px] flex flex-col justify-between" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-                                    <h4 class="text-2xl font-normal text-white">Soft</h4>
-                                    <div class="token-block text-white/90 h-12 flex items-start">background: rgba(255, 255, 255, 0.05);<br>backdrop-filter: blur(16px);</div>
+                            </div>
+                        </div>
+
+                        <!-- Media -->
+                        <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                    <h4 class="text-xl font-bold text-white">Media</h4>
+                                    <span class="text-xs text-gray-400 font-medium" data-i18n-zh="视频/图像快捷层" data-i18n-en="Media Layer">视频/图像快捷层</span>
                                 </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                    <div class="space-y-1 text-sm text-gray-300">
+                                        <div>Fill: Fill #FFFFFF (30%)</div>
+                                        <div>Effects: Background blur 8px</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
+                                <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px);')">
+                                    <span class="truncate mr-2">rgba(255, 255, 255, 0.3); blur(8px);</span>
+                                    <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                    <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soft -->
+                        <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                    <h4 class="text-xl font-bold text-white">Soft</h4>
+                                    <span class="text-xs text-gray-400 font-medium" data-i18n-zh="内容分组 / 状态" data-i18n-en="Content Grouping">内容分组 / 状态</span>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                    <div class="space-y-1 text-sm text-gray-300">
+                                        <div>Fill: Fill #FFFFFF (20%)</div>
+                                        <div>Effects: Background blur 16px</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
+                                <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(16px);')">
+                                    <span class="truncate mr-2">rgba(255, 255, 255, 0.2); blur(16px);</span>
+                                    <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                    <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+
+                <!-- ================= 模块 3：阴影的材质 ================= -->
+                <section id="module-shadow-materials" class="space-y-10">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">03</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="阴影的材质" data-i18n-en="Shadow Materials">阴影的材质</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="阴影模拟统一、柔和的顶部环境光，用于说明元素离开承载面的距离。卡萨帝界面不使用阴影制造装饰性立体感；层级越高，阴影位移、模糊和扩散越大，但边缘始终克制。" data-i18n-en="Shadows simulate unified top ambient lighting to indicate elevation from the carrying surface. Casarte interfaces do not use shadows for decorative depth.">阴影模拟统一、柔和的顶部环境光，用于说明元素离开承载面的距离。卡萨帝界面不使用阴影制造装饰性立体感；层级越高，阴影位移、模糊和扩散越大，但边缘始终克制。</p>
+                        </div>
+                    </div>
+
+                    <!-- 阴影展台大卡片 -->
+                    <div class="shadow-gallery-pod p-8 md:p-12">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                            
+                            <!-- 0 · Flat -->
+                            <div class="p-6 h-[180px] sc-0 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
+                                <span class="font-bold text-white text-lg tracking-wide">0 · Flat</span>
+                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="页面背景、嵌入式内容、普通列表" data-i18n-en="Page background, embedded content, standard lists">页面背景、嵌入式内容、普通列表</span>
+                            </div>
+
+                            <!-- 1 · Rest -->
+                            <div class="p-6 h-[180px] sc-1 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
+                                <span class="font-bold text-white text-lg tracking-wide">1 · Rest</span>
+                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="按钮、可点击卡片的静态状态" data-i18n-en="Static state of buttons and clickable cards">按钮、可点击卡片的静态状态</span>
+                            </div>
+
+                            <!-- 2 · Raised -->
+                            <div class="p-6 h-[180px] sc-2 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
+                                <span class="font-bold text-white text-lg tracking-wide">2 · Raised</span>
+                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="悬浮卡片、悬浮快捷控制" data-i18n-en="Floating cards, floating quick controls">悬浮卡片、悬浮快捷控制</span>
+                            </div>
+
+                            <!-- 3 · Overlay -->
+                            <div class="p-6 h-[180px] sc-3 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
+                                <span class="font-bold text-white text-lg tracking-wide">3 · Overlay</span>
+                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="下拉菜单、底部面板、临时控制盒" data-i18n-en="Dropdown menus, bottom sheets, temporary control boxes">下拉菜单、底部面板、临时控制盒</span>
+                            </div>
+
+                            <!-- 4 · Modal -->
+                            <div class="p-6 h-[180px] sc-4 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
+                                <span class="font-bold text-white text-lg tracking-wide">4 · Modal</span>
+                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="确认弹窗、关键告警、阻断式任务" data-i18n-en="Confirmation dialogs, critical alerts, blocking tasks">确认弹窗、关键告警、阻断式任务</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 阴影 Token 与层级行为规范表大卡片 -->
+                    <div class="gallery-panel p-8 md:p-10 space-y-6">
+                        <h3 class="text-lg font-bold text-white" data-i18n-zh="阴影 Token 与层级行为规范表" data-i18n-en="Shadow Token & Hierarchy Behavior Table">阴影 Token 与层级行为规范表</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-gray-800 bg-white/5 text-xs font-semibold text-[#E9BD85] uppercase tracking-wider">
+                                        <th class="p-4" data-i18n-zh="层级" data-i18n-en="Tier">层级</th>
+                                        <th class="p-4" data-i18n-zh="Token / 参数说明" data-i18n-en="Token / Description">Token / 参数说明</th>
+                                        <th class="p-4" data-i18n-zh="使用场景" data-i18n-en="Usage Scenarios">使用场景</th>
+                                        <th class="p-4" data-i18n-zh="系统行为" data-i18n-en="System Behavior">系统行为</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-800 text-xs md:text-sm text-gray-300">
+                                    <tr class="hover:bg-white/5 transition-colors">
+                                        <td class="p-4 font-bold text-white">0 · Flat</td>
+                                        <td class="p-4 font-mono text-[#E9BD85]">shadow.0 none</td>
+                                        <td class="p-4" data-i18n-zh="页面背景、嵌入式内容、普通列表" data-i18n-en="Page background, embedded content, standard lists">页面背景、嵌入式内容、普通列表</td>
+                                        <td class="p-4 text-gray-400" data-i18n-zh="依靠色差、间距或分隔线组织信息结构。" data-i18n-en="Organize information structure relying on color contrast, spacing, or dividers.">依靠色差、间距或分隔线组织信息结构。</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition-colors">
+                                        <td class="p-4 font-bold text-white">1 · Rest</td>
+                                        <td class="p-4 font-mono text-[#E9BD85]">0 1 3 / 8%</td>
+                                        <td class="p-4" data-i18n-zh="按钮、可点击卡片的静态状态" data-i18n-en="Static state of buttons and clickable cards">按钮、可点击卡片的静态状态</td>
+                                        <td class="p-4 text-gray-400" data-i18n-zh="只提示可交互，不改变信息层级。" data-i18n-en="Indicates interactivity only without altering information hierarchy.">只提示可交互，不改变信息层级。</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition-colors">
+                                        <td class="p-4 font-bold text-white">2 · Raised</td>
+                                        <td class="p-4 font-mono text-[#E9BD85]">0 4 10 / 8%</td>
+                                        <td class="p-4" data-i18n-zh="悬浮卡片、悬浮快捷控制" data-i18n-en="Floating cards, floating quick controls">悬浮卡片、悬浮快捷控制</td>
+                                        <td class="p-4 text-gray-400" data-i18n-zh="仅在元素确实离开承载面时出现。" data-i18n-en="Appears only when elements actually leave the carrying surface.">仅在元素确实离开承载面时出现。</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition-colors">
+                                        <td class="p-4 font-bold text-white">3 · Overlay</td>
+                                        <td class="p-4 font-mono text-[#E9BD85]">0 10 24 / 12%</td>
+                                        <td class="p-4" data-i18n-zh="下拉菜单、底部面板、临时控制盒" data-i18n-en="Dropdown menus, bottom sheets, temporary control boxes">下拉菜单、底部面板、临时控制盒</td>
+                                        <td class="p-4 text-gray-400" data-i18n-zh="背景降低竞争，前景焦点清晰。" data-i18n-en="Background reduces competition; foreground focus is clear.">背景降低竞争，前景焦点清晰。</td>
+                                    </tr>
+                                    <tr class="hover:bg-white/5 transition-colors">
+                                        <td class="p-4 font-bold text-white">4 · Modal</td>
+                                        <td class="p-4 font-mono text-[#E9BD85]">0 20 48 / 16%</td>
+                                        <td class="p-4" data-i18n-zh="确认弹窗、关键告警、阻断式任务" data-i18n-en="Confirmation dialogs, critical alerts, blocking tasks">确认弹窗、关键告警、阻断式任务</td>
+                                        <td class="p-4 text-gray-400" data-i18n-zh="必须配合背景遮罩；同屏只能有一个。" data-i18n-en="Must be accompanied by a background mask; only one per screen.">必须配合背景遮罩；同屏只能有一个。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+
+                <!-- ================= 模块 4：使用与验收规范 ================= -->
+                <section id="module-usage-governance" class="space-y-10">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">04</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="使用与验收" data-i18n-en="Usage & Acceptance">使用与验收</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。" data-i18n-en="Guidelines for designers and developers during UI creation and acceptance delivery.">规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-panel p-8 md:p-12 space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ 应该（Recommended）" data-i18n-en="✓ Recommended">✓ 应该（Recommended）</h3>
+                                <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
+                                    <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="先确定内容层级或功能层，再选择材质。" data-i18n-en="Determine content or functional hierarchy before selecting materials.">先确定内容层级或功能层，再选择材质。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="复杂背景上提高不透明度并验证对比度。" data-i18n-en="Increase opacity and verify contrast on complex backgrounds.">复杂背景上提高不透明度并验证对比度。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="用 Solid 承载告警、数据和长文本。" data-i18n-en="Use Solid for alerts, data, and long text.">用 Solid 承载告警、数据和长文本。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="让阴影、遮挡和焦点指向同一层级。" data-i18n-en="Ensure shadows, occlusion, and focus point to the same tier.">让阴影、遮挡和焦点指向同一层级。</span></li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-base font-bold text-rose-400 tracking-wider" data-i18n-zh="✕ 不应该（Avoid）" data-i18n-en="✕ Avoid">✕ 不应该（Avoid）</h3>
+                                <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
+                                    <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="让整个页面和每张卡片都使用玻璃效果。" data-i18n-en="Do not apply glass effects to the entire page and every card.">让整个页面和每张卡片都使用玻璃效果。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="以透明度或阴影作为唯一状态提示。" data-i18n-en="Do not use transparency or shadows as sole state indicators.">以透明度或阴影作为唯一状态提示。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="在图片上直接放置低对比文字与图标。" data-i18n-en="Do not place low-contrast text and icons directly on images.">在图片上直接放置低对比文字与图标。</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="给嵌入式列表和小图标添加悬浮阴影。" data-i18n-en="Do not add floating shadows to embedded lists and small icons.">给嵌入式列表和小图标添加悬浮阴影。</span></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </section>
-                <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-200"><p class="font-light">&copy; 2026 Haier Design Lab. Internal Confidential.</p></footer>
+
             </div>
+
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
         </main>
     </div>
+
+    <!-- 导入导航与全局多语言脚本 -->
     <script src="haier-nav.js"></script>
+
+    <!-- 一键复制 Token 交互脚本 -->
+    <script>
+        function copyToken(element, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                element.classList.add('copied');
+                setTimeout(() => { element.classList.remove('copied'); }, 1500);
+            });
+        }
+    </script>
 </body>
 </html>
