@@ -13,7 +13,7 @@
             --brand-light: #F8EBD8;
             --text-main: #1D1D1F;
             --text-secondary: #86868B;
-            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.65);
             --glass-border: rgba(255, 255, 255, 0.4);
         }
 
@@ -24,7 +24,7 @@
             overflow-x: hidden;
         }
 
-        /* 弥散光晕动画背景 */
+        /* 弥散光晕背景 */
         .aura-background {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -56,53 +56,81 @@
             border-radius: 0;
         }
 
-        /* 图片卡片容器基础样式 */
+        /* 基础图片/视频容器样式 */
         .img-container-box {
-            background-color: #0A0A0A;
-            border: 1px solid rgba(233, 189, 133, 0.3);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.3s ease;
-        }
-        .img-container-box:hover {
-            border-color: rgba(233, 189, 133, 0.8);
-        }
-
-        /* 可点击可放大图片的 Hover 提示样式 */
-        .zoomable-img {
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
-        }
-        .zoomable-img:hover {
-            transform: scale(1.01);
-        }
-
-        /* 占位图框通用样式 */
-        .placeholder-box {
             background-color: #0A0A0A;
             border: 1px dashed rgba(233, 189, 133, 0.4);
             border-radius: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            transition: border-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
         }
-        .placeholder-box:hover {
-            border-color: rgba(233, 189, 133, 0.8);
+        .img-container-box:hover {
+            border-color: rgba(233, 189, 133, 0.9);
+            border-style: solid;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
 
-        .usage-card { 
-            background: rgba(255,255,255,.72); 
-            border: 1px solid rgba(203,213,225,.72); 
-            border-radius: 0; 
-            padding: 18px; 
+        /* 无黑框完全铺满的不推荐图片框 */
+        .tft-principle-visual {
+            position: relative;
+            padding: 0;
+            background-color: transparent;
+            border: 1px solid rgba(233, 189, 133, 0.25);
+            border-radius: 0px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .tft-principle-visual img, .tft-principle-visual video {
+            border-radius: 0px;
+            border: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .tft-principle-visual:after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 4px;
+            background: #10B981;
+            z-index: 10;
+        }
+        .tft-principle-visual.bad:after {
+            background: #FF4D4F;
+        }
+
+        /* 居中的对错圆圈图标 */
+        .badge-icon {
+            position: absolute;
+            z-index: 20;
+            left: 10px;
+            bottom: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,.3);
+        }
+        .badge-icon.good { background-color: #10B981; }
+        .badge-icon.bad { background-color: #FF4D4F; }
+
+        /* 所有可放大的图框 Hover 放大指示 */
+        .zoomable-box {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .zoomable-box:hover {
+            transform: scale(1.015);
         }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -120,6 +148,12 @@
             font-weight: bold;
             border-radius: 0;
         }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.05em;
+        }
     </style>
 </head>
 
@@ -135,7 +169,7 @@
         <div class="flex items-center">
             <a href="haier_os_design_system.html" class="mr-3 p-2 bg-black/5 hover:bg-black/10 rounded-none transition-colors flex items-center text-gray-700"></a>
             <div class="haier-logo-container w-8 h-8 mr-2 text-[12px]">Haier</div>
-            <h1 class="font-bold text-base text-gray-800">背景规范</h1>
+            <h1 class="font-bold text-base text-gray-800" data-i18n-zh="背景规范" data-i18n-en="Background Guidelines">背景规范</h1>
         </div>
         <button id="mobile-menu-btn" class="p-2 bg-black/5 hover:bg-black/10 rounded-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -148,164 +182,476 @@
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
         <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
-            <div class="max-w-[1200px] mx-auto pb-24">
+            <div class="max-w-[1320px] mx-auto pb-24 space-y-16">
                 
-                <!-- 返回主页按钮 -->
-                <div class="hidden md:flex items-center mb-8">
-                    <a href="haier_os_design_system.html" class="px-4 py-2 bg-white/50 hover:bg-white/90 rounded-none transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md">
-                        <span class="text-sm font-semibold" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
-                    </a>
+                <!-- 返回主页按钮与页面头部 -->
+                <div>
+                    <div class="hidden md:flex items-center mb-8">
+                        <a href="haier_os_design_system.html" class="px-4 py-2 bg-white/50 hover:bg-white/90 rounded-none transition-colors flex items-center text-gray-700 shadow-sm border border-gray-200/50 backdrop-blur-md">
+                            <span class="text-sm font-semibold" data-i18n-zh="返回主页" data-i18n-en="Back to Home">返回主页</span>
+                        </a>
+                    </div>
+
+                    <div class="border-b border-black/10 pb-8">
+                        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 mb-4" data-i18n-zh="背景规范" data-i18n-en="Background Guidelines">背景规范</h1>
+                        <p class="text-lg text-text-secondary max-w-3xl leading-relaxed" data-i18n-zh="制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。" data-i18n-en="Establish a unified digital environment and lighting framework for high-, mid-, and low-tier devices, balancing brand elegance with functional legibility.">制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。</p>
+                    </div>
                 </div>
 
-                <!-- 1. 页面主标题区 -->
-                <section class="mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900" data-i18n-zh="背景" data-i18n-en="Background">背景</h1>
-                    <p class="text-lg text-text-secondary w-full leading-relaxed">定义不同定位机器的 UI 背景光影元素及布局逻辑，塑造统一且富有品质感的产品视觉体验。</p>
+
+                <!-- ================= 模块 1：核心设计原则 ================= -->
+                <section id="module-core-principles" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl font-light text-[#E9BD85]">01</span>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900" data-i18n-zh="核心设计原则" data-i18n-en="Core Design Principles">核心设计原则</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+                        <!-- 原则 01 -->
+                        <div class="flex flex-col h-full justify-start">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 shrink-0">
+                                <span class="w-3 h-3 bg-[#E9BD85] inline-block shrink-0"></span>
+                                <span data-i18n-zh="品牌一致性" data-i18n-en="Brand Consistency">品牌一致性</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed w-full flex-1" data-i18n-zh="背景构建产品的数字环境，从旗舰 TFT 到基础 LED，均遵循统一的 Haier 品牌语言；不同设备的表达能力可以不同，品牌感知应一致。" data-i18n-en="Backgrounds construct the digital environment. From flagship TFT to basic LED, all adhere to a unified Haier brand language; rendering capabilities may differ, but brand perception must remain cohesive.">
+                                背景构建产品的数字环境，从旗舰 TFT 到基础 LED，均遵循统一的 Haier 品牌语言；不同设备的表达能力可以不同，品牌感知应一致。
+                            </p>
+                        </div>
+
+                        <!-- 原则 02 -->
+                        <div class="flex flex-col h-full justify-start">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 shrink-0">
+                                <span class="w-3 h-3 bg-[#E9BD85] inline-block shrink-0"></span>
+                                <span data-i18n-zh="辅助而非装饰" data-i18n-en="Functional Support">辅助而非装饰</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed w-full flex-1" data-i18n-zh="避免复杂纹理、强对比材质和高频细节；资源受限时进一步简化。动态背景采用平滑缓动，不出现突变或剧烈闪烁。" data-i18n-en="Avoid complex textures, high-contrast materials, and noisy details; simplify further under constrained hardware resources. Dynamic backgrounds must use smooth easing without abrupt cuts or rapid flickering.">
+                                避免复杂纹理、强对比材质和高频细节；资源受限时进一步简化。动态背景采用平滑缓动，不出现突变或剧烈闪烁。
+                            </p>
+                        </div>
+
+                        <!-- 原则 03 -->
+                        <div class="flex flex-col h-full justify-start">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 shrink-0">
+                                <span class="w-3 h-3 bg-[#E9BD85] inline-block shrink-0"></span>
+                                <span data-i18n-zh="前景始终可读" data-i18n-en="Foreground Readability">前景始终可读</span>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed w-full flex-1" data-i18n-zh="光影和色彩变化不得遮蔽文字、图标与关键操作。画面过亮或过于复杂时，压暗背景（如底部深色渐变遮罩），或把透明毛玻璃卡片切换为不透明实色。" data-i18n-en="Lighting and color dynamics must never obscure text, icons, or critical controls. When the background is overly bright or complex, apply darkening masks or switch translucent frosted glass panels to solid backgrounds.">
+                                光影和色彩变化不得遮蔽文字、图标与关键操作。画面过亮或过于复杂时，压暗背景（如底部深色渐变遮罩），或把透明毛玻璃卡片切换为不透明实色。
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
-                <hr class="border-t border-black/5 mb-12">
+                <hr class="border-t border-black/10 my-12">
 
-                <!-- 2. 背景说明 Section -->
-                <section class="mb-16">
-                    <h2 class="text-2xl font-bold mb-2 text-gray-900" data-i18n-zh="1. 背景说明" data-i18n-en="1. Background Overview">1. 背景说明</h2>
-                    <p class="text-gray-600 mb-8 w-full text-sm leading-relaxed">
-                        针对高端、中端及低端家电设备的显示区域特点，设计了 4 种背景光影元素。每种背景元素可根据实际硬件显示区域自由调整比例和大小效果。（点击下方图片可查看完整大图）
-                    </p>
 
-                    <div class="glass-panel p-6 sm:p-10 space-y-8">
-                        <!-- 背景 1 -->
+                <!-- ================= 模块 2：TFT背景 ================= -->
+                <section id="module-tft-background" class="space-y-12">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl font-light text-[#E9BD85]">02</span>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900" data-i18n-zh="TFT 背景" data-i18n-en="TFT Background Guidelines">TFT 背景</h2>
+                    </div>
+
+                    <!-- 1. TFT背景元素 -->
+                    <div class="space-y-6">
                         <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="font-bold text-gray-900 text-base">背景 1 <span class="text-xs font-normal text-white bg-[#E9BD85] px-2 py-0.5 rounded-none ml-2">高端机器使用</span></h3>
-                                <span class="text-xs text-gray-400 font-mono">21:5 超宽比例 (4095×975)</span>
-                            </div>
-                            <div class="img-container-box w-full aspect-[21/5]">
-                                <img src="assets/background/background-1.png" alt="背景 1" class="zoomable-img w-full h-full object-cover">
-                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1" data-i18n-zh="TFT 背景元素" data-i18n-en="TFT Background Elements">TFT 背景元素</h3>
+                            <p class="text-sm text-gray-600" data-i18n-zh="左右并排展示各档位的 AI 动态模式与常规调参形态，形成清晰的比对关系。" data-i18n-en="Side-by-side comparison of AI Dynamic and Standard Manual modes across device tiers for clear visual reference.">左右并排展示各档位的 AI 动态模式与常规调参形态，形成清晰的比对关系。</p>
                         </div>
 
-                        <!-- 背景 2 & 背景 3 并排展示 -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- 背景 2 -->
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <h3 class="font-bold text-gray-900 text-base">背景 2 <span class="text-xs font-normal text-white bg-[#A87843] px-2 py-0.5 rounded-none ml-2">中端机器使用</span></h3>
-                                    <span class="text-xs text-gray-400 font-mono">16:7 两侧分布 (1986×869)</span>
+                        <div class="glass-panel p-6 md:p-8 space-y-10">
+                            
+                            <!-- 组一：艺术系列 (Art) -->
+                            <div class="space-y-8">
+                                <div class="border-b border-black/10 pb-3 flex justify-between items-center">
+                                    <h4 class="font-bold text-gray-900 text-lg tracking-wide flex items-center gap-2">
+                                        <span class="w-3 h-3 bg-[#E9BD85] inline-block"></span> <span data-i18n-zh="艺术系列 (Art)" data-i18n-en="Art Series">艺术系列 (Art)</span>
+                                    </h4>
+                                    <span class="text-xs text-gray-500" data-i18n-zh="左：AI 动态模式 | 右：常规调参模式" data-i18n-en="Left: AI Dynamic Mode | Right: Standard Manual Mode">左：AI 动态模式 | 右：常规调参模式</span>
                                 </div>
-                                <div class="img-container-box w-full aspect-[16/7]">
-                                    <img src="assets/background/background-2.png" alt="背景 2" class="zoomable-img w-full h-full object-cover">
+
+                                <!-- 艺术 1：高端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：艺术 AI - 高端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 AI - 高端" data-i18n-en="Art AI - Premium">艺术 AI - 高端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <video src="assets/background/art-AI-1.mp4" muted loop playsinline class="hover-play-video w-full h-full object-cover"></video>
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用动态背景。基于 AI 算法实时渲染流体与光影变化，表现品牌最高阶的质感与氛围。" data-i18n-en="Dynamic background required. Real-time AI fluid and lighting dynamics express flagship luxury and atmosphere.">必须使用动态背景。基于 AI 算法实时渲染流体与光影变化，表现品牌最高阶的质感与氛围。</p>
+                                    </div>
+
+                                    <!-- 右：艺术 常规 - 高端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 常规 - 高端" data-i18n-en="Art Standard - Premium">艺术 常规 - 高端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <video src="assets/background/art-common-1.mp4" muted loop playsinline class="hover-play-video w-full h-full object-cover"></video>
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用动态背景。采用高精度的质感与光影平滑缓动，兼顾丰富材质细节与高端视觉质感。" data-i18n-en="Dynamic background required. Smooth high-precision lighting easing balances material fidelity and premium visual feel.">必须使用动态背景。采用高精度的质感与光影平滑缓动，兼顾丰富材质细节与高端视觉质感。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 艺术 2：中端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：艺术 AI - 中端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 AI - 中端" data-i18n-en="Art AI - Mid-range">艺术 AI - 中端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/art-AI-2.png" alt="艺术 AI 中端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景。提取 AI 模式的核心色彩与光影制成静态图，降低芯片算力与硬件成本。" data-i18n-en="Static background required. Extracts core AI colors and lighting into a static graphic, reducing SOC performance and hardware cost.">必须使用静态背景。提取 AI 模式的核心色彩与光影制成静态图，降低芯片算力与硬件成本。</p>
+                                    </div>
+
+                                    <!-- 右：艺术 常规 - 中端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 常规 - 中端" data-i18n-en="Art Standard - Mid-range">艺术 常规 - 中端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/art-common-2.png" alt="艺术常规中端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景。在高端常规背景的基础上大幅减少纹理与光影细节，保持画面简洁干净。" data-i18n-en="Static background required. Reduces textures and lighting noise from premium versions to maintain a clean aesthetic.">必须使用静态背景。在高端常规背景的基础上大幅减少纹理与光影细节，保持画面简洁干净。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 艺术 3：低端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：艺术 AI - 低端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 AI - 低端" data-i18n-en="Art AI - Low-end">艺术 AI - 低端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/art-AI-3.png" alt="艺术 AI 低端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景降本。采用极简静态纯色渐变背景，搭配写实图标，确保低性能屏幕流畅显示。" data-i18n-en="Static cost-optimized background required. Minimal solid gradient background with realistic icons ensures smooth rendering on entry-level displays.">必须使用静态背景降本。采用极简静态纯色渐变背景，搭配写实图标，确保低性能屏幕流畅显示。</p>
+                                    </div>
+
+                                    <!-- 右：艺术 常规 - 低端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="艺术 常规 - 低端" data-i18n-en="Art Standard - Low-end">艺术 常规 - 低端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/art-common-3.png" alt="艺术常规低端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景降本。采用极简静态纯色渐变背景，搭配写实图标，最大程度节约资源与成本。" data-i18n-en="Static cost-optimized background required. Minimal solid gradient background with realistic icons maximizes resource and cost savings.">必须使用静态背景降本。采用极简静态纯色渐变背景，搭配写实图标，最大程度节约资源与成本。</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- 背景 3 -->
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <h3 class="font-bold text-gray-900 text-base">背景 3 <span class="text-xs font-normal text-white bg-[#A87843] px-2 py-0.5 rounded-none ml-2">中端机器使用</span></h3>
-                                    <span class="text-xs text-gray-400 font-mono">16:7 上下/中心分布</span>
+                            <hr class="border-t border-black/10 my-8">
+
+                            <!-- 组二：专业系列 (Professional) -->
+                            <div class="space-y-8">
+                                <div class="border-b border-black/10 pb-3 flex justify-between items-center">
+                                    <h4 class="font-bold text-gray-900 text-lg tracking-wide flex items-center gap-2">
+                                        <span class="w-3 h-3 bg-[#A87843] inline-block"></span> <span data-i18n-zh="专业系列 (Professional)" data-i18n-en="Professional Series">专业系列 (Professional)</span>
+                                    </h4>
+                                    <span class="text-xs text-gray-500" data-i18n-zh="左：AI 动态模式 | 右：常规调参模式" data-i18n-en="Left: AI Dynamic Mode | Right: Standard Manual Mode">左：AI 动态模式 | 右：常规调参模式</span>
                                 </div>
-                                <div class="img-container-box w-full aspect-[16/7]">
-                                    <img src="assets/background/background-3.png" alt="背景 3" class="zoomable-img w-full h-full object-cover">
+
+                                <!-- 专业 1：高端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：专业 AI - 高端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 AI - 高端" data-i18n-en="Professional AI - Premium">专业 AI - 高端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <video src="assets/background/profession-AI-1.mp4" muted loop playsinline class="hover-play-video w-full h-full object-cover"></video>
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用动态背景。结合 AI 响应呈现动态金属光束与精密控制线条，突出专业科技感。" data-i18n-en="Dynamic background required. Combines AI dynamics with metallic light beams and precision control graphics for a professional tech feel.">必须使用动态背景。结合 AI 响应呈现动态金属光束与精密控制线条，突出专业科技感。</p>
+                                    </div>
+
+                                    <!-- 右：专业 常规 - 高端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 常规 - 高端" data-i18n-en="Professional Standard - Premium">专业 常规 - 高端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <video src="assets/background/profession-common-1.mp4" muted loop playsinline class="hover-play-video w-full h-full object-cover"></video>
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用动态背景。采用深色暗调微拉丝金属动态背景，增强前景色文字与控件的可读性。" data-i18n-en="Dynamic background required. Dark brushed metal dynamic background enhances foreground text and control legibility.">必须使用动态背景。采用深色暗调微拉丝金属动态背景，增强前景色文字与控件的可读性。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 专业 2：中端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：专业 AI - 中端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 AI - 中端" data-i18n-en="Professional AI - Mid-range">专业 AI - 中端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/profession-AI-2.png" alt="专业 AI 中端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景。将 AI 动态光束抽帧转化为静态图案，保留专业科技感同时降低硬件负担。" data-i18n-en="Static background required. Converts AI light beam dynamics into static frames, preserving professional tech aesthetic while easing hardware load.">必须使用静态背景。将 AI 动态光束抽帧转化为静态图案，保留专业科技感同时降低硬件负担。</p>
+                                    </div>
+
+                                    <!-- 右：专业 常规 - 中端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 常规 - 中端" data-i18n-en="Professional Standard - Mid-range">专业 常规 - 中端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/profession-common-2.png" alt="专业常规中端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景。在高端常规背景的基础上大幅减少纹理与光影细节，保持画面简洁干净。" data-i18n-en="Static background required. Reduces textures and lighting noise from premium versions to maintain a clean aesthetic.">必须使用静态背景。在高端常规背景的基础上大幅减少纹理与光影细节，保持画面简洁干净。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 专业 3：低端对应 -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                                    <!-- 左：专业 AI - 低端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 AI - 低端" data-i18n-en="Professional AI - Low-end">专业 AI - 低端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/profession-AI-3.png" alt="专业 AI 低端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景降本。采用纯色暗调渐变背景，搭配写实图标，确保轻量化并提升读数清晰度。" data-i18n-en="Static cost-optimized background required. Dark solid gradient with realistic icons ensures lightweight performance and crisp readout clarity.">必须使用静态背景降本。采用纯色暗调渐变背景，搭配写实图标，确保轻量化并提升读数清晰度。</p>
+                                    </div>
+
+                                    <!-- 右：专业 常规 - 低端 -->
+                                    <div class="space-y-2">
+                                        <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="专业 常规 - 低端" data-i18n-en="Professional Standard - Low-end">专业 常规 - 低端</div>
+                                        <div class="img-container-box zoomable-box w-full aspect-[1920/600]">
+                                            <img src="assets/background/profession-common-3.png" alt="专业常规低端" class="w-full h-full object-cover">
+                                        </div>
+                                        <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="必须使用静态背景降本。采用纯色暗调渐变背景，搭配写实图标，彻底消除杂讯并实现极简降本。" data-i18n-en="Static cost-optimized background required. Dark solid gradient with realistic icons eliminates visual noise and achieves minimal cost reduction.">必须使用静态背景降本。采用纯色暗调渐变背景，搭配写实图标，彻底消除杂讯并实现极简降本。</p>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+                    </div>
 
-                        <!-- 背景 4 -->
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="font-bold text-gray-900 text-base">背景 4 <span class="text-xs font-normal text-white bg-[#593619] px-2 py-0.5 rounded-none ml-2">低端机器使用</span></h3>
-                                <span class="text-xs text-gray-400 font-mono">21:4 渐变光晕线条 (4095×780)</span>
-                            </div>
-                            <div class="img-container-box w-full aspect-[21/4]">
-                                <img src="assets/background/background-4.png" alt="背景 4" class="zoomable-img w-full h-full object-cover">
+                    <!-- 2. TFT背景注意事项 -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-gray-900" data-i18n-zh="TFT 背景注意事项" data-i18n-en="TFT Background Practices to Avoid">TFT 背景注意事项</h3>
+                        <div class="glass-panel p-6 sm:p-8">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                
+                                <!-- 案例 1 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1920/600]">
+                                        <img src="assets/background/TFT-not recommend-1.png" alt="不推荐案例1" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-not recommend-1.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景元素有违背常规逻辑，光影来源方向混乱。" data-i18n-en="Avoid: Background elements violate realistic logic with conflicting lighting directions.">不推荐：背景元素有违背常规逻辑，光影来源方向混乱。</p>
+                                </div>
+
+                                <!-- 案例 2 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1920/600]">
+                                        <img src="assets/background/TFT-not recommend-2.png" alt="不推荐案例2" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-not recommend-2.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景元素不清晰，纹理噪点过多且意义不明。" data-i18n-en="Avoid: Blurred background graphics with excessive digital noise and ambiguous textures.">不推荐：背景元素不清晰，纹理噪点过多且意义不明。</p>
+                                </div>
+
+                                <!-- 案例 3 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1920/600]">
+                                        <img src="assets/background/TFT-not recommend-3.png" alt="不推荐案例3" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-not recommend-3.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景明亮度过高，导致上层白字图标无法分辨。" data-i18n-en="Avoid: Excessive background luminance causing white text and icons to become unreadable.">不推荐：背景明亮度过高，导致上层白字图标无法分辨。</p>
+                                </div>
+
+                                <!-- 案例 4 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1920/600]">
+                                        <img src="assets/background/TFT-not recommend-4.png" alt="不推荐案例4" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-not recommend-4.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：光栅元素边缘对比度太强，影响产品外观整体。" data-i18n-en="Avoid: Harsh edge contrast on raster elements negatively affecting hardware aesthetics.">不推荐：光栅元素边缘对比度太强，影响产品外观整体。</p>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- 3. 如何使用 Section -->
-                <section class="mb-16">
-                    <h2 class="text-2xl font-bold mb-2 text-gray-900" data-i18n-zh="2. 如何使用" data-i18n-en="2. Usage Guidelines">2. 如何使用</h2>
-                    <p class="text-gray-600 mb-8 w-full text-sm leading-relaxed">
-                        每个背景根据不同渠道及套系需求，可适配 <strong>7种图标形态</strong>（按机型定位划分）与 <strong>4种界面布局</strong>（无定位划分，依实际场景适配）。
-                    </p>
+                <hr class="border-t border-black/10 my-12">
 
-                    <!-- 组合逻辑矩阵表 / 交叉映射表 -->
-                    <div class="glass-panel p-6 sm:p-8 mb-8">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">背景 × 图标 × 布局 搭配逻辑矩阵</h3>
-                        <p class="text-gray-600 text-sm mb-6 w-full">明确各档位机器与背景、图标及布局的对应规范。</p>
+
+                <!-- ================= 模块 3：LED背景 ================= -->
+                <section id="module-led-background" class="space-y-12">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl font-light text-[#E9BD85]">03</span>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900" data-i18n-zh="LED 背景" data-i18n-en="LED Background Guidelines">LED 背景</h2>
+                    </div>
+
+                    <!-- 子模块 1：LED 背景元素 -->
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1" data-i18n-zh="1. LED 背景元素" data-i18n-en="1. LED Background Elements">1. LED 背景元素</h3>
+                            <p class="text-sm text-gray-600" data-i18n-zh="定义 4 种专属于 LED 屏段显示的微型光晕与光栅。" data-i18n-en="Defines 4 dedicated micro-glows and light rasters designed specifically for segment LED displays.">定义 4 种专属于 LED 屏段显示的微型光晕与光栅。</p>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:p-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <!-- 背景 1 -->
+                                <div class="space-y-2">
+                                    <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="背景 1" data-i18n-en="Background 1">
+                                        背景 1
+                                    </div>
+                                    <div class="img-container-box zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/background-1.png" alt="LED背景1" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="超宽比例光晕（适用于旗舰/高端机器）" data-i18n-en="Ultra-wide aspect glow (for Flagship / Premium models)">超宽比例光晕（适用于旗舰/高端机器）</p>
+                                </div>
+
+                                <!-- 背景 2 -->
+                                <div class="space-y-2">
+                                    <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="背景 2" data-i18n-en="Background 2">
+                                        背景 2
+                                    </div>
+                                    <div class="img-container-box zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/background-2.png" alt="LED背景2" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="两侧对称分布光晕（适用于中端机器）" data-i18n-en="Symmetrical bilateral glow (for Mid-range models)">两侧对称分布光晕（适用于中端机器）</p>
+                                </div>
+
+                                <!-- 背景 3 -->
+                                <div class="space-y-2">
+                                    <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="背景 3" data-i18n-en="Background 3">
+                                        背景 3
+                                    </div>
+                                    <div class="img-container-box zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/background-3.png" alt="LED背景3" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="上下/中心集聚光彩（适用于中端机器）" data-i18n-en="Centered top/bottom illumination (for Mid-range models)">上下/中心集聚光彩（适用于中端机器）</p>
+                                </div>
+
+                                <!-- 背景 4 -->
+                                <div class="space-y-2">
+                                    <div class="font-bold text-gray-900 text-xs tracking-wide" data-i18n-zh="背景 4" data-i18n-en="Background 4">
+                                        背景 4
+                                    </div>
+                                    <div class="img-container-box zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/background-4.png" alt="LED背景4" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="font-normal text-gray-600 text-[11px] leading-relaxed opacity-90 pt-0.5" data-i18n-zh="渐变光晕线条（适用于低端/基础机器）" data-i18n-en="Gradient glow lines (for Entry-level models)">渐变光晕线条（适用于低端/基础机器）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 子模块 2：LED 背景页面示例 -->
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-1" data-i18n-zh="2. LED 背景页面示例" data-i18n-en="2. LED Background Page Examples">2. LED 背景页面示例</h3>
+                            <p class="text-sm text-gray-600" data-i18n-zh="长条形真机显示屏幕上的实际渲染示例。" data-i18n-en="Real-world rendering examples on ultra-wide physical display screens.">长条形真机显示屏幕上的实际渲染示例。</p>
+                        </div>
+
+                        <div class="glass-panel p-6 sm:p-8 space-y-8">
+                            <!-- 示例 1 -->
+                            <div>
+                                <div class="img-container-box zoomable-box w-full aspect-[5504/741]">
+                                    <img src="assets/background/TFT-example-1.png" alt="LED页面示例 1" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-example-1.jpg'">
+                                </div>
+                            </div>
+
+                            <!-- 示例 2 -->
+                            <div>
+                                <div class="img-container-box zoomable-box w-full aspect-[5504/741]">
+                                    <img src="assets/background/TFT-example-2.png" alt="LED页面示例 2" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-example-2.jpg'">
+                                </div>
+                            </div>
+
+                            <!-- 示例 3 -->
+                            <div>
+                                <div class="img-container-box zoomable-box w-full aspect-[5504/741]">
+                                    <img src="assets/background/TFT-example-3.png" alt="LED页面示例 3" class="w-full h-full object-cover" onerror="this.src='assets/background/TFT-example-3.jpg'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 子模块 3：LED 背景注意事项 -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-gray-900" data-i18n-zh="3. LED 背景注意事项" data-i18n-en="3. LED Background Practices to Avoid">3. LED 背景注意事项</h3>
+                        <div class="glass-panel p-6 sm:p-8">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                
+                                <!-- 案例 1 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/LED-not recommend-1.png" alt="LED不推荐1" class="w-full h-full object-cover" onerror="this.src='assets/background/LED-not recommend-1.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景光栅元素厚度过大，且切割过于明显。" data-i18n-en="Avoid: Excessively thick raster elements with severe edge cuts.">不推荐：背景光栅元素厚度过大，且切割过于明显。</p>
+                                </div>
+
+                                <!-- 案例 2 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/LED-not recommend-2.png" alt="LED不推荐2" class="w-full h-full object-cover" onerror="this.src='assets/background/LED-not recommend-2.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景用色偏离品牌标准，色相偏差过大破坏视觉统一。" data-i18n-en="Avoid: Colors deviating from brand standards, with large hue shifts disrupting visual unity.">不推荐：背景用色偏离品牌标准，色相偏差过大破坏视觉统一。</p>
+                                </div>
+
+                                <!-- 案例 3 -->
+                                <div class="space-y-3">
+                                    <div class="tft-principle-visual bad zoomable-box w-full aspect-[1986/869]">
+                                        <img src="assets/background/LED-not recommend-3.png" alt="LED不推荐3" class="w-full h-full object-cover" onerror="this.src='assets/background/LED-not recommend-3.jpg'">
+                                        <span class="badge-icon bad">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-700 leading-normal pt-1" data-i18n-zh="不推荐：背景明度与图标接近且细节过多，导致图标辨识度低。" data-i18n-en="Avoid: Background luminance too close to icons with cluttered details, reducing legibility.">不推荐：背景明度与图标接近且细节过多，导致图标辨识度低。</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 子模块 4：如何使用 (搭配逻辑矩阵) -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-gray-900" data-i18n-zh="4. 如何使用（搭配逻辑矩阵）" data-i18n-en="4. Usage Matrix">4. 如何使用（搭配逻辑矩阵）</h3>
                         
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse text-sm">
-                                <thead>
-                                    <tr class="border-b border-gray-200/60 bg-white/40">
-                                        <th class="p-3 font-bold text-gray-800">机器定位</th>
-                                        <th class="p-3 font-bold text-gray-800">适配背景</th>
-                                        <th class="p-3 font-bold text-gray-800">适配图标形态 (7种)</th>
-                                        <th class="p-3 font-bold text-gray-800">适配布局方式 (4种)</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200/40">
-                                    <tr class="hover:bg-white/30 transition-colors">
-                                        <td class="p-3 font-semibold text-[#E9BD85]">高端机器</td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono">背景 1</span></td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono mr-1">A1</span> <span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono">A2</span> 高端图标</td>
-                                        <td class="p-3 text-gray-600 text-xs" rowspan="3">
-                                            <strong>所有机器通用适配 4 种布局：</strong><br/>
-                                            • 居中布局：居中1、居中2<br/>
-                                            • 靠右布局：靠右1、靠右2
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-white/30 transition-colors">
-                                        <td class="p-3 font-semibold text-[#A87843]">中端机器</td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono">背景 2</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono ml-1">背景 3</span></td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono mr-1">A3</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono">A4</span> 中端图标</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/30 transition-colors">
-                                        <td class="p-3 font-semibold text-[#593619]">低端机器</td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono">背景 4</span></td>
-                                        <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A5</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A6</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono">A7</span> 低端图标</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- 交叉相乘逻辑展示 -->
-                    <div class="glass-panel p-6 sm:p-10 space-y-8">
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">背景与图标、布局组合示意</h3>
-                            <p class="text-gray-600 text-sm mb-6 w-full">通过【背景档位】与【图标形态】严格对应，叠加【4种自由布局】，构建出符合各销售渠道与不同套系场景的完美界面组合。（点击大图放大查看细节）</p>
-                        </div>
-
-                        <!-- 组合展示图区 1：高端组合 -->
-                        <div class="p-5 bg-white/40">
-                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-none bg-[#E9BD85]"></span> 高端组合示例 (背景1 × A1/A2图标 × 居中/靠右布局)
-                            </h4>
-                            <div class="img-container-box w-full aspect-[13807/3816]">
-                                <img src="assets/background/combination-1.png" alt="高端组合示例" class="zoomable-img w-full h-full object-cover">
+                        <!-- 矩阵表格 -->
+                        <div class="glass-panel p-6 sm:p-8">
+                            <h4 class="text-lg font-bold text-gray-900 mb-2" data-i18n-zh="背景 × 图标 × 布局 搭配逻辑矩阵" data-i18n-en="Background × Icon × Layout Matching Matrix">背景 × 图标 × 布局 搭配逻辑矩阵</h4>
+                            <p class="text-gray-600 text-sm mb-6 w-full" data-i18n-zh="明确各档位机器与背景、图标及布局的对应规范。" data-i18n-en="Defines the specific pairing rules between machine tiers, backgrounds, icons, and layout options.">明确各档位机器与背景、图标及布局的对应规范。</p>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse text-sm">
+                                    <thead>
+                                        <tr class="border-b border-gray-200/60 bg-white/40">
+                                            <th class="p-3 font-bold text-gray-800" data-i18n-zh="机器定位" data-i18n-en="Device Tier">机器定位</th>
+                                            <th class="p-3 font-bold text-gray-800" data-i18n-zh="适配背景 (4种)" data-i18n-en="Matched Backgrounds (4 Types)">适配背景 (4种)</th>
+                                            <th class="p-3 font-bold text-gray-800" data-i18n-zh="适配图标形态 (7种)" data-i18n-en="Matched Icon Styles (7 Types)">适配图标形态 (7种)</th>
+                                            <th class="p-3 font-bold text-gray-800" data-i18n-zh="适配布局方式 (4种)" data-i18n-en="Matched Layouts (4 Types)">适配布局方式 (4种)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200/40">
+                                        <tr class="hover:bg-white/30 transition-colors">
+                                            <td class="p-3 font-semibold text-[#E9BD85]" data-i18n-zh="高端机器" data-i18n-en="Flagship / Premium">高端机器</td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono" data-i18n-zh="背景 1" data-i18n-en="BG 1">背景 1</span></td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono mr-1">A1</span> <span class="px-2 py-1 bg-[#E9BD85] text-white rounded-none text-xs font-mono">A2</span> <span data-i18n-zh="高端图标" data-i18n-en="Premium Icons">高端图标</span></td>
+                                            <td class="p-3 text-gray-600 text-xs" rowspan="3">
+                                                <strong data-i18n-zh="所有机器通用适配 4 种布局：" data-i18n-en="Universal compatibility with 4 layouts across all tiers:">所有机器通用适配 4 种布局：</strong><br/>
+                                                <span data-i18n-zh="• 居中布局：居中1、居中2" data-i18n-en="• Centered Layouts: Center 1, Center 2">• 居中布局：居中1、居中2</span><br/>
+                                                <span data-i18n-zh="• 靠右布局：靠右1、靠右2" data-i18n-en="• Right-aligned Layouts: Right 1, Right 2">• 靠右布局：靠右1、靠右2</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-white/30 transition-colors">
+                                            <td class="p-3 font-semibold text-[#A87843]" data-i18n-zh="中端机器" data-i18n-en="Mid-range">中端机器</td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono" data-i18n-zh="背景 2" data-i18n-en="BG 2">背景 2</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono ml-1" data-i18n-zh="背景 3" data-i18n-en="BG 3">背景 3</span></td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono mr-1">A3</span> <span class="px-2 py-1 bg-[#A87843] text-white rounded-none text-xs font-mono">A4</span> <span data-i18n-zh="中端图标" data-i18n-en="Mid-range Icons">中端图标</span></td>
+                                        </tr>
+                                        <tr class="hover:bg-white/30 transition-colors">
+                                            <td class="p-3 font-semibold text-[#593619]" data-i18n-zh="低端机器" data-i18n-en="Entry-level">低端机器</td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono" data-i18n-zh="背景 4" data-i18n-en="BG 4">背景 4</span></td>
+                                            <td class="p-3"><span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A5</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono mr-1">A6</span> <span class="px-2 py-1 bg-[#593619] text-white rounded-none text-xs font-mono">A7</span> <span data-i18n-zh="低端图标" data-i18n-en="Entry-level Icons">低端图标</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <!-- 组合展示图区 2：中端组合 -->
-                        <div class="p-5 bg-white/40">
-                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-none bg-[#A87843]"></span> 中端组合示例 (背景2/3 × A3/A4图标 × 居中/靠右布局)
-                            </h4>
-                            <div class="img-container-box w-full aspect-[13807/5705]">
-                                <img src="assets/background/combination-2.png" alt="中端组合示例" class="zoomable-img w-full h-full object-cover">
-                            </div>
-                        </div>
-
-                        <!-- 组合展示图区 3：低端组合 -->
-                        <div class="p-5 bg-white/40">
-                            <h4 class="font-bold text-gray-900 text-sm mb-3 flex items-center gap-2">
-                                <span class="w-2.5 h-2.5 rounded-none bg-[#593619]"></span> 低端组合示例 (背景4 × A5/A6/A7图标 × 居中/靠右布局)
-                            </h4>
-                            <div class="img-container-box w-full aspect-[13807/4894]">
-                                <img src="assets/background/combination-3.png" alt="低端组合示例" class="zoomable-img w-full h-full object-cover">
-                            </div>
-                        </div>
                     </div>
                 </section>
 
@@ -317,54 +663,93 @@
         </main>
     </div>
 
-    <!-- 图片放大预览 Modal 弹窗组件 -->
+    <!-- 全图通用放大预览 Modal 弹窗 -->
     <div id="image-lightbox" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-all duration-300">
-        <!-- 关闭按钮 -->
-        <button id="close-lightbox" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl font-light z-50 p-2 focus:outline-none" aria-label="关闭预览">
-            ✕
-        </button>
-        <!-- 放大展示区域 -->
-        <div class="relative max-w-[95vw] max-h-[90vh] flex items-center justify-center">
-            <img id="lightbox-img" src="" alt="放大图预览" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-white/10 rounded-none cursor-zoom-out">
+        <button id="close-lightbox" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl font-light z-50 p-2 focus:outline-none" aria-label="关闭预览">✕</button>
+        <div class="relative max-w-[95vw] max-h-[90vh] flex items-center justify-center" id="lightbox-container">
+            <img id="lightbox-img" src="" alt="放大图预览" class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-white/10 rounded-none cursor-zoom-out hidden">
+            <video id="lightbox-video" src="" controls autoplay loop class="max-w-full max-h-[90vh] object-contain shadow-2xl border border-white/10 rounded-none hidden"></video>
+            <div id="lightbox-placeholder" class="hidden bg-[#0A0A0A] border border-amber-200/40 p-12 text-amber-200/80 text-sm font-mono flex flex-col items-center gap-3">
+                <svg class="w-10 h-10 stroke-amber-200/60" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                <span id="placeholder-text-content">【图框预览模式 - 预留高清晰度设计稿】</span>
+            </div>
         </div>
     </div>
 
     <!-- 导入导航与全局逻辑脚本 -->
     <script src="haier-nav.js"></script>
 
-    <!-- 图片点击放大交互脚本 -->
+    <!-- 视频悬停控制与通用 Lightbox 逻辑脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. MP4 视频悬停播放控制逻辑
+            document.querySelectorAll('video.hover-play-video').forEach(video => {
+                const container = video.closest('.zoomable-box');
+                if (container) {
+                    container.addEventListener('mouseenter', () => {
+                        video.play().catch(e => console.log('Autoplay prevented:', e));
+                    });
+                    container.addEventListener('mouseleave', () => {
+                        video.pause();
+                        video.currentTime = 0;
+                    });
+                }
+            });
+
+            // 2. 全能图片/视频 Lightbox 放大预览逻辑
             const lightbox = document.getElementById('image-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxVideo = document.getElementById('lightbox-video');
+            const lightboxPlaceholder = document.getElementById('lightbox-placeholder');
+            const placeholderTextContent = document.getElementById('placeholder-text-content');
             const closeBtn = document.getElementById('close-lightbox');
-            const zoomableImages = document.querySelectorAll('.zoomable-img');
 
-            // 打开 Lightbox
-            zoomableImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt || '放大图片预览';
+            document.querySelectorAll('.zoomable-box').forEach(box => {
+                box.addEventListener('click', (e) => {
+                    const img = box.querySelector('img');
+                    const video = box.querySelector('video');
+
+                    lightboxImg.classList.add('hidden');
+                    lightboxVideo.classList.add('hidden');
+                    lightboxPlaceholder.classList.add('hidden');
+
+                    if (video && video.src && video.getAttribute('src') !== '') {
+                        lightboxVideo.src = video.src;
+                        lightboxVideo.classList.remove('hidden');
+                        lightboxVideo.play();
+                    } else if (img && img.src && !img.classList.contains('hidden') && img.getAttribute('src') !== '') {
+                        lightboxImg.src = img.src;
+                        lightboxImg.alt = img.alt || '大图预览';
+                        lightboxImg.classList.remove('hidden');
+                    } else {
+                        const placeholderText = box.querySelector('.placeholder-text');
+                        placeholderTextContent.textContent = placeholderText ? placeholderText.textContent.trim() : '【高清设计图框预留区】';
+                        lightboxPlaceholder.classList.remove('hidden');
+                    }
+                    
                     lightbox.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // 禁止底页滚动
+                    document.body.style.overflow = 'hidden';
                 });
             });
 
-            // 关闭 Lightbox 函数
             const closeLightbox = () => {
                 lightbox.classList.add('hidden');
                 lightboxImg.src = '';
-                document.body.style.overflow = ''; // 恢复底页滚动
+                lightboxVideo.pause();
+                lightboxVideo.src = '';
+                document.body.style.overflow = '';
             };
 
-            // 点击背景或图片关闭
-            lightbox.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target === lightboxImg || e.target === closeBtn) {
+                    closeLightbox();
+                }
+            });
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 closeLightbox();
             });
 
-            // 按 Esc 键退出放大
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
                     closeLightbox();
