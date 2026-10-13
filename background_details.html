@@ -41,7 +41,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        /* 基础图片/视频容器样式（已去处虚线，改为干净的深色沉浸底座） */
+        /* 基础图片/视频容器样式 */
         .img-container-box {
             background-color: #0A0A0A;
             border: none;
@@ -156,26 +156,25 @@
     </header>
 
     <div class="flex h-screen pt-16 md:pt-0">
-        <!-- 侧边栏 -->
+        <!-- 侧边栏：采用与字体页完全一致的固定宽度 w-72 -->
         <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
-        <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
-            <div class="max-w-[1320px] mx-auto pb-24 space-y-16">
+        <!-- 主内容区：使用与字体页完全一致的 md:ml-72 与 p-6 md:p-12 lg:p-16 左右边距 -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
                 
-                <!-- 返回主页按钮与页面头部 -->
-                <div>
-                    <div class="hidden md:flex items-center mb-8">
-                        <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white rounded-full shadow-sm border border-white/20 backdrop-blur-md">
-                            <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Back to Home">返回主页</span>
-                        </a>
-                    </div>
-
-                    <div class="border-b border-gray-800 pb-8">
-                        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4" data-i18n-zh="背景规范" data-i18n-en="Background Guidelines">背景规范</h1>
-                        <p class="text-lg text-gray-300 max-w-3xl leading-relaxed" data-i18n-zh="制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。" data-i18n-en="Establish a unified digital environment and lighting framework for high-, mid-, and low-tier devices, balancing brand elegance with functional legibility.">制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。</p>
-                    </div>
+                <!-- 头部：返回主页按钮及大标题区块（已与字体页间距、字号完全对齐） -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Back to Home">返回主页</span>
+                    </a>
                 </div>
+
+                <section class="border-b border-gray-800 pb-8">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="背景规范" data-i18n-en="Background Guidelines">背景规范</h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。" data-i18n-en="Establish a unified digital environment and lighting framework for high-, mid-, and low-tier devices, balancing brand elegance with functional legibility.">制定统领高、中、低端多代设备的数字环境与光影表达体系，兼顾品牌质感与场景可读性。</p>
+                </section>
 
 
                 <!-- ================= 模块 1：核心设计原则 ================= -->

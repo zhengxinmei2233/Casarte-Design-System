@@ -151,7 +151,6 @@ const HAIER_NAV_LABEL_EN = {
   if (!sidebar) return;
 
   const currentPage = window.location.pathname.split('/').pop() || 'haier_os_design_system.html';
-  // 默认首次打开强制为中文
   const currentLanguage = localStorage.getItem('haier-guideline-language') || 'zh';
   const sensorySubpages = new Set(['lighting.html', 'touch.html', 'audio.html']);
   let scrollSpyPausedUntil = 0;
@@ -169,9 +168,23 @@ const HAIER_NAV_LABEL_EN = {
       currentPage === 'haier_os_design_system.html' ? '' : 'haier_os_design_system.html'
     );
   const currentHash = window.location.hash.replace('#', '');
+  
+  const isPrinciplesMainPage = currentPage === 'principles.html';
+  const isFoundationsMainPage = currentPage === 'foundations.html';
+  const isComponentsMainPage = currentPage === 'components.html';
+  const isHardwareMainPage = currentPage === 'hardware.html';
+  const isMotionMainPage = currentPage === 'motion.html';
+
   const currentGroup = HAIER_NAV_GROUPS.find((group) =>
     group.items.some((item) => item.page === currentPage || item.href?.startsWith(`${currentPage}#`) || item.id === currentHash)
-  )?.id;
+  )?.id || (
+    isPrinciplesMainPage ? 'principles' : 
+    isFoundationsMainPage ? 'foundations' : 
+    isComponentsMainPage ? 'components' : 
+    isHardwareMainPage ? 'hardware' : 
+    isMotionMainPage ? 'motion' : undefined
+  );
+  
   const openGroups = new Set(currentGroup ? [currentGroup] : []);
 
   const FALLBACK_I18N_EN = {
@@ -264,7 +277,6 @@ const HAIER_NAV_LABEL_EN = {
 
     if (!link) return;
     link.href = 'haier_os_design_system.html';
-    // 强制去除圆角，改为 rounded-none
     link.className = 'guideline-home-link px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white border border-white/20 rounded-none';
     const label = link.querySelector('span') || link;
     if (label !== link) label.className = 'text-sm font-medium tracking-wide';
@@ -308,7 +320,6 @@ const HAIER_NAV_LABEL_EN = {
     const switcher = document.createElement('div');
     switcher.id = 'language-switcher';
     switcher.className = 'fixed top-6 right-6 md:static md:ml-auto z-50 pointer-events-none';
-    // 强制【EN】按钮圆角为0 (rounded-none)
     switcher.innerHTML = `
       <button type="button" class="pointer-events-auto min-w-[72px] px-5 py-2 rounded-none bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-semibold transition-colors" aria-label="切换中英文" data-language-toggle>
         <span data-language-label>${currentLanguage === 'zh' ? 'EN' : '中文'}</span>
@@ -350,7 +361,6 @@ const HAIER_NAV_LABEL_EN = {
         color: #F5F5F7 !important;
       }
 
-      /* 极简高级微光背景 */
       .ambient-bg {
         position: fixed !important;
         top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
@@ -362,7 +372,6 @@ const HAIER_NAV_LABEL_EN = {
         display: none !important;
       }
 
-      /* 左侧导航栏采用微区分的深色面板背景 */
       #sidebar,
       body > header.gallery-panel,
       body > header.glass-panel {
@@ -441,7 +450,7 @@ const HAIER_NAV_LABEL_EN = {
       .guideline-home-link {
         min-width: auto !important;
         padding: 0.5rem 1rem !important;
-        border-radius: 0 !important; /* 返回主页按钮无圆角 */
+        border-radius: 0 !important;
         color: #FFFFFF !important;
         font-size: 0.875rem !important;
         line-height: 1.25rem !important;
@@ -458,7 +467,7 @@ const HAIER_NAV_LABEL_EN = {
         width: 2.25rem;
         height: 2.25rem;
         border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 0 !important; /* 侧边栏折叠/展开按钮无圆角 */
+        border-radius: 0 !important;
         background: #1C1C22;
         color: #9CA3AF;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
@@ -510,7 +519,6 @@ const HAIER_NAV_LABEL_EN = {
         }
       }
 
-      /* 统一鼠标悬浮高亮色 */
       a:hover,
       .sidebar-group-trigger:hover,
       .sidebar-nav-item:hover {
@@ -522,7 +530,6 @@ const HAIER_NAV_LABEL_EN = {
         box-shadow: inset 0 0 0 1px var(--text-gold) !important;
       }
 
-      /* 卡萨帝 Logo 容器适配 */
       .haier-logo-container {
         display: flex !important;
         align-items: center !important;
@@ -576,7 +583,6 @@ const HAIER_NAV_LABEL_EN = {
         pointer-events: none !important;
       }
 
-      /* 菜单高亮与激活选中态（金色主题） */
       .sidebar-nav-item.active {
         color: var(--text-gold) !important;
         background: rgba(233, 189, 133, 0.1) !important;
@@ -595,21 +601,51 @@ const HAIER_NAV_LABEL_EN = {
 
     const [itemPage, itemHash] = item.href.split('#');
     const isCurrentPage =
-      item.page === currentPage ||
-      (itemPage === currentPage && (!currentHash || itemHash === currentHash)) ||
-      (!itemPage && itemHash && itemHash === currentHash);
-    const childPrefix = '';
+      !isPrinciplesMainPage && !isFoundationsMainPage && !isComponentsMainPage && !isHardwareMainPage && !isMotionMainPage && (
+        item.page === currentPage ||
+        (itemPage === currentPage && (!currentHash || itemHash === currentHash)) ||
+        (!itemPage && itemHash && itemHash === currentHash)
+      );
     const baseClasses = item.standalone
       ? 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-400 hover:text-[#E9BD85] rounded-none transition-colors'
       : item.child
         ? 'sidebar-nav-item nav-child block px-4 py-2 text-sm font-normal text-gray-400 hover:text-[#E9BD85] pl-7 rounded-none transition-colors'
         : 'sidebar-nav-item block px-4 py-2.5 text-sm font-normal text-gray-300 hover:text-[#E9BD85] rounded-none transition-colors';
 
-    return `<a href="${normalizeHref(item.href)}" class="${baseClasses}${isCurrentPage ? ' active' : ''}" data-nav-id="${item.id || ''}" data-nav-page="${item.page || ''}">${childPrefix}${navLabel(item.label)}</a>`;
+    return `<a href="${normalizeHref(item.href)}" class="${baseClasses}${isCurrentPage ? ' active' : ''}" data-nav-id="${item.id || ''}" data-nav-page="${item.page || ''}">${navLabel(item.label)}</a>`;
   };
 
   const groupTemplate = (group) => {
     const isOpen = openGroups.has(group.id);
+
+    // 针对主页类型分组：支持点击标题跳转主页面，且高亮只作用于组标题本身
+    if (['principles', 'foundations', 'components', 'hardware', 'motion'].includes(group.id)) {
+      const isTargetPage = 
+        (group.id === 'principles' && isPrinciplesMainPage) || 
+        (group.id === 'foundations' && isFoundationsMainPage) ||
+        (group.id === 'components' && isComponentsMainPage) ||
+        (group.id === 'hardware' && isHardwareMainPage) ||
+        (group.id === 'motion' && isMotionMainPage);
+        
+      const targetUrl = 
+        group.id === 'principles' ? 'principles.html' : 
+        group.id === 'foundations' ? 'foundations.html' : 
+        group.id === 'components' ? 'components.html' : 
+        group.id === 'hardware' ? 'hardware.html' : 'motion.html';
+      
+      return `
+      <div class="sidebar-nav-group" data-nav-group="${group.id}">
+        <div class="sidebar-group-header w-full flex items-center justify-between gap-2 px-4 py-2.5 mt-2 text-sm font-normal hover:bg-white/5 transition-colors">
+          <a href="${targetUrl}" class="flex-1 text-left ${isTargetPage ? 'text-[#E9BD85] font-semibold' : 'text-gray-400 hover:text-[#E9BD85]'}">${navLabel(group.label)}</a>
+          <button type="button" class="p-1 text-gray-400 hover:text-white transition-colors" aria-expanded="${isOpen}" aria-controls="nav-panel-${group.id}" data-nav-toggle="${group.id}" aria-label="展开或收起子菜单">
+            <svg class="w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+        </div>
+        <div id="nav-panel-${group.id}" class="sidebar-group-panel mt-1 space-y-1 ${isOpen ? '' : 'hidden'}">
+          ${group.items.map(navItemTemplate).join('')}
+        </div>
+      </div>`;
+    }
 
     return `
       <div class="sidebar-nav-group" data-nav-group="${group.id}">
@@ -630,7 +666,7 @@ const HAIER_NAV_LABEL_EN = {
       </button>
       <a href="haier_os_design_system.html" class="haier-logo-container w-14 h-14 mb-3 text-xl shadow-md" aria-label="Casarte Design 首页"><img src="assets/icons/casarte-logo-03.png" alt="Casarte"></a>
       <h1 class="text-xl font-bold tracking-tight text-white">Casarte Design</h1>
-      <p class="text-xs text-gray-400 mt-0.5">NEXT UX Guideline 1.0.0</p>
+      <p class="text-xs text-gray-400 mt-0.5">NEXT UX Guideline 1.0.1</p>
     </div>
     <nav class="flex-1 px-3 pb-12 space-y-1" aria-label="章节目录">
       ${HAIER_NAV_GROUPS.map(groupTemplate).join('')}
@@ -766,7 +802,8 @@ const HAIER_NAV_LABEL_EN = {
     }
   }
 
-  if (mainContent) {
+  // 如果在独立的主页面中，禁用滚动高亮监听
+  if (mainContent && !isPrinciplesMainPage && !isFoundationsMainPage && !isComponentsMainPage && !isHardwareMainPage && !isMotionMainPage) {
     const observedSections = [...document.querySelectorAll('[id]')].filter((element) =>
       sidebar.querySelector(`[data-nav-id="${element.id}"]`)
     );
@@ -810,3 +847,12 @@ const HAIER_NAV_LABEL_EN = {
     }
   });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const footerParagraphs = document.querySelectorAll('footer p');
+  footerParagraphs.forEach((p) => {
+    if (p.textContent.includes('Haier OS Design Group') || p.textContent.includes('Internal Confidential')) {
+      p.innerHTML = '&copy; 2026 Casarte Design Lab. Internal Confidential.';
+    }
+  });
+});

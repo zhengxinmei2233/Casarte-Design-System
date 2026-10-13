@@ -1,67 +1,8 @@
 <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_846_973)">
-<path d="M95 31.7H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 47.5H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 63.3H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M63.3 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M47.5 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M31.7 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 95V0H0V95H95Z" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 7.89999H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 11.9H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 15.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 19.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 23.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 27.7H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 35.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 39.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 43.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 51.5H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 55.4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 59.4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 67.3H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 71.3H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 75.2H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 79.2H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 83.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 87.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 91.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M91.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M87.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M83.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M79.2 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M75.2 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M71.3 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M67.3 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M59.3999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M55.3999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M51.5 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M43.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M39.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M35.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M27.7 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M23.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M19.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M15.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M11.8999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M7.8999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M4 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 0L0 95" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 95L0 0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M47.5 67.3C58.4 67.3 67.3 58.4 67.3 47.5C67.3 36.6 58.4 27.7 47.5 27.7C36.6 27.7 27.7 36.6 27.7 47.5C27.7 58.4 36.6 67.3 47.5 67.3Z" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M47.5 79C64.9 79 79 64.9 79 47.5C79 30.1 64.9 16 47.5 16C30.1 16 16 30.1 16 47.5C16 64.9 30.1 79 47.5 79Z" stroke="white" stroke-width="0.0315" stroke-miterlimit="10"/>
-<path d="M83.0999 15.8H11.8999V78.8H83.0999V15.8Z" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
 <path d="M77.0883 56.3377H72.8353C71.2694 56.3377 70 57.6071 70 59.173V65.5525C70 67.1184 71.2694 68.3878 72.8353 68.3878H77.0883" stroke="white" stroke-width="2.5"/>
 <path d="M46.8156 61.4518V63.7744H43.4284V69.4841H41.1058V63.7744H33.1703C32.6864 63.7744 32.3961 63.5808 32.2025 63.1937C32.009 62.8066 31.9122 62.4195 32.1057 62.0324L40.622 45.1935H43.2349L35.1058 61.355H41.2026V52.8388H43.5252V61.355H46.8156V61.4518Z" fill="white" stroke="white" stroke-width="0.4"/>
 <path d="M55.8157 46.25C58.9553 46.2501 61.3399 48.5921 61.3401 51.29C61.3401 53.9881 58.9554 56.331 55.8157 56.3311C52.6759 56.3311 50.2913 53.9881 50.2913 51.29C50.2915 48.5921 52.676 46.25 55.8157 46.25Z" stroke="white" stroke-width="2.5"/>
 <path d="M55.8159 56.4114C59.4784 56.4115 62.3079 59.176 62.3081 62.4192C62.3081 65.6626 59.4785 68.4279 55.8159 68.428C52.1533 68.428 49.3237 65.6626 49.3237 62.4192C49.3239 59.1759 52.1534 56.4114 55.8159 56.4114Z" stroke="white" stroke-width="2.5"/>
 <circle cx="68.5" cy="49.9" r="2.5" stroke="white" stroke-width="2.5"/>
 <path d="M47.4998 77C34.6998 77 24.2998 66.7 24.2998 54C24.2998 41.3 47.4998 18 47.4998 18C47.4998 18 60.5373 31.0936 67.0654 43" stroke="white" stroke-width="5" stroke-miterlimit="10"/>
-</g>
-<defs>
-<clipPath id="clip0_846_973">
-<rect width="95" height="95" fill="white"/>
-</clipPath>
-</defs>
 </svg>

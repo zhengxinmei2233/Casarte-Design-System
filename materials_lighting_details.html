@@ -167,34 +167,35 @@
     <!-- 移动端 Header -->
     <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
         <div class="flex items-center">
+            <a href="haier_os_design_system.html" class="mr-3 p-2 bg-white/5 hover:bg-white/10 transition-colors flex items-center text-gray-300"></a>
             <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
             <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="材质规范" data-i18n-en="Material">材质规范</h1>
         </div>
-        <button id="mobile-menu-btn" class="p-2 text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
     </header>
 
     <div class="flex h-screen pt-16 md:pt-0">
-        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Casarte Design 导航" aria-hidden="true"></aside>
+        <!-- 侧边栏：采用与字体页完全一致的大小与结构 -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
+        <!-- 主内容区：使用与字体页完全一致的左右边距 -->
         <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
             <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
                 
-                <!-- 头部 -->
-                <div>
-                    <div class="hidden md:flex items-center mb-8">
-                        <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
-                            <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
-                        </a>
-                    </div>
-
-                    <div class="border-b border-gray-800 pb-8">
-                        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="材质" data-i18n-en="Material">材质</h1>
-                        <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。" data-i18n-en="Materials establish spatial relationships through light transmission, blur, contrast, and shadow. Casarte's multi-terminal interface relies on clarity, tranquility, and credibility: materials distinguish content from functions, while shadows represent authentic floating hierarchies.">
-                            材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。
-                        </p>
-                    </div>
+                <!-- 头部：返回主页按键与大标题间距已和字体页一致 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
                 </div>
+
+                <section class="border-b border-gray-800 pb-8">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="材质" data-i18n-en="Material">材质</h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。" data-i18n-en="Materials establish spatial relationships through light transmission, blur, contrast, and shadow. Casarte's multi-terminal interface relies on clarity, tranquility, and credibility: materials distinguish content from functions, while shadows represent authentic floating hierarchies.">
+                        材质通过透光、模糊、明暗与阴影建立前后关系。卡萨帝多终端界面以清晰、安静、可信为前提：材质负责区分内容与功能，阴影只负责表达真实的悬浮层级。
+                    </p>
+                </section>
 
 
                 <!-- ================= 模块 1：核心设计原则 ================= -->

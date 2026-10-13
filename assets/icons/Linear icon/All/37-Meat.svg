@@ -1,61 +1,7 @@
 <svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_846_367)">
-<path d="M95 31.7H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 47.5H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 63.3H0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M63.3 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M47.5 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M31.7 95V0" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
-<path d="M95 95V0H0V95H95Z" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 7.89999H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 11.9H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 15.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 19.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 23.8H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 27.7H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 35.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 39.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 43.6H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 51.5H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 55.4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 59.4H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 67.3H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 71.3H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 75.2H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 79.2H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 83.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 87.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 91.1H0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M91.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M87.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M83.1001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M79.2 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M75.2 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M71.3 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M67.3 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M59.3999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M55.3999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M51.5 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M43.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M39.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M35.6001 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M27.7 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M23.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M19.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M15.8 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M11.8999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M7.8999 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M4 95V0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 0L0 95" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M95 95L0 0" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M47.5 67.3C58.4 67.3 67.3 58.4 67.3 47.5C67.3 36.6 58.4 27.7 47.5 27.7C36.6 27.7 27.7 36.6 27.7 47.5C27.7 58.4 36.6 67.3 47.5 67.3Z" stroke="white" stroke-width="0.0197917" stroke-miterlimit="10"/>
-<path d="M47.5 79C64.9 79 79 64.9 79 47.5C79 30.1 64.9 16 47.5 16C30.1 16 16 30.1 16 47.5C16 64.9 30.1 79 47.5 79Z" stroke="white" stroke-width="0.0315" stroke-miterlimit="10"/>
-<path d="M83.0999 15.8H11.8999V78.8H83.0999V15.8Z" stroke="white" stroke-width="0.0395833" stroke-miterlimit="10"/>
 <path d="M82.5 57.239V46.5388L12.5479 43.2009V56.7839L12.5781 57.0115C12.9726 60.0076 14.5195 62.6204 16.9668 65.0652C18.5239 66.6207 20.5433 67.6597 22.5537 68.4353C24.5878 69.22 26.8925 69.8365 29.2129 70.4011C34.0014 71.5664 38.9584 72.5508 43.6357 74.3308C54.3709 78.4162 63.2471 76.8614 66.3252 75.7527C69.6907 74.5405 73.0336 73.2105 75.7773 71.1091C78.665 68.8974 80.7596 65.9428 81.8994 61.7683C82.11 60.997 82.2245 59.9869 82.2949 59.3035C82.3866 58.4141 82.4219 57.8959 82.4756 57.4451L82.5 57.239Z" fill="url(#paint0_linear_846_367)"/>
 <path d="M82.5 47.4997C82.5 47.9658 82.4449 48.6022 82.3623 49.1852C82.2882 49.708 82.1404 50.5859 81.8223 51.3483C78.9625 58.2011 73.2943 61.0776 66.8701 63.318C63.7339 64.4118 54.6226 65.9653 43.585 61.8981C38.7393 60.1126 33.6005 59.1242 28.666 57.9616C26.271 57.3973 23.9004 56.7829 21.8115 56.0026C19.7498 55.2324 17.6829 54.2025 16.0869 52.6588C14.7099 51.3269 13.8176 50.0136 13.2754 48.5573C12.7807 47.2285 12.6465 45.8979 12.5322 45.0573L12.5 44.8219V44.0915L12.502 44.028C12.6038 41.2115 12.877 39.2395 13.7412 36.4469C14.8017 33.0203 17.604 30.2366 19.626 28.529C20.7076 27.6155 21.7295 26.8759 22.4805 26.3649C22.8577 26.1082 23.1722 25.9061 23.3975 25.7643C23.51 25.6935 23.6011 25.6374 23.667 25.5973C23.679 25.59 23.6899 25.5821 23.7002 25.5758C28.6562 22.2506 36.2652 20.1393 43.3701 18.9567C50.5934 17.7544 57.9935 17.4018 62.7422 17.9948C67.5306 18.5928 71.727 20.1473 75.0615 23.3659C78.357 26.5469 80.4477 31.0048 81.7432 36.7057C82.4537 39.8324 82.5 44.2344 82.5 47.0163V47.4997Z" fill="url(#paint1_linear_846_367)"/>
 <ellipse cx="60.4004" cy="37.9549" rx="5.72293" ry="5.24602" stroke="#F9D9C1" stroke-width="4"/>
-</g>
 <defs>
 <linearGradient id="paint0_linear_846_367" x1="68.5001" y1="17" x2="30.5001" y2="95.5" gradientUnits="userSpaceOnUse">
 <stop/>
@@ -69,8 +15,5 @@
 <stop offset="0.725826" stop-color="#AB593C"/>
 <stop offset="1" stop-color="#F9D9C1"/>
 </linearGradient>
-<clipPath id="clip0_846_367">
-<rect width="95" height="95" fill="white"/>
-</clipPath>
 </defs>
 </svg>
