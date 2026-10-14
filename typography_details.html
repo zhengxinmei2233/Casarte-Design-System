@@ -231,11 +231,25 @@
             font-family: 'HIDC-Numeral', 'Jost', sans-serif;
         }
 
-        /* ============ 七段数码管 (7-Segment) 展示组件 ============ */
+        /* ============ 七段数码管 (7-Segment) 完全防变形优化 ============ */
         .seg-row { display: inline-flex; align-items: center; }
-        .seg-display { display: inline-block; white-space: nowrap; }
-        .seg-digit, .seg-blank { position: relative; width: 32px; height: 64px; display: inline-block; margin: 0 4px; vertical-align: middle; }
-        .seg-digit i { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #2A2A30; transition: background 0.15s; }
+        .seg-display { display: inline-flex; align-items: center; white-space: nowrap; }
+        .seg-digit, .seg-blank { 
+            position: relative; 
+            width: var(--seg-w, 32px); 
+            height: var(--seg-h, 64px); 
+            display: inline-block; 
+            margin: 0 calc(var(--seg-w, 32px) * 0.1); 
+            vertical-align: middle; 
+        }
+        .seg-digit i { 
+            position: absolute; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: #2A2A30; 
+            transition: background 0.15s; 
+            will-change: transform;
+        }
         .seg-digit i.on { background: #FFFFFF; }
         .seg-a { clip-path: polygon(13.71% 0%, 86.29% 0%, 91.79% 2.72%, 80.94% 6.82%, 0% 6.82%); }
         .seg-b { clip-path: polygon(95.36% 4.51%, 100% 6.82%, 100% 48.75%, 96.71% 48.75%, 86.29% 44.13%, 86.29% 7.93%); }
@@ -244,13 +258,13 @@
         .seg-g { clip-path: polygon(8.03% 50%, 15.72% 46.59%, 84.28% 46.59%, 91.97% 50%, 84.28% 53.41%, 15.72% 53.41%); }
         .seg-c { clip-path: polygon(96.71% 51.25%, 100% 51.25%, 100% 93.18%, 95.36% 95.49%, 86.29% 92.07%, 86.29% 55.87%); }
         .seg-d { clip-path: polygon(0% 93.18%, 80.94% 93.18%, 91.79% 97.28%, 86.29% 100%, 13.71% 100%); }
-        .seg-colon { position: relative; width: 14px; height: 64px; display: inline-block; vertical-align: middle; }
-        .seg-colon i { position: absolute; left: 5px; width: 4px; height: 8px; background: #FFFFFF; }
-        .seg-colon i:first-child { top: 19px; }
-        .seg-colon i:last-child { top: 37px; }
-        .seg-dotslot { position: relative; width: 14px; height: 64px; display: inline-block; vertical-align: middle; }
-        .seg-dotslot i { position: absolute; left: 5px; bottom: 0; width: 4px; height: 8px; background: #FFFFFF; }
-        .seg-space { position: relative; width: 16px; height: 64px; display: inline-block; vertical-align: middle; }
+        .seg-colon { position: relative; width: calc(var(--seg-h, 64px) * 0.22); height: var(--seg-h, 64px); display: inline-block; vertical-align: middle; }
+        .seg-colon i { position: absolute; left: 35%; width: 30%; height: 12.5%; background: #FFFFFF; }
+        .seg-colon i:first-child { top: 30%; }
+        .seg-colon i:last-child { top: 58%; }
+        .seg-dotslot { position: relative; width: calc(var(--seg-h, 64px) * 0.22); height: var(--seg-h, 64px); display: inline-block; vertical-align: middle; }
+        .seg-dotslot i { position: absolute; left: 35%; bottom: 0; width: 30%; height: 12.5%; background: #FFFFFF; }
+        .seg-space { position: relative; width: calc(var(--seg-h, 64px) * 0.25); height: var(--seg-h, 64px); display: inline-block; vertical-align: middle; }
         .seg-scale-wrap { display: inline-block; overflow: visible; vertical-align: middle; }
         .seg-combination-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
         .seg-combination-example { min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; background: rgba(14, 14, 18, 0.6); border: 1px solid var(--border-gray); border-radius: 0; }
@@ -293,7 +307,7 @@
                 </div>
                 <section class="border-b border-gray-800 pb-8">
                     <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white" data-i18n-zh="字体" data-i18n-en="Typography">字体</h1>
-                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="参考全局 Token 体系，字体系统保证不同终端下的易读性与清晰层级。" data-i18n-en="Based on global token system, typography ensures readability and clear hierarchy across devices.">参考全局 Token 体系，字体系统保证不同终端下的易读性与清晰层级[cite: 21]。</p>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="参考全局 Token 体系，字体系统保证不同终端下的易读性与清晰层级。" data-i18n-en="Based on global token system, typography ensures readability and clear hierarchy across devices.">参考全局 Token 体系，字体系统保证不同终端下的易读性与清晰层级。</p>
                 </section>
 
                 <div class="flex gap-8 border-b border-gray-800 mb-12 overflow-x-auto hide-scrollbar">
@@ -307,7 +321,7 @@
                             <div class="absolute right-0 top-0 w-64 h-64 bg-amber-500/10 rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
                             <div class="mb-6 relative z-10">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="中文字体" data-i18n-en="Chinese Typography">中文字体</h2>
-                                <p class="text-sm text-gray-400"><span data-i18n-zh="中文字体统一采用 " data-i18n-en="Chinese typography consistently uses ">中文字体统一采用 </span><strong class="text-[#E9BD85]">方正方俊黑 (FZFangJHJW_Zhun)</strong><span data-i18n-zh="，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。" data-i18n-en=" to provide a clear, consistent, and technology-forward reading experience across screens and devices.">，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验[cite: 21]。</span></p>
+                                <p class="text-sm text-gray-400"><span data-i18n-zh="中文字体统一采用 " data-i18n-en="Chinese typography consistently uses ">中文字体统一采用 </span><strong class="text-[#E9BD85]">方正方俊黑 (FZFangJHJW_Zhun)</strong><span data-i18n-zh="，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。" data-i18n-en=" to provide a clear, consistent, and technology-forward reading experience across screens and devices.">，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。</span></p>
                             </div>
                             <div class="p-8 bg-black/30 rounded-none border border-gray-800 flex flex-col md:flex-row items-center justify-center gap-6 shadow-xl relative z-10">
                                 <span class="font-FZFangJHJW text-3xl md:text-4xl font-normal text-white tracking-wide">方正方俊黑 FZFangJHJW</span>
@@ -320,7 +334,7 @@
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="字重" data-i18n-en="Font Weight">字重</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="方正方俊黑主要通过以下三种字重来构建界面的信息层级，保证重点突出且不失轻盈感。" data-i18n-en="FZFangJHJW builds hierarchy via three weights, highlighting key info lightly.">方正方俊黑主要通过以下三种字重来构建界面的信息层级，保证重点突出且不失轻盈感[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="方正方俊黑主要通过以下三种字重来构建界面的信息层级，保证重点突出且不失轻盈感。" data-i18n-en="FZFangJHJW builds hierarchy via three weights, highlighting key info lightly.">方正方俊黑主要通过以下三种字重来构建界面的信息层级，保证重点突出且不失轻盈感。</p>
                             </div>
                             
                             <div class="overflow-x-auto">
@@ -338,19 +352,19 @@
                                         <td><span class="text-white font-medium">粗黑 (DemiBold)</span></td>
                                         <td><span class="font-FZFangJHJW" style="font-weight: 700; font-size: 20px; color: #fff;">粗黑</span></td>
                                         <td class="font-mono text-gray-400 text-sm">700</td>
-                                        <td class="text-gray-400 text-sm" data-i18n-zh="用于强烈的视觉强调，如全局大标题、核心数据展示、警告状态" data-i18n-en="Used for strong emphasis, such as page titles, key metrics, warning states">用于强烈的视觉强调，如全局大标题、核心数据展示、警告状态[cite: 21]</td>
+                                        <td class="text-gray-400 text-sm" data-i18n-zh="用于强烈的视觉强调，如全局大标题、核心数据展示、警告状态" data-i18n-en="Used for strong emphasis, such as page titles, key metrics, warning states">用于强烈的视觉强调，如全局大标题、核心数据展示、警告状态</td>
                                       </tr>
                                       <tr class="hover:bg-white/5 transition duration-200">
                                         <td><span class="text-white font-medium">黑 (Medium)</span></td>
                                         <td><span class="font-FZFangJHJW" style="font-weight: 400; font-size: 20px; color: #fff;">黑</span></td>
                                         <td class="font-mono text-gray-400 text-sm">400</td>
-                                        <td class="text-gray-400 text-sm" data-i18n-zh="日常阅读正文、常规按钮文本、大多数 UI 控件的基础字重" data-i18n-en="Base weight for body copy, standard button text, and UI controls">日常阅读正文、常规按钮文本、大多数 UI 控件的基础字重[cite: 21]</td>
+                                        <td class="text-gray-400 text-sm" data-i18n-zh="日常阅读正文、常规按钮文本、大多数 UI 控件的基础字重" data-i18n-en="Base weight for body copy, standard button text, and UI controls">日常阅读正文、常规按钮文本、大多数 UI 控件的基础字重</td>
                                       </tr>
                                       <tr class="hover:bg-white/5 transition duration-200">
                                         <td><span class="text-white font-medium">纤黑 (Light)</span></td>
                                         <td><span class="font-FZFangJHJW" style="font-weight: 300; font-size: 20px; color: #fff;">纤黑</span></td>
                                         <td class="font-mono text-gray-400 text-sm">300</td>
-                                        <td class="text-gray-400 text-sm" data-i18n-zh="辅助文案、次要内容等弱化展示场景" data-i18n-en="Used for secondary copy, captions, and muted elements">辅助文案、次要内容等弱化展示场景[cite: 21]</td>
+                                        <td class="text-gray-400 text-sm" data-i18n-zh="辅助文案、次要内容等弱化展示场景" data-i18n-en="Used for secondary copy, captions, and muted elements">辅助文案、次要内容等弱化展示场景</td>
                                       </tr>
                                     </tbody> 
                                 </table>
@@ -359,7 +373,7 @@
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="文本样式" data-i18n-en="Text Styles">文本样式</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="依据业务场景，提取了极具辨识度的中文文本层级样式，并统一了其字号大小与行高。" data-i18n-en="Standardized Chinese text hierarchy, font sizes, and line heights for key business scenarios.">依据业务场景，提取了极具辨识度的中文文本层级样式，并统一了其字号大小与行高[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="依据业务场景，提取了极具辨识度的中文文本层级样式，并统一了其字号大小与行高。" data-i18n-en="Standardized Chinese text hierarchy, font sizes, and line heights for key business scenarios.">依据业务场景，提取了极具辨识度的中文文本层级样式，并统一了其字号大小与行高。</p>
                             </div>
                             
                             <div class="overflow-x-auto mb-8">
@@ -381,7 +395,7 @@
                                             <td><span class="font-FZFangJHJW font-bold text-white" style="font-size: 26px;">海尔智家</span></td>
                                             <td class="font-mono text-gray-300 text-sm">56pt</td>
                                             <td class="font-mono text-gray-400 text-sm">140%</td>
-                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="用于极大字号的数据展示或英雄区域主视觉文字" data-i18n-en="Large data displays or hero region key visual copy">用于极大字号的数据展示或英雄区域主视觉文字[cite: 21]</td>
+                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="用于极大字号的数据展示或英雄区域主视觉文字" data-i18n-en="Large data displays or hero region key visual copy">用于极大字号的数据展示或英雄区域主视觉文字</td>
                                         </tr>
                                         <tr class="bg-white/5">
                                             <td class="font-mono text-xs text-gray-400">CN/Title/Head48</td>
@@ -395,7 +409,7 @@
                                             <td><span class="font-FZFangJHJW font-bold text-white" style="font-size: 18px;">海尔智家</span></td>
                                             <td class="font-mono text-gray-300 text-sm">32pt</td>
                                             <td class="font-mono text-gray-400 text-sm">140%</td>
-                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="页面主要标题，引导用户的核心模块标题" data-i18n-en="Primary page titles and core module headings">页面主要标题，引导用户的核心模块标题[cite: 21]</td>
+                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="页面主要标题，引导用户的核心模块标题" data-i18n-en="Primary page titles and core module headings">页面主要标题，引导用户的核心模块标题</td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-xs text-gray-400">CN/Title/Primary28</td>
@@ -409,7 +423,7 @@
                                             <td><span class="font-FZFangJHJW font-medium text-white" style="font-size: 16px;">海尔智家</span></td>
                                             <td class="font-mono text-gray-300 text-sm">28pt</td>
                                             <td class="font-mono text-gray-400 text-sm">140%</td>
-                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="卡片大标题、重要提示区及子页面标题" data-i18n-en="Card titles, alert sections, and subpage headings">卡片大标题、重要提示区及子页面标题[cite: 21]</td>
+                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="卡片大标题、重要提示区及子页面标题" data-i18n-en="Card titles, alert sections, and subpage headings">卡片大标题、重要提示区及子页面标题</td>
                                         </tr>
                                         <tr class="bg-white/5">
                                             <td class="font-mono text-xs text-gray-400">CN/Title/Section24</td>
@@ -423,7 +437,7 @@
                                             <td><span class="font-FZFangJHJW font-medium text-white" style="font-size: 14px;">海尔智家</span></td>
                                             <td class="font-mono text-gray-300 text-sm">24pt</td>
                                             <td class="font-mono text-gray-400 text-sm">140%</td>
-                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="辅助说明、组件内部标签、次要提示信息" data-i18n-en="Auxiliary captions, component labels, secondary info">辅助说明、组件内部标签、次要提示信息[cite: 21]</td>
+                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="辅助说明、组件内部标签、次要提示信息" data-i18n-en="Auxiliary captions, component labels, secondary info">辅助说明、组件内部标签、次要提示信息</td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-xs text-gray-400">CN/Title/Section20</td>
@@ -437,7 +451,7 @@
                                             <td><span class="font-FZFangJHJW font-medium text-white" style="font-size: 14px;">海尔智家</span></td>
                                             <td class="font-mono text-gray-300 text-sm">24pt</td>
                                             <td class="font-mono text-gray-400 text-sm">160%</td>
-                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="常规段落内容、列表文本、基础阅读文本" data-i18n-en="Standard paragraph body text, list items, general reading">常规段落内容、列表文本、基础阅读文本[cite: 21]</td>
+                                            <td rowspan="2" class="text-gray-400 text-sm align-middle" data-i18n-zh="常规段落内容、列表文本、基础阅读文本" data-i18n-en="Standard paragraph body text, list items, general reading">常规段落内容、列表文本、基础阅读文本</td>
                                         </tr>
                                         <tr class="bg-white/5">
                                             <td class="font-mono text-xs text-gray-400">CN/Body/Content20_Regular</td>
@@ -448,7 +462,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。" data-i18n-en="Note: Preview size scaled proportionally for layout. Refer to the pt values for actual font sizes.">注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准[cite: 21]。</p>
+                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。" data-i18n-en="Note: Preview size scaled proportionally for layout. Refer to the pt values for actual font sizes.">注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。</p>
                             <div class="bg-black/30 p-6 rounded-none border border-gray-800 mt-6">
                                 <div class="flex items-center mb-4">
                                     <svg class="w-5 h-5 text-[#E9BD85] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
@@ -517,7 +531,7 @@
                             <div class="absolute right-0 top-0 w-64 h-64 bg-amber-500/10 rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
                             <div class="mb-6 relative z-10">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="英文字体" data-i18n-en="English Typography">英文字体</h2>
-                                <p class="text-sm text-gray-400"><span data-i18n-zh="英文字体统一采用 " data-i18n-en="English typography consistently uses ">英文字体统一采用 </span><strong class="text-[#E9BD85]">Jost</strong><span data-i18n-zh="，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。" data-i18n-en=" to provide a clear, consistent, and technology-forward reading experience across screens and devices.">，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验[cite: 21]。</span></p>
+                                <p class="text-sm text-gray-400"><span data-i18n-zh="英文字体统一采用 " data-i18n-en="English typography consistently uses ">英文字体统一采用 </span><strong class="text-[#E9BD85]">Jost</strong><span data-i18n-zh="，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。" data-i18n-en=" to provide a clear, consistent, and technology-forward reading experience across screens and devices.">，以保证在各种屏幕和终端设备上提供清晰、一致且富有科技感的阅读体验。</span></p>
                             </div>
                             <div class="p-8 bg-black/30 rounded-none border border-gray-800 flex flex-col md:flex-row items-center justify-center gap-6 shadow-xl relative z-10">
                                 <span class="font-Jost weight-medium text-3xl md:text-4xl text-white tracking-wide">Jost</span>
@@ -530,7 +544,7 @@
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="字重" data-i18n-en="Font Weight">字重</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="不同字重用于区分标题、正文、辅助信息与关键数字信息。" data-i18n-en="Different font weights distinguish headings, body copy, auxiliary labels, and key numerical data.">不同字重用于区分标题、正文、辅助信息与关键数字信息[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="不同字重用于区分标题、正文、辅助信息与关键数字信息。" data-i18n-en="Different font weights distinguish headings, body copy, auxiliary labels, and key numerical data.">不同字重用于区分标题、正文、辅助信息与关键数字信息。</p>
                             </div>
 
                             <div class="overflow-x-auto">
@@ -548,19 +562,19 @@
                                             <td><span class="text-white font-medium">Bold</span></td>
                                             <td><span class="font-Jost weight-bold text-white" style="font-size: 20px;">Aa Bb Cc</span></td>
                                             <td class="font-mono text-gray-400 text-sm">700</td>
-                                            <td class="text-gray-400 text-sm" data-i18n-zh="用于强烈的视觉强调，如全局大标题、核心数据展示、标题类文本" data-i18n-en="Used for strong visual emphasis, hero titles, key data, and headings">用于强烈的视觉强调，如全局大标题、核心数据展示、标题类文本[cite: 21]</td>
+                                            <td class="text-gray-400 text-sm" data-i18n-zh="用于强烈的视觉强调，如全局大标题、核心数据展示、标题类文本" data-i18n-en="Used for strong visual emphasis, hero titles, key data, and headings">用于强烈的视觉强调，如全局大标题、核心数据展示、标题类文本</td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td><span class="text-white font-medium">Regular</span></td>
                                             <td><span class="font-Jost weight-regular text-white" style="font-size: 20px;">Aa Bb Cc</span></td>
                                             <td class="font-mono text-gray-400 text-sm">400</td>
-                                            <td class="text-gray-400 text-sm" data-i18n-zh="日常阅读正文、主标题/标签类文本、大多数 UI 控件的基础字重" data-i18n-en="Base weight for body text, primary labels, and standard UI elements">日常阅读正文、主标题/标签类文本、大多数 UI 控件的基础字重[cite: 21]</td>
+                                            <td class="text-gray-400 text-sm" data-i18n-zh="日常阅读正文、主标题/标签类文本、大多数 UI 控件的基础字重" data-i18n-en="Base weight for body text, primary labels, and standard UI elements">日常阅读正文、主标题/标签类文本、大多数 UI 控件的基础字重</td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td><span class="text-white font-medium">Light</span></td>
                                             <td><span class="font-Jost weight-light text-white" style="font-size: 20px;">Aa Bb Cc</span></td>
                                             <td class="font-mono text-gray-400 text-sm">300</td>
-                                            <td class="text-gray-400 text-sm" data-i18n-zh="辅助文案、次要正文内容等弱化展示场景" data-i18n-en="Used for secondary copy, captions, and de-emphasized text">辅助文案、次要正文内容等弱化展示场景[cite: 21]</td>
+                                            <td class="text-gray-400 text-sm" data-i18n-zh="辅助文案、次要正文内容等弱化展示场景" data-i18n-en="Used for secondary copy, captions, and de-emphasized text">辅助文案、次要正文内容等弱化展示场景</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -569,7 +583,7 @@
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="文本样式" data-i18n-en="Text Styles">文本样式</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="依据业务场景，提取了极具辨识度的英文文本层级样式，并统一了其字号大小与行高。" data-i18n-en="Extracted recognizable English typography hierarchy with unified sizes and line heights.">依据业务场景，提取了极具辨识度的英文文本层级样式，并统一了其字号大小与行高[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="依据业务场景，提取了极具辨识度的英文文本层级样式，并统一了其字号大小与行高。" data-i18n-en="Extracted recognizable English typography hierarchy with unified sizes and line heights.">依据业务场景，提取了极具辨识度的英文文本层级样式，并统一了其字号大小与行高。</p>
                             </div>
 
                             <div class="overflow-x-auto mb-8">
@@ -663,7 +677,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。" data-i18n-en="Note: Preview size scaled proportionally for layout. Refer to the pt values for actual font sizes.">注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准[cite: 21]。</p>
+                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。" data-i18n-en="Note: Preview size scaled proportionally for layout. Refer to the pt values for actual font sizes.">注：预览文字大小为适配页面阅读做了等比缩小展示，实际字号请以字号列标注的 pt 数值为准。</p>
                         </section>
                     </div>
 
@@ -672,7 +686,7 @@
                             <div class="absolute right-0 top-0 w-64 h-64 bg-amber-500/10 rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
                             <div class="mb-6 relative z-10">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="数字字体" data-i18n-en="Numeral Typography">数字字体</h2>
-                                <p class="text-sm text-gray-400"><span data-i18n-zh="数字专用字体统一采用 " data-i18n-en="Dedicated numeral font consistently uses ">数字专用字体统一采用 </span><strong class="text-[#E9BD85]">HIDC-Numeral</strong><span data-i18n-zh="，用于强调或特殊场景下的数字展示，不用于正文。" data-i18n-en=", reserved for featured numbers and high-impact displays, not body text.">，用于强调或特殊场景下的数字展示，不用于正文[cite: 21]。</span></p>
+                                <p class="text-sm text-gray-400"><span data-i18n-zh="数字专用字体统一采用 " data-i18n-en="Dedicated numeral font consistently uses ">数字专用字体统一采用 </span><strong class="text-[#E9BD85]">HIDC-Numeral</strong><span data-i18n-zh="，用于强调或特殊场景下的数字展示，不用于正文。" data-i18n-en=", reserved for featured numbers and high-impact displays, not body text.">，用于强调或特殊场景下的数字展示，不用于正文。</span></p>
                             </div>
 
                             <div class="p-8 bg-black/30 rounded-none border border-gray-800 flex flex-col md:flex-row items-center justify-center gap-6 shadow-xl relative z-10">
@@ -703,13 +717,13 @@
                                 </div>
                             </div>
 
-                            <p class="text-xs text-gray-500 mt-6 relative z-10 leading-relaxed" data-i18n-zh="对于特定的字体大小或粗细，没有严格的规定。您可以根据具体情况选择合适的大小和粗细，并将其作为有效的设计元素加以利用。" data-i18n-en="No rigid restrictions exist for specific size or weight. Choose appropriate specs to leverage numbers as effective design elements.">对于特定的字体大小或粗细，没有严格的规定。您可以根据具体情况选择合适的大小和粗细，并将其作为有效的设计元素加以利用[cite: 21]。</p>
+                            <p class="text-xs text-gray-500 mt-6 relative z-10 leading-relaxed" data-i18n-zh="对于特定的字体大小或粗细，没有严格的规定。您可以根据具体情况选择合适的大小和粗细，并将其作为有效的设计元素加以利用。" data-i18n-en="No rigid restrictions exist for specific size or weight. Choose appropriate specs to leverage numbers as effective design elements.">对于特定的字体大小或粗细，没有严格的规定。您可以根据具体情况选择合适的大小和粗细，并将其作为有效的设计元素加以利用。</p>
                         </section>
 
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="双八" data-i18n-en="7-Segment Display">双八</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="数字字体用于设备状态、时间、温度、能耗等高频数据展示。" data-i18n-en="Digital numbers display high-frequency data such as device status, time, temperature, and power.">数字字体用于设备状态、时间、温度、能耗等高频数据展示[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="数字字体用于设备状态、时间、温度、能耗等高频数据展示。" data-i18n-en="Digital numbers display high-frequency data such as device status, time, temperature, and power.">数字字体用于设备状态、时间、温度、能耗等高频数据展示。</p>
                             </div>
 
                             <div class="p-6 md:p-8 bg-black/30 rounded-none border border-gray-800 overflow-x-auto">
@@ -725,10 +739,10 @@
                             <div class="mt-6 p-6 bg-black/30 rounded-none border border-gray-800">
                                 <h3 class="text-sm font-bold text-white mb-3" data-i18n-zh="间距规范" data-i18n-en="Spacing Guidelines">间距规范</h3>
                                 <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
-                                    <li data-i18n-zh="数字与数字之间的间距：2a" data-i18n-en="Spacing between digits: 2a">数字与数字之间的间距：<span class="font-mono text-[#E9BD85]">2a</span>[cite: 21]</li>
-                                    <li data-i18n-zh="数字与冒号 / 小数点之间的间距：2a" data-i18n-en="Spacing between digit and colon/decimal point: 2a">数字与冒号 / 小数点之间的间距：<span class="font-mono text-[#E9BD85]">2a</span>[cite: 21]</li>
-                                    <li data-i18n-zh="整体字符高度：16a（a 为基础比例单位）" data-i18n-en="Total character height: 16a (a is base proportional unit)">整体字符高度：<span class="font-mono text-[#E9BD85]">16a</span>（<span class="font-mono">a</span> 为基础比例单位）[cite: 21]</li>
-                                    <li data-i18n-zh="斜切面（数码管倾斜切角）间距为 0.7mm，元素间距和比例需严格遵循此规范" data-i18n-en="Segment chamfer spacing is 0.7mm; strictly adhere to spacing and ratio specs.">斜切面（数码管倾斜切角）间距为 <span class="font-mono text-[#E9BD85]">0.7mm</span>，元素间距和比例需严格遵循此规范[cite: 21]</li>
+                                    <li data-i18n-zh="数字与数字之间的间距：2a" data-i18n-en="Spacing between digits: 2a">数字与数字之间的间距：<span class="font-mono text-[#E9BD85]">2a</span></li>
+                                    <li data-i18n-zh="数字与冒号 / 小数点之间的间距：2a" data-i18n-en="Spacing between digit and colon/decimal point: 2a">数字与冒号 / 小数点之间的间距：<span class="font-mono text-[#E9BD85]">2a</span></li>
+                                    <li data-i18n-zh="整体字符高度：16a（a 为基础比例单位）" data-i18n-en="Total character height: 16a (a is base proportional unit)">整体字符高度：<span class="font-mono text-[#E9BD85]">16a</span>（<span class="font-mono">a</span> 为基础比例单位）</li>
+                                    <li data-i18n-zh="斜切面（数码管倾斜切角）间距为 0.7mm，元素间距和比例需严格遵循此规范" data-i18n-en="Segment chamfer spacing is 0.7mm; strictly adhere to spacing and ratio specs.">斜切面（数码管倾斜切角）间距为 <span class="font-mono text-[#E9BD85]">0.7mm</span>，元素间距和比例需严格遵循此规范</li>
                                 </ul>
                             </div>
                         </section>
@@ -736,7 +750,7 @@
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="LED标准尺寸" data-i18n-en="Standard LED Sizes">LED标准尺寸</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="数码管在不同物理尺寸下的标准应用规格，按整体高度由大到小排列，预览已按比例等比缩放。" data-i18n-en="Standard LED display specs across physical dimensions ordered by height; previews scaled proportionally.">数码管在不同物理尺寸下的标准应用规格，按整体高度由大到小排列，预览已按比例等比缩放[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="数码管在不同物理尺寸下的标准应用规格，按整体高度由大到小排列，预览已按比例等比缩放。" data-i18n-en="Standard LED display specs across physical dimensions ordered by height; previews scaled proportionally.">数码管在不同物理尺寸下的标准应用规格，按整体高度由大到小排列，预览已按比例等比缩放。</p>
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="arco-table whitespace-nowrap min-w-[640px]">
@@ -754,75 +768,75 @@
                                             <td class="font-mono text-white text-sm">16.4 x 32mm</td>
                                             <td class="font-mono text-gray-400 text-sm">16mm</td>
                                             <td class="font-mono text-gray-400 text-sm">2mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="1"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="1"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="64" data-w="32"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="64" data-w="32"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">14.3 x 28mm</td>
                                             <td class="font-mono text-gray-400 text-sm">14mm</td>
                                             <td class="font-mono text-gray-400 text-sm">1.75mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.875"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.875"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="56" data-w="28"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="56" data-w="28"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">12.3 x 24mm</td>
                                             <td class="font-mono text-gray-400 text-sm">12mm</td>
                                             <td class="font-mono text-gray-400 text-sm">1.5mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.75"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.75"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="48" data-w="24"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="48" data-w="24"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">10.4 x 21mm</td>
                                             <td class="font-mono text-gray-400 text-sm">10.5mm</td>
                                             <td class="font-mono text-gray-400 text-sm">1.31mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.65625"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.65625"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="42" data-w="21"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="42" data-w="21"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">9.45 x 19mm</td>
                                             <td class="font-mono text-gray-400 text-sm">9.5mm</td>
                                             <td class="font-mono text-gray-400 text-sm">1.19mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.59375"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.59375"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="38" data-w="19"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="38" data-w="19"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">8.2 x 16mm</td>
                                             <td class="font-mono text-gray-400 text-sm">8mm</td>
                                             <td class="font-mono text-gray-400 text-sm">1mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.5"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.5"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="32" data-w="16"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="32" data-w="16"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">7.2 x 14mm</td>
                                             <td class="font-mono text-gray-400 text-sm">7mm</td>
                                             <td class="font-mono text-gray-400 text-sm">0.87mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.4375"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.4375"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="28" data-w="14"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="28" data-w="14"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">6.1 x 12mm</td>
                                             <td class="font-mono text-gray-400 text-sm">6mm</td>
                                             <td class="font-mono text-gray-400 text-sm">0.75mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.375"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.375"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="24" data-w="12"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="24" data-w="12"></div></td>
                                         </tr>
                                         <tr class="hover:bg-white/5 transition duration-200">
                                             <td class="font-mono text-white text-sm">5.1 x 10mm</td>
                                             <td class="font-mono text-gray-400 text-sm">5mm</td>
                                             <td class="font-mono text-gray-400 text-sm">0.62mm</td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="-88" data-scale="0.3125"></div></div></td>
-                                            <td><div class="seg-scale-wrap"><div class="seg-display" data-text="0123456789" data-scale="0.3125"></div></div></td>
+                                            <td><div class="seg-display" data-text="-88" data-h="20" data-w="10"></div></td>
+                                            <td><div class="seg-display" data-text="0123456789" data-h="20" data-w="10"></div></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="尺寸需根据实际屏幕密度、观看距离和硬件工艺进行校准。" data-i18n-en="Calibrate dimensions based on screen density, viewing distance, and hardware craft.">尺寸需根据实际屏幕密度、观看距离和硬件工艺进行校准[cite: 21]。</p>
+                            <p class="text-xs text-gray-500 mt-4" data-i18n-zh="尺寸需根据实际屏幕密度、观看距离和硬件工艺进行校准。" data-i18n-en="Calibrate dimensions based on screen density, viewing distance, and hardware craft.">尺寸需根据实际屏幕密度、观看距离和硬件工艺进行校准。</p>
                         </section>
 
                         <section class="gallery-panel p-8 md:p-10 space-y-8">
                             <div class="mb-6">
                                 <h2 class="text-2xl md:text-3xl font-bold text-white mb-2" data-i18n-zh="搭配使用" data-i18n-en="Combined Usage">搭配使用</h2>
-                                <p class="text-sm text-gray-400" data-i18n-zh="数码管数字常与计量单位或状态缩写组合使用，单位文本使用常规字体，与数字风格区分层级。" data-i18n-en="7-segment digits often pair with unit icons or abbreviations, distinguishing style and hierarchy.">数码管数字常与计量单位或状态缩写组合使用，单位文本使用常规字体，与数字风格区分层级[cite: 21]。</p>
+                                <p class="text-sm text-gray-400" data-i18n-zh="数码管数字常与计量单位或状态缩写组合使用，单位文本使用常规字体，与数字风格区分层级。" data-i18n-en="7-segment digits often pair with unit icons or abbreviations, distinguishing style and hierarchy.">数码管数字常与计量单位或状态缩写组合使用，单位文本使用常规字体，与数字风格区分层级。</p>
                             </div>
 
                             <div class="p-6 md:p-8 bg-black/30 rounded-none border border-gray-800">
@@ -906,6 +920,14 @@
 
         function renderSegDisplay(el) {
             const text = el.getAttribute('data-text') || '';
+            const h = el.getAttribute('data-h');
+            const w = el.getAttribute('data-w');
+            
+            if (h && w) {
+                el.style.setProperty('--seg-h', h + 'px');
+                el.style.setProperty('--seg-w', w + 'px');
+            }
+
             let html = '';
             for (const ch of text) {
                 if (ch === ' ') {
@@ -926,22 +948,6 @@
                 }
             }
             el.innerHTML = html;
-            const scale = parseFloat(el.getAttribute('data-scale') || '1');
-            if (scale !== 1) {
-                const w = [...text].reduce((width, char) => {
-                    if (/\d|-/.test(char)) return width + 40;
-                    if (char === ':' || char === '.') return width + 14;
-                    return width + 16;
-                }, 0);
-                const h = 64;
-                el.style.transformOrigin = 'top left';
-                el.style.transform = `scale(${scale})`;
-                const wrap = el.parentElement;
-                if (wrap && wrap.classList.contains('seg-scale-wrap')) {
-                    wrap.style.width = (w * scale) + 'px';
-                    wrap.style.height = (h * scale) + 'px';
-                }
-            }
         }
 
         document.querySelectorAll('.seg-display').forEach(renderSegDisplay);

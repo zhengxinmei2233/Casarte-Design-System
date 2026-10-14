@@ -129,16 +129,55 @@ const HAIER_NAV_LABEL_EN = {
   '2.2.4 栅格': '2.2.4 Grid System',
   '3. 组件 Components': '3. Components',
   '3.1 操作类': '3.1 Actions',
+  '按钮': 'Button',
+  '开关': 'Switch / Toggle',
   '3.2 选择类': '3.2 Selection',
+  '单选按钮': 'Radio Button',
+  '复选框': 'Checkbox',
+  '滚轮选择器': 'Wheel Picker',
   '3.3 输入类': '3.3 Inputs',
+  '文本框': 'Text Field',
+  '下拉选择': 'Dropdown / Select',
+  '调控': 'Control',
   '3.4 导航类': '3.4 Navigation',
+  '应用栏': 'App Bar',
+  '导航': 'Navigation Bar',
+  '标签页': 'Tabs',
+  '面包屑': 'Breadcrumbs',
+  '分页': 'Pagination',
+  '步骤条': 'Steps',
   '3.5 数据展示': '3.5 Data Display',
+  '卡片': 'Card',
+  '列表 / 列表项': 'List / List Item',
+  '头像': 'Avatar',
+  '分割线': 'Divider',
+  '徽标': 'Badge',
   '3.6 反馈与浮层': '3.6 Feedback & Overlays',
+  '对话框 / 模态框': 'Dialog / Modal',
+  '底部面板': 'Bottom Sheet',
+  '消息条 / 轻提示': 'Snackbar / Toast',
+  '工具提示': 'Tooltip',
+  '进度指示器': 'Progress Indicator',
   '4. 硬件 Hardware': '4. Hardware',
+  '4.1 TFT 屏幕': '4.1 TFT Screen',
+  '4.2 LED 屏幕': '4.2 LED Screen',
+  '4.3 其它屏幕形态': '4.3 Other Formats',
   '5. 动效 Motion': '5. Motion',
+  '5.1 背景动效': '5.1 Background Motion',
+  '5.2 转场 Transitions': '5.2 Transitions',
+  '5.3 微交互': '5.3 Micro-interactions',
   '多感官交互 Sensory': 'Sensory Interaction',
+  '灯光 Lighting': 'Lighting',
+  '触摸 Touch': 'Touch',
+  '音效 Audio': 'Audio',
   '7. AI': '7. AI',
+  '7.1 AI 视觉标准': '7.1 AI Visual Standards',
+  '7.2 AI 使用标准': '7.2 AI Usage Standards',
   '8. 资产与推行 Assets': '8. Assets & Governance',
+  '8.1 强制规范标准': '8.1 Mandatory Standards',
+  '8.2 UT数据推导与沉淀': '8.2 UT Data & Insights',
+  '8.3 Figma资产授权': '8.3 Figma Assets Authorization',
+  '8.4 统一度验收机制': '8.4 Uniformity Acceptance',
   '9. 更新日志 Log': '9. Changelog',
 };
 
@@ -618,7 +657,6 @@ const HAIER_NAV_LABEL_EN = {
   const groupTemplate = (group) => {
     const isOpen = openGroups.has(group.id);
 
-    // 针对主页类型分组：支持点击标题跳转主页面，且高亮只作用于组标题本身
     if (['principles', 'foundations', 'components', 'hardware', 'motion'].includes(group.id)) {
       const isTargetPage = 
         (group.id === 'principles' && isPrinciplesMainPage) || 
@@ -802,7 +840,6 @@ const HAIER_NAV_LABEL_EN = {
     }
   }
 
-  // 如果在独立的主页面中，禁用滚动高亮监听
   if (mainContent && !isPrinciplesMainPage && !isFoundationsMainPage && !isComponentsMainPage && !isHardwareMainPage && !isMotionMainPage) {
     const observedSections = [...document.querySelectorAll('[id]')].filter((element) =>
       sidebar.querySelector(`[data-nav-id="${element.id}"]`)

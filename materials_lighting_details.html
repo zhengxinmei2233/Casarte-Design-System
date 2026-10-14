@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n-zh="Casarte Design | 材质规范" data-i18n-en="Casarte Design | Material">Casarte Design | 材质规范</title>
+    <title data-i18n-zh="Casarte Design | 材质规范" data-i18n-en="Casarte Design | Material Specification">Casarte Design | 材质规范</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -22,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* 极简高级微光背景 */
         .ambient-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -30,7 +29,6 @@
             background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
         }
 
-        /* 统一的高级灰色外框面板 (所有大模块卡片) */
         .gallery-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(40px);
@@ -42,10 +40,10 @@
         /* 一键复制 Token 代码框 */
         .token-box {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             background: #08080A;
             color: #F5F5F7;
-            padding: 12px 14px;
+            padding: 8px 10px;
             border-radius: 4px;
             display: flex;
             align-items: center;
@@ -64,12 +62,12 @@
 
         .copy-tip {
             position: absolute;
-            right: 14px;
-            top: -28px;
+            right: 10px;
+            top: -24px;
             background: #10B981;
             color: white;
-            font-size: 12px;
-            padding: 3px 8px;
+            font-size: 11px;
+            padding: 2px 6px;
             border-radius: 2px;
             opacity: 0;
             pointer-events: none;
@@ -112,7 +110,6 @@
             pointer-events: none;
         }
 
-        /* 4 种材质在统一展台上的覆盖块 */
         .stage-layer {
             flex: 1;
             display: flex;
@@ -138,21 +135,47 @@
             letter-spacing: -0.05em;
         }
 
-        /* 阴影展厅基座 */
-        .shadow-gallery-pod {
-            background: rgba(22, 22, 26, 0.75);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--border-gray);
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+        .light-pod {
+            background: #FDFBF7;
+            border: 1px solid rgba(40, 27, 15, 0.15);
+            color: #1A1A1A;
         }
 
-        /* 5 阶微光阴影面板 */
-        .sc-0 { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: none; }
-        .sc-1 { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
-        .sc-2 { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 14px 35px rgba(0,0,0,0.65); }
-        .sc-3 { background: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.18); box-shadow: 0 24px 55px rgba(0,0,0,0.78); }
-        .sc-4 { background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 38px 85px rgba(0,0,0,0.92); }
+        .glow-light-pod {
+            background: #EDE8DC;
+            border: 1px solid rgba(40, 27, 15, 0.18);
+            color: #1A1A1A;
+        }
+
+        .dark-pod {
+            background: #281B0F;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #F5F5F7;
+        }
+
+        .sc-preview-light { background: #FFFFFF; border: 1px solid rgba(0, 0, 0, 0.08); height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .sc-0-l { box-shadow: none; }
+        .sc-1-l { box-shadow: 0 1px 3px rgba(40, 27, 15, 0.08); }
+        .sc-2-l { box-shadow: 0 4px 10px rgba(40, 27, 15, 0.08); }
+        .sc-3-l { box-shadow: 0 8px 18px rgba(40, 27, 15, 0.12); }
+        .sc-4-l { box-shadow: 0 16px 36px rgba(40, 27, 15, 0.16); }
+
+        .sc-preview-dark { background: #222226; border: 1px solid rgba(255, 255, 255, 0.08); height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .sc-0-d { box-shadow: none; }
+        .sc-1-d { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8); }
+        .sc-2-d { box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); }
+        .sc-3-d { box-shadow: 0 8px 18px rgba(0, 0, 0, 0.85); }
+        .sc-4-d { box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9); }
+
+        .glow-preview-light { background: #FFFFFF; border: 1px solid rgba(40, 27, 15, 0.12); height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #1A1A1A; }
+        .g-edge-l { box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.9); }
+        .g-outer-l { box-shadow: 0 0 20px 6px rgba(255, 255, 255, 0.7); }
+        .g-icon-l { box-shadow: 0 12px 42px 0px rgba(255, 255, 255, 0.7); }
+
+        .glow-preview-dark { background: #222226; border: 1px solid rgba(233, 189, 133, 0.3); height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFF; }
+        .g-edge-d { box-shadow: 0 0 6px 2px rgba(233, 189, 133, 1); }
+        .g-outer-d { box-shadow: 0 0 20px 6px rgba(233, 189, 133, 0.7); }
+        .g-icon-d { box-shadow: 0 12px 42px 0px rgba(233, 189, 133, 0.6); }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
@@ -169,21 +192,21 @@
         <div class="flex items-center">
             <a href="haier_os_design_system.html" class="mr-3 p-2 bg-white/5 hover:bg-white/10 transition-colors flex items-center text-gray-300"></a>
             <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
-            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="材质规范" data-i18n-en="Material">材质规范</h1>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="材质规范" data-i18n-en="Material Specification">材质规范</h1>
         </div>
         <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
     </header>
 
     <div class="flex h-screen pt-16 md:pt-0">
-        <!-- 侧边栏：采用与字体页完全一致的大小与结构 -->
+        <!-- 侧边栏：保留原样由外部 haier-nav.js 动态加载 -->
         <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
-        <!-- 主内容区：使用与字体页完全一致的左右边距 -->
+        <!-- 主内容区 -->
         <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
             <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
                 
-                <!-- 头部：返回主页按键与大标题间距已和字体页一致 -->
+                <!-- 头部：返回主页按键与大标题 -->
                 <div class="hidden md:flex items-center mb-8">
                     <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
                         <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
@@ -240,19 +263,19 @@
                     <!-- 统一横向透光效果对比视窗 -->
                     <div class="comparison-stage">
                         <div class="stage-layer layer-solid">
-                            <span class="text-base font-bold tracking-wider mb-1">Solid</span>
+                            <span class="text-base font-bold tracking-wider mb-1" data-i18n-zh="Solid" data-i18n-en="Solid">Solid</span>
                             <span class="text-xs font-medium opacity-80" data-i18n-zh="100% 不透 / 无模糊" data-i18n-en="100% Opaque / No Blur">100% 不透 / 无模糊</span>
                         </div>
                         <div class="stage-layer layer-focus">
-                            <span class="text-base font-bold tracking-wider mb-1">Focus</span>
+                            <span class="text-base font-bold tracking-wider mb-1" data-i18n-zh="Focus" data-i18n-en="Focus">Focus</span>
                             <span class="text-xs font-medium opacity-90">60% + blur 18px</span>
                         </div>
                         <div class="stage-layer layer-media">
-                            <span class="text-base font-bold tracking-wider mb-1">Media</span>
+                            <span class="text-base font-bold tracking-wider mb-1" data-i18n-zh="Media" data-i18n-en="Media">Media</span>
                             <span class="text-xs font-medium opacity-90">30% + blur 8px</span>
                         </div>
                         <div class="stage-layer layer-soft">
-                            <span class="text-base font-bold tracking-wider mb-1">Soft</span>
+                            <span class="text-base font-bold tracking-wider mb-1" data-i18n-zh="Soft" data-i18n-en="Soft">Soft</span>
                             <span class="text-xs font-medium opacity-90">20% + blur 16px</span>
                         </div>
                     </div>
@@ -264,7 +287,7 @@
                         <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                                    <h4 class="text-xl font-bold text-white">Solid</h4>
+                                    <h4 class="text-xl font-bold text-white" data-i18n-zh="Solid" data-i18n-en="Solid">Solid</h4>
                                     <span class="text-xs text-gray-400 font-medium" data-i18n-zh="不透明底层" data-i18n-en="Opaque Base">不透明底层</span>
                                 </div>
                                 <div>
@@ -278,7 +301,7 @@
                             <div>
                                 <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
                                 <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 1);')">
-                                    <span class="truncate mr-2">rgba(255, 255, 255, 1);</span>
+                                    <span class="truncate mr-2">Casarte-Solid</span>
                                     <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
                                     <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
@@ -289,7 +312,7 @@
                         <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                                    <h4 class="text-xl font-bold text-white">Focus</h4>
+                                    <h4 class="text-xl font-bold text-white" data-i18n-zh="Focus" data-i18n-en="Focus">Focus</h4>
                                     <span class="text-xs text-gray-400 font-medium" data-i18n-zh="临时控制 / 浮层" data-i18n-en="Temporary Control">临时控制 / 浮层</span>
                                 </div>
                                 <div>
@@ -303,7 +326,7 @@
                             <div>
                                 <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
                                 <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px);')">
-                                    <span class="truncate mr-2">rgba(255,255,255,0.6); blur(18px);</span>
+                                    <span class="truncate mr-2">Casarte-Focus</span>
                                     <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
                                     <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
@@ -314,7 +337,7 @@
                         <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                                    <h4 class="text-xl font-bold text-white">Media</h4>
+                                    <h4 class="text-xl font-bold text-white" data-i18n-zh="Media" data-i18n-en="Media">Media</h4>
                                     <span class="text-xs text-gray-400 font-medium" data-i18n-zh="视频/图像快捷层" data-i18n-en="Media Layer">视频/图像快捷层</span>
                                 </div>
                                 <div>
@@ -328,7 +351,7 @@
                             <div>
                                 <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
                                 <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px);')">
-                                    <span class="truncate mr-2">rgba(255, 255, 255, 0.3); blur(8px);</span>
+                                    <span class="truncate mr-2">Casarte-Media;</span>
                                     <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
                                     <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
@@ -339,7 +362,7 @@
                         <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                                    <h4 class="text-xl font-bold text-white">Soft</h4>
+                                    <h4 class="text-xl font-bold text-white" data-i18n-zh="Soft" data-i18n-en="Soft">Soft</h4>
                                     <span class="text-xs text-gray-400 font-medium" data-i18n-zh="内容分组 / 状态" data-i18n-en="Content Grouping">内容分组 / 状态</span>
                                 </div>
                                 <div>
@@ -353,7 +376,7 @@
                             <div>
                                 <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token (点击复制)" data-i18n-en="Token (Click to Copy)">Token (点击复制)</div>
                                 <div class="token-box" onclick="copyToken(this, 'background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(16px);')">
-                                    <span class="truncate mr-2">rgba(255, 255, 255, 0.2); blur(16px);</span>
+                                    <span class="truncate mr-2">Casarte-Soft</span>
                                     <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
                                     <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
                                 </div>
@@ -366,99 +389,255 @@
                 <hr class="border-t border-gray-800">
 
 
-                <!-- ================= 模块 3：阴影的材质 ================= -->
+                <!-- ================= 模块 3：阴影 (Shadow) ================= -->
                 <section id="module-shadow-materials" class="space-y-10">
                     <div class="flex items-baseline gap-4">
                         <span class="module-num text-3xl text-[#E9BD85]">03</span>
                         <div>
-                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="阴影的材质" data-i18n-en="Shadow Materials">阴影的材质</h2>
-                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="阴影模拟统一、柔和的顶部环境光，用于说明元素离开承载面的距离。卡萨帝界面不使用阴影制造装饰性立体感；层级越高，阴影位移、模糊和扩散越大，但边缘始终克制。" data-i18n-en="Shadows simulate unified top ambient lighting to indicate elevation from the carrying surface. Casarte interfaces do not use shadows for decorative depth.">阴影模拟统一、柔和的顶部环境光，用于说明元素离开承载面的距离。卡萨帝界面不使用阴影制造装饰性立体感；层级越高，阴影位移、模糊和扩散越大，但边缘始终克制。</p>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="阴影 Shadow" data-i18n-en="Shadow">阴影 Shadow</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="统一使用顶部环境光，Y 轴向下偏移；中色阴影以 #281B0F 为基色。深色模式降低黑色阴影效果，改用 1px 浅色轮廓保持边界。" data-i18n-en="Uniformly use the top ambient light, with the Y-axis offset downward; the neutral color shadows use #281B0F as the base color. In the dark mode, reduce the black shadow effect and instead use a 1px light outline to maintain the boundaries.">统一使用顶部环境光，Y 轴向下偏移；中色阴影以 #281B0F 为基色。深色模式降低黑色阴影效果，改用 1px 浅色轮廓保持边界。</p>
                         </div>
                     </div>
 
-                    <!-- 阴影展台大卡片 -->
-                    <div class="shadow-gallery-pod p-8 md:p-12">
+                    <!-- 浅色模式阴影：上方效果展示，下方独立参数卡片 -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-white" data-i18n-zh="浅色 Light" data-i18n-en="Light Mode">浅色 Light</h3>
+                        
+                        <!-- 上方效果展示底座 -->
+                        <div class="light-pod p-8 rounded-none">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                                <div class="sc-preview-light sc-0-l"><span class="font-bold text-base" data-i18n-zh="Flat" data-i18n-en="Flat">Flat</span></div>
+                                <div class="sc-preview-light sc-1-l"><span class="font-bold text-base" data-i18n-zh="Rest" data-i18n-en="Rest">Rest</span></div>
+                                <div class="sc-preview-light sc-2-l"><span class="font-bold text-base" data-i18n-zh="Raised" data-i18n-en="Raised">Raised</span></div>
+                                <div class="sc-preview-light sc-3-l"><span class="font-bold text-base" data-i18n-zh="Overlay" data-i18n-en="Overlay">Overlay</span></div>
+                                <div class="sc-preview-light sc-4-l"><span class="font-bold text-base" data-i18n-zh="Modal" data-i18n-en="Modal">Modal</span></div>
+                            </div>
+                        </div>
+
+                        <!-- 下方独立参数卡片 -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                            
-                            <!-- 0 · Flat -->
-                            <div class="p-6 h-[180px] sc-0 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                                <span class="font-bold text-white text-lg tracking-wide">0 · Flat</span>
-                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="页面背景、嵌入式内容、普通列表" data-i18n-en="Page background, embedded content, standard lists">页面背景、嵌入式内容、普通列表</span>
+                            <!-- Flat -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Flat" data-i18n-en="Flat">Flat</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="页面背景" data-i18n-en="Page Background">页面背景</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300" data-i18n-zh="None" data-i18n-en="None">None</div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- 1 · Rest -->
-                            <div class="p-6 h-[180px] sc-1 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                                <span class="font-bold text-white text-lg tracking-wide">1 · Rest</span>
-                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="按钮、可点击卡片的静态状态" data-i18n-en="Static state of buttons and clickable cards">按钮、可点击卡片的静态状态</span>
+                            <!-- Rest -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Rest" data-i18n-en="Rest">Rest</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="静态按钮" data-i18n-en="Static Button">静态按钮</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:1<br>Blur:3 Opacity:8%<br>Color:#281B0F</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 1px 3px rgba(40,27,15,0.08);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Light/Rest</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- 2 · Raised -->
-                            <div class="p-6 h-[180px] sc-2 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                                <span class="font-bold text-white text-lg tracking-wide">2 · Raised</span>
-                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="悬浮卡片、悬浮快捷控制" data-i18n-en="Floating cards, floating quick controls">悬浮卡片、悬浮快捷控制</span>
+                            <!-- Raised -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Raised" data-i18n-en="Raised">Raised</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="悬浮卡片" data-i18n-en="Raised Card">悬浮卡片</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:4<br>Blur:10 Opacity:8%<br>Color:#281B0F</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 4px 10px rgba(40,27,15,0.08);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Light/Raised</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- 3 · Overlay -->
-                            <div class="p-6 h-[180px] sc-3 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                                <span class="font-bold text-white text-lg tracking-wide">3 · Overlay</span>
-                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="下拉菜单、底部面板、临时控制盒" data-i18n-en="Dropdown menus, bottom sheets, temporary control boxes">下拉菜单、底部面板、临时控制盒</span>
+                            <!-- Overlay -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Overlay" data-i18n-en="Overlay">Overlay</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="下拉菜单" data-i18n-en="Dropdown">下拉菜单</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:8<br>Blur:18 Opacity:12%<br>Color:#281B0F</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 8px 18px rgba(40,27,15,0.12);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Light/Overlay</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- 4 · Modal -->
-                            <div class="p-6 h-[180px] sc-4 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                                <span class="font-bold text-white text-lg tracking-wide">4 · Modal</span>
-                                <span class="text-xs text-gray-300 font-medium leading-relaxed" data-i18n-zh="确认弹窗、关键告警、阻断式任务" data-i18n-en="Confirmation dialogs, critical alerts, blocking tasks">确认弹窗、关键告警、阻断式任务</span>
+                            <!-- Modal -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Modal" data-i18n-en="Modal">Modal</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="确认弹窗" data-i18n-en="Modal Dialog">确认弹窗</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:16<br>Blur:36 Opacity:16%<br>Color:#281B0F</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 16px 36px rgba(40,27,15,0.16);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Light/Modal</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                     </div>
 
-                    <!-- 阴影 Token 与层级行为规范表大卡片 -->
-                    <div class="gallery-panel p-8 md:p-10 space-y-6">
-                        <h3 class="text-lg font-bold text-white" data-i18n-zh="阴影 Token 与层级行为规范表" data-i18n-en="Shadow Token & Hierarchy Behavior Table">阴影 Token 与层级行为规范表</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="border-b border-gray-800 bg-white/5 text-xs font-semibold text-[#E9BD85] uppercase tracking-wider">
-                                        <th class="p-4" data-i18n-zh="层级" data-i18n-en="Tier">层级</th>
-                                        <th class="p-4" data-i18n-zh="Token / 参数说明" data-i18n-en="Token / Description">Token / 参数说明</th>
-                                        <th class="p-4" data-i18n-zh="使用场景" data-i18n-en="Usage Scenarios">使用场景</th>
-                                        <th class="p-4" data-i18n-zh="系统行为" data-i18n-en="System Behavior">系统行为</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-800 text-xs md:text-sm text-gray-300">
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="p-4 font-bold text-white">0 · Flat</td>
-                                        <td class="p-4 font-mono text-[#E9BD85]">shadow.0 none</td>
-                                        <td class="p-4" data-i18n-zh="页面背景、嵌入式内容、普通列表" data-i18n-en="Page background, embedded content, standard lists">页面背景、嵌入式内容、普通列表</td>
-                                        <td class="p-4 text-gray-400" data-i18n-zh="依靠色差、间距或分隔线组织信息结构。" data-i18n-en="Organize information structure relying on color contrast, spacing, or dividers.">依靠色差、间距或分隔线组织信息结构。</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="p-4 font-bold text-white">1 · Rest</td>
-                                        <td class="p-4 font-mono text-[#E9BD85]">0 1 3 / 8%</td>
-                                        <td class="p-4" data-i18n-zh="按钮、可点击卡片的静态状态" data-i18n-en="Static state of buttons and clickable cards">按钮、可点击卡片的静态状态</td>
-                                        <td class="p-4 text-gray-400" data-i18n-zh="只提示可交互，不改变信息层级。" data-i18n-en="Indicates interactivity only without altering information hierarchy.">只提示可交互，不改变信息层级。</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="p-4 font-bold text-white">2 · Raised</td>
-                                        <td class="p-4 font-mono text-[#E9BD85]">0 4 10 / 8%</td>
-                                        <td class="p-4" data-i18n-zh="悬浮卡片、悬浮快捷控制" data-i18n-en="Floating cards, floating quick controls">悬浮卡片、悬浮快捷控制</td>
-                                        <td class="p-4 text-gray-400" data-i18n-zh="仅在元素确实离开承载面时出现。" data-i18n-en="Appears only when elements actually leave the carrying surface.">仅在元素确实离开承载面时出现。</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="p-4 font-bold text-white">3 · Overlay</td>
-                                        <td class="p-4 font-mono text-[#E9BD85]">0 10 24 / 12%</td>
-                                        <td class="p-4" data-i18n-zh="下拉菜单、底部面板、临时控制盒" data-i18n-en="Dropdown menus, bottom sheets, temporary control boxes">下拉菜单、底部面板、临时控制盒</td>
-                                        <td class="p-4 text-gray-400" data-i18n-zh="背景降低竞争，前景焦点清晰。" data-i18n-en="Background reduces competition; foreground focus is clear.">背景降低竞争，前景焦点清晰。</td>
-                                    </tr>
-                                    <tr class="hover:bg-white/5 transition-colors">
-                                        <td class="p-4 font-bold text-white">4 · Modal</td>
-                                        <td class="p-4 font-mono text-[#E9BD85]">0 20 48 / 16%</td>
-                                        <td class="p-4" data-i18n-zh="确认弹窗、关键告警、阻断式任务" data-i18n-en="Confirmation dialogs, critical alerts, blocking tasks">确认弹窗、关键告警、阻断式任务</td>
-                                        <td class="p-4 text-gray-400" data-i18n-zh="必须配合背景遮罩；同屏只能有一个。" data-i18n-en="Must be accompanied by a background mask; only one per screen.">必须配合背景遮罩；同屏只能有一个。</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <!-- 深色模式阴影：上方效果展示，下方独立参数卡片 -->
+                    <div class="space-y-6 pt-6">
+                        <h3 class="text-xl font-bold text-white" data-i18n-zh="深色 Dark" data-i18n-en="Dark Mode">深色 Dark</h3>
+                        
+                        <!-- 上方效果展示底座 -->
+                        <div class="dark-pod p-8 rounded-none">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                                <div class="sc-preview-dark sc-0-d"><span class="font-bold text-base text-white" data-i18n-zh="Flat" data-i18n-en="Flat">Flat</span></div>
+                                <div class="sc-preview-dark sc-1-d"><span class="font-bold text-base text-white" data-i18n-zh="Rest" data-i18n-en="Rest">Rest</span></div>
+                                <div class="sc-preview-dark sc-2-d"><span class="font-bold text-base text-white" data-i18n-zh="Raised" data-i18n-en="Raised">Raised</span></div>
+                                <div class="sc-preview-dark sc-3-d"><span class="font-bold text-base text-white" data-i18n-zh="Overlay" data-i18n-en="Overlay">Overlay</span></div>
+                                <div class="sc-preview-dark sc-4-d"><span class="font-bold text-base text-white" data-i18n-zh="Modal" data-i18n-en="Modal">Modal</span></div>
+                            </div>
+                        </div>
+
+                        <!-- 下方独立参数卡片 -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                            <!-- Flat -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Flat" data-i18n-en="Flat">Flat</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="页面背景" data-i18n-en="Page Background">页面背景</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300" data-i18n-zh="None" data-i18n-en="None">None</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rest -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Rest" data-i18n-en="Rest">Rest</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="静态按钮" data-i18n-en="Static Button">静态按钮</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:1<br>Blur:3 Opacity:8%<br>Color:#000000</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 1px 3px rgba(0,0,0,0.8);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Dark/Rest</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Raised -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Raised" data-i18n-en="Raised">Raised</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="悬浮卡片" data-i18n-en="Raised Card">悬浮卡片</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:4<br>Blur:10 Opacity:8%<br>Color:#000000</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 4px 10px rgba(0,0,0,0.8);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Dark/Raised</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Overlay -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Overlay" data-i18n-en="Overlay">Overlay</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="下拉菜单" data-i18n-en="Dropdown">下拉菜单</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:8<br>Blur:18 Opacity:12%<br>Color:#000000</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 8px 18px rgba(0,0,0,0.85);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Dark/Overlay</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Modal" data-i18n-en="Modal">Modal</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="确认弹窗" data-i18n-en="Modal Dialog">确认弹窗</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:16<br>Blur:36 Opacity:16%<br>Color:#000000</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 16px 36px rgba(0,0,0,0.9);')">
+                                        <span class="truncate mr-2">Casarte/Shadow/Dark/Modal</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -466,10 +645,190 @@
                 <hr class="border-t border-gray-800">
 
 
-                <!-- ================= 模块 4：使用与验收规范 ================= -->
-                <section id="module-usage-governance" class="space-y-10">
+                <!-- ================= 模块 4：发光 (Glow) ================= -->
+                <section id="module-glow-materials" class="space-y-10">
                     <div class="flex items-baseline gap-4">
                         <span class="module-num text-3xl text-[#E9BD85]">04</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="发光 Glow" data-i18n-en="Glow">发光 Glow</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="统一使用元素中心向外扩散的柔和光晕，默认X、Y轴偏移为0。发光颜色以元素颜色或品牌主题色为基色，通过模糊半径与不透明度控制光效强度。深色模式下可适当增强边缘亮度，避免大面积强光影响内容辨识度。发光仅用于重点状态及特殊视觉元素，不作为常规装饰效果。" data-i18n-en="Consistently use a soft glow that radiates outward from the center of the element, with default X and Y axis offsets set to 0. The glow color should be based on the element's color or the brand's theme color, and the intensity of the glow should be controlled using the blur radius and opacity.">统一使用元素中心向外扩散的柔和光晕，默认X、Y轴偏移为0。发光颜色以元素颜色或品牌主题色为基色，通过模糊半径与不透明度控制光效强度。深色模式下可适当增强边缘亮度，避免大面积强光影响内容辨识度。发光仅用于重点状态及特殊视觉元素，不作为常规装饰效果。</p>
+                        </div>
+                    </div>
+
+                    <!-- 浅色模式发光：上方效果展示，下方独立参数卡片 -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-white" data-i18n-zh="浅色 Light" data-i18n-en="Light Mode">浅色 Light</h3>
+                        
+                        <!-- 上方效果展示底座 -->
+                        <div class="glow-light-pod p-8 rounded-none">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div class="glow-preview-light g-edge-l"><span class="font-bold text-base" data-i18n-zh="Edge Glow" data-i18n-en="Edge Glow">Edge Glow</span></div>
+                                <div class="glow-preview-light g-outer-l"><span class="font-bold text-base" data-i18n-zh="Outer Glow" data-i18n-en="Outer Glow">Outer Glow</span></div>
+                                <div class="glow-preview-light g-icon-l"><span class="font-bold text-base" data-i18n-zh="Icon Glow" data-i18n-en="Icon Glow">Icon Glow</span></div>
+                            </div>
+                        </div>
+
+                        <!-- 下方独立参数卡片 -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <!-- Edge Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Edge Glow" data-i18n-en="Edge Glow">Edge Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="边缘光效" data-i18n-en="Edge Glow">边缘光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:0 Blur:6 Spread:2<br>Opacity:100% Color:#F6F6F6</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 0 6px 2px rgba(246,246,246,1);')">
+                                        <span class="truncate mr-2">Casarte/Light/Edge Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Outer Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Outer Glow" data-i18n-en="Outer Glow">Outer Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="外发光效" data-i18n-en="Outer Glow">外发光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:0 Blur:20 Spread:6<br>Opacity:70% Color:#F6F6F6</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 0 20px 6px rgba(246,246,246,0.7);')">
+                                        <span class="truncate mr-2">Casarte/Light/Outer Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Icon Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Icon Glow" data-i18n-en="Icon Glow">Icon Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="图标光效" data-i18n-en="Icon Glow">图标光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:12 Blur:42 Spread:0<br>Opacity:60% Color:#F6F6F6</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 12px 42px 0px rgba(246,246,246,0.6);')">
+                                        <span class="truncate mr-2">Casarte/Light/Icon Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 深色模式发光：上方效果展示，下方独立参数卡片 -->
+                    <div class="space-y-6 pt-6">
+                        <h3 class="text-xl font-bold text-white" data-i18n-zh="深色 Dark" data-i18n-en="Dark Mode">深色 Dark</h3>
+                        
+                        <!-- 上方效果展示底座 -->
+                        <div class="dark-pod p-8 rounded-none">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div class="glow-preview-dark g-edge-d"><span class="font-bold text-base text-white" data-i18n-zh="Edge Glow" data-i18n-en="Edge Glow">Edge Glow</span></div>
+                                <div class="glow-preview-dark g-outer-d"><span class="font-bold text-base text-white" data-i18n-zh="Outer Glow" data-i18n-en="Outer Glow">Outer Glow</span></div>
+                                <div class="glow-preview-dark g-icon-d"><span class="font-bold text-base text-white" data-i18n-zh="Icon Glow" data-i18n-en="Icon Glow">Icon Glow</span></div>
+                            </div>
+                        </div>
+
+                        <!-- 下方独立参数卡片 -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <!-- Edge Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Edge Glow" data-i18n-en="Edge Glow">Edge Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="边缘光效" data-i18n-en="Edge Glow">边缘光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:0 Blur:6 Spread:2<br>Opacity:100% Color:#E9BD85</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 0 6px 2px rgba(233,189,133,1);')">
+                                        <span class="truncate mr-2">Casarte/Dark/Edge Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Outer Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Outer Glow" data-i18n-en="Outer Glow">Outer Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="外发光效" data-i18n-en="Outer Glow">外发光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:0 Blur:20 Spread:6<br>Opacity:70% Color:#E9BD85</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 0 20px 6px rgba(233,189,133,0.7);')">
+                                        <span class="truncate mr-2">Casarte/Dark/Outer Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Icon Glow -->
+                            <div class="gallery-panel p-6 flex flex-col justify-between space-y-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                        <h4 class="text-lg font-bold text-white" data-i18n-zh="Icon Glow" data-i18n-en="Icon Glow">Icon Glow</h4>
+                                        <span class="text-xs text-gray-400" data-i18n-zh="图标光效" data-i18n-en="Icon Glow">图标光效</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Figma" data-i18n-en="Figma">Figma</div>
+                                        <div class="text-xs text-gray-300 leading-relaxed">X:0 Y:12 Blur:42 Spread:0<br>Opacity:60% Color:#E9BD85</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-bold text-[#E9BD85] mb-2" data-i18n-zh="Token" data-i18n-en="Token">Token</div>
+                                    <div class="token-box" onclick="copyToken(this, 'box-shadow: 0 12px 42px 0px rgba(233,189,133,0.6);')">
+                                        <span class="truncate mr-2">Casarte/Dark/Icon Glow</span>
+                                        <span class="text-xs text-[#E9BD85] font-bold shrink-0" data-i18n-zh="复制" data-i18n-en="Copy">复制</span>
+                                        <span class="copy-tip" data-i18n-zh="已复制!" data-i18n-en="Copied!">已复制!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+
+                <!-- ================= 模块 5：使用与验收规范 ================= -->
+                <section id="module-usage-governance" class="space-y-10">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">05</span>
                         <div>
                             <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="使用与验收" data-i18n-en="Usage & Acceptance">使用与验收</h2>
                             <p class="text-sm text-gray-400 mt-1" data-i18n-zh="规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。" data-i18n-en="Guidelines for designers and developers during UI creation and acceptance delivery.">规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。</p>
@@ -508,10 +867,10 @@
         </main>
     </div>
 
-    <!-- 导入导航与全局多语言脚本 -->
+    <!-- 导入导航脚本 -->
     <script src="haier-nav.js"></script>
 
-    <!-- 一键复制 Token 交互脚本 -->
+    <!-- 参照【色彩】页面逻辑的脚本（不干涉侧边栏内部 HTML 结构，由外部脚本或统一逻辑适配） -->
     <script>
         function copyToken(element, text) {
             navigator.clipboard.writeText(text).then(() => {
