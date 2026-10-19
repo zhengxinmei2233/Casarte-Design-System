@@ -17,11 +17,11 @@ const HAIER_NAV_GROUPS = [
       { label: '2.1.3 图标', href: 'iconography_details.html', page: 'iconography_details.html', child: true },
       { label: '2.1.4 材质', href: 'materials_lighting_details.html', page: 'materials_lighting_details.html', child: true },
       { label: '2.1.5 背景', href: 'background_details.html', page: 'background_details.html', child: true },
-      { label: '2.2 布局基础', id: 'foundations-layout', page: 'foundations.html', disabled: true },
-      { label: '2.2.1 信息架构', href: 'spatial_depth_details.html', page: 'spatial_depth_details.html', child: true },
-      { label: '2.2.2 核心要素', href: 'hero_element_details.html', page: 'hero_element_details.html', child: true },
-      { label: '2.2.3 排版', href: 'spacing_layout_details.html', page: 'spacing_layout_details.html', child: true },
-      { label: '2.2.4 栅格', href: 'grid_system_details.html', page: 'grid_system_details.html', child: true },
+      { label: '2.2 信息架构', id: 'foundations-layout', page: 'foundations.html', disabled: true },
+      { label: '2.2.1 信息与交互', href: 'spatial_depth_details.html', page: 'spatial_depth_details.html', child: true },
+      { label: '2.2.2 LED布局', href: 'led_rules_details.html', page: 'led_rules_details.html', child: true },
+      { label: '2.2.3 TFT布局', href: 'spacing_layout_details.html', page: 'spacing_layout_details.html', child: true },
+      { label: '2.2.4 组合布局', href: 'grid_system_details.html', page: 'grid_system_details.html', child: true },
     ],
   },
   {
@@ -122,11 +122,11 @@ const HAIER_NAV_LABEL_EN = {
   '2.1.3 图标': '2.1.3 Iconography',
   '2.1.4 材质': '2.1.4 Material',
   '2.1.5 背景': '2.1.5 Background',
-  '2.2 布局基础': '2.2 Layout',
-  '2.2.1 信息架构': '2.2.1 Information Architecture',
-  '2.2.2 核心要素': '2.2.2 Hero Element',
-  '2.2.3 排版': '2.2.3 Spacing & Layout',
-  '2.2.4 栅格': '2.2.4 Grid System',
+  '2.2 信息架构': '2.2 Information Architecture',
+  '2.2.1 信息与交互': '2.2.1 Information & Interaction',
+  '2.2.2 LED布局': '2.2.2 LED Layout',
+  '2.2.3 TFT布局': '2.2.3 TFT Layout',
+  '2.2.4 组合布局': '2.2.4 Combined Layout',
   '3. 组件 Components': '3. Components',
   '3.1 操作类': '3.1 Actions',
   '按钮': 'Button',
@@ -232,16 +232,16 @@ const HAIER_NAV_LABEL_EN = {
     '返回基础': 'Home',
     '基础': 'Foundations',
     '视觉基础': 'Visual Foundations',
-    '布局基础': 'Layout Foundations',
+    '信息架构': 'Information Architecture',
     '图标规范': 'Iconography',
     '图标': 'Iconography',
     '材质': 'Material',
     '背景': 'Background',
     '层级（空间深度）': 'Hierarchy',
-    '信息架构': 'Information Architecture',
-    '核心要素': 'Hero Element',
-    '排版': 'Spacing & Layout',
-    '栅格系统': 'Grid System',
+    '信息与交互': 'Information & Interaction',
+    'LED布局': 'LED Layout',
+    'TFT布局': 'TFT Layout',
+    '组合布局': 'Combined Layout',
     '设计体验原则': 'User Experience Principles',
     '品牌': 'Brand Identity',
     '色彩': 'Color',
@@ -268,7 +268,7 @@ const HAIER_NAV_LABEL_EN = {
     'materials_lighting_details.html': 'Casarte Design | Material',
     'background_details.html': 'Casarte Design | Background Guidelines',
     'spatial_depth_details.html': 'Casarte Design | Information Architecture',
-    'hero_element_details.html': 'Casarte Design | Hero Element',
+    'led_rules_details.html': 'Casarte Design | Hero Element',
     'spacing_layout_details.html': 'Casarte Design | Spacing & Layout',
     'grid_system_details.html': 'Casarte Design | Grid System',
     'components.html': 'Casarte Design | Components',
@@ -628,6 +628,15 @@ const HAIER_NAV_LABEL_EN = {
         border-left: 3px solid var(--text-gold) !important;
         border-radius: 0 !important;
         font-weight: 600 !important;
+      }
+
+      /* 统一各子页面【返回主页】按钮距离下方大标题的垂直间距（与材质页保持一致） */
+      .guideline-top-actions {
+        margin-bottom: 2rem !important;
+      }
+      
+      main > div > div:first-child {
+        margin-bottom: 2rem !important;
       }
     `;
     document.head.appendChild(style);

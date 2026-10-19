@@ -1,101 +1,329 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Haier Design | 信息架构</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root { --brand:#2283E2; --ink:#1D1D1F; --muted:#667085; --glass:rgba(255,255,255,.66); }
-    body { font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:#F5F7FA; color:var(--ink); overflow-x:hidden; }
-    .aura-background { position:fixed; inset:0; z-index:-1; background:radial-gradient(circle at 12% 4%,#c9e3ff 0,transparent 32%),radial-gradient(circle at 88% 70%,#dfe7ff 0,transparent 38%),#f5f7fa; }
-    .glass-panel { background:var(--glass); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid rgba(255,255,255,.4); box-shadow:0 8px 32px rgba(0,0,0,.04); border-radius:24px; }
-    .sidebar-nav-item { transition:all .3s ease; border-left:3px solid transparent; }
-    .sidebar-nav-item.active { color:var(--brand); font-weight:600; border-left-color:var(--brand); background:linear-gradient(90deg,#E5F0FF 0%,transparent 100%); }
-    .haier-logo-container { display:flex; align-items:center; justify-content:center; background:var(--brand); color:#fff; font-family:Arial,sans-serif; font-weight:bold; border-radius:8px; }
-    .brand-text { color:var(--brand); }
-    .axis-card { position:relative; overflow:hidden; }
-    .axis-image { width:100%; aspect-ratio:2.36/1; display:block; object-fit:cover; background:#000; }
-    .axis-content { position:relative; min-height:230px; }
-    .axis-mark { position:absolute; right:18px; top:8px; font-size:7rem; line-height:1; font-weight:700; color:rgba(34,131,226,.08); }
-    .axis-line { height:2px; background:linear-gradient(90deg,var(--brand),rgba(34,131,226,.08)); position:relative; }
-    .axis-line::after { content:""; position:absolute; right:0; top:-4px; border-left:8px solid var(--brand); border-top:5px solid transparent; border-bottom:5px solid transparent; }
-    .layer-stage { position:relative; overflow:hidden; border-radius:20px; background:#eef6ff; }
-    .layer-stage img { width:100%; height:auto; display:block; }
-    .layer-copy { position:absolute; left:8%; width:48%; display:grid; grid-template-columns:minmax(72px,24%) 1fr; gap:clamp(8px,1.6vw,24px); align-items:center; transform:translateY(-50%); font-size:clamp(8px,1.15vw,14px); line-height:1.5; }
-    .layer-copy-top { top:29%; }
-    .layer-copy-mid { top:50%; }
-    .layer-copy-deep { top:71%; }
-    .layer-copy strong { color:#2283e2; font-size:clamp(8px,1.15vw,14px); font-weight:600; white-space:nowrap; }
-    .layer-copy span { color:rgba(75,85,99,.72); transform:translateX(-32px); }
-    .rule-row { display:grid; grid-template-columns:132px 1fr; gap:18px; padding:18px 0; border-top:1px solid rgba(15,23,42,.08); }
-    .rule-row > div:first-child { color:#1D1D1F; }
-    .check-card { border-top:3px solid var(--brand); }
-    .check-card h3 { color:var(--brand); }
-    .must-list li::before { content:"✓"; color:var(--brand); font-weight:700; margin-right:.65rem; }
-    .dont-list li::before { content:"×"; color:#E5484D; font-weight:700; margin-right:.65rem; }
-    @media (max-width:767px) { .rule-row{grid-template-columns:1fr;gap:6px}.axis-mark{font-size:5rem} }
-    main section.glass-panel{padding:2.5rem!important;margin-bottom:2rem!important}
-    main section.glass-panel h2{font-size:1.5rem!important;line-height:2rem!important;color:#1d1d1f!important}
-    @media(max-width:767px){main section.glass-panel{padding:1.5rem!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-zh="Casarte Design | 基础设计规则" data-i18n-en="Casarte Design | Information Architecture">Casarte Design | 信息与交互</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+        }
+
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
+        }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.05em;
+        }
+
+        /* 原则网格排版规范 */
+        .ia-seven-grid {
+            display: grid; 
+            grid-template-columns: repeat(4, minmax(0, 1fr)); 
+            gap: 20px 16px; 
+            align-items: stretch;
+        }
+        .ia-seven-item {
+            min-width: 0; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden;
+            border: 1px solid rgba(233, 189, 133, 0.20) !important; 
+            border-radius: 0 !important; 
+            background: linear-gradient(150deg, rgba(31, 29, 26, .94), rgba(17, 17, 19, .97)) !important;
+            box-shadow: 0 7px 24px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .025) !important;
+            counter-increment: 原则-number; 
+            transition: border-color .24s ease, transform .24s ease, box-shadow .24s ease;
+        }
+        .ia-seven-item:hover {
+            transform: translateY(-3px); 
+            border-color: rgba(233, 189, 133, .55) !important;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, .34), 0 0 20px rgba(233, 189, 133, .06) !important;
+        }
+        .ia-image-box {
+            order: 1; 
+            width: 100%; 
+            aspect-ratio: 4 / 3; 
+            min-height: 0; 
+            overflow: hidden;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-top: 1px solid rgba(233, 189, 133, .16) !important; 
+            background: linear-gradient(145deg, #18181A, #101012) !important;
+        }
+        .ia-image-box img {
+            display: block; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
+        .ia-seven-item h3 {
+            order: 2; 
+            flex: 1; 
+            min-height: 122px; 
+            margin: 0 !important; 
+            padding: 17px 18px 20px !important;
+            color: #E7E5E1 !important; 
+            background: transparent !important; 
+            text-align: left;
+            font-size: 14px !important; 
+            font-weight: 400 !important; 
+            line-height: 1.75 !important;
+        }
+        .ia-seven-item h3::before {
+            content: "原则 " counter(原则-number, decimal-leading-zero); 
+            display: block; 
+            margin-bottom: 9px;
+            color: var(--text-gold); 
+            font-size: 13px; 
+            font-weight: 600; 
+            line-height: 18px; 
+            letter-spacing: .13em;
+            background-repeat: no-repeat; 
+            background-position: right center; 
+            background-size: calc(100% - 68px) 1px;
+            background-image: linear-gradient(to right, rgba(233, 189, 133, 0.2), rgba(233, 189, 133, 0.2));
+        }
+        [lang="en"] .ia-seven-item h3::before { 
+            content: "PRINCIPLE " counter(原则-number, decimal-leading-zero); 
+            background-size: calc(100% - 66px) 1px; 
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
+
+        @media (max-width: 1050px) {
+            .ia-seven-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+            .ia-seven-grid { grid-template-columns: 1fr; gap: 14px; }
+            .ia-seven-item { display: grid; grid-template-columns: minmax(112px, 38%) 1fr; align-items: stretch; }
+            .ia-image-box { grid-column: 1; grid-row: 1; aspect-ratio: 1 / 1; border-top: none !important; border-right: 1px solid rgba(233, 189, 133, .16) !important; }
+            .ia-seven-item h3 { grid-column: 2; grid-row: 1; min-height: 0; align-self: center; padding: 14px !important; font-size: 13px !important; }
+        }
+    </style>
 </head>
+
 <body class="antialiased">
-  <div class="aura-background"></div>
-  <header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center"><div class="flex items-center"><div class="haier-logo-container w-10 h-10 mr-3 text-[14px]">Haier</div><h1 class="font-bold text-lg">Haier Design</h1></div><button id="mobile-menu-btn" class="p-2 bg-black/5 rounded-lg" aria-label="打开导航"><span class="block w-6 h-0.5 bg-gray-700 mb-1.5"></span><span class="block w-6 h-0.5 bg-gray-700 mb-1.5"></span><span class="block w-6 h-0.5 bg-gray-700"></span></button></header>
-  <div class="flex h-screen pt-16 md:pt-0">
-    <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 glass-panel rounded-none border-r border-white/50 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
-    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
-    <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
-      <div class="max-w-[1200px] mx-auto pb-24">
-        <section class="mb-12">
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-gray-900">信息架构</h1>
-          <p class="text-lg text-gray-500 max-w-3xl leading-relaxed">在海尔设备界面中，X 决定内容放在哪里，Y 决定一次展示多少信息，Z 决定什么内容应该来到用户面前。三条轴共同定义页面结构与交互节奏。</p>
-        </section>
+    <div class="ambient-bg"></div>
 
-        <section id="xyz-model" class="glass-panel p-6 md:p-10 mb-10 scroll-mt-8">
-          <div class="mb-8"><h2 class="text-2xl font-bold text-gray-900 mb-3">XYZ 三轴</h2><p class="text-sm text-gray-500 max-w-3xl leading-6">XYZ 不是界面样式，而是用户理解信息、移动注意力和进入任务的结构。</p></div>
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <article class="axis-card bg-white/70 rounded-2xl border border-white"><img class="axis-image" src="assets/examples/layout/xyz-x-axis-v2.png" alt="X 轴横向导航与切换示意"><div class="axis-content p-6"><div class="axis-mark">X</div><div class="brand-text text-sm font-semibold mb-4">X · 位置与情境</div><h3 class="text-base font-semibold mb-3">我在哪里操作？</h3><p class="text-sm text-gray-500 leading-6 mb-7">组织内容、设备与服务之间的位置和流转，保持关键对象与操作锚点稳定。</p><div class="axis-line"></div><p class="mt-4 text-xs text-gray-500">位置 · 导航 · 空间迁移 · 跨设备连续性</p></div></article>
-            <article class="axis-card bg-white/70 rounded-2xl border border-white"><img class="axis-image" src="assets/examples/layout/xyz-y-axis-v2.png" alt="Y 轴纵向浏览与参数调节示意"><div class="axis-content p-6"><div class="axis-mark">Y</div><div class="brand-text text-sm font-semibold mb-4">Y · 信息跨度与节奏</div><h3 class="text-base font-semibold mb-3">此刻需要看到多少？</h3><p class="text-sm text-gray-500 leading-6 mb-7">控制从总览到细节的信息密度、纵向展开与阅读节奏，让复杂内容按需出现。</p><div class="axis-line"></div><p class="mt-4 text-xs text-gray-500">概览 · 展开 · 纵向层次 · 渐进披露</p></div></article>
-            <article class="axis-card bg-white/70 rounded-2xl border border-white"><img class="axis-image" src="assets/examples/layout/xyz-z-axis-v2.png" alt="Z 轴界面深度与任务层级示意"><div class="axis-content p-6"><div class="axis-mark">Z</div><div class="brand-text text-sm font-semibold mb-4">Z · 深度与优先级</div><h3 class="text-base font-semibold mb-3">什么应该来到面前？</h3><p class="text-sm text-gray-500 leading-6 mb-7">通过遮挡、材质、阴影和前后关系表达任务优先级。深度只用于分离重要内容。</p><div class="axis-line"></div><p class="mt-4 text-xs text-gray-500">前后景 · 焦点 · 临时浮层 · 注意力引导</p></div></article>
-          </div>
-        </section>
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
+        <div class="flex items-center">
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="信息架构" data-i18n-en="Information Architecture">信息架构</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
 
-        <section id="layer-architecture" class="glass-panel p-6 md:p-10 mb-10 scroll-mt-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-3" data-i18n-zh="三层信息架构" data-i18n-en="Three-Layer Information Architecture">三层信息架构</h2>
-          <p class="text-sm text-gray-500 leading-6 mb-6" data-i18n-zh="随着用户在交互中的深入，内容在视觉与概念层面上逐层展开更深的层次。" data-i18n-en="As users move deeper into an interaction, content unfolds through progressively deeper visual and conceptual layers.">随着用户在交互中的深入，内容在视觉与概念层面上逐层展开更深的层次。</p>
-          <figure class="layer-stage">
-            <img src="assets/examples/layout/information-layer-architecture-v2.png" alt="顶层、中层与深层的三层信息架构示意">
-            <div class="layer-copy layer-copy-top"><strong data-i18n-zh="顶层 Top:" data-i18n-en="Top Layer:">顶层 Top:</strong><span data-i18n-zh="清晰、极简、开放；带来定位感与平静感。" data-i18n-en="Clear, minimal, and open; creating a sense of orientation and calm.">清晰、极简、开放；带来定位感与平静感。</span></div>
-            <div class="layer-copy layer-copy-mid"><strong data-i18n-zh="中层 Mid:" data-i18n-en="Middle Layer:">中层 Mid:</strong><span data-i18n-zh="略有深度、柔和模糊；带来参与感与好奇心。" data-i18n-en="Gently layered with soft blur; inviting engagement and curiosity.">略有深度、柔和模糊；带来参与感与好奇心。</span></div>
-            <div class="layer-copy layer-copy-deep"><strong data-i18n-zh="深层 Deep:" data-i18n-en="Deep Layer:">深层 Deep:</strong><span data-i18n-zh="高对比、结构明确；承载核心内容或关键操作。" data-i18n-en="High contrast and clearly structured; carrying core content or critical actions.">高对比、结构明确；承载核心内容或关键操作。</span></div>
-          </figure>
-        </section>
+    <div class="flex h-screen pt-16 md:pt-0">
+        <!-- 侧边栏：由 haier-nav.js 统一托管 -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
-        <section id="spatial-rules" class="glass-panel p-6 md:p-10 mb-10 scroll-mt-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-7">空间深度规则</h2>
-          <div>
-            <div class="rule-row"><div class="font-semibold">聚焦视场</div><p class="text-sm text-gray-500 leading-6">将关键状态与主操作放在用户自然视线和首屏核心区域；边缘区域不放置高对比动态干扰。</p></div>
-            <div class="rule-row"><div class="font-semibold">准确提示深度</div><p class="text-sm text-gray-500 leading-6">遮挡、阴影、材质和缩放必须共同指向同一前后关系；禁止用冲突的视觉提示伪造层级。</p></div>
-            <div class="rule-row"><div class="font-semibold">用 Z 轴表达优先级</div><p class="text-sm text-gray-500 leading-6">弹窗或关键任务来到前景时，背景应退后并降低竞争；关闭后恢复原有层级和焦点。</p></div>
-            <div class="rule-row"><div class="font-semibold">克制使用深度</div><p class="text-sm text-gray-500 leading-6">深度适合分离大型且重要的元素，不用于装饰小图标或普通文本；避免频繁切换焦点距离。</p></div>
-            <div class="rule-row"><div class="font-semibold">保留交互间距</div><p class="text-sm text-gray-500 leading-6">控件之间不得重叠，悬停、选中与聚焦效果出现后仍需保持可辨识和可操作。</p></div>
-          </div>
-        </section>
+        <!-- 主内容区 -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
+                
+                <!-- 返回主页按钮 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-full">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
+                </div>
 
-        <section id="checklist" class="glass-panel p-6 md:p-10 scroll-mt-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">层级验收</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm">
-            <div class="check-card bg-white/65 rounded-2xl p-6 border border-white"><h3 class="font-bold mb-4">必须满足</h3><ul class="must-list space-y-3 text-gray-600"><li>1 秒内识别当前状态与主任务</li><li>X / Y / Z 每次变化都有明确目的</li><li>前景出现时，背景降低竞争且焦点唯一</li><li>深层内容有清晰、可逆的召回路径</li><li>不同设备保持信息顺序和操作锚点一致</li></ul></div>
-            <div class="check-card bg-white/65 rounded-2xl p-6 border border-white"><h3 class="font-bold mb-4">禁止做法</h3><ul class="dont-list space-y-3 text-gray-600"><li>用阴影数量代替信息层级</li><li>让文本悬浮或制造无意义的 3D 效果</li><li>同时显示多个竞争焦点的浮层</li><li>因屏幕尺寸变化打乱任务结构</li><li>控件、悬停效果或视图互相重叠</li></ul></div>
-          </div>
-        </section>
-        <footer class="pt-10 pb-16 text-center text-gray-400 text-sm"><p>&copy; 2026 Haier Design 设计团队 · 内部保密</p></footer>
-      </div>
-    </main>
-  </div>
-  <script src="haier-nav.js"></script>
+                <!-- 页面大标题与说明 -->
+                <section class="border-b border-gray-800 pb-8">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="信息架构" data-i18n-en="Information Architecture">信息架构</h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="统一跨品类、跨显示载体的信息架构、交互逻辑与页面布局规则，保障界面信息清晰、操作顺畅、布局聚焦，建立一致的品牌交互体验。" data-i18n-en="Unify information architecture, interaction logic, and layout rules across product categories and display technologies to ensure clear information, seamless operation, focused layouts, and a consistent branded interaction experience.">
+                        统一跨品类、跨显示载体的信息架构、交互逻辑与页面布局规则，保障界面信息清晰、操作顺畅、布局聚焦，建立一致的品牌交互体验。
+                    </p>
+                </section>
+
+                <!-- 01 信息架构 · 清且轻 -->
+                <section class="space-y-10" id="architecture">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">01</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="信息架构 · 清且轻" data-i18n-en="Information Architecture · Clear & Simple">信息架构 · 清且轻</h2>
+                            <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="通过清晰分组、适度层级和完整导航，帮助用户理解信息并完成任务。" data-i18n-en="Help users understand information and complete tasks through clear grouping, manageable hierarchy, and comprehensive navigation.">通过清晰分组、适度层级和完整导航，帮助用户理解信息并完成任务。</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-seven-grid">
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Group similar information together and clearly separate different types to avoid confusion." data-i18n-zh="同类信息应同组呈现；不同类信息应保持清晰边界，避免混淆。">同类信息应同组呈现；不同类信息应保持清晰边界，避免混淆。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_1.png" alt="规则图1" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Keep information hierarchies within three levels to make content easier to understand and find." data-i18n-zh="信息层级应控制在三级以内，降低用户理解与查找成本。">信息层级应控制在三级以内，降低用户理解与查找成本。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_2.png" alt="规则图2" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Provide complete navigation paths for tasks, including entry and exit, up and down, and forward and back." data-i18n-zh="导航覆盖任务所需通路，确保进出、上下、前后交互闭环。">导航覆盖任务所需通路，确保进出、上下、前后交互闭环。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_3.png" alt="规则图3" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Present information at the same level side by side; avoid mixing levels or cross-nesting." data-i18n-zh="同层级信息并列展开，不同层级信息避免混排与交叉嵌套。">同层级信息并列展开，不同层级信息避免混排与交叉嵌套。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_4.png" alt="规则图4" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Show important messages promptly using global notifications or focused prompts." data-i18n-zh="重要消息即时呈现，通过全局推送、聚焦提示等方式强化触达。">重要消息即时呈现，通过全局推送、聚焦提示等方式强化触达。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_5.png" alt="规则图5" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Prioritize frequently used information and progressively hide nonessential details." data-i18n-zh="区分信息主次，常用信息优先呈现，非必要信息适度隐藏。">区分信息主次，常用信息优先呈现，非必要信息适度隐藏。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_6.png" alt="规则图6" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Use consistent meanings and visual treatments for the same information states." data-i18n-zh="同一信息状态采用统一语义与视觉表达，确保识别一致性。">同一信息状态采用统一语义与视觉表达，确保识别一致性。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_7.png" alt="规则图7" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Use consistent, user-friendly names for function states; avoid technical or internal jargon." data-i18n-zh="功能状态命名统一、通俗易懂，避免工程化和内部化表述。">功能状态命名统一、通俗易懂，避免工程化和内部化表述。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_1_8.png" alt="规则图8" class="scale-[0.8]"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- 02 交互逻辑 · 顺且准 -->
+                <section class="space-y-10" id="interaction-logic">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">02</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="交互逻辑 · 顺且准" data-i18n-en="Interaction Logic · Smooth & Precise">交互逻辑 · 顺且准</h2>
+                            <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="让任务路径顺畅、操作与反馈对应，保持交互方式和状态表达的一致性。" data-i18n-en="Keep task flows smooth, align actions with feedback, and maintain consistent interaction methods and state communication.">让任务路径顺畅、操作与反馈对应，保持交互方式和状态表达的一致性。</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-seven-grid">
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Organize primary tasks in a natural sequence with a consistent direction, avoiding jumps and backtracking." data-i18n-zh="主任务按自然顺序组织，保持操作方向一致，避免跳转与折返。">主任务按自然顺序组织，保持操作方向一致，避免跳转与折返。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_1.png" alt="规则图2-1" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Position controls and displays to prevent hands from blocking critical information." data-i18n-zh="合理规划操作区与显示区，避免手部遮挡关键信息。">合理规划操作区与显示区，避免手部遮挡关键信息。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_2.png" alt="规则图2-2" class="scale-[0.6]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Align controls with their feedback; prefer controls on the right with displays on the left, or controls below displays." data-i18n-zh="操作与反馈位置对应，优先遵循右控左显、下控上显。">操作与反馈位置对应，优先遵循右控左显、下控上显。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_3.png" alt="规则图2-3" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Clearly distinguish interactive controls from display-only content so entry points are easy to recognize." data-i18n-zh="明确区分可交互控件与纯显示内容，确保操作入口易识别。">明确区分可交互控件与纯显示内容，确保操作入口易识别。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_4.png" alt="规则图2-4" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Provide timely, clear feedback; combine visual, audio, or haptic channels for key actions." data-i18n-zh="操作反馈及时明确，关键操作结合视觉、听觉或触觉等多通道反馈。">操作反馈及时明确，关键操作结合视觉、听觉或触觉等多通道反馈。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_5.png" alt="规则图2-5" class="scale-[0.7]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Use consistent triggers, steps, and feedback for similar functions." data-i18n-zh="同类功能统一触发方式、操作步骤及反馈逻辑，保持交互一致性。">同类功能统一触发方式、操作步骤及反馈逻辑，保持交互一致性。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_6.png" alt="规则图2-6" class="scale-[0.7]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Minimize multi-function buttons and long presses; clearly indicate how to activate them when needed." data-i18n-zh="减少复合按键与长按操作，必要时明确标注触发方式。">减少复合按键与长按操作，必要时明确标注触发方式。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_7.png" alt="规则图2-7" class="scale-[0.6]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Focus each page on one primary task, highlighting key actions and reducing distractions." data-i18n-zh="页面聚焦单一核心任务，突出主要操作，减少无关信息干扰。">页面聚焦单一核心任务，突出主要操作，减少无关信息干扰。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_2_8.png" alt="规则图2-8" class="scale-[0.7]"></div>
+                        </article>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- 03 页面布局 · 聚且适 -->
+                <section class="space-y-10" id="page-layout">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">03</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="页面布局 · 聚且适" data-i18n-en="Page Layout · Focused & Adaptive">页面布局 · 聚且适</h2>
+                            <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="让核心信息与常用操作形成清晰焦点，并使显示位置与操作位置相互对应。" data-i18n-en="Create a clear focal point for key information and common actions, with display and control positions aligned.">让核心信息与常用操作形成清晰焦点，并使显示位置与操作位置相互对应。</p>
+                        </div>
+                    </div>
+
+                    <div class="ia-seven-grid">
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Balance element positions, sizes, and spacing to avoid layouts that feel crowded or scattered." data-i18n-zh="合理分配元素位置、尺寸与间距，保持布局均衡，避免过密或分散。">合理分配元素位置、尺寸与间距，保持布局均衡，避免过密或分散。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_1.png" alt="规则图3-1" class="scale-[0.6]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Keep key controls in consistent positions across pages and similar products to reduce search effort." data-i18n-zh="跨页面及同类产品保持核心操作控件位置一致，降低寻找成本。">跨页面及同类产品保持核心操作控件位置一致，降低寻找成本。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_2.png" alt="规则图3-2" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Group related information and emphasize essential content by frequency of use and importance." data-i18n-zh="同类信息集中成组，依据使用频率与重要度突出核心内容。">同类信息集中成组，依据使用频率与重要度突出核心内容。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_3.png" alt="规则图3-3" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Place parameter controls near their values, using consistent symbols for adjustment and option switching." data-i18n-zh="参数控件与数值就近布局，统一增减调节与选项切换的符号。">参数控件与数值就近布局，统一增减调节与选项切换的符号。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_4.png" alt="规则图3-4" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Place selection controls next to their options with clear mappings; avoid cross-area interaction." data-i18n-zh="选择控件与对应选项相邻，保持明确映射，避免跨区域操作。">选择控件与对应选项相邻，保持明确映射，避免跨区域操作。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_5.png" alt="规则图3-5" class="scale-[0.8]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Use position, size, contrast, and whitespace to establish a clear visual focal point." data-i18n-zh="通过位置、尺寸、对比度及留白突出核心信息，形成视觉焦点。">通过位置、尺寸、对比度及留白突出核心信息，形成视觉焦点。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_6.png" alt="规则图3-6" class="scale-[0.7]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Concentrate frequent functions and key actions in easy-to-see, easy-to-reach areas to reduce movement." data-i18n-zh="高频功能与关键操作集中在易识别、易触达区域，减少操作距离。">高频功能与关键操作集中在易识别、易触达区域，减少操作距离。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_7.png" alt="规则图3-7" class="scale-[0.7]"></div>
+                        </article>
+                        <article class="ia-seven-item">
+                            <h3 data-i18n-en="Separate control and display areas, emphasize primary entry points, and group frequently used touchpoints." data-i18n-zh="明确区分操作区与显示区，突出主要入口，集中布局高频触点。">明确区分操作区与显示区，突出主要入口，集中布局高频触点。</h3>
+                            <div class="ia-image-box"><img src="assets/basic_design_rules/rule_3_8.png" alt="规则图3-8" class="scale-[0.7]"></div>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 导入统一导航与控制脚本 -->
+    <script src="haier-nav.js"></script>
 </body>
 </html>
