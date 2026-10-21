@@ -1,1 +1,98 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Haier Design | 触摸</title><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>:root{--brand-primary:#2283E2;--brand-light:#E5F0FF}*{box-sizing:border-box}body{font-family:Inter,-apple-system,sans-serif;background:#F5F7FA;color:#1D1D1F}.aura-background{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 15% 10%,#C4E0FF,transparent 42%),radial-gradient(circle at 90% 90%,#E0E8FF,transparent 45%),#F4F7FB}.glass-panel{background:rgba(255,255,255,.66);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.65);box-shadow:0 8px 32px rgba(0,0,0,.04);border-radius:24px}.sidebar-nav-item{transition:.3s;border-left:3px solid transparent}.sidebar-nav-item.active{color:var(--brand-primary);font-weight:600;border-left-color:var(--brand-primary);background:linear-gradient(90deg,var(--brand-light),transparent)}.haier-logo-container{display:flex;align-items:center;justify-content:center;background:#2283E2;color:white;font:bold 14px Arial;border-radius:8px}.demo{height:180px;border-radius:18px;background:#111827;display:grid;place-items:center}.touch-target{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;color:white;background:#2283E2;box-shadow:0 0 0 16px rgba(34,131,226,.12);animation:press 2s ease-in-out infinite}@keyframes press{0%,100%{transform:scale(1)}50%{transform:scale(.92);box-shadow:0 0 0 6px rgba(34,131,226,.22)}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}</style></head><body><div class="aura-background"></div><header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between"><b>Haier Design</b><button id="mobile-menu-btn">☰</button></header><div class="flex h-screen pt-16 md:pt-0"><aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed glass-panel rounded-none z-40 overflow-y-auto" aria-hidden="true"></aside><div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 z-30 hidden"></div><main id="main-content" class="flex-1 md:ml-72 p-6 md:p-12 lg:p-20 overflow-y-auto"><div class="max-w-5xl"><p class="text-xs font-bold tracking-[.18em] text-blue-600 uppercase mb-3">Sensory · Touch</p><h1 class="text-4xl font-bold mb-3">触摸反馈</h1><p class="text-gray-500 leading-7 mb-9">定义触控热区、按压状态和触觉反馈，使屏幕交互与实体操作保持一致。</p><section class="glass-panel p-8"><h2 class="text-xl font-bold mb-2">触控响应</h2><p class="text-sm text-gray-500 mb-6">触摸发生时，视觉状态应立即响应；触觉反馈紧随其后，避免延迟造成不确定感。</p><div class="demo"><div class="touch-target">按压</div></div></section><div class="grid md:grid-cols-3 gap-5 mt-6"><article class="glass-panel p-6"><b>热区</b><p class="text-sm text-gray-500 mt-3">最小触控区域 44 × 44 px，并根据真实硬件尺寸调整。</p></article><article class="glass-panel p-6"><b>按压</b><p class="text-sm text-gray-500 mt-3">视觉缩放控制在 92%–96%，持续 80–120ms。</p></article><article class="glass-panel p-6"><b>反馈</b><p class="text-sm text-gray-500 mt-3">关键操作提供清晰但克制的 Tick / Pop 触觉反馈。</p></article></div></div></main></div><script src="haier-nav.js"></script></body></html>
+<<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-zh="Casarte Design | 应用栏规范" data-i18n-en="Casarte Design | App Bar Specification">Casarte Design | 应用栏规范</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+        }
+
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
+    </style>
+</head>
+
+<body class="antialiased">
+    <div class="ambient-bg"></div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
+        <div class="flex items-center">
+            <a href="haier_os_design_system.html" class="mr-3 p-2 bg-white/5 hover:bg-white/10 transition-colors flex items-center text-gray-300"></a>
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="应用栏" data-i18n-en="App Bar">应用栏</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </header>
+
+    <div class="flex h-screen pt-16 md:pt-0">
+        <!-- 侧边栏（卡萨帝暗色材质风格） -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
+
+        <!-- 主内容区 -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-12">
+                
+                <!-- 顶部返回主页按钮 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
+                </div>
+
+                <!-- 待更新提示（只保留纯文字，已移除外框卡片及背景板） -->
+                <div class="py-20 text-center space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                        <span data-i18n-zh="待更新，敬请期待..." data-i18n-en="Coming Soon...">待更新，敬请期待...</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm max-w-md mx-auto">
+                        <span data-i18n-zh="当前页面正在精心编写与搭建中，后续将为您呈现完整的设计标准。" data-i18n-en="This page is currently under development and will be available soon.">当前页面正在精心编写与搭建中，后续将为您呈现完整的设计标准。</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- 页脚 -->
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 引入统一导航脚本 -->
+    <script src="haier-nav.js"></script>
+</body>
+</html>

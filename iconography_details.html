@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 引入自定义字体 FZFangJHJW_Zhong */
         @font-face {
             font-family: 'FZFangJHJW';
             src: url('assets/fonts/FZFangJHJW_Zhong.ttf') format('truetype'),
@@ -33,7 +32,6 @@
             overflow-x: hidden;
         }
 
-        /* 彻底锁定【返回主页】按钮的直角样式（rounded-none），防止圆角闪现 */
         .guideline-home-link,
         #main-content .guideline-top-actions a {
             border-radius: 0 !important;
@@ -41,7 +39,6 @@
             -moz-border-radius: 0 !important;
         }
 
-        /* 网页背景模糊激活类（当大图弹窗弹出时给 body 附加） */
         body.modal-open {
             overflow: hidden;
         }
@@ -51,7 +48,6 @@
             user-select: none;
         }
 
-        /* 极简高级微光背景 */
         .ambient-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -59,7 +55,6 @@
             background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
         }
 
-        /* 统一的高级灰色外框面板 */
         .gallery-panel, .glass-panel {
             background: var(--panel-bg);
             backdrop-filter: blur(40px);
@@ -79,7 +74,6 @@
             border-radius: 0;
         }
 
-        /* 选项卡样式 */
         .icon-tabs {
             display: flex;
             gap: 32px;
@@ -103,7 +97,6 @@
         .icon-pane { display: none; }
         .icon-pane.active { display: block; }
 
-        /* 上方筛选栏与下方表格统一最大宽度，格子固定 96px 宽度保持不变，整体居中对齐 */
         .icon-filter-bar {
             display: grid;
             grid-template-columns: minmax(0, auto) minmax(260px, 1fr);
@@ -178,7 +171,6 @@
             text-align: center; 
         }
 
-        /* 全屏放大弹窗样式 */
         #icon-modal {
             position: fixed;
             inset: 0;
@@ -260,7 +252,6 @@
 <body class="antialiased">
     <div class="ambient-bg"></div>
 
-    <!-- 移动端 Header -->
     <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
         <div class="flex items-center">
             <div class="haier-logo-container w-8 h-8 mr-2 text-[12px]">H</div>
@@ -272,15 +263,12 @@
     </header>
 
     <div class="flex h-screen pt-16 md:pt-0">
-        <!-- 侧边栏 -->
         <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
-        <!-- 主内容区 -->
         <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
             <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
                 
-                <!-- 头部：返回主页强制直角 -->
                 <div class="hidden md:flex items-center justify-between mb-8">
                     <a href="haier_os_design_system.html" class="guideline-home-link px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none">
                         <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
@@ -288,24 +276,32 @@
                 </div>
 
                 <section class="border-b border-gray-800 pb-8">
-                    <!-- 大标题已改为与【字体】页面完全一致的 text-4xl md:text-6xl 字号规格 -->
                     <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="图标" data-i18n-en="Iconography">图标</h1>
                     <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="系统图标用于统一功能表达、状态反馈和跨设备识别，确保不同尺寸与表现形式下保持清晰一致。" data-i18n-en="System icons are used to unify functional expression, status feedback, and cross-device recognition, ensuring clarity and consistency across different sizes and formats.">
                         系统图标用于统一功能表达、状态反馈和跨设备识别，确保不同尺寸与表现形式下保持清晰一致。
                     </p>
                 </section>
 
-                <!-- 图标选项卡导航 -->
                 <nav class="icon-tabs" role="tablist" aria-label="图标类型">
-                    <button class="icon-tab active" type="button" role="tab" aria-selected="true" aria-controls="linear-pane" data-icon-tab="linear" data-i18n-zh="线性图标" data-i18n-en="Linear">线性图标</button>
-                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="wireframe-pane" data-icon-tab="wireframe" data-i18n-zh="线框图标" data-i18n-en="Wireframe">线框图标</button>
+                    <button class="icon-tab active" type="button" role="tab" aria-selected="true" aria-controls="overview-pane" data-icon-tab="overview" data-i18n-zh="总览" data-i18n-en="Overview">总览</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="linear-pane" data-icon-tab="linear" data-i18n-zh="线性图标" data-i18n-en="Linear">线性图标</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="wireframe1-pane" data-icon-tab="wireframe1" data-i18n-zh="线框图标1" data-i18n-en="Wireframe 1">线框图标1</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="wireframe2-pane" data-icon-tab="wireframe2" data-i18n-zh="线框图标2" data-i18n-en="Wireframe 2">线框图标2</button>
                     <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="filled-pane" data-icon-tab="filled" data-i18n-zh="面性图标" data-i18n-en="Filled">面性图标</button>
-                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="color-pane" data-icon-tab="color" data-i18n-zh="填充图标" data-i18n-en="Color">填充图标</button>
-                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="realistic-pane" data-icon-tab="realistic" data-i18n-zh="写实图标" data-i18n-en="Realistic">写实图标</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="color1-pane" data-icon-tab="color1" data-i18n-zh="填充图标1" data-i18n-en="Color 1">填充图标1</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="color2-pane" data-icon-tab="color2" data-i18n-zh="填充图标2" data-i18n-en="Color 2">填充图标2</button>
+                    <button class="icon-tab" type="button" role="tab" aria-selected="false" aria-controls="realistic-pane" data-icon-tab="realistic" data-i18n-zh="实物图标" data-i18n-en="Realistic">实物图标</button>
                 </nav>
 
+                <!-- 总览面板 -->
+                <div id="overview-pane" class="icon-pane active space-y-16" role="tabpanel" data-icon-pane="overview">
+                    <section class="space-y-6">
+                        <div class="icon-library gallery-panel p-0" data-icon-library="overview" data-count="90"></div>
+                    </section>
+                </div>
+
                 <!-- 线性图标面板 -->
-                <div id="linear-pane" class="icon-pane active space-y-16" role="tabpanel" data-icon-pane="linear">
+                <div id="linear-pane" class="icon-pane space-y-16" role="tabpanel" data-icon-pane="linear" hidden>
                     <section class="space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">01</span>
@@ -315,8 +311,7 @@
                         </div>
                         <div class="icon-filter-bar" data-icon-filter="linear">
                             <div class="icon-category-selector" role="group" aria-label="线性图标分类">
-                                <button class="icon-category-button active" type="button" data-icon-category="总" data-i18n-zh="总" data-i18n-en="All">总</button>
-                                <button class="icon-category-button" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
+                                <button class="icon-category-button active" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
                                 <button class="icon-category-button" type="button" data-icon-category="冰箱" data-i18n-zh="冰箱" data-i18n-en="Refrigerator">冰箱</button>
                                 <button class="icon-category-button" type="button" data-icon-category="洗衣机" data-i18n-zh="洗衣机" data-i18n-en="Washing Machine">洗衣机</button>
                                 <button class="icon-category-button" type="button" data-icon-category="厨电" data-i18n-zh="厨电" data-i18n-en="Kitchen">厨电</button>
@@ -328,75 +323,20 @@
                         </div>
                         <div class="icon-library gallery-panel p-0" data-icon-library="linear" data-count="90"></div>
                     </section>
-
-                    <section class="gallery-panel p-6 sm:p-10 space-y-6">
-                        <div class="flex items-baseline gap-4">
-                            <span class="module-num text-3xl text-[#E9BD85]">02</span>
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="线性图标网格系统" data-i18n-en="Linear Icon Grid System">线性图标网格系统</h2>
-                                <p class="text-sm text-gray-400 mt-1" data-i18n-zh="网格采用 24 × 24 的相对比例，不绑定 pt、dp 或 mm，以基础单位 a 描述全部构造关系。" data-i18n-en="The grid uses a relative ratio of 24 × 24, unbound to pt, dp, or mm, describing all construction relationships with basic unit a.">网格采用 24 × 24 的相对比例，不绑定 pt、dp 或 mm，以基础单位 a 描述全部构造关系。</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-10 items-center pt-4">
-                            <div class="bg-black/40 rounded-none border border-white/10 p-4 w-full max-w-[240px] mx-auto"><img src="assets/icons/icon-grid-frame.svg" alt="24 × 24 图标标准网格" class="w-full h-auto filter invert opacity-80"></div>
-                            <div class="divide-y divide-gray-800 text-sm">
-                                <div class="py-5 first:pt-0"><h3 class="font-semibold text-white mb-2" data-i18n-zh="24 × 24 基准" data-i18n-en="24 × 24 Baseline">24 × 24 基准</h3><p class="text-gray-400 leading-relaxed" data-i18n-zh="所有图标优先以正方形网格制作；仅当图形隐喻无法成立时，才使用圆形、垂直或水平特殊网格。" data-i18n-en="All icons are preferably made in square grids; only when the graphic metaphor cannot be established, circular, vertical, or horizontal special grids are used.">所有图标优先以正方形网格制作；仅当图形隐喻无法成立时，才使用圆形、垂直或水平特殊网格。</p></div>
-                                <div class="py-5"><h3 class="font-semibold text-white mb-2" data-i18n-zh="2a 安全区域" data-i18n-en="2a Safe Area">2a 安全区域</h3><p class="text-gray-400 leading-relaxed" data-i18n-zh="四周保留 2a 安全区域，主体轮廓不得侵入，以保证小尺寸下的识别度。" data-i18n-en="A 2a safe area is reserved around the perimeter, and the main outline must not intrude to ensure recognition at small sizes.">四周保留 2a 安全区域，主体轮廓不得侵入，以保证小尺寸下的识别度。</p></div>
-                                <div class="py-5 pb-0"><h3 class="font-semibold text-white mb-2" data-i18n-zh="1a 线条粗细" data-i18n-en="1a Line Weight">1a 线条粗细</h3><p class="text-gray-400 leading-relaxed" data-i18n-zh="标准描边为 1a，端点、转角与相交位置保持一致的视觉重量。" data-i18n-en="The standard stroke is 1a, maintaining consistent visual weight at endpoints, corners, and intersections.">标准描边为 1a，端点、转角与相交位置保持一致的视觉重量。</p></div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="space-y-6">
-                        <div class="flex items-baseline gap-4">
-                            <span class="module-num text-3xl text-[#E9BD85]">03</span>
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="构图" data-i18n-en="Composition">构图</h2>
-                                <p class="text-sm text-gray-400 mt-1" data-i18n-zh="根据主体形态选择标准、圆形、垂直或水平网格，并统一处理复合语义。" data-i18n-en="Choose standard, circular, vertical, or horizontal grids based on the subject form, and uniformly handle composite semantics.">根据主体形态选择标准、圆形、垂直或水平网格，并统一处理复合语义。</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="gallery-panel p-6 text-center"><div class="aspect-square rounded-none border border-dashed border-white/20 flex items-center justify-center mb-4"><div class="w-2/3 h-2/3 rounded-none border-4 border-white/40"></div></div><p class="text-sm font-medium text-white" data-i18n-zh="标准" data-i18n-en="Standard">标准</p></div>
-                            <div class="gallery-panel p-6 text-center"><div class="aspect-square rounded-none border border-dashed border-white/20 flex items-center justify-center mb-4"><div class="w-2/3 h-2/3 rounded-full border-4 border-white/40"></div></div><p class="text-sm font-medium text-white" data-i18n-zh="圆形" data-i18n-en="Circular">圆形</p></div>
-                            <div class="gallery-panel p-6 text-center"><div class="aspect-square rounded-none border border-dashed border-white/20 flex items-center justify-center mb-4"><div class="w-1/2 h-3/4 rounded-none border-4 border-white/40"></div></div><p class="text-sm font-medium text-white" data-i18n-zh="垂直" data-i18n-en="Vertical">垂直</p></div>
-                            <div class="gallery-panel p-6 text-center"><div class="aspect-square rounded-none border border-dashed border-white/20 flex items-center justify-center mb-4"><div class="w-3/4 h-1/2 rounded-none border-4 border-white/40"></div></div><p class="text-sm font-medium text-white" data-i18n-zh="水平" data-i18n-en="Horizontal">水平</p></div>
-                        </div>
-                    </section>
-
-                    <section class="space-y-6">
-                        <div class="flex items-baseline gap-4">
-                            <span class="module-num text-3xl text-[#E9BD85]">04</span>
-                            <div>
-                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="辅助符号布局" data-i18n-en="Badge Layout">辅助符号布局</h2>
-                                <p class="text-sm text-gray-400 mt-1" data-i18n-zh="辅助符号建议为主符号尺寸的 1/4，默认位于右下角；其面积不得超过主符号的一半，也不得遮挡主体识别特征。" data-i18n-en="Auxiliary symbols are recommended to be 1/4 of the main symbol size, default to the bottom right; their area must not exceed half of the main symbol.">辅助符号建议为主符号尺寸的 1/4，默认位于右下角；其面积不得超过主符号的一半，也不得遮挡主体识别特征。</p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="gallery-panel p-6 text-center">
-                                <div class="aspect-square rounded-none border border-dashed border-white/20 flex items-center justify-center mb-4">
-                                    <div class="relative w-2/3 h-2/3 border-4 border-white/40">
-                                        <div class="absolute -right-1 -bottom-1 border-2 border-[#E9BD85] bg-[#E9BD85]/20" style="width:calc(50% + 4px);height:calc(50% + 4px);"></div>
-                                    </div>
-                                </div>
-                                <p class="text-sm font-medium text-white" data-i18n-zh="右下角辅助符号" data-i18n-en="Bottom-right Badge">右下角辅助符号</p>
-                            </div>
-                        </div>
-                    </section>
                 </div>
 
-                <!-- 线框图标面板 -->
-                <div id="wireframe-pane" class="icon-pane space-y-16" role="tabpanel" data-icon-pane="wireframe" hidden>
+                <!-- 线框图标1面板 -->
+                <div id="wireframe1-pane" class="icon-pane space-y-16" role="tabpanel" data-icon-pane="wireframe1" hidden>
                     <section class="space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">01</span>
                             <div>
-                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="线框图标库" data-i18n-en="Wireframe Icon Library">线框图标库</h2>
+                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="线框图标库 1" data-i18n-en="Wireframe Icon Library 1">线框图标库 1</h2>
                             </div>
                         </div>
-                        <div class="icon-filter-bar" data-icon-filter="wireframe">
-                            <div class="icon-category-selector" role="group" aria-label="线框图标分类">
-                                <button class="icon-category-button active" type="button" data-icon-category="总" data-i18n-zh="总" data-i18n-en="All">总</button>
-                                <button class="icon-category-button" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
+                        <div class="icon-filter-bar" data-icon-filter="wireframe1">
+                            <div class="icon-category-selector" role="group" aria-label="线框图标1分类">
+                                <button class="icon-category-button active" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
                                 <button class="icon-category-button" type="button" data-icon-category="冰箱" data-i18n-zh="冰箱" data-i18n-en="Refrigerator">冰箱</button>
                                 <button class="icon-category-button" type="button" data-icon-category="洗衣机" data-i18n-zh="洗衣机" data-i18n-en="Washing Machine">洗衣机</button>
                                 <button class="icon-category-button" type="button" data-icon-category="厨电" data-i18n-zh="厨电" data-i18n-en="Kitchen">厨电</button>
@@ -404,9 +344,34 @@
                                 <button class="icon-category-button" type="button" data-icon-category="热水器" data-i18n-zh="热水器" data-i18n-en="Water Heater">热水器</button>
                                 <button class="icon-category-button" type="button" data-icon-category="小家电" data-i18n-zh="小家电" data-i18n-en="Small Appliance">小家电</button>
                             </div>
-                            <label class="icon-search"><span class="sr-only">搜索线框图标</span><input type="search" placeholder="搜索图标" data-icon-search data-i18n-placeholder="搜索图标" data-i18n-placeholder-en="Search icons"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
+                            <label class="icon-search"><span class="sr-only">搜索线框图标1</span><input type="search" placeholder="搜索图标" data-icon-search data-i18n-placeholder="搜索图标" data-i18n-placeholder-en="Search icons"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
                         </div>
-                        <div class="icon-library gallery-panel p-0" data-icon-library="wireframe" data-count="90"></div>
+                        <div class="icon-library gallery-panel p-0" data-icon-library="wireframe1" data-count="90"></div>
+                    </section>
+                </div>
+
+                <!-- 线框图标2面板 -->
+                <div id="wireframe2-pane" class="icon-pane space-y-16" role="tabpanel" data-icon-pane="wireframe2" hidden>
+                    <section class="space-y-6">
+                        <div class="flex items-baseline gap-4">
+                            <span class="module-num text-3xl text-[#E9BD85]">01</span>
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="线框图标库 2" data-i18n-en="Wireframe Icon Library 2">线框图标库 2</h2>
+                            </div>
+                        </div>
+                        <div class="icon-filter-bar" data-icon-filter="wireframe2">
+                            <div class="icon-category-selector" role="group" aria-label="线框图标2分类">
+                                <button class="icon-category-button active" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
+                                <button class="icon-category-button" type="button" data-icon-category="冰箱" data-i18n-zh="冰箱" data-i18n-en="Refrigerator">冰箱</button>
+                                <button class="icon-category-button" type="button" data-icon-category="洗衣机" data-i18n-zh="洗衣机" data-i18n-en="Washing Machine">洗衣机</button>
+                                <button class="icon-category-button" type="button" data-icon-category="厨电" data-i18n-zh="厨电" data-i18n-en="Kitchen">厨电</button>
+                                <button class="icon-category-button" type="button" data-icon-category="空调" data-i18n-zh="空调" data-i18n-en="AC">空调</button>
+                                <button class="icon-category-button" type="button" data-icon-category="热水器" data-i18n-zh="热水器" data-i18n-en="Water Heater">热水器</button>
+                                <button class="icon-category-button" type="button" data-icon-category="小家电" data-i18n-zh="小家电" data-i18n-en="Small Appliance">小家电</button>
+                            </div>
+                            <label class="icon-search"><span class="sr-only">搜索线框图标2</span><input type="search" placeholder="搜索图标" data-icon-search data-i18n-placeholder="搜索图标" data-i18n-placeholder-en="Search icons"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
+                        </div>
+                        <div class="icon-library gallery-panel p-0" data-icon-library="wireframe2" data-count="90"></div>
                     </section>
                 </div>
 
@@ -429,54 +394,82 @@
                                 <button class="icon-category-button" type="button" data-icon-category="热水器" data-i18n-zh="热水器" data-i18n-en="Water Heater">热水器</button>
                                 <button class="icon-category-button" type="button" data-icon-category="小家电" data-i18n-zh="小家电" data-i18n-en="Small Appliance">小家电</button>
                             </div>
-                            <label class="icon-search"><span class="sr-only">搜索面性图标</span><input type="search" placeholder="搜索图标，点击可复制图标用法" data-icon-search data-i18n-placeholder="搜索图标" data-i18n-placeholder-en="Search icons"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
+                            <label class="icon-search"><span class="sr-only">搜索面性图标</span><input type="search" placeholder="搜索图标，点击可复制图标用法" data-icon-search data-i18n-placeholder="搜索图标，点击可复制图标用法" data-i18n-placeholder-en="Search icons, click to copy icon usage"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
                         </div>
                         <div class="icon-library gallery-panel p-0" data-icon-library="filled" data-count="60"></div>
                     </section>
                 </div>
 
-                <!-- 填充图标面板 -->
-                <div id="color-pane" class="icon-pane space-y-12" role="tabpanel" data-icon-pane="color" hidden>
+                <!-- 填充图标1面板 -->
+                <div id="color1-pane" class="icon-pane space-y-12" role="tabpanel" data-icon-pane="color1" hidden>
                     <section class="space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">01</span>
-                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="填充图标库" data-i18n-en="Color Icon Library">填充图标库</h2>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="填充图标库 1" data-i18n-en="Color Icon Library 1">填充图标库 1</h2>
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="填充图标用于呈现丰富色彩与品牌视觉层次。" data-i18n-en="Color icons are used to present rich colors and brand visual hierarchy.">填充图标用于呈现丰富色彩与品牌视觉层次。</p>
-                        <div class="icon-filter-bar" data-icon-filter="color">
-                            <div class="icon-category-selector" role="group" aria-label="填充图标分类">
-                                <button class="icon-category-button active" type="button" data-icon-category="总" data-i18n-zh="总" data-i18n-en="All">总</button>
-                                <button class="icon-category-button" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
-                                <button class="icon-category-button" type="button" data-icon-category="家电" data-i18n-zh="家电" data-i18n-en="Appliances">家电</button>
+                        <div class="icon-filter-bar" data-icon-filter="color1">
+                            <div class="icon-category-selector" role="group" aria-label="填充图标1分类">
+                                <button class="icon-category-button active" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
+                                <button class="icon-category-button" type="button" data-icon-category="冰箱" data-i18n-zh="冰箱" data-i18n-en="Refrigerator">冰箱</button>
+                                <button class="icon-category-button" type="button" data-icon-category="洗衣机" data-i18n-zh="洗衣机" data-i18n-en="Washing Machine">洗衣机</button>
+                                <button class="icon-category-button" type="button" data-icon-category="厨电" data-i18n-zh="厨电" data-i18n-en="Kitchen">厨电</button>
+                                <button class="icon-category-button" type="button" data-icon-category="空调" data-i18n-zh="空调" data-i18n-en="AC">空调</button>
+                                <button class="icon-category-button" type="button" data-icon-category="热水器" data-i18n-zh="热水器" data-i18n-en="Water Heater">热水器</button>
+                                <button class="icon-category-button" type="button" data-icon-category="小家电" data-i18n-zh="小家电" data-i18n-en="Small Appliance">小家电</button>
                             </div>
-                            <label class="icon-search"><span class="sr-only">搜索填充图标</span><input type="search" placeholder="搜索图标" data-icon-search data-i18n-placeholder="搜索图标" data-i18n-placeholder-en="Search icons"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
+                            <label class="icon-search"><span class="sr-only">搜索填充图标1</span><input type="search" placeholder="搜索图标，点击可复制图标用法" data-icon-search data-i18n-placeholder="搜索图标，点击可复制图标用法" data-i18n-placeholder-en="Search icons, click to copy icon usage"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
                         </div>
-                        <div class="icon-library gallery-panel p-0" data-icon-library="color" data-count="30"></div>
+                        <div class="icon-library gallery-panel p-0" data-icon-library="color1" data-count="30"></div>
                     </section>
                 </div>
 
-                <!-- 写实图标面板 -->
+                <!-- 填充图标2面板 -->
+                <div id="color2-pane" class="icon-pane space-y-12" role="tabpanel" data-icon-pane="color2" hidden>
+                    <section class="space-y-6">
+                        <div class="flex items-baseline gap-4">
+                            <span class="module-num text-3xl text-[#E9BD85]">01</span>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="填充图标库 2" data-i18n-en="Color Icon Library 2">填充图标库 2</h2>
+                        </div>
+                        <div class="icon-filter-bar" data-icon-filter="color2">
+                            <div class="icon-category-selector" role="group" aria-label="填充图标2分类">
+                                <button class="icon-category-button active" type="button" data-icon-category="通用" data-i18n-zh="通用" data-i18n-en="General">通用</button>
+                                <button class="icon-category-button" type="button" data-icon-category="冰箱" data-i18n-zh="冰箱" data-i18n-en="Refrigerator">冰箱</button>
+                                <button class="icon-category-button" type="button" data-icon-category="洗衣机" data-i18n-zh="洗衣机" data-i18n-en="Washing Machine">洗衣机</button>
+                                <button class="icon-category-button" type="button" data-icon-category="厨电" data-i18n-zh="厨电" data-i18n-en="Kitchen">厨电</button>
+                                <button class="icon-category-button" type="button" data-icon-category="空调" data-i18n-zh="空调" data-i18n-en="AC">空调</button>
+                                <button class="icon-category-button" type="button" data-icon-category="热水器" data-i18n-zh="热水器" data-i18n-en="Water Heater">热水器</button>
+                                <button class="icon-category-button" type="button" data-icon-category="小家电" data-i18n-zh="小家电" data-i18n-en="Small Appliance">小家电</button>
+                            </div>
+                            <label class="icon-search"><span class="sr-only">搜索填充图标2</span><input type="search" placeholder="搜索图标，点击可复制图标用法" data-icon-search data-i18n-placeholder="搜索图标，点击可复制图标用法" data-i18n-placeholder-en="Search icons, click to copy icon usage"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"></circle><path d="m20 20-4-4" stroke-width="2" stroke-linecap="round"></path></svg></label>
+                        </div>
+                        <div class="icon-library gallery-panel p-0" data-icon-library="color2" data-count="30"></div>
+                    </section>
+                </div>
+
+                <!-- 实物图标面板（完整补全 01-04 章节内容） -->
                 <div id="realistic-pane" class="icon-pane space-y-12" role="tabpanel" data-icon-pane="realistic" hidden>
+                    <!-- 01 设计原则 -->
                     <section class="gallery-panel p-6 sm:p-10 space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">01</span>
                             <h2 class="color-section-title" data-i18n-zh="设计原则" data-i18n-en="Design Principles">设计原则</h2>
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="写实图标以真实物体为基础，通过统一光影、克制色彩和品牌化造型建立温暖、清晰且一致的视觉语言。" data-i18n-en="Realistic icons are based on real objects, establishing a warm, clear, and consistent visual language through unified lighting, restrained color, and branded shapes.">写实图标以真实物体为基础，通过统一光影、克制色彩和品牌化造型建立温暖、清晰且一致的视觉语言。</p>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="实物图标以真实物体为基础，通过统一光影、克制色彩和品牌化造型建立温暖、清晰且一致的视觉语言。" data-i18n-en="Realistic icons are based on real objects, establishing a warm, clear, and consistent visual language through unified lighting, restrained color, and branded shapes.">实物图标以真实物体为基础，通过统一光影、克制色彩和品牌化造型建立温暖、清晰且一致的视觉语言。[cite: 21]</p>
                         <div class="divide-y divide-gray-800">
-                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="真实的亲和力" data-i18n-en="Realistic Affinity">真实的亲和力</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="图形源于真实生活，并进行适度风格化提炼；避免纯粹抽象符号，在保持辨识度的同时呈现温暖、可触摸的质感。" data-i18n-en="Graphics stem from real life with moderate stylized refinement; avoiding pure abstract symbols while presenting a warm, tactile texture.">图形源于真实生活，并进行适度风格化提炼；避免纯粹抽象符号，在保持辨识度的同时呈现温暖、可触摸的质感。</p></article>
-                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="一致的光影叙事" data-i18n-en="Consistent Lighting Narrative">一致的光影叙事</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="所有图标处于统一的光源环境，以一致的光影方向塑造体积感，并建立品牌视觉世界的秩序与真实性。" data-i18n-en="All icons share a unified light source environment, shaping volume with consistent lighting direction and establishing order and authenticity.">所有图标处于统一的光源环境，以一致的光影方向塑造体积感，并建立品牌视觉世界的秩序与真实性。</p></article>
-                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="克制的色彩表达" data-i18n-en="Restrained Color Expression">克制的色彩表达</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="色彩服务于品牌，通过标准色板传达层次与情感，确保整体和谐并保持品牌独特性。" data-i18n-en="Color serves the brand, conveying hierarchy and emotion through standard palettes to ensure overall harmony and uniqueness.">色彩服务于品牌，通过标准色板传达层次与情感，确保整体和谐并保持品牌独特性。</p></article>
-                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="品牌定位" data-i18n-en="Brand Positioning">品牌定位</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="光影对比更强烈，造型更硬朗，色彩更沉稳。体现专业与可靠。" data-i18n-en="Stronger lighting contrast, more rigid styling, and calmer colors. Reflecting professionalism and reliability.">光影对比更强烈，造型更硬朗，色彩更沉稳。体现专业与可靠。</p></article>
+                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="真实的亲和力" data-i18n-en="Realistic Affinity">真实的亲和力</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="图形源于真实生活，并进行适度风格化提炼；避免纯粹抽象符号，在保持辨识度的同时呈现温暖、可触摸的质感。" data-i18n-en="Graphics stem from real life with moderate stylized refinement; avoiding pure abstract symbols while presenting a warm, tactile texture.">图形源于真实生活，并进行适度风格化提炼；避免纯粹抽象符号，在保持辨识度的同时呈现温暖、可触摸的质感。[cite: 21]</p></article>
+                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="一致的光影叙事" data-i18n-en="Consistent Lighting Narrative">一致的光影叙事</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="所有图标处于统一的光源环境，以一致的光影方向塑造体积感，并建立品牌视觉世界的秩序与真实性。" data-i18n-en="All icons share a unified light source environment, shaping volume with consistent lighting direction and establishing order and authenticity.">所有图标处于统一的光源环境，以一致的光影方向塑造体积感，并建立品牌视觉世界的秩序与真实性。[cite: 21]</p></article>
+                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="克制的色彩表达" data-i18n-en="Restrained Color Expression">克制的色彩表达</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="色彩服务于品牌，通过标准色板传达层次与情感，确保整体和谐并保持品牌独特性。" data-i18n-en="Color serves the brand, conveying hierarchy and emotion through standard palettes to ensure overall harmony and uniqueness.">色彩服务于品牌，通过标准色板传达层次与情感，确保整体和谐并保持品牌独特性。[cite: 21]</p></article>
+                            <article class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-10 py-6"><h3 class="text-sm font-semibold text-white" data-i18n-zh="品牌定位" data-i18n-en="Brand Positioning">品牌定位</h3><p class="text-sm text-gray-400 leading-relaxed" data-i18n-zh="光影对比更强烈，造型更硬朗，色彩更沉稳。体现专业与可靠。" data-i18n-en="Stronger lighting contrast, more rigid styling, and calmer colors. Reflecting professionalism and reliability.">光影对比更强烈，造型更硬朗，色彩更沉稳。体现专业与可靠。[cite: 21]</p></article>
                         </div>
                     </section>
 
+                    <!-- 02 视觉风格基准 -->
                     <section class="gallery-panel p-6 sm:p-10 space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">02</span>
                             <h2 class="color-section-title" data-i18n-zh="视觉风格基准" data-i18n-en="Visual Style Baseline">视觉风格基准</h2>
                         </div>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="核心写实图标以 256 × 256px 为基准尺寸，并在同一品类中保持统一朝向、角标位置和光影条件。" data-i18n-en="Core realistic icons are based on 256 × 256px, maintaining unified orientation, badge position, and lighting conditions within the same category.">核心写实图标以 256 × 256px 为基准尺寸，并在同一品类中保持统一朝向、角标位置和光影条件。</p>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="核心实物图标以 256 × 256px 为基准尺寸，并在同一品类中保持统一朝向、角标位置和光影条件。" data-i18n-en="Core realistic icons are based on 256 × 256px, maintaining unified orientation, badge position, and lighting conditions within the same category.">核心实物图标以 256 × 256px 为基准尺寸，并在同一品类中保持统一朝向、角标位置和光影条件。</p>
                         <div class="overflow-x-auto border border-gray-800">
                             <table class="baseline-table min-w-[720px]">
                                 <thead>
@@ -497,6 +490,7 @@
                         </div>
                     </section>
 
+                    <!-- 03 光影与体积 -->
                     <section class="gallery-panel p-6 sm:p-10 space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">03</span>
@@ -504,7 +498,7 @@
                         </div>
                         <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="采用左上角 45° 定向光源，通过高对比度与清晰过渡塑造硬朗坚实的产品体积感。" data-i18n-en="Using a top-left 45° directional light source, shaping a rigid and solid product volume through high contrast and clear transitions.">采用左上角 45° 定向光源，通过高对比度与清晰过渡塑造硬朗坚实的产品体积感。</p>
                         <div class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-8 items-center pt-4">
-                            <img src="assets/examples/iconography/color-icon-lighting-reference1.png" alt="写实图标定向光影参考" class="border border-white/10 w-full h-auto object-cover">
+                            <img src="assets/examples/iconography/color-icon-lighting-reference1.png" alt="实物图标定向光影参考" class="border border-white/10 w-full h-auto object-cover">
                             <div class="space-y-5 text-sm text-gray-400">
                                 <div><h3 class="font-semibold text-white mb-1" data-i18n-zh="高光形态" data-i18n-en="Highlight Form">高光形态</h3><p data-i18n-zh="位于物体的左上边缘，形态清晰。" data-i18n-en="Located on the top-left edge of the object with clear form.">位于物体的左上边缘，形态清晰。</p></div>
                                 <div><h3 class="font-semibold text-white mb-1" data-i18n-zh="过渡与反射" data-i18n-en="Transition & Reflection">过渡与反射</h3><p data-i18n-zh="明暗交界线过度自然，反射光聚集在物体的右下部分，由环境光或主色光反射柔和的暗部光。" data-i18n-en="Natural transitions, reflected light gathered at the bottom-right.">明暗交界线过度自然，反射光聚集在物体的右下部分，由环境光或主色光反射柔和的暗部光。</p></div>
@@ -513,6 +507,7 @@
                         </div>
                     </section>
 
+                    <!-- 04 构图与透视 -->
                     <section class="gallery-panel p-6 sm:p-10 space-y-6">
                         <div class="flex items-baseline gap-4">
                             <span class="module-num text-3xl text-[#E9BD85]">04</span>
@@ -520,7 +515,7 @@
                         </div>
                         <p class="text-gray-400 text-sm leading-relaxed" data-i18n-zh="通过稳定的侧视视角与定向强光塑造体积感与专业沉稳的产品特征。" data-i18n-en="Shaping volume and professional steady product characteristics through stable side views and directional strong light.">通过稳定的侧视视角与定向强光塑造体积感与专业沉稳的产品特征。</p>
                         <div class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-8 items-center pt-4">
-                            <img src="assets/examples/iconography/color-icon-do-perspective2.png" alt="写实图标构图与透视示例" class="border border-white/10 w-full h-auto object-cover">
+                            <img src="assets/examples/iconography/color-icon-do-perspective2.png" alt="实物图标构图与透视示例" class="border border-white/10 w-full h-auto object-cover">
                             <div class="space-y-5 text-sm text-gray-400">
                                 <div><h3 class="font-semibold text-white mb-1" data-i18n-zh="侧视视角" data-i18n-en="Side Perspective">侧视视角</h3><p data-i18n-zh="核心视角为四分之三侧视角，建立更具空间立体感的形态架构。" data-i18n-en="Core perspective is three-quarter side view, establishing spatial three-dimensional architecture.">核心视角为四分之三侧视角，建立更具空间立体感的形态架构。</p></div>
                                 <div><h3 class="font-semibold text-white mb-1" data-i18n-zh="光影塑造硬朗体积" data-i18n-en="Lighting Shaping Rigid Volume">光影塑造硬朗体积</h3><p data-i18n-zh="依靠左上角 45° 强烈光影对比塑造坚实有力的体积感与专业质感；同一品类保持一致视角。" data-i18n-en="Relying on top-left 45° lighting contrast to shape solid volume; maintaining consistent perspective.">依靠左上角 45° 强烈光影对比塑造坚实有力的体积感与专业质感；同一品类保持一致视角。</p></div>
@@ -537,7 +532,6 @@
         </main>
     </div>
 
-    <!-- 全屏放大弹窗结构 -->
     <div id="icon-modal">
         <div class="modal-content-box">
             <img id="modal-img" src="" alt="">
@@ -545,7 +539,6 @@
         </div>
     </div>
 
-    <!-- 动态网格填充脚本，支持中英文实时动态切换 -->
     <script>
         const baseNames = [
             { name: "节能", nameEn: "Energy Saving" },
@@ -573,10 +566,9 @@
             });
         }
 
-        // 渲染图标库时同时绑定中英文数据属性，便于切换语言时即时刷新显示
         document.querySelectorAll('[data-icon-library]').forEach((library) => {
             const count = Number(library.dataset.count || 0);
-            const isLinear = library.dataset.iconLibrary === 'linear';
+            const libType = library.dataset.iconLibrary;
             const fragment = document.createDocumentFragment();
 
             for (let index = 1; index <= count; index += 1) {
@@ -585,7 +577,7 @@
 
                 const currentLang = localStorage.getItem('haier-guideline-language') || 'zh';
 
-                if (isLinear && index <= 90) {
+                if (libType === 'overview' && index <= 90) {
                     const iconData = linearAllIcons[index - 1];
                     slot.classList.add('clickable');
                     slot.dataset.nameZh = iconData.name;
@@ -605,11 +597,52 @@
                         openIconModal(imgPath, currentLang === 'zh' ? iconData.name : iconData.nameEn);
                     });
                 } else {
-                    const category = isLinear ? '总' : '通用';
-                    const numStr = String(index).padStart(2, '0');
-                    slot.dataset.iconName = `${category} ${numStr}`.trim();
-                    slot.setAttribute('aria-label', `Icon slot ${index}`);
-                    slot.innerHTML = `<span class="icon-slot-mark" aria-hidden="true">+</span><span class="icon-slot-label">${numStr}</span>`;
+                    let targetOverviewIndex = -1;
+
+                    if (libType === 'linear' && index >= 1 && index <= 20) {
+                        targetOverviewIndex = index; // 1. 线性图标 01~20 -> 总览 01~20
+                    } else if (libType === 'wireframe1' && index >= 1 && index <= 10) {
+                        targetOverviewIndex = index + 40; // 2. 线框图标1 01~10 -> 总览 41~50
+                    } else if (libType === 'wireframe2' && index >= 1 && index <= 20) {
+                        targetOverviewIndex = index + 60; // 3. 线框图标2 01~20 -> 总览 61~80
+                    } else if (libType === 'filled' && index >= 1 && index <= 10) {
+                        targetOverviewIndex = index + 20; // 4. 面性图标 01~10 -> 总览 21~30
+                    } else if (libType === 'color1' && index >= 1 && index <= 10) {
+                        targetOverviewIndex = index + 30; // 5. 填充图标1 01~10 -> 总览 31~40
+                    } else if (libType === 'color2' && index >= 1 && index <= 20) {
+                        if (index <= 10) {
+                            targetOverviewIndex = index + 50; // 6. 填充图标2 01~10 -> 总览 51~60
+                        } else {
+                            targetOverviewIndex = index + 70; // 6. 填充图标2 11~20 -> 总览 81~90
+                        }
+                    }
+
+                    if (targetOverviewIndex !== -1 && targetOverviewIndex <= 90) {
+                        const iconData = linearAllIcons[targetOverviewIndex - 1];
+                        slot.classList.add('clickable');
+                        slot.dataset.nameZh = iconData.name;
+                        slot.dataset.nameEn = iconData.nameEn;
+                        slot.dataset.iconName = `通用 ${iconData.name}`;
+                        slot.setAttribute('aria-label', iconData.name);
+                        
+                        const imgPath = `assets/icons/Linear icon/All/${iconData.file}`;
+                        const displayName = currentLang === 'zh' ? iconData.name : iconData.nameEn;
+                        slot.innerHTML = `
+                            <img src="${imgPath}" alt="${iconData.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <span class="icon-slot-mark" aria-hidden="true" style="display:none;">+</span>
+                            <span class="icon-slot-label" data-label-zh="${iconData.name}" data-label-en="${iconData.nameEn}">${displayName}</span>
+                        `;
+
+                        slot.addEventListener('click', () => {
+                            openIconModal(imgPath, currentLang === 'zh' ? iconData.name : iconData.nameEn);
+                        });
+                    } else {
+                        const category = '通用';
+                        const numStr = String(index).padStart(2, '0');
+                        slot.dataset.iconName = `${category} ${numStr}`.trim();
+                        slot.setAttribute('aria-label', `Icon slot ${index}`);
+                        slot.innerHTML = `<span class="icon-slot-mark" aria-hidden="true">+</span><span class="icon-slot-label">${numStr}</span>`;
+                    }
                 }
 
                 fragment.appendChild(slot);
@@ -617,7 +650,6 @@
             library.appendChild(fragment);
         });
 
-        // 弹窗逻辑控制
         const modal = document.getElementById('icon-modal');
         const modalImg = document.getElementById('modal-img');
         const modalText = document.getElementById('modal-text');
@@ -639,7 +671,7 @@
             if (!library) return;
             const buttons = Array.from(filter.querySelectorAll('[data-icon-category]'));
             const search = filter.querySelector('[data-icon-search]');
-            let activeCategory = '总';
+            let activeCategory = '通用';
 
             const applyIconFilter = () => {
                 const keyword = search.value.trim().toLowerCase();
@@ -677,8 +709,8 @@
                     buttons.forEach((item) => item.classList.toggle('active', item === button));
                     
                     library.querySelectorAll('.icon-slot').forEach((slot, index) => {
-                        const isLinear = library.dataset.iconLibrary === 'linear';
-                        if (isLinear && activeCategory === '总' && index < 90) {
+                        const libType = library.dataset.iconLibrary;
+                        if (libType === 'overview' && activeCategory === '总' && index < 90) {
                             const iconData = linearAllIcons[index];
                             const currentLang = localStorage.getItem('haier-guideline-language') || 'zh';
                             slot.dataset.iconName = `总 ${currentLang === 'zh' ? iconData.name : iconData.nameEn}`;
@@ -711,7 +743,6 @@
             });
         });
 
-        // 监听语言切换事件，实时刷新图标下方名称文本
         window.addEventListener('storage', () => {
             const lang = localStorage.getItem('haier-guideline-language') || 'zh';
             document.querySelectorAll('.icon-slot-label[data-label-zh]').forEach(label => {

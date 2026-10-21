@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n-en="Haier Design | Combined Layout" data-i18n-zh="Haier Design | 组合布局">Haier Design | 组合布局</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>.casarte-tftled-page{ --brand:#E9BD85; --ink:#F5F5F7; --muted:#A7A29A; --glass:rgba(22,22,26,.75); }.casarte-tftled-page{ font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:#F5F7FA; color:var(--ink); overflow-x:hidden; }.casarte-tftled-page .aura-background{ position:fixed; inset:0; z-index:-1; background:radial-gradient(circle at 12% 4%,#c9e3ff 0,transparent 32%),radial-gradient(circle at 88% 70%,#dfe7ff 0,transparent 38%),#f5f7fa; }.casarte-tftled-page .glass-panel:where(:not(#sidebar)){ background:var(--glass); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid rgba(255,255,255,.10); box-shadow:0 8px 32px rgba(0,0,0,.04); border-radius:24px; }.casarte-tftled-page .haier-logo-container:where(:not(#sidebar *)){ display:flex; align-items:center; justify-content:center; background:var(--brand); color:#fff; font-family:Arial,sans-serif; font-weight:bold; border-radius:8px; }.casarte-tftled-page .brand-text{ color:var(--brand); }.casarte-tftled-page .axis-card{ position:relative; overflow:hidden; }.casarte-tftled-page .axis-image{ width:100%; aspect-ratio:2.36/1; display:block; object-fit:cover; background:#000; }.casarte-tftled-page .axis-content{ position:relative; min-height:230px; }.casarte-tftled-page .axis-mark{ position:absolute; right:18px; top:8px; font-size:7rem; line-height:1; font-weight:700; color:rgba(233,189,133,.08); }.casarte-tftled-page .axis-line{ height:2px; background:linear-gradient(90deg,var(--brand),rgba(233,189,133,.08)); position:relative; }.casarte-tftled-page .axis-line::after{ content:""; position:absolute; right:0; top:-4px; border-left:8px solid var(--brand); border-top:5px solid transparent; border-bottom:5px solid transparent; }.casarte-tftled-page .layer-stage{ position:relative; overflow:hidden; border-radius:20px; background:#19181A; }.casarte-tftled-page .layer-stage img{ width:100%; height:auto; display:block; }.casarte-tftled-page .layer-copy{ position:absolute; left:8%; width:48%; display:grid; grid-template-columns:minmax(72px,24%) 1fr; gap:clamp(8px,1.6vw,24px); align-items:center; transform:translateY(-50%); font-size:clamp(8px,1.15vw,14px); line-height:1.5; }.casarte-tftled-page .layer-copy-top{ top:29%; }.casarte-tftled-page .layer-copy-mid{ top:50%; }.casarte-tftled-page .layer-copy-deep{ top:71%; }.casarte-tftled-page .layer-copy strong{ color:#E9BD85; font-size:clamp(8px,1.15vw,14px); font-weight:600; white-space:nowrap; }.casarte-tftled-page .layer-copy span{ color:rgba(75,85,99,.72); transform:translateX(-32px); }.casarte-tftled-page .rule-row{ display:grid; grid-template-columns:132px 1fr; gap:18px; padding:18px 0; border-top:1px solid rgba(15,23,42,.08); }.casarte-tftled-page .rule-row > div:first-child{ color:#F5F5F7; }.casarte-tftled-page .check-card{ border-top:3px solid var(--brand); }.casarte-tftled-page .check-card h3{ color:var(--brand); }.casarte-tftled-page .must-list li::before{ content:"✓"; color:var(--brand); font-weight:700; margin-right:.65rem; }.casarte-tftled-page .dont-list li::before{ content:"×"; color:#E5484D; font-weight:700; margin-right:.65rem; }
+    @media (max-width:767px) {.casarte-tftled-page .rule-row{grid-template-columns:1fr;gap:6px}.casarte-tftled-page .axis-mark{font-size:5rem} }.casarte-tftled-page main section.glass-panel{padding:2.5rem!important;margin-bottom:2rem!important}.casarte-tftled-page main section.glass-panel h2{font-size:1.5rem!important;line-height:2rem!important;color:#F5F5F7!important}
+    @media(max-width:767px){.casarte-tftled-page main section.glass-panel{padding:1.5rem!important}}.casarte-tftled-page .ia-seven-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 16px;
+  row-gap: 32px;
+}.casarte-tftled-page .ia-seven-item{
+  min-width: 0;
+}.casarte-tftled-page .ia-seven-item h3{
+  min-height: 48px;
+  margin-bottom: 6px;
+  color: #E8E3DB;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.55;
+}.casarte-tftled-page .ia-image-box{
+  width: 100%;
+  aspect-ratio: 1.7 / 1;
+  overflow: hidden;
+  border: 1px solid #D8E5F1;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #171619, #1C1B1D);
+}.casarte-tftled-page .ia-image-box img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+@media (max-width: 1050px) {.casarte-tftled-page .ia-seven-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {.casarte-tftled-page .ia-seven-grid{
+    grid-template-columns: 1fr;
+  }.casarte-tftled-page .ia-seven-item h3{
+    min-height: 0;
+  }
+}.casarte-tftled-page .info-category-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}.casarte-tftled-page .info-category-card{
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+
+  min-width: 0;
+  min-height: 142px;
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(238, 247, 255, 0.78)
+    );
+
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+}.casarte-tftled-page .info-category-mark{
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #F2D3A8,
+      #B98954
+    );
+
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+
+  box-shadow:
+    0 5px 12px rgba(34, 131, 226, 0.20);
+}.casarte-tftled-page .info-category-mark.is-88{
+  font-size: 10px;
+}.casarte-tftled-page .info-category-card h3{
+  margin: 2px 0 6px;
+
+  color: #F5F5F7;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}.casarte-tftled-page .info-category-card p{
+  margin: 0;
+
+  color: #A7A29A;
+  font-size: 13px;
+  line-height: 1.7;
+}.casarte-tftled-page .info-category-summary{
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+
+  margin-top: 24px;
+  padding: 20px 24px;
+
+  color: #FFFFFF;
+
+  background:
+    linear-gradient(
+      90deg,
+      #9A7046,
+      #DDB989
+    );
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 12px 26px rgba(34, 131, 226, 0.18);
+}.casarte-tftled-page .info-category-summary-title{
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}.casarte-tftled-page .info-category-summary-flow{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  line-height: 1.6;
+}.casarte-tftled-page .info-category-arrow{
+  color: #F5DFC1;
+  font-weight: 700;
+}
+
+
+@media (max-width: 1050px) {.casarte-tftled-page .info-category-grid{
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+@media (max-width: 640px) {.casarte-tftled-page .info-category-grid{
+    grid-template-columns: 1fr;
+  }.casarte-tftled-page .info-category-card{
+    min-height: auto;
+  }.casarte-tftled-page .info-category-summary{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}.casarte-tftled-page .scene-hero{
+  display: block;
+}.casarte-tftled-page .scene-kicker{ color:var(--brand); font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }.casarte-tftled-page .scene-map{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }.casarte-tftled-page .scene-map span{ padding:12px 8px; border:1px solid rgba(255,255,255,.12); border-radius:12px; color:#A7A29A; background:rgba(255,255,255,.035); text-align:center; font-size:12px; }.casarte-tftled-page .scene-map b{ display:block; margin-bottom:3px; color:#E9BD85; font-size:14px; }.casarte-tftled-page .scene-heading{ display:flex; align-items:flex-start; gap:16px; margin-bottom:28px; }.casarte-tftled-page .scene-heading-num{ flex:0 0 48px; height:48px; display:grid; place-items:center; border-radius:14px; color:#DDB989; background:rgba(233,189,133,.12); font-weight:700; font-size:18px; }.casarte-tftled-page .scene-heading p{ margin-top:6px; color:#A7A29A; font-size:13px; line-height:1.7; }.casarte-tftled-page .scene-chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }.casarte-tftled-page .scene-chip{ padding:7px 11px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:#B8B0A5; background:rgba(255,255,255,.06); font-size:12px; }.casarte-tftled-page .scene-compare{ display:grid; grid-template-columns:1fr; gap:18px; }.casarte-tftled-page .scene-card{ display:grid; grid-template-columns:220px minmax(0,1fr); gap:24px; align-items:center; min-width:0; padding:18px; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); }.casarte-tftled-page .scene-card-head{ display:flex; gap:12px; align-items:flex-start; margin:0; padding-left:4px; }.casarte-tftled-page .scene-index{ flex:0 0 auto; min-width:34px; height:34px; padding:0 8px; display:grid; place-items:center; border-radius:10px; color:#fff; background:linear-gradient(145deg,#F2D3A8,#B98954); font-size:12px; font-weight:700; box-shadow:0 6px 14px rgba(233,189,133,.12); }.casarte-tftled-page .scene-card h3, .casarte-tftled-page .scene-rule h3{ color:#F5F5F7; font-size:16px; font-weight:700; line-height:1.6; }.casarte-tftled-page .scene-card .meta, .casarte-tftled-page .scene-rule .meta{ margin-top:4px; color:#A7A29A; font-size:12px; line-height:1.6; }.casarte-tftled-page .scene-card figure{ min-width:0; padding:8px; border-radius:13px; background:rgba(255,255,255,.035); }.casarte-tftled-page .scene-card img, .casarte-tftled-page .scene-rule img{ width:100%; height:auto; display:block; }.casarte-tftled-page .scene-rule-list{ display:grid; gap:16px; }.casarte-tftled-page .scene-rule{ display:grid; grid-template-columns:220px minmax(0,1fr); gap:24px; align-items:center; padding:18px; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:rgba(255,255,255,.035); }.casarte-tftled-page .scene-rule-copy{ padding:6px 0 6px 4px; }.casarte-tftled-page .scene-rule figure{ min-width:0; margin:0; padding:8px; border-radius:13px; background:linear-gradient(145deg,#1A191B,#19181A); }.casarte-tftled-page .scene-rule.is-featured .scene-index{ background:linear-gradient(145deg,#9A7046,#DDB989); }.casarte-tftled-page .scene-mini-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }.casarte-tftled-page .scene-mini-grid > section{ margin-bottom:0!important; }.casarte-tftled-page .scene-vertical-card{ display:flex; flex-direction:column; min-height:100%; padding:24px; border:1px solid rgba(255,255,255,.12); border-radius:18px; background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); }.casarte-tftled-page .scene-vertical-card figure{ flex:1; display:grid;align-items: start;
+justify-items: center; min-height:300px; margin:0; border-radius:14px; background:rgba(255,255,255,.55); }
+@media(max-width:1050px){.casarte-tftled-page .scene-hero{grid-template-columns:1fr}.casarte-tftled-page .scene-map{max-width:620px}.casarte-tftled-page .scene-card, .casarte-tftled-page .scene-rule{grid-template-columns:1fr}.casarte-tftled-page .scene-mini-grid{grid-template-columns:1fr}.casarte-tftled-page .scene-card-head{padding:2px 0 0}}
+@media(max-width:640px){.casarte-tftled-page .scene-map{grid-template-columns:repeat(2,1fr)}.casarte-tftled-page .scene-heading-num{flex-basis:42px;height:42px}.casarte-tftled-page .scene-card{padding:15px}.casarte-tftled-page .scene-rule{padding:15px}.casarte-tftled-page .scene-vertical-card figure{min-height:220px}}.casarte-tftled-page .scene-heading{
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 20px;
+  row-gap: 10px;
+  align-items: center;
+  margin-bottom: 28px;
+}.casarte-tftled-page .scene-heading > div:nth-child(2){
+  display: contents;
+}.casarte-tftled-page .scene-heading-num{
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+}.casarte-tftled-page .scene-heading h2{
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  margin: 0;
+}.casarte-tftled-page .scene-heading p{
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+  color: #A7A29A;
+  font-size: 14px;
+  line-height: 1.7;
+}.casarte-tftled-page .scene-rule-list{
+  display: grid;
+  gap: 18px;
+}.casarte-tftled-page .scene-rule{
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+
+  padding: 18px;
+
+  
+  background: linear-gradient(
+    120deg,
+    rgba(234, 245, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.68) 100%
+  );
+
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+}.casarte-tftled-page .scene-rule-copy{
+  padding: 8px 4px;
+}.casarte-tftled-page .scene-rule-copy h3{
+  margin: 0 0 8px;
+
+  color: #F5F5F7;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+}.casarte-tftled-page .scene-rule-copy .meta{
+  margin: 0;
+
+  color: #A7A29A;
+  font-size: 13px;
+  line-height: 1.7;
+}.casarte-tftled-page .scene-rule figure{
+  min-width: 0;
+  margin: 0;
+  padding: 8px;
+
+  border-radius: 13px;
+  background: linear-gradient(145deg, #1A191B, #19181A);
+}.casarte-tftled-page .scene-rule figure img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+@media (max-width: 900px) {.casarte-tftled-page .scene-rule{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}.casarte-tftled-page .scene-category-header{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 8px 0 18px;
+  padding: 2px 0;
+}.casarte-tftled-page .scene-category-header::before{
+  content: "";
+
+  width: 4px;
+  height: 24px;
+  flex-shrink: 0;
+
+  background: #E9BD85;
+  border-radius: 4px;
+}.casarte-tftled-page .scene-category-header h3{
+  margin: 0;
+
+  color: #F5F5F7;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}.casarte-tftled-page .scene-category-divider{
+  height: 1px;
+  margin: 36px 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(34, 131, 226, 0.08),
+    rgba(34, 131, 226, 0.35),
+    rgba(34, 131, 226, 0.08)
+  );
+}.casarte-tftled-page .layout-rule-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 32px 0 16px;
+    color: #F5F5F7;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+}.casarte-tftled-page .layout-rule-title::before{
+    content: "";
+    width: 4px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #E9BD85;
+}.casarte-tftled-page .layout-example-group{
+  margin-top: 30px;
+}.casarte-tftled-page .layout-example-group:first-of-type{
+  margin-top: 0;
+}.casarte-tftled-page .layout-example-name{
+  margin: 0 0 14px;
+  color: #E8E3DB;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}.casarte-tftled-page .layout-horizontal-stack{
+  display: grid;
+  gap: 20px;
+}.casarte-tftled-page .layout-horizontal-stack figure{
+  margin: 0;
+}.casarte-tftled-page .layout-horizontal-stack img{
+  display: block;
+  width: 100%;
+  height: auto;
+}.casarte-tftled-page .layout-vertical-compare{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  margin-top: 28px;
+}.casarte-tftled-page .layout-vertical-compare-item{
+  min-width: 0;
+}.casarte-tftled-page .layout-vertical-compare-item p{
+  margin: 0 0 16px;
+  color: #E8E3DB;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-align: center;
+}.casarte-tftled-page .layout-vertical-compare-item figure{
+  margin: 0;
+}.casarte-tftled-page .layout-vertical-compare-item img{
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+}
+
+@media (max-width: 760px) {.casarte-tftled-page .layout-vertical-compare{
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}.casarte-tftled-page .prototype-stack{
+  display: grid;
+  gap: 20px;
+}.casarte-tftled-page .prototype-image, .casarte-tftled-page .prototype-image img{
+  width: 100%;
+  display: block;
+}.casarte-tftled-page .prototype-copy{
+  margin: -4px 0 18px 16px;
+  max-width: 860px;
+  color: #AAA49B;
+  font-size: 15px;
+  line-height: 1.8;
+}.casarte-tftled-page .vertical-scheme-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 46px;
+  margin-top: 32px;
+}.casarte-tftled-page .vertical-scheme-title{
+    margin: 0 0 16px;
+    color: #E8E3DB;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+}.casarte-tftled-page .vertical-image-grid{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--image-gap, 8px);
+}.casarte-tftled-page .vertical-image-grid figure{
+    flex: 0 0 auto;
+    width: var(--image-width, 220px);
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}.casarte-tftled-page .vertical-image-grid figure img{
+    display: block;
+    width: 100% !important;
+    max-width: none;
+    height: auto !important;
+    margin: 0 !important;
+}
+
+
+
+@media (max-width: 768px) {.casarte-tftled-page .prototype-section{
+    padding: 38px 22px;
+  }.casarte-tftled-page .vertical-scheme-grid{
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }.casarte-tftled-page .prototype-subtitle{
+    font-size: 18px;
+    color: #F5F5F7;
+  }
+}.casarte-tftled-page .prototype-section .scene-heading{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 38px;
+}.casarte-tftled-page .prototype-section .scene-heading-num{
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(233,189,133,.12);
+  color: #DDB989;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}.casarte-tftled-page .prototype-section .scene-heading h2{
+  margin: 0;
+  color: #F5F5F7;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}.casarte-tftled-page .tftled-tabs{
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(255,255,255,.13);
+  scrollbar-width: none;
+}.casarte-tftled-page .tftled-tabs::-webkit-scrollbar{
+  display: none;
+}.casarte-tftled-page .tftled-tab{
+  flex: 0 0 auto;
+  padding: 0 0 14px;
+  color: #9CA3AF;
+  font-size: 14px;
+  font-weight: 500;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}.casarte-tftled-page .tftled-tab:hover{
+  color: var(--brand);
+}.casarte-tftled-page .tftled-tab.active{
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+  font-weight: 600;
+}.casarte-tftled-page .tftled-pane{
+  display: none;
+}.casarte-tftled-page .tftled-pane.active{
+  display: block;
+  animation: casarte-tftled-pane-in 0.24s ease-out;
+}
+
+@keyframes casarte-tftled-pane-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}.casarte-tftled-page .tftled-pane .scene-heading h2, .casarte-tftled-page .tftled-pane .prototype-section .scene-heading h2{
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 32px !important;
+    letter-spacing: normal !important;
+    color: #F5F5F7 !important;
+    margin: 0 !important;
+}.casarte-tftled-page .tftled-pane .scene-heading-num, .casarte-tftled-page .tftled-pane .prototype-section .scene-heading-num{
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #DDB989;
+    background: rgba(233,189,133,.12);
+    border-radius: 14px;
+}.casarte-tftled-page .tftled-pane .layout-rule-title, .casarte-tftled-page .tftled-pane .prototype-subtitle{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #F5F5F7;
+}.casarte-tftled-page .tftled-pane .layout-rule-title::before, .casarte-tftled-page .tftled-pane .prototype-subtitle::before{
+  content: "";
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  background: #E9BD85;
+  border-radius: 1px;
+}.casarte-tftled-page .tftled-pane .layout-rule-title, .casarte-tftled-page .tftled-pane .prototype-subtitle{
+    margin: 32px 0 16px;
+}.casarte-tftled-page .tftled-pane .prototype-caption, .casarte-tftled-page .tftled-pane .layout-example-name{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #E8E3DB;
+}.casarte-tftled-page .tftled-pane .scene-heading{
+    column-gap: 20px;
+}.casarte-tftled-page .tftled-pane > section.glass-panel, .casarte-tftled-page .tftled-pane > section.prototype-section{
+    padding: 40px !important;
+    margin-bottom: 40px !important;
+
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 24px;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}.casarte-tftled-page .tftled-pane .scene-heading, .casarte-tftled-page .tftled-pane .prototype-section .scene-heading{
+    margin-bottom: 28px;
+}.casarte-tftled-page .tftled-pane .layout-rule-title, .casarte-tftled-page .tftled-pane .prototype-subtitle{
+    margin-top: 32px;
+    margin-bottom: 16px;
+}.casarte-tftled-page .tftled-pane .layout-example-name, .casarte-tftled-page .tftled-pane .vertical-scheme-title{
+    margin-top: 0;
+    margin-bottom: 14px;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #E8E3DB;
+}.casarte-tftled-page .tftled-pane .prototype-caption{
+    margin-top: 30px;
+    margin-bottom: 14px;
+}.casarte-tftled-page .tftled-pane .layout-horizontal-stack, .casarte-tftled-page .tftled-pane .prototype-stack{
+    gap: 20px;
+}.casarte-tftled-page .tftled-pane .layout-example-group{
+    margin-top: 30px;
+}
+
+
+@media (max-width: 767px) {.casarte-tftled-page .tftled-pane > section.glass-panel, .casarte-tftled-page .tftled-pane > section.prototype-section{
+        padding: 24px !important;
+        margin-bottom: 24px !important;
+    }
+}.casarte-tftled-page .tftled-pane .scene-heading, .casarte-tftled-page .tftled-pane .prototype-section .scene-heading{
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+
+    margin-top: 0 !important;
+    margin-bottom: 28px !important;
+}.casarte-tftled-page .tftled-pane .scene-heading > div:nth-child(2){
+    display: block !important;
+}.casarte-tftled-page .tftled-pane .scene-heading-num, .casarte-tftled-page .tftled-pane .scene-heading h2{
+    grid-column: auto !important;
+    grid-row: auto !important;
+}.casarte-tftled-page .tftled-pane .scene-heading + .layout-rule-title, .casarte-tftled-page .tftled-pane .scene-heading + .prototype-subtitle{
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+}.casarte-tftled-page .tftled-pane .layout-framework-description{
+    margin: -12px 0 28px;
+    color: #A7A29A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    text-align: left;
+}.casarte-tftled-page .tftled-pane .layout-image-description{
+    margin: 0 0 12px;
+    color: #A7A29A;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    text-align: left;
+}.casarte-tftled-page .tftled-pane .layout-image-description-c{
+    margin-top: 20px;
+}
+
+
+
+
+
+/* Casarte theme overrides: component-scoped to this page only */
+.casarte-tftled-page {
+  --brand: #E9BD85;
+  --ink: #F5F5F7;
+  --muted: #A7A29A;
+  --glass: rgba(22,22,26,.76);
+  color: #F5F5F7;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+.casarte-tftled-page .aura-background {
+  background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+  pointer-events: none;
+}
+.casarte-tftled-page .glass-panel:where(:not(#sidebar)),
+.casarte-tftled-page .prototype-section {
+  background: rgba(22,22,26,.76) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 14px 38px rgba(0,0,0,.22) !important;
+  -webkit-backdrop-filter: blur(32px);
+  backdrop-filter: blur(32px);
+}
+.casarte-tftled-page h1,
+.casarte-tftled-page h2,
+.casarte-tftled-page h3,
+.casarte-tftled-page h4 { color:#F5F5F7; }
+.casarte-tftled-page main { color:#D8D3CB; }
+.casarte-tftled-page main .text-gray-900,
+.casarte-tftled-page main .text-gray-800,
+.casarte-tftled-page main .text-gray-700,
+.casarte-tftled-page main .text-gray-600,
+.casarte-tftled-page main .text-gray-500,
+.casarte-tftled-page main .text-gray-400 { color:#AAA49B !important; }
+.casarte-tftled-page .haier-logo-container:where(:not(#sidebar *)) {
+  background:linear-gradient(135deg,#F2D3A8,#B98954) !important;
+  color:#171411 !important;
+  border-radius:2px !important;
+}
+.casarte-tftled-page .scene-heading-num,
+.casarte-tftled-page .scene-index {
+  background:rgba(233,189,133,.14) !important;
+  border:1px solid rgba(233,189,133,.38);
+  border-radius:2px !important;
+  color:#E9BD85 !important;
+  box-shadow:none !important;
+}
+.casarte-tftled-page .layout-rule-title,
+.casarte-tftled-page .prototype-subtitle,
+.casarte-tftled-page .scene-category-header h3,
+.casarte-tftled-page .layout-example-name,
+.casarte-tftled-page .vertical-scheme-title { color:#F1ECE4 !important; }
+.casarte-tftled-page .layout-rule-title::before,
+.casarte-tftled-page .prototype-subtitle::before,
+.casarte-tftled-page .scene-category-header::before { background:#E9BD85 !important; }
+.casarte-tftled-page .layout-framework-description,
+.casarte-tftled-page .layout-image-description,
+.casarte-tftled-page .prototype-caption,
+.casarte-tftled-page .prototype-subtitle,
+.casarte-tftled-page .scene-heading p,
+.casarte-tftled-page .meta { color:#AAA49B !important; }
+.casarte-tftled-page .scene-card,
+.casarte-tftled-page .scene-rule,
+.casarte-tftled-page .scene-vertical-card,
+.casarte-tftled-page .scene-map span,
+.casarte-tftled-page .scene-chip,
+.casarte-tftled-page .layout-horizontal-stack figure,
+.casarte-tftled-page .vertical-image-grid figure,
+.casarte-tftled-page .scene-card figure,
+.casarte-tftled-page .scene-rule figure {
+  background:rgba(255,255,255,.035) !important;
+  border-color:rgba(255,255,255,.11) !important;
+  border-radius:0 !important;
+  color:#D8D3CB;
+}
+.casarte-tftled-page .scene-rule,
+.casarte-tftled-page .scene-card,
+.casarte-tftled-page .scene-vertical-card {
+  border-left:2px solid rgba(233,189,133,.64) !important;
+}
+.casarte-tftled-page .scene-card h3,
+.casarte-tftled-page .scene-rule h3,
+.casarte-tftled-page .scene-rule-copy h3 { color:#F5F5F7 !important; }
+.casarte-tftled-page .tftled-tabs { border-bottom-color:rgba(255,255,255,.13) !important; }
+.casarte-tftled-page .tftled-tab { color:#9CA3AF !important; }
+.casarte-tftled-page .tftled-tab:hover,
+.casarte-tftled-page .tftled-tab.active { color:#E9BD85 !important; }
+.casarte-tftled-page .tftled-tab.active { border-bottom-color:#E9BD85 !important; }
+.casarte-tftled-page main [class*="bg-white/"] { background-color:rgba(255,255,255,.045) !important; }
+.casarte-tftled-page main [class*="border-white/"] { border-color:rgba(255,255,255,.12) !important; }
+.casarte-tftled-page footer { color:#8D8881 !important; }
+
+/* 去掉所有 A、B、C 图片说明文字外的矩形框 */
+.casarte-tftled-page .tftled-pane .layout-image-description {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+/* 去掉该板块中所有图片及说明文字外层的矩形衬底 */
+.casarte-tftled-page #layout-horizontal-rule .layout-horizontal-stack figure {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+/* 让竖向交互示例中两组图片上方的文字居中 */
+#vertical-screen-prototype .vertical-scheme-grid > div > p.layout-image-description {
+  width: 100%;
+  text-align: center !important;
+}
+/* 将交互示例中的这类小标题改为白色 */
+.casarte-tftled-page .layout-rule-title,
+.casarte-tftled-page .prototype-subtitle {
+  color: #F5F5F7 !important;
+}
+
+
+
+</style>
+
+<style id="casarte-combined-header-alignment">
+/* Match the LED page header; keep content cards, tabs and horizontal gutters intact. */
+.casarte-tftled-page #main-content { padding-top:24px!important; }
+.casarte-tftled-page #main-content > div > .guideline-top-actions > a {
+  box-sizing:border-box; display:flex; align-items:center;
+  padding:10px 20px; border:1px solid rgba(255,255,255,.2)!important; border-radius:0;
+  background:rgba(255,255,255,.15)!important; color:#FFF; text-decoration:none;
+  font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+}
+.casarte-tftled-page #main-content > div > .guideline-top-actions > a > span {
+  font-family:inherit; font-size:14px; line-height:20px; font-weight:500; letter-spacing:.025em;
+}
+.casarte-tftled-page #main-content > div > .guideline-top-actions > a:hover {
+  background:rgba(255,255,255,.25)!important; color:#E9BD85!important; text-decoration:none;
+}
+.casarte-tftled-page #main-content > div > .scene-hero h1 {
+  font-size:36px!important; line-height:40px!important; font-weight:700!important;
+  letter-spacing:-.025em!important; margin:0 0 24px!important;
+}
+.casarte-tftled-page #main-content > div > .scene-hero h1 + p { margin-top:0!important; }
+.casarte-tftled-page #language-switcher [data-language-toggle] {
+  box-sizing:border-box; display:inline-block; min-width:72px; margin:0; padding:8px 20px;
+  border:1px solid rgba(255,255,255,.2)!important; border-radius:0;
+  background:rgba(255,255,255,.1)!important; color:#FFF;
+  font:600 12px/16px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  letter-spacing:normal; text-align:center; text-transform:none; cursor:pointer; pointer-events:auto;
+}
+.casarte-tftled-page #language-switcher [data-language-toggle]:hover {
+  background:rgba(255,255,255,.2)!important;
+}
+@media(min-width:768px) {
+  .casarte-tftled-page #main-content { padding-top:48px!important; }
+  .casarte-tftled-page #main-content > div > .guideline-top-actions { margin-bottom:0!important; }
+  .casarte-tftled-page #main-content > div > .guideline-top-actions + .scene-hero { margin-top:80px!important; }
+  .casarte-tftled-page #main-content > div > .scene-hero h1 { font-size:60px!important; line-height:60px!important; }
+}
+@media(min-width:1024px) {
+  .casarte-tftled-page #main-content { padding-top:64px!important; }
+}
+</style>
+</head>
+<body class="antialiased">
+<div class="casarte-tftled-page">
+<div class="aura-background"></div>
+<header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center"><div class="flex items-center"><div class="haier-logo-container w-10 h-10 mr-3 text-[14px]">Haier</div><h1 class="font-bold text-lg">Haier Design</h1></div><button aria-label="打开导航" data-i18n-aria-label-zh="打开导航" data-i18n-aria-label-en="Open navigation" class="p-2 bg-black/5 rounded-lg" id="mobile-menu-btn"><span class="block w-6 h-0.5 bg-gray-700 mb-1.5"></span><span class="block w-6 h-0.5 bg-gray-700 mb-1.5"></span><span class="block w-6 h-0.5 bg-gray-700"></span></button></header>
+<div class="flex h-screen pt-16 md:pt-0">
+<aside aria-hidden="true" aria-label="Casarte Design 设计规范导航" data-i18n-aria-label-zh="Casarte Design 设计规范导航" data-i18n-aria-label-en="Casarte Design guideline navigation" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" id="sidebar"></aside>
+<div aria-hidden="true" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" id="sidebar-backdrop"></div>
+<main class="flex-1 md:ml-72 px-6 py-6 md:px-12 md:py-10 lg:px-16 lg:py-12 overflow-y-auto h-full scroll-smooth" id="main-content">
+<div class="max-w-[1360px] mx-auto pb-24">
+<section class="mb-12 scene-hero">
+<div>
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-#F5F5F7" data-i18n-en="Combined Layout" data-i18n-zh="组合布局">组合布局</h1>
+<p class="text-lg text-gray-300 max-w-3xl leading-relaxed" data-i18n-en="Standardize design prototypes and scenario-based interaction layouts for TFT+LED interfaces to ensure clear information presentation and consistent experiences across product categories and display configurations." data-i18n-zh="统一 TFT+LED 显示载体下的方案原型与场景交互布局规则，确保不同品类、不同屏幕形态下的信息呈现清晰且体验一致。">统一 TFT+LED 显示载体下的方案原型与场景交互布局规则，确保不同品类、不同屏幕形态下的信息呈现清晰且体验一致。</p>
+</div>
+</section>
+<!-- TFT+LED 规则页签 -->
+<nav aria-label="TFT+LED 规则分类" data-i18n-aria-label-zh="TFT+LED 规则分类" data-i18n-aria-label-en="TFT+LED guideline categories" class="tftled-tabs mb-12" role="tablist">
+<button aria-selected="true" class="tftled-tab active" data-i18n-en="Information Organization" data-i18n-zh="信息组织" data-tftled-tab="prototype" role="tab" type="button">
+    信息组织
+  </button>
+<button aria-selected="false" class="tftled-tab" data-i18n-en="Interaction Examples" data-i18n-zh="交互示例" data-tftled-tab="scene" role="tab" type="button">
+    交互示例
+  </button>
+</nav>
+<!-- 页签 1：信息组织 -->
+<div class="tftled-pane active" data-tftled-pane="prototype">
+<!-- ==================================================
+     板块一：3.5 英寸横向信息布局划分规则
+================================================== -->
+<section class="glass-panel p-6 md:p-10 mb-10 scroll-mt-8" id="layout-horizontal-rule">
+
+<!-- 01 横向界面信息框架：一级标题 -->
+<div class="scene-heading">
+  
+    <div>
+        <h2 class="text-2xl font-bold text-gray-900"
+            data-i18n-zh="横向布局示例"
+            data-i18n-en="Horizontal Layout Examples">
+            横向布局示例
+        </h2>
+    </div>
+</div>
+
+<!-- 新增：一级标题下方的整体说明 -->
+<p class="layout-framework-description"
+   data-i18n-zh="以 3.5”屏为代表"
+   data-i18n-en="Using a 3.5-inch screen as an example">
+    以 3.5”屏为代表
+</p>
+
+<!-- 1.1 二级标题：保持不变 -->
+<div class="layout-rule-title" data-i18n-zh="垂直居中对称型" data-i18n-en="Vertically Centered Symmetric Layout">
+    垂直居中对称型
+</div>
+
+<!-- 原来的图片布局容器：保持不变 -->
+<div class="layout-horizontal-stack">
+
+    <!-- A方案 -->
+    <figure>
+        <p class="layout-image-description"
+           data-i18n-zh="A. 屏幕可触控，电源与启停按键聚合于中心区域"
+           data-i18n-en="A. Touchscreen; power and start/pause controls grouped in the center">
+            A. 屏幕可触控，电源与启停按键聚合于中心区域
+        </p>
+
+        <img data-i18n-alt-zh="垂直居中对称型，屏幕可触控，示例一" data-i18n-alt-en="Vertically centered symmetric layout, touchscreen, example one"
+            alt="垂直居中对称型，屏幕可触控，示例一"
+           
+           
+            src="./assets/tftled/frame_1.png"
+        />
+    </figure>
+
+    <!-- B方案 -->
+    <figure>
+        <p class="layout-image-description"
+           data-i18n-zh="B. 屏幕可触控，电源与启停按键置于右侧"
+           data-i18n-en="B. Touchscreen; power and start/pause controls on the right">
+            B. 屏幕可触控，电源与启停按键置于右侧
+        </p>
+
+        <img data-i18n-alt-zh="垂直居中对称型，屏幕可触控，示例二" data-i18n-alt-en="Vertically centered symmetric layout, touchscreen, example two"
+            alt="垂直居中对称型，屏幕可触控，示例二"
+           
+           
+            src="./assets/tftled/frame_2.png"
+        />
+    </figure>
+
+</div>
+
+<!-- 1.2 -->
+<div class="layout-image-description layout-image-description-c" data-i18n-zh="C. 屏幕不可触控，屏幕交互按键区聚合于中心区域，电源与启停按键置于右侧" data-i18n-en="C. Non-touchscreen; screen interaction buttons grouped in the center, with power and start/pause controls on the right">
+    C. 屏幕不可触控，屏幕交互按键区聚合于中心区域，电源与启停按键置于右侧
+  </div>
+<div class="layout-horizontal-stack">
+<figure>
+<img data-i18n-alt-zh="垂直居中对称型，屏幕不可触控" data-i18n-alt-en="Vertically centered symmetric layout, non-touchscreen" alt="垂直居中对称型，屏幕不可触控" src="./assets/tftled/frame_3.png"/>
+</figure>
+</div>
+
+<!-- 1.3 屏幕垂直居中，整体右侧型 -->
+
+<div class="layout-rule-title"
+     data-i18n-zh="整体右侧型"
+     data-i18n-en="Right-aligned Layout">
+    整体右侧型
+</div>
+
+<div class="layout-horizontal-stack">
+
+    <!-- A方案：right_1.png -->
+    <figure>
+        <p class="layout-image-description"
+           data-i18n-zh="A. 屏幕垂直居中，屏幕可触控,电源与启停按键聚合于中心区域"
+           data-i18n-en="A. Vertically centered touchscreen; power and start/pause controls grouped in the center">
+            A. 屏幕垂直居中，屏幕可触控,电源与启停按键聚合于中心区域
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型，屏幕可触控，示例一" data-i18n-alt-en="Right-aligned layout, touchscreen, example one"
+            src="./assets/tftled/frame_4.png"
+            alt="整体右侧型，屏幕可触控，示例一"
+           
+           
+        />
+    </figure>
+
+    <!-- B方案：right_2.png -->
+    <figure>
+        <p class="layout-image-description"
+           data-i18n-zh="B. 屏幕垂直居中，屏幕可触控,电源与启停按键置于右侧"
+           data-i18n-en="B. Vertically centered touchscreen; power and start/pause controls on the right">
+            B. 屏幕垂直居中，屏幕可触控,电源与启停按键置于右侧
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型，屏幕可触控，示例二" data-i18n-alt-en="Right-aligned layout, touchscreen, example two"
+            src="./assets/tftled/frame_5.png"
+            alt="整体右侧型，屏幕可触控，示例二"
+           
+           
+        />
+    </figure>
+
+    <!-- C方案：right_3.png -->
+    <figure>
+        <p class="layout-image-description"
+           data-i18n-zh="C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域"
+           data-i18n-en="C. Vertically centered non-touchscreen; screen interaction buttons grouped in the center">
+            C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型，屏幕不可触控" data-i18n-alt-en="Right-aligned layout, non-touchscreen"
+            src="./assets/tftled/frame_6.png"
+            alt="整体右侧型，屏幕不可触控"
+           
+           
+        />
+    </figure>
+
+</div>
+
+</section>
+<!-- ==================================================
+     板块二：3.5 英寸竖向信息布局划分规则
+================================================== -->
+<section class="glass-panel p-6 md:p-10 mb-10 scroll-mt-8" id="layout-vertical-rule">
+<div class="scene-heading">
+<div>
+<h2 class="text-2xl font-bold text-gray-900" data-i18n-en="Vertical Layout Examples" data-i18n-zh="竖向布局示例">
+        竖向布局示例
+      </h2>
+</div>
+</div>
+<!-- 新增：一级标题下方的整体说明 -->
+<p class="layout-framework-description"
+   data-i18n-zh="以 3.5”屏为代表"
+   data-i18n-en="Using a 3.5-inch screen as an example">
+    以 3.5”屏为代表
+</p>
+<div class="layout-vertical-compare">
+<!-- 左侧 -->
+<div class="layout-image-description">
+<p class="text-center"
+   data-i18n-en="Touchscreen"
+   data-i18n-zh="屏幕可触控">
+    屏幕可触控
+</p>
+<figure>
+<img data-i18n-alt-zh="竖向信息布局，屏幕可触控" data-i18n-alt-en="Vertical information layout, touchscreen" alt="竖向信息布局，屏幕可触控" src="./assets/tftled/frame_7.png" style="width: 40%; height: auto; margin: 0 auto;"/>
+</figure>
+</div>
+<!-- 右侧 -->
+<div class="layout-image-description">
+<p class="text-center"
+   data-i18n-en="Non-touchscreen"
+   data-i18n-zh="屏幕不可触控">
+    屏幕不可触控
+</p>
+<figure>
+<img data-i18n-alt-zh="竖向信息布局，屏幕不可触控" data-i18n-alt-en="Vertical information layout, non-touchscreen" alt="竖向信息布局，屏幕不可触控" src="./assets/tftled/frame_8.png" style="width: 40%; height: auto; margin: 0 auto;"/>
+</figure>
+</div>
+</div>
+</section>
+</div>
+<!-- 页签 2：场景细分交互与布局 -->
+<div class="tftled-pane" data-tftled-pane="scene">
+<!-- 01 横向屏幕设计原型 -->
+<section class="prototype-section" id="horizontal-screen-prototype">
+<div class="scene-heading">
+
+<h2 data-i18n-en="Horizontal Interaction Examples" data-i18n-zh="横向交互示例">横向交互示例</h2>
+</div>
+<!-- 01 一级标题下方的整体说明文字 -->
+<p class="layout-framework-description"
+   data-i18n-zh="以3.5”屏为代表"
+   data-i18n-en="Using a 3.5-inch screen as an example">
+    以3.5”屏为代表
+</p>
+
+<!-- 1.1 -->
+<h3 class="prototype-subtitle" data-i18n-en="Vertically Centered Symmetric Layout" data-i18n-zh="垂直居中对称型">垂直居中对称型</h3>
+<div class="prototype-stack">
+<figure class="prototype-image">
+  <p class="layout-image-description"
+           data-i18n-zh="A. 屏幕可触控，电源与启停按键聚合于中心区域"
+           data-i18n-en="A. Touchscreen; power and start/pause controls grouped in the center">
+            A. 屏幕可触控，电源与启停按键聚合于中心区域
+        </p>
+<img data-i18n-alt-zh="垂直居中对称型，屏幕可触控，布局示意图一" data-i18n-alt-en="Vertically centered symmetric layout, touchscreen, layout diagram one" alt="垂直居中对称型，屏幕可触控，布局示意图一" src="assets/tftled_prototype/scene_1.png"/>
+</figure>
+
+<figure class="prototype-image">
+   <p class="layout-image-description"
+       data-i18n-zh="B. 屏幕可触控，电源与启停按键置于右侧"
+       data-i18n-en="B. Touchscreen; power and start/pause controls on the right">
+        B. 屏幕可触控，电源与启停按键置于右侧
+    </p>
+<img data-i18n-alt-zh="垂直居中对称型，屏幕可触控，布局示意图二" data-i18n-alt-en="Vertically centered symmetric layout, touchscreen, layout diagram two" alt="垂直居中对称型，屏幕可触控，布局示意图二" src="assets/tftled_prototype/scene_2.png"/>
+</figure>
+</div>
+<!-- C方案 -->
+<p class="layout-image-description layout-image-description-c"
+   data-i18n-zh="C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域"
+   data-i18n-en="C. Vertically centered non-touchscreen; screen interaction buttons grouped in the center">
+    C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域
+</p>
+<figure class="prototype-image">
+<img data-i18n-alt-zh="垂直居中对称型，屏幕可触控，屏内代表画面原型" data-i18n-alt-en="Vertically centered symmetric layout, touchscreen, representative on-screen interface prototype" alt="垂直居中对称型，屏幕可触控，屏内代表画面原型" src="assets/tftled_prototype/scene_3.png"/>
+</figure>
+
+
+<!-- 1.3 屏幕垂直居中，整体右侧型 -->
+
+<!-- 二级标题：保持原来的黑色加粗文字和左侧蓝色竖线 -->
+<h3 class="prototype-subtitle"
+    data-i18n-zh="整体右侧型"
+    data-i18n-en="Right-aligned Layout">
+    整体右侧型
+</h3>
+
+
+<!-- A、B、C 三组图片，保持上下排列 -->
+<div class="prototype-stack">
+
+    <!-- A. 第一张图片 -->
+    <figure class="prototype-image">
+
+        <p class="layout-image-description"
+           data-i18n-zh="A. 屏幕可触控，电源与启停按键聚合于中心区域"
+           data-i18n-en="A. Touchscreen; power and start/pause controls grouped in the center">
+            A. 屏幕可触控，电源与启停按键聚合于中心区域
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型布局示意图一" data-i18n-alt-en="Right-aligned layout diagram one"
+            src="assets/tftled_prototype/scene_4.png"
+            alt="整体右侧型布局示意图一"
+           
+           
+        />
+
+    </figure>
+
+    <!-- B. 第二张图片 -->
+    <figure class="prototype-image">
+
+        <p class="layout-image-description"
+           data-i18n-zh="B. 屏幕可触控，电源与启停按键置于右侧"
+           data-i18n-en="B. Touchscreen; power and start/pause controls on the right">
+            B. 屏幕可触控，电源与启停按键置于右侧
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型布局示意图二" data-i18n-alt-en="Right-aligned layout diagram two"
+            src="assets/tftled_prototype/scene_5.png"
+            alt="整体右侧型布局示意图二"
+           
+           
+        />
+
+    </figure>
+
+    <!-- C. 第3张图片 -->
+    <figure class="prototype-image">
+
+        <p class="layout-image-description"
+           data-i18n-zh="C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域"
+           data-i18n-en="C. Vertically centered non-touchscreen; screen interaction buttons grouped in the center">
+            C. 屏幕垂直居中，屏幕不可触控，屏幕交互按键区聚合于中心区域
+        </p>
+
+        <img data-i18n-alt-zh="整体右侧型布局示意图二" data-i18n-alt-en="Right-aligned layout diagram two"
+            src="assets/tftled_prototype/scene_6.png"
+            alt="整体右侧型布局示意图二"
+           
+           
+        />
+
+    </figure>
+
+</div>
+
+<!-- C. 屏内代表画面原型 -->
+<p class="prototype-subtitle"
+   data-i18n-zh="屏内代表画面原型"
+   data-i18n-en="Representative On-screen Interface Prototype">
+    屏内代表画面原型
+</p>
+
+<figure class="prototype-image">
+
+    <img data-i18n-alt-zh="屏内代表画面原型" data-i18n-alt-en="Representative on-screen interface prototype"
+        src="assets/tftled_prototype/scene_7.png"
+        alt="屏内代表画面原型"
+       
+       
+    />
+
+</figure>
+
+</section>
+<!-- 02 竖向信息方案原型 -->
+<section class="prototype-section" id="vertical-screen-prototype">
+<div class="scene-heading">
+
+<h2 data-i18n-en="Vertical Interaction Examples" data-i18n-zh="竖向交互示例">竖向交互示例</h2>
+</div>
+<div class="vertical-scheme-grid">
+<!-- 左侧：图片1、图片2 -->
+<div>
+<p class="layout-image-description" data-i18n-en="Touchscreen" data-i18n-zh="屏幕可触控">屏幕可触控</p>
+<div class="vertical-image-grid" style="--image-gap: 32px;">
+<figure>
+<img data-i18n-alt-zh="竖向信息方案原型一" data-i18n-alt-en="Vertical information layout prototype one" alt="竖向信息方案原型一" src="assets/tftled_prototype/scene_8.png" style="--image-width: 220px;"/>
+</figure>
+<figure>
+<img data-i18n-alt-zh="竖向信息方案原型二" data-i18n-alt-en="Vertical information layout prototype two" alt="竖向信息方案原型二" src="assets/tftled_prototype/scene_9.png" style="--image-width: 220px;"/>
+</figure>
+</div>
+</div>
+<!-- 右侧：图片3、图片4 -->
+<div>
+<p class="layout-image-description" data-i18n-en="Non-touchscreen" data-i18n-zh="屏幕不可触控">屏幕不可触控</p>
+<div class="vertical-image-grid" style="--image-gap: 32px;">
+<figure>
+<img data-i18n-alt-zh="竖向信息方案原型三" data-i18n-alt-en="Vertical information layout prototype three" alt="竖向信息方案原型三" src="assets/tftled_prototype/scene_10.png" style="--image-width: 220px;"/>
+</figure>
+<figure>
+<img data-i18n-alt-zh="竖向信息方案原型四" data-i18n-alt-en="Vertical information layout prototype four" alt="竖向信息方案原型四" src="assets/tftled_prototype/scene_11.png" style="--image-width: 220px;"/>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</div>
+<footer class="pt-10 pb-16 text-center text-gray-400 text-sm"><p class="font-light" data-i18n-zh="© 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="© 2026 Haier Design Lab. Internal Confidential.">© 2026 Casarte Design Lab. Internal Confidential.</p></footer>
+</div>
+</main>
+</div>
+<script src="haier-nav.js"></script>
+<script>
+  const tftledTabs = document.querySelectorAll(".casarte-tftled-page [data-tftled-tab]");
+  const tftledPanes = document.querySelectorAll(".casarte-tftled-page [data-tftled-pane]");
+
+  tftledTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.tftledTab;
+
+      tftledTabs.forEach((item) => {
+        const isSelected = item === tab;
+
+        item.classList.toggle("active", isSelected);
+        item.setAttribute("aria-selected", String(isSelected));
+      });
+
+      tftledPanes.forEach((pane) => {
+        pane.classList.toggle(
+          "active",
+          pane.dataset.tftledPane === target
+        );
+      });
+
+      document.querySelector(".casarte-tftled-page #main-content").scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  });
+</script>
+
+<script>
+/* 页面正文双语同步：使用与 haier-nav.js 相同的语言设置。 */
+(function () {
+  function syncPageLanguage() {
+    var lang = localStorage.getItem('haier-guideline-language') === 'en' ? 'en' : 'zh';
+    document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    document.querySelectorAll('.casarte-tftled-page [data-i18n-zh][data-i18n-en]').forEach(function (el) {
+      el.textContent = el.getAttribute('data-i18n-' + lang);
+    });
+    document.querySelectorAll('.casarte-tftled-page img[data-i18n-alt-zh][data-i18n-alt-en]').forEach(function (img) {
+      img.alt = img.getAttribute('data-i18n-alt-' + lang);
+    });
+    document.title = document.querySelector('title').getAttribute('data-i18n-' + lang);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncPageLanguage);
+  } else {
+    syncPageLanguage();
+  }
+  window.addEventListener('storage', function (event) {
+    if (event.key === 'haier-guideline-language') syncPageLanguage();
+  });
+})();
+</script></div>
+</body>
+</html>

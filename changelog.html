@@ -3,163 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haier Design | 更新日志 Log</title>
+    <title data-i18n-zh="Casarte Design | 应用栏规范" data-i18n-en="Casarte Design | App Bar Specification">Casarte Design | 应用栏规范</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --brand-primary: #2283E2;
-            --brand-light: #E5F0FF;
-            --text-main: #1D1D1F;
-            --text-secondary: #86868B;
-            --glass-bg: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.4);
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #F5F7FA;
-            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
             overflow-x: hidden;
         }
 
-        /* 弥散光晕动画背景 */
-        .aura-background {
+        .ambient-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: -1;
-            overflow: hidden;
-            background: #F4F7FB;
-        }
-        .aura-blob {
-            position: absolute;
-            filter: blur(120px);
-            opacity: 0.6;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-        .aura-blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #C4E0FF; animation-delay: 0s; }
-        .aura-blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #E0E8FF; animation-delay: -5s; }
-        .aura-blob-3 { top: 40%; left: 60%; width: 40vw; height: 40vw; background: #E8F4FF; animation-delay: -10s; }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(10%, 15%) scale(1.1); }
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
         }
 
-        /* 磨玻璃质感卡片核心类 */
-        .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-            border-radius: 24px;
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
         }
 
-        /* 侧边栏样式 */
-        .sidebar-nav-item {
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-        .sidebar-nav-item.active {
-            color: var(--brand-primary);
-            font-weight: 600;
-            border-left-color: var(--brand-primary);
-            background: linear-gradient(90deg, var(--brand-light) 0%, transparent 100%);
-        }
-
-        /* 代码与Token块 */
-        .token-block {
-            background: rgba(255,255,255,0.8);
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.85rem;
-        }
-        
-        /* 隐藏原生滚动条，美化 */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
-
-        /* Haier 纯文本 Logo 的基础样式 */
-        .haier-logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2283E2; /* 海尔蓝 */
-            color: white;
-            font-family: Arial, Helvetica, sans-serif; /* 使用最基础的无衬线字体 */
-            font-weight: bold;
-            border-radius: 8px; /* 轻微圆角 */
-        }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
     </style>
 </head>
 
 <body class="antialiased">
-    <div class="aura-background">
-        <div class="aura-blob aura-blob-1"></div>
-        <div class="aura-blob aura-blob-2"></div>
-        <div class="aura-blob aura-blob-3"></div>
-    </div>
-    <header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center">
+    <div class="ambient-bg"></div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
         <div class="flex items-center">
-            <div class="haier-logo-container w-10 h-10 mr-3 text-[14px]">
-                Haier
-            </div>
-            <h1 class="font-bold text-lg">Haier Design</h1>
+            <a href="haier_os_design_system.html" class="mr-3 p-2 bg-white/5 hover:bg-white/10 transition-colors flex items-center text-gray-300"></a>
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="应用栏" data-i18n-en="App Bar">应用栏</h1>
         </div>
-        <button id="mobile-menu-btn" class="p-2 bg-black/5 rounded-lg">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
     </header>
 
     <div class="flex h-screen pt-16 md:pt-0">
-<aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 glass-panel rounded-none border-r border-white/50 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
-<div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
-        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-20 overflow-y-auto h-full scroll-smooth" id="main-content">
-            <section id="changelog" class="mb-20 scroll-mt-10">
-                <h2 class="text-3xl font-bold mb-2" data-i18n-zh="9. 更新日志" data-i18n-en="9. Changelog">9. 更新日志</h2>
-                <p class="text-gray-500 mb-8">版本演进记录。</p>
+        <!-- 侧边栏（卡萨帝暗色材质风格） -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
 
-                <div class="glass-panel overflow-hidden">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-50/50 border-b border-gray-200">
-                                <th class="py-3 px-6 font-semibold text-gray-900 text-sm w-32">版本号</th>
-                                <th class="py-3 px-6 font-semibold text-gray-900 text-sm w-32">日期</th>
-                                <th class="py-3 px-6 font-semibold text-gray-900 text-sm">更新内容</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-100 hover:bg-white/50 transition">
-                                <td class="py-4 px-6 text-sm font-medium text-blue-600">v1.0.0</td>
-                                <td class="py-4 px-6 text-sm text-gray-500">2026-07-23</td>
-                                <td class="py-4 px-6 text-sm text-gray-600">应用全新 9 级框架。扩展并完善硬件、动效及 AI 相关层级。</td>
-                            </tr>
-                            <tr class="hover:bg-white/50 transition">
-                                <td class="py-4 px-6 text-sm font-medium text-gray-400">v0.9.x</td>
-                                <td class="py-4 px-6 text-sm text-gray-400">早期</td>
-                                <td class="py-4 px-6 text-sm text-gray-400">内部预览版，基础组件构想与概念验证。</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- 主内容区 -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-12">
+                
+                <!-- 顶部返回主页按钮 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
                 </div>
-            </section>
-            
-            
-            
-            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-200">
-                <p class="font-light">&copy; 2026 Haier Design Lab. Internal Confidential.</p>
-            </footer>
 
+                <!-- 待更新提示（只保留纯文字，已移除外框卡片及背景板） -->
+                <div class="py-20 text-center space-y-4">
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                        <span data-i18n-zh="待更新，敬请期待..." data-i18n-en="Coming Soon...">待更新，敬请期待...</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm max-w-md mx-auto">
+                        <span data-i18n-zh="当前页面正在精心编写与搭建中，后续将为您呈现完整的设计标准。" data-i18n-en="This page is currently under development and will be available soon.">当前页面正在精心编写与搭建中，后续将为您呈现完整的设计标准。</span>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- 页脚 -->
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
         </main>
     </div>
 
+    <!-- 引入统一导航脚本 -->
     <script src="haier-nav.js"></script>
-    <script>
-        // 左侧导航由 haier-nav.js 统一渲染与管理。
-    </script>
 </body>
 </html>

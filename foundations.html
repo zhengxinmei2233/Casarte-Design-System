@@ -98,51 +98,61 @@
                 </section>
 
                 <!-- 2.1 视觉基础 -->
-                <div id="foundations-visual" class="gallery-panel p-8 md:p-10 space-y-6">
-                    <h3 class="text-2xl font-bold text-white mb-2" data-i18n-zh="2.1 视觉基础" data-i18n-en="2.1 Visual Foundations">2.1 视觉基础</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <a href="color_details.html" class="sub-card p-6 block relative group">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.1 色彩" data-i18n-en="2.1.1 Color">2.1.1 色彩</h4>
-                                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </div>
-                            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="主色调、警告色及深浅模式色阶定义。" data-i18n-en="Definitions of primary colors, warning colors, and dark/light mode color scales.">主色调、警告色及深浅模式色阶定义[cite: 17]。</p>
-                        </a>
+<div id="foundations-visual" class="gallery-panel p-8 md:p-10 space-y-6">
+    <h3 class="text-2xl font-bold text-white mb-2" data-i18n-zh="2.1 视觉基础" data-i18n-en="2.1 Visual Foundations">2.1 视觉基础</h3>
+    
+    <!-- 此处修改 lg:grid-cols-4 为 lg:grid-cols-5，以便一行容纳 5 个同等大小卡片 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <a href="color_details.html" class="sub-card p-6 block relative group">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.1 色彩" data-i18n-en="2.1.1 Color">2.1.1 色彩</h4>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="主色调、警告色及深浅模式色阶定义。" data-i18n-en="Definitions of primary colors, warning colors, and dark/light mode color scales.">主色调、警告色及深浅模式色阶定义。</p>
+        </a>
 
-                        <a href="typography_details.html" class="sub-card p-6 block relative group">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.2 字体" data-i18n-en="2.1.2 Typography">2.1.2 字体</h4>
-                                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </div>
-                            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="远距离阅读大字号规范与等宽数字字体规范。" data-i18n-en="Specifications for long-distance large font sizes and monospaced number typography.">远距离阅读大字号规范与等宽数字字体规范[cite: 17]。</p>
-                        </a>
+        <a href="typography_details.html" class="sub-card p-6 block relative group">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.2 字体" data-i18n-en="2.1.2 Typography">2.1.2 字体</h4>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="远距离阅读大字号规范与等宽数字字体规范。" data-i18n-en="Specifications for long-distance large font sizes and monospaced number typography.">远距离阅读大字号规范与等宽数字字体规范。</p>
+        </a>
 
-                        <a href="iconography_details.html" class="sub-card p-6 block relative group">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.3 图标" data-i18n-en="2.1.3 Iconography">2.1.3 图标</h4>
-                                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </div>
-                            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="线/面性图标基准及不可更改的强约束图标。" data-i18n-en="Outline/filled icon baselines and non-negotiable mandatory icons.">线/面性图标基准及不可更改的强约束图标[cite: 17]。</p>
-                        </a>
+        <a href="iconography_details.html" class="sub-card p-6 block relative group">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.3 图标" data-i18n-en="2.1.3 Iconography">2.1.3 图标</h4>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="线/面性图标基准及不可更改的强约束图标。" data-i18n-en="Outline/filled icon baselines and non-negotiable mandatory icons.">线/面性图标基准及不可更改的强约束图标。</p>
+        </a>
 
-                        <a href="materials_lighting_details.html" class="sub-card p-6 block relative group">
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.4 材质" data-i18n-en="2.1.4 Materials">2.1.4 材质</h4>
-                                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </div>
-                            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="材质、模糊、投影与高光 Token。" data-i18n-en="Tokens for materials, blur, shadow, and specular highlights.">材质、模糊、投影与高光 Token[cite: 17]。</p>
-                        </a>
-                    </div>
-                </div>
+        <a href="materials_lighting_details.html" class="sub-card p-6 block relative group">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.4 材质" data-i18n-en="2.1.4 Materials">2.1.4 材质</h4>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="材质、模糊、投影与高光 Token。" data-i18n-en="Tokens for materials, blur, shadow, and specular highlights.">材质、模糊、投影与高光 Token。</p>
+        </a>
 
-                <!-- 2.2 布局基础 -->
+        <!-- 新增 2.1.5 背景 小块 -->
+        <a href="background_details.html" class="sub-card p-6 block relative group">
+            <div class="flex justify-between items-start mb-3">
+                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.1.5 背景" data-i18n-en="2.1.5 Background">2.1.5 背景</h4>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </div>
+            <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="背景氛围、渐变与纹理规范。" data-i18n-en="Background ambiance, gradient, and texture specifications.">背景氛围、渐变与纹理规范。</p>
+        </a>
+    </div>
+</div>
+
+                <!-- 2.2 信息架构 -->
                 <div id="foundations-layout" class="gallery-panel p-8 md:p-10 space-y-6">
-                    <h3 class="text-2xl font-bold text-white mb-2" data-i18n-zh="2.2 布局基础" data-i18n-en="2.2 Layout Foundations">2.2 布局基础</h3>
+                    <h3 class="text-2xl font-bold text-white mb-2" data-i18n-zh="2.2 信息架构" data-i18n-en="2.2 Layout Foundations">2.2 信息架构</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <a href="spatial_depth_details.html" class="sub-card p-6 block relative group">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.1 信息架构" data-i18n-en="2.2.1 Spatial Depth">2.2.1 信息架构</h4>
+                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.1 信息与交互" data-i18n-en="2.2.1 Information & Interaction">2.2.1 信息与交互</h4>
                                 <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </div>
                             <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="用 X、Y、Z 三个轴组织位置、信息跨度与前后层级。" data-i18n-en="Organizing position, information span, and depth hierarchy using X, Y, and Z axes.">用 X、Y、Z 三个轴组织位置、信息跨度与前后层级[cite: 17]。</p>
@@ -150,7 +160,7 @@
 
                         <a href="hero_element_details.html" class="sub-card p-6 block relative group">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.2 核心要素" data-i18n-en="2.2.2 Hero Element">2.2.2 核心要素</h4>
+                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.2 LED布局" data-i18n-en="2.2.2 LED Layout">2.2.2 LED布局</h4>
                                 <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </div>
                             <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="主视觉对齐方式与核心操作区热区。" data-i18n-en="Key visual alignment standards and primary action hot zones.">主视觉对齐方式与核心操作区热区[cite: 17]。</p>
@@ -158,7 +168,7 @@
 
                         <a href="spacing_layout_details.html" class="sub-card p-6 block relative group">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.3 排版" data-i18n-en="2.2.3 Spacing & Layout">2.2.3 排版</h4>
+                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.3 TFT布局" data-i18n-en="2.2.3 TFT Layout">2.2.3 TFT布局</h4>
                                 <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </div>
                             <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="8pt、12pt 等基础间距体系规范。" data-i18n-en="Base spacing system guidelines such as 8pt and 12pt grids.">8pt、12pt 等基础间距体系规范[cite: 17]。</p>
@@ -166,7 +176,7 @@
 
                         <a href="grid_system_details.html" class="sub-card p-6 block relative group">
                             <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.4 栅格系统" data-i18n-en="2.2.4 Grid System">2.2.4 栅格系统</h4>
+                                <h4 class="font-bold text-white group-hover:text-[#E9BD85] transition-colors text-base" data-i18n-zh="2.2.4 组合布局" data-i18n-en="2.2.4 Combined Layout">2.2.4 组合布局</h4>
                                 <svg class="w-4 h-4 text-gray-400 group-hover:text-[#E9BD85] transition-colors mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </div>
                             <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors leading-relaxed" data-i18n-zh="指导不同硬件、分辨率与屏幕方向的响应式栅格规范。" data-i18n-en="Responsive grid specifications for different hardware, resolutions, and screen orientations.">指导不同硬件、分辨率与屏幕方向的响应式栅格规范[cite: 17]。</p>

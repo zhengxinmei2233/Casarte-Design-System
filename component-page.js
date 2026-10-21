@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="gallery-panel p-8 flex flex-col justify-between space-y-6">
                         <div class="space-y-4">
                             <h3 class="text-lg font-bold text-white" data-i18n-zh="其他形态" data-i18n-en="Other Shapes">其他形态</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="右侧其他形态大小尺寸与左侧完全一致，通过微光及描边强弱变化适配不同的显示与环境光场景。" data-i18n-en="Other shapes share identical dimensions with the left side.">右侧其他形态大小尺寸与左侧完全一致，通过微光及描边强弱变化适配不同的显示与环境光场景。</p>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="其他形式允许根据实际视觉情况进行微调整，以下示例" data-i18n-en="Other shapes share identical dimensions with the left side.">其他形式允许根据实际视觉情况进行微调整，以下示例</p>
                         </div>
                         
                         <div class="grid grid-cols-3 gap-6 items-end text-center pt-4">

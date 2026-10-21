@@ -1,3 +1,6 @@
+(() => {
+if (window.__casarteNavigationLoaded) return;
+window.__casarteNavigationLoaded = true;
 const HAIER_NAV_GROUPS = [
   {
     id: 'principles',
@@ -20,8 +23,8 @@ const HAIER_NAV_GROUPS = [
       { label: '2.2 信息架构', id: 'foundations-layout', page: 'foundations.html', disabled: true },
       { label: '2.2.1 信息与交互', href: 'spatial_depth_details.html', page: 'spatial_depth_details.html', child: true },
       { label: '2.2.2 LED布局', href: 'led_rules_details.html', page: 'led_rules_details.html', child: true },
-      { label: '2.2.3 TFT布局', href: 'spacing_layout_details.html', page: 'spacing_layout_details.html', child: true },
-      { label: '2.2.4 组合布局', href: 'grid_system_details.html', page: 'grid_system_details.html', child: true },
+      { label: '2.2.3 TFT布局', href: 'casarte_tft_rules_details.html', page: 'casarte_tft_rules_details.html', child: true },
+      { label: '2.2.4 组合布局', href: 'casarte_tftled_rules_details.html', page: 'casarte_tftled_rules_details.html', child: true },
     ],
   },
   {
@@ -34,10 +37,10 @@ const HAIER_NAV_GROUPS = [
       { label: '3.2 选择类', id: 'components-selection', disabled: true },
       { label: '单选按钮', href: 'component_radio_button.html', page: 'component_radio_button.html', child: true },
       { label: '复选框', href: 'component_checkbox.html', page: 'component_checkbox.html', child: true },
-      { label: '滚轮选择器', href: 'component_wheel_picker.html', page: 'component_wheel_picker.html', child: true },
+      { label: '选择器', href: 'component_wheel_picker.html', page: 'component_wheel_picker.html', child: true },
       { label: '3.3 输入类', id: 'components-input', disabled: true },
       { label: '文本框', href: 'component_text_field.html', page: 'component_text_field.html', child: true },
-      { label: '下拉选择', href: 'component_dropdown_select.html', page: 'component_dropdown_select.html', child: true },
+      { label: '键盘', href: 'component_dropdown_select.html', page: 'component_dropdown_select.html', child: true },
       { label: '调控', href: 'component_slider.html', page: 'component_slider.html', child: true },
       { label: '3.4 导航类', id: 'components-nav', disabled: true },
       { label: '应用栏', href: 'component_app_bar.html', page: 'component_app_bar.html', child: true },
@@ -134,10 +137,10 @@ const HAIER_NAV_LABEL_EN = {
   '3.2 选择类': '3.2 Selection',
   '单选按钮': 'Radio Button',
   '复选框': 'Checkbox',
-  '滚轮选择器': 'Wheel Picker',
+  '选择器': 'Selector',
   '3.3 输入类': '3.3 Inputs',
   '文本框': 'Text Field',
-  '下拉选择': 'Dropdown / Select',
+  '键盘': 'Keyboard',
   '调控': 'Control',
   '3.4 导航类': '3.4 Navigation',
   '应用栏': 'App Bar',
@@ -189,7 +192,7 @@ const HAIER_NAV_LABEL_EN = {
 
   if (!sidebar) return;
 
-  const currentPage = window.location.pathname.split('/').pop() || 'haier_os_design_system.html';
+  const currentPage = decodeURIComponent(window.location.pathname.split('/').pop() || 'haier_os_design_system.html').replace(/\(\d+\)(?=\.html$)/, '');
   const currentLanguage = localStorage.getItem('haier-guideline-language') || 'zh';
   const sensorySubpages = new Set(['lighting.html', 'touch.html', 'audio.html']);
   let scrollSpyPausedUntil = 0;
@@ -269,8 +272,8 @@ const HAIER_NAV_LABEL_EN = {
     'background_details.html': 'Casarte Design | Background Guidelines',
     'spatial_depth_details.html': 'Casarte Design | Information Architecture',
     'led_rules_details.html': 'Casarte Design | Hero Element',
-    'spacing_layout_details.html': 'Casarte Design | Spacing & Layout',
-    'grid_system_details.html': 'Casarte Design | Grid System',
+    'casarte_tft_rules_details.html': 'Casarte Design | TFT Layout',
+    'casarte_tftled_rules_details.html': 'Casarte Design | Grid System',
     'components.html': 'Casarte Design | Components',
     'hardware.html': 'Casarte Design | Hardware',
     'motion.html': 'Casarte Design | Motion',
@@ -308,15 +311,16 @@ const HAIER_NAV_LABEL_EN = {
 
     if (!link && container) {
       const wrapper = document.createElement('div');
-      wrapper.className = 'guideline-top-actions flex items-center justify-between mb-8';
-      wrapper.innerHTML = '<a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white border border-white/20 rounded-none"><span class="text-sm font-medium tracking-wide"></span></a>';
+      wrapper.className = 'guideline-top-actions hidden md:flex items-center mb-8'; // 保持与材质页完全一致的 mb-8 间距
+      // 将 rounded-full 改为 rounded-none 保持直角/硬边设计规范
+      wrapper.innerHTML = '<a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none"><span class="text-sm font-medium tracking-wide"></span></a>';
       container.prepend(wrapper);
       link = wrapper.querySelector('a');
     }
 
     if (!link) return;
     link.href = 'haier_os_design_system.html';
-    link.className = 'guideline-home-link px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors flex items-center text-white border border-white/20 rounded-none';
+    link.className = 'px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none';
     const label = link.querySelector('span') || link;
     if (label !== link) label.className = 'text-sm font-medium tracking-wide';
     label.dataset.i18nZh = '返回主页';
@@ -326,7 +330,7 @@ const HAIER_NAV_LABEL_EN = {
     const actions = link.closest('div');
     const switcher = document.getElementById('language-switcher');
     if (actions) {
-      actions.className = 'guideline-top-actions flex items-center justify-between mb-8';
+      actions.className = 'guideline-top-actions hidden md:flex items-center mb-8';
       if (switcher && switcher.parentElement !== actions) actions.append(switcher);
     }
   };
@@ -387,6 +391,7 @@ const HAIER_NAV_LABEL_EN = {
 
     const style = document.createElement('style');
     style.id = 'haier-navigation-style-overrides';
+    
     style.textContent = `
       :root {
         --bg-deep: #0D0D0F;
@@ -407,10 +412,6 @@ const HAIER_NAV_LABEL_EN = {
         background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%) !important;
       }
 
-      .aura-background {
-        display: none !important;
-      }
-
       #sidebar,
       body > header.gallery-panel,
       body > header.glass-panel {
@@ -427,20 +428,6 @@ const HAIER_NAV_LABEL_EN = {
         scrollbar-width: thin;
         scrollbar-color: #2A2A30 transparent;
         transition: transform 0.28s ease, opacity 0.28s ease !important;
-        border-radius: 0 !important;
-      }
-
-      #sidebar::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      #sidebar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      #sidebar::-webkit-scrollbar-thumb {
-        background: #2A2A30;
-        border-radius: 0;
       }
 
       #main-content {
@@ -449,54 +436,11 @@ const HAIER_NAV_LABEL_EN = {
       }
 
       .guideline-page-intro {
-        margin-bottom: 3rem !important;
+        margin-bottom: 2rem !important;
       }
 
-      .guideline-page-title {
-        margin-bottom: 1.5rem !important;
-        color: #FFFFFF !important;
-        font-size: 2.25rem !important;
-        line-height: 2.5rem !important;
-        font-weight: 700 !important;
-        letter-spacing: -0.025em !important;
-      }
-
-      .guideline-page-description {
-        max-width: 48rem !important;
-        color: #D1D5DB !important;
-        font-size: 1.125rem !important;
-        line-height: 1.625 !important;
-        font-weight: 400 !important;
-      }
-
-      .guideline-sensory-page {
-        width: 100% !important;
-        max-width: 1200px !important;
-        margin-right: auto !important;
-        margin-left: auto !important;
-        padding-bottom: 6rem !important;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
-      }
-
-      #main-content.guideline-sensory-main {
-        padding: 1.5rem !important;
-      }
-
-      .guideline-sensory-page > .guideline-page-description {
-        margin-bottom: 2.25rem !important;
-      }
-
-      .guideline-home-link {
-        min-width: auto !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: 0 !important;
-        color: #FFFFFF !important;
-        font-size: 0.875rem !important;
-        line-height: 1.25rem !important;
-      }
-
-      .guideline-home-link:hover {
-        color: var(--text-gold) !important;
+      .guideline-top-actions {
+        margin-bottom: 2rem !important;
       }
 
       [data-sidebar-collapse],
@@ -528,15 +472,6 @@ const HAIER_NAV_LABEL_EN = {
       }
 
       @media (min-width: 768px) {
-        #main-content.guideline-sensory-main {
-          padding: 2.5rem !important;
-        }
-
-        .guideline-page-title {
-          font-size: 3rem !important;
-          line-height: 1 !important;
-        }
-
         body.haier-sidebar-collapsed #sidebar {
           transform: translateX(-100%) !important;
           opacity: 0 !important;
@@ -552,21 +487,10 @@ const HAIER_NAV_LABEL_EN = {
         }
       }
 
-      @media (min-width: 1024px) {
-        #main-content.guideline-sensory-main {
-          padding: 3rem !important;
-        }
-      }
-
       a:hover,
       .sidebar-group-trigger:hover,
       .sidebar-nav-item:hover {
         color: var(--text-gold) !important;
-      }
-
-      .icon-slot:hover {
-        color: var(--text-gold) !important;
-        box-shadow: inset 0 0 0 1px var(--text-gold) !important;
       }
 
       .haier-logo-container {
@@ -576,7 +500,6 @@ const HAIER_NAV_LABEL_EN = {
         width: 3.5rem !important;
         height: 3.5rem !important;
         flex: 0 0 3.5rem !important;
-        font-size: 0 !important;
         background: var(--text-gold) !important;
         border: 0 !important;
         border-radius: 0 !important;
@@ -590,54 +513,83 @@ const HAIER_NAV_LABEL_EN = {
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
-        border-radius: 0 !important;
       }
 
       .sidebar-nav-item.nav-child {
-        border-left: 0 !important;
         padding-left: 1.75rem !important;
-        border-radius: 0 !important;
-      }
-
-      .sidebar-nav-item {
-        border-left-width: 0 !important;
-        font-weight: 400 !important;
-        color: #9CA3AF !important;
-        border-radius: 0 !important;
-      }
-
-      .sidebar-group-trigger {
-        font-weight: 400 !important;
-        color: #9CA3AF !important;
-        border-radius: 0 !important;
-      }
-
-      .sidebar-group-panel .sidebar-nav-item:not(.nav-child) {
-        padding-left: 1.75rem !important;
-      }
-
-      .sidebar-nav-item.nav-disabled {
-        color: rgba(156, 163, 175, 0.4) !important;
-        cursor: default !important;
-        pointer-events: none !important;
       }
 
       .sidebar-nav-item.active {
         color: var(--text-gold) !important;
         background: rgba(233, 189, 133, 0.1) !important;
         border-left: 3px solid var(--text-gold) !important;
-        border-radius: 0 !important;
         font-weight: 600 !important;
       }
 
-      /* 统一各子页面【返回主页】按钮距离下方大标题的垂直间距（与材质页保持一致） */
-      .guideline-top-actions {
-        margin-bottom: 2rem !important;
+      /* Public Casarte sidebar: independent of page-scoped Tailwind and resets.
+         Change navigation styles here; all selectors stay inside the sidebar/control surfaces. */
+      #sidebar#sidebar {
+        box-sizing:border-box; position:fixed; inset:0 auto 0 0; width:288px; height:100vh;
+        display:flex; flex-direction:column; padding:0; margin:0;
+        border:1px solid rgba(255,255,255,.12)!important; border-radius:0!important;
+        background:#141418!important; color:#F5F5F7;
+        font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+        z-index:40; overflow-x:hidden; overflow-y:auto;
       }
-      
-      main > div > div:first-child {
-        margin-bottom: 2rem !important;
+      #sidebar#sidebar *, #sidebar#sidebar *::before, #sidebar#sidebar *::after {
+        box-sizing:border-box; border-width:0; border-style:solid; border-color:#E5E7EB;
       }
+      #sidebar#sidebar a { text-decoration:none; }
+      #sidebar#sidebar button { appearance:none; margin:0; padding:0; border-width:0; background:transparent; color:inherit; font:inherit; text-transform:none; cursor:pointer; }
+      #sidebar#sidebar > .relative { position:relative; padding:24px 24px 16px; }
+      #sidebar#sidebar h1 { padding:0; margin:0; font-size:20px; line-height:28px; font-weight:700; letter-spacing:-.025em; color:#FFF!important; }
+      #sidebar#sidebar p { padding:0; margin:2px 0 0; font-size:12px; line-height:16px; font-weight:400; color:#9CA3AF!important; }
+      #sidebar#sidebar nav { flex:1; padding:0 12px 48px; margin:0; }
+      #sidebar#sidebar .sidebar-nav-group + .sidebar-nav-group { margin-top:4px; }
+      #sidebar#sidebar .sidebar-group-header { display:flex; width:100%; justify-content:space-between; align-items:center; gap:8px; padding:10px 16px; margin:8px 0 0; font-size:14px; line-height:20px; font-weight:400; }
+      #sidebar#sidebar .sidebar-group-header:hover { background:rgba(255,255,255,.05); }
+      #sidebar#sidebar .sidebar-group-header > a { flex:1; text-align:left; color:#9CA3AF; }
+      #sidebar#sidebar .sidebar-group-header > a.font-semibold { color:#E9BD85; font-weight:600; }
+      #sidebar#sidebar .sidebar-group-header > button { flex-shrink:0; padding:4px; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF!important; }
+      #sidebar#sidebar .sidebar-group-header > button:hover { color:#FFF!important; }
+      #sidebar#sidebar svg { display:block; width:16px; height:16px; flex-shrink:0; }
+      #sidebar#sidebar [data-nav-toggle] svg { transition:transform .15s ease; }
+      #sidebar#sidebar [data-nav-toggle][aria-expanded="true"] svg { transform:rotate(180deg); }
+      #sidebar#sidebar .sidebar-group-trigger { display:flex; width:100%; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; margin:8px 0 0; text-align:left; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF!important; }
+      #sidebar#sidebar .sidebar-group-trigger:hover { color:#E9BD85!important; background:rgba(255,255,255,.05); }
+      #sidebar#sidebar .sidebar-group-panel { margin-top:4px; }
+      #sidebar#sidebar .sidebar-group-panel.hidden { display:none; }
+      #sidebar#sidebar .sidebar-group-panel > * + * { margin-top:4px; }
+      #sidebar#sidebar .sidebar-nav-item { display:block; padding:10px 16px; border-width:0; margin:0; font-size:14px; line-height:20px; font-weight:400; color:#D1D5DB!important; border-radius:0; }
+      #sidebar#sidebar .sidebar-nav-item.text-gray-400 { color:#9CA3AF!important; }
+      #sidebar#sidebar .sidebar-nav-item.nav-child { padding:8px 16px 8px 28px!important; color:#9CA3AF!important; }
+      #sidebar#sidebar .sidebar-nav-item.nav-disabled { color:#F5F5F7!important; }
+      #sidebar#sidebar .sidebar-group-panel > * + * { margin-top:4px; }
+      #sidebar#sidebar a.sidebar-nav-item:hover, #sidebar#sidebar .sidebar-group-header > a:hover { color:#E9BD85!important; }
+      #sidebar#sidebar .sidebar-nav-item.active, #sidebar#sidebar .sidebar-nav-item.active:hover { color:#E9BD85!important; background:rgba(233,189,133,.1)!important; border-left:3px solid #E9BD85!important; font-weight:600!important; }
+      #sidebar#sidebar nav > div:last-child { margin-top:4px; padding-top:8px; border-top:1px solid rgba(255,255,255,.1); }
+      #sidebar#sidebar .haier-logo-container { font-family:Arial,Helvetica,sans-serif; font-size:20px; line-height:28px; font-weight:700; color:#111!important; text-decoration:none; margin:0 0 12px; }
+      #sidebar#sidebar [data-sidebar-collapse], #sidebar-restore-button#sidebar-restore-button {
+        box-sizing:border-box; width:36px; height:36px; align-items:center; justify-content:center; padding:0; margin:0;
+        border:1px solid rgba(255,255,255,.15); border-radius:0!important; background:#1C1C22; color:#9CA3AF!important;
+        font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+        cursor:pointer;
+      }
+      #sidebar#sidebar [data-sidebar-collapse] { display:flex; position:absolute; top:20px; right:16px; }
+      #sidebar#sidebar [data-sidebar-collapse]:hover, #sidebar-restore-button#sidebar-restore-button:hover { color:#E9BD85!important; background:#25252C; }
+      #sidebar-restore-button#sidebar-restore-button svg { display:block; width:16px; height:16px; box-sizing:border-box; border:0 solid #E5E7EB; }
+      #sidebar#sidebar a:focus-visible, #sidebar#sidebar button:focus-visible, #sidebar-restore-button#sidebar-restore-button:focus-visible { outline:2px solid #E9BD85; outline-offset:2px; }
+      #sidebar-backdrop#sidebar-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); z-index:55; }
+      @media(min-width:768px) {
+        body.haier-sidebar-collapsed #main-content#main-content { margin-left:0!important; }
+      }
+      @media(max-width:767px) {
+        #sidebar#sidebar { display:none; max-width:calc(100vw - 48px); z-index:60!important; }
+        #sidebar#sidebar[data-menu-open="true"] { display:flex; }
+        #sidebar-backdrop#sidebar-backdrop[data-menu-open="true"] { display:block; }
+        #sidebar#sidebar [data-sidebar-collapse] { display:none; }
+      }
+      @media(prefers-reduced-motion:reduce) { #sidebar#sidebar, #sidebar#sidebar * { transition:none!important; } }
     `;
     document.head.appendChild(style);
   };
@@ -734,17 +686,14 @@ const HAIER_NAV_LABEL_EN = {
     document.body.classList.toggle('haier-sidebar-collapsed', collapsed);
     sidebar.querySelector('[data-sidebar-collapse]')?.setAttribute('aria-expanded', String(!collapsed));
     sidebarRestoreButton.setAttribute('aria-expanded', String(!collapsed));
+    sidebar.inert = window.innerWidth >= 768 && collapsed;
+    sidebar.setAttribute('aria-hidden', String(window.innerWidth >= 768 ? collapsed : sidebar.dataset.menuOpen !== 'true'));
     if (persist) localStorage.setItem('haier-guideline-sidebar-collapsed', collapsed ? '1' : '0');
   };
 
   setSidebarCollapsed(localStorage.getItem('haier-guideline-sidebar-collapsed') === '1', false);
   sidebar.querySelector('[data-sidebar-collapse]')?.addEventListener('click', () => setSidebarCollapsed(true));
   sidebarRestoreButton.addEventListener('click', () => setSidebarCollapsed(false));
-
-  document.querySelectorAll('.haier-logo-container').forEach((logo) => {
-    logo.setAttribute('aria-label', 'Casarte');
-    logo.innerHTML = '<img src="assets/icons/casarte-logo-03.png" alt="Casarte">';
-  });
 
   const expandGroup = (groupId) => {
     openGroups.clear();
@@ -786,20 +735,28 @@ const HAIER_NAV_LABEL_EN = {
     button.addEventListener('click', () => toggleGroup(button.dataset.navToggle));
   });
 
+  let mobileMenuOpen = false;
   const setMenuOpen = (open) => {
-    sidebar.classList.toggle('hidden', !open && window.innerWidth < 768);
-    sidebar.classList.toggle('flex', open || window.innerWidth >= 768);
-    sidebar.classList.toggle('z-50', open);
-    sidebar.classList.toggle('bg-[#141418]', open);
-    sidebar.setAttribute('aria-hidden', String(!open && window.innerWidth < 768));
-    mobileButton?.setAttribute('aria-expanded', String(open));
-    backdrop?.classList.toggle('hidden', !open);
+    mobileMenuOpen = Boolean(open && window.innerWidth < 768);
+    sidebar.dataset.menuOpen = String(mobileMenuOpen);
+    sidebar.classList.toggle('hidden', !mobileMenuOpen && window.innerWidth < 768);
+    sidebar.classList.toggle('flex', mobileMenuOpen || window.innerWidth >= 768);
+    sidebar.inert = window.innerWidth >= 768 && document.body.classList.contains('haier-sidebar-collapsed');
+    sidebar.setAttribute('aria-hidden', String(window.innerWidth < 768 ? !mobileMenuOpen : sidebar.inert));
+    mobileButton?.setAttribute('aria-expanded', String(mobileMenuOpen));
+    if (backdrop) {
+      backdrop.dataset.menuOpen = String(mobileMenuOpen);
+      backdrop.classList.toggle('hidden', !mobileMenuOpen);
+      backdrop.setAttribute('aria-hidden', String(!mobileMenuOpen));
+    }
   };
-
   mobileButton?.setAttribute('aria-controls', 'sidebar');
-  mobileButton?.setAttribute('aria-expanded', 'false');
-  mobileButton?.addEventListener('click', () => setMenuOpen(sidebar.classList.contains('hidden')));
-  backdrop?.addEventListener('click', () => setMenuOpen(false));
+  mobileButton?.addEventListener('click', () => setMenuOpen(!mobileMenuOpen));
+  backdrop?.addEventListener('click', () => { setMenuOpen(false); mobileButton?.focus(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenuOpen) { setMenuOpen(false); mobileButton?.focus(); }
+  });
+  setMenuOpen(false);
 
   const navLinks = sidebar.querySelectorAll('.sidebar-nav-item');
   const setActiveNavLink = (activeLink) => {
@@ -877,21 +834,8 @@ const HAIER_NAV_LABEL_EN = {
     }
   }
 
-  if (window.innerWidth >= 768) {
-    sidebar.setAttribute('aria-hidden', 'false');
-  }
+  window.addEventListener('resize', () => setMenuOpen(false));
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) {
-      sidebar.classList.remove('hidden');
-      sidebar.classList.add('flex');
-      sidebar.setAttribute('aria-hidden', 'false');
-      backdrop?.classList.add('hidden');
-    } else if (!sidebar.classList.contains('z-50')) {
-      sidebar.classList.add('hidden');
-      sidebar.setAttribute('aria-hidden', 'true');
-    }
-  });
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -902,3 +846,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+})();

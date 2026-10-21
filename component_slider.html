@@ -3,38 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haier Design | 组件</title>
+    <title data-i18n-zh="Casarte Design | 调控" data-i18n-en="Casarte Design | Control">Casarte Design | 调控</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --brand-primary:#2283E2; --brand-light:#E5F0FF; --text-main:#1D1D1F; --text-secondary:#86868B; --glass-bg:rgba(255,255,255,.6); --glass-border:rgba(255,255,255,.4); }
-        body { font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; background:#F5F7FA; color:var(--text-main); overflow-x:hidden; }
-        .aura-background { position:fixed; inset:0; z-index:-1; overflow:hidden; background:#F4F7FB; }
-        .aura-blob { position:absolute; filter:blur(120px); opacity:.6; animation:float 20s infinite ease-in-out alternate; }
-        .aura-blob-1 { top:-10%; left:-10%; width:50vw; height:50vw; background:#C4E0FF; }
-        .aura-blob-2 { bottom:-20%; right:-10%; width:60vw; height:60vw; background:#E0E8FF; animation-delay:-5s; }
-        .aura-blob-3 { top:40%; left:60%; width:40vw; height:40vw; background:#E8F4FF; animation-delay:-10s; }
-        @keyframes float { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(10%,15%) scale(1.1)} }
-        .glass-panel { background:var(--glass-bg); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border:1px solid var(--glass-border); box-shadow:0 8px 32px rgba(0,0,0,.04); border-radius:24px; }
-        .sidebar-nav-item { transition:all .3s ease; border-left:3px solid transparent; }
-        .sidebar-nav-item.active { color:var(--brand-primary); font-weight:600; border-left-color:var(--brand-primary); background:linear-gradient(90deg,var(--brand-light) 0%,transparent 100%); }
-        .haier-logo-container { display:flex; align-items:center; justify-content:center; background-color:#2283E2; color:white; font-family:Arial,Helvetica,sans-serif; font-weight:bold; border-radius:8px; }
+        :root {
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+        }
+
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0;
+        }
+
+        .placeholder-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .placeholder-box:hover {
+            border-color: #E9BD85;
+            background: rgba(233, 189, 133, 0.05);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
     </style>
 </head>
+
 <body class="antialiased">
-    <div class="aura-background"><div class="aura-blob aura-blob-1"></div><div class="aura-blob aura-blob-2"></div><div class="aura-blob aura-blob-3"></div></div>
-    <header class="md:hidden glass-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center"><div class="flex items-center"><div class="haier-logo-container w-10 h-10 mr-3 text-[14px]">Haier</div><h1 class="font-bold text-lg">Haier Design</h1></div><button id="mobile-menu-btn" class="p-2 bg-black/5 rounded-lg" aria-label="打开目录"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></header>
+    <div class="ambient-bg"></div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
+        <div class="flex items-center">
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="调控 CONTROL" data-i18n-en="CONTROL">调控</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
     <div class="flex h-screen pt-16 md:pt-0">
-        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 glass-panel rounded-none border-r border-white/50 z-40 overflow-y-auto" aria-label="Haier Design 设计规范导航" aria-hidden="true"></aside>
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
-        <main class="flex-1 md:ml-72 p-6 md:p-10 lg:p-12 overflow-y-auto h-full scroll-smooth" id="main-content">
-            <div class="max-w-[1200px] mx-auto pb-24">
-                <div id="component-page"></div>
-                <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-200"><p class="font-light">&copy; 2026 Haier Design Lab. Internal Confidential.</p></footer>
+        <!-- 侧边栏导航 -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Casarte OS 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
+
+        <!-- 主内容区 (外边距与最大宽度完全统一) -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
+                
+                <!-- 返回主页按钮（与按钮页及材质页完全相同的结构与外边距） -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
+                </div>
+
+                <!-- 调控大标题规范 -->
+                <section class="border-b border-gray-800 pb-8">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="调控" data-i18n-en="CONTROL">调控</h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="调控组件用于对温度、湿度、风速、音量等连续或离散参数进行实时微调与直观控制。卡萨帝多终端提供点击调控、滚动调控及滑块调控等多种高灵敏度交互形态。" data-i18n-en="Control components enable precise, real-time adjustments for parameters like temperature, humidity, and volume across Casarte appliances.">
+                        调控组件用于对温度、湿度、风速、音量等连续或离散参数进行实时微调与直观控制。卡萨帝多终端提供点击调控、滚动调控及滑块调控等多种高灵敏度交互形态。
+                    </p>
+                </section>
+
+                <!-- 调控组件动态内容注入点 -->
+                <div id="component_slider"></div>
+
             </div>
+
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
         </main>
     </div>
-    <script src="component-page.js"></script>
+
+    <!-- 脚本引入：页面动态内容JS 与 全局导航JS -->
+    <script src="component_slider.js"></script>
     <script src="haier-nav.js"></script>
 </body>
 </html>
