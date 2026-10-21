@@ -101,6 +101,23 @@
     .vertical-layout-rules li p { margin: 8px 0 0; color: #A7A29A; }
 
     .scene-heading-plain-number { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 16px; row-gap: 4px; align-items: end; margin-bottom: 28px; }
+    /* scene_14.png 的尺寸 */
+#scene-type-05 .scene-14-image {
+  display: block;
+  width: 40%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* scene_15.png 的尺寸 */
+#scene-type-05 .scene-15-image {
+  display: block;
+  width: 20%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+}
     .scene-heading-plain-number .module-num { grid-column: 1; grid-row: 1; align-self: end; font-family: "Inter", sans-serif; font-size: 30px; font-weight: 300; letter-spacing: -0.05em; line-height: 1; color: #E9BD85; }
     .scene-heading-plain-number h2 { grid-column: 2; grid-row: 1; align-self: end; margin: 0; color: #F5F5F7; }
     .scene-heading-plain-number p { grid-column: 2; grid-row: 2; margin: 4px 0 0; color: #A7A29A; font-size: 13px; line-height: 1.7; text-align: left; }
@@ -119,6 +136,65 @@
     .title-blue-line::before{ content: ""; width: 12px; height: 12px; flex-shrink: 0; background: #E9BD85; border-radius: 0; }
   </style>
   <link rel="stylesheet" href="assets/styles/information-pages.css">
+<style>
+  /* 01～05：编号与板块标题垂直居中，说明文字仍在标题下方 */
+  #scene-type-01 .scene-heading-plain-number,
+  #scene-type-02 .scene-heading-plain-number,
+  #scene-type-03 .scene-heading-plain-number,
+  #scene-type-04 .scene-heading-plain-number,
+  #scene-type-05 .scene-heading-plain-number {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    row-gap: 4px;
+    align-items: start;
+  }
+
+  /* 让标题和说明可以分别进入网格的第一行、第二行 */
+  #scene-type-01 .scene-heading-plain-number > div,
+  #scene-type-02 .scene-heading-plain-number > div,
+  #scene-type-03 .scene-heading-plain-number > div,
+  #scene-type-04 .scene-heading-plain-number > div,
+  #scene-type-05 .scene-heading-plain-number > div {
+    display: contents;
+  }
+
+  /* 黄色数字：放在第一列，并与标题垂直居中 */
+  #scene-type-01 .scene-heading-plain-number .module-num,
+  #scene-type-02 .scene-heading-plain-number .module-num,
+  #scene-type-03 .scene-heading-plain-number .module-num,
+  #scene-type-04 .scene-heading-plain-number .module-num,
+  #scene-type-05 .scene-heading-plain-number .module-num {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  /* 板块标题：放在第一行，与黄色数字垂直居中 */
+  #scene-type-01 .scene-heading-plain-number h2,
+  #scene-type-02 .scene-heading-plain-number h2,
+  #scene-type-03 .scene-heading-plain-number h2,
+  #scene-type-04 .scene-heading-plain-number h2,
+  #scene-type-05 .scene-heading-plain-number h2 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    margin: 0;
+  }
+
+  /* 说明文字：放在标题下方，左边缘与标题对齐 */
+  #scene-type-01 .scene-heading-plain-number p,
+  #scene-type-02 .scene-heading-plain-number p,
+  #scene-type-03 .scene-heading-plain-number p,
+  #scene-type-04 .scene-heading-plain-number p,
+  #scene-type-05 .scene-heading-plain-number p {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+  }
+</style>
+
 </head>
 <body class="antialiased">
 <div class="ambient-bg"></div>
@@ -391,9 +467,13 @@
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <figure class="m-0"><img src="./assets/led_scene/scene_14.png" alt="竖向布局一" class="block w-full h-auto"></figure>
-            <figure class="m-0"><img src="./assets/led_scene/scene_15.png" alt="竖向布局二" class="block w-full h-auto"></figure>
-          </div>
+<figure class="m-0">
+  <img src="./assets/led_scene/scene_14.png" alt="竖向布局一" class="scene-14-image">
+</figure>            
+<figure class="m-0">
+  <img src="./assets/led_scene/scene_15.png" alt="竖向布局二" class="scene-15-image">
+</figure>         
+ </div>
         </section>
       </div>
 
@@ -496,7 +576,7 @@
       </div>
 
       <footer class="pt-16 pb-16 text-center text-gray-500 text-sm border-t border-gray-800/80">
-        <p class="font-light tracking-wide" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+        <p class="font-light tracking-wide" data-i18n-zh="&copy; 2026 Casarte Design Lab. 内部保密。" data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. 内部保密。</p>
       </footer>
     </div>
   </main>
