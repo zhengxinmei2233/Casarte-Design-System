@@ -20,6 +20,7 @@ const HAIER_NAV_GROUPS = [
       { label: '2.1.3 图标', href: 'iconography_details.html', page: 'iconography_details.html', child: true },
       { label: '2.1.4 材质', href: 'materials_lighting_details.html', page: 'materials_lighting_details.html', child: true },
       { label: '2.1.5 背景', href: 'background_details.html', page: 'background_details.html', child: true },
+      { label: '2.1.6 栅格', href: 'grid.html', page: 'grid.html', child: true },
       { label: '2.2 信息架构', id: 'foundations-layout', page: 'foundations.html', disabled: true },
       { label: '2.2.1 信息与交互', href: 'spatial_depth_details.html', page: 'spatial_depth_details.html', child: true },
       { label: '2.2.2 LED布局', href: 'led_rules_details.html', page: 'led_rules_details.html', child: true },
@@ -125,6 +126,7 @@ const HAIER_NAV_LABEL_EN = {
   '2.1.3 图标': '2.1.3 Iconography',
   '2.1.4 材质': '2.1.4 Material',
   '2.1.5 背景': '2.1.5 Background',
+  '2.1.6 栅格': '2.1.6 Grid',
   '2.2 信息架构': '2.2 Information Architecture',
   '2.2.1 信息与交互': '2.2.1 Information & Interaction',
   '2.2.2 LED布局': '2.2.2 LED Layout',
@@ -240,6 +242,7 @@ const HAIER_NAV_LABEL_EN = {
     '图标': 'Iconography',
     '材质': 'Material',
     '背景': 'Background',
+    '栅格': 'Grid',
     '层级（空间深度）': 'Hierarchy',
     '信息与交互': 'Information & Interaction',
     'LED布局': 'LED Layout',
@@ -255,7 +258,7 @@ const HAIER_NAV_LABEL_EN = {
     '多感官': 'Sensory',
     '资产与推行': 'Assets & Governance',
     '更新日志': 'Changelog',
-    '© 2026 Haier Design 设计团队 · 内部保密': '© 2026 Casarte Design Lab · Internal Confidential'
+    '© 2026 Haier Design 设计团队 · 内部保密': '© 2026 Casarte Design Lab · Internal Confidential试行'
   };
   Object.assign(FALLBACK_I18N_EN, window.HAIER_HARDWARE_I18N_EN || {});
 

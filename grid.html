@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-zh="Casarte Design | 栅格系统" data-i18n-en="Casarte Design | Grid System">Casarte Design | 栅格系统</title>
+    <!-- 防止页面切换白屏闪烁：首屏提前注入深色背景 -->
+    <style>
+        html, body { background-color: #0D0D0F !important; color: #F5F5F7 !important; }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #0D0D0F;
+            --panel-bg: rgba(22, 22, 26, 0.75);
+            --border-gray: rgba(255, 255, 255, 0.1);
+            --text-gold: #E9BD85;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-deep);
+            color: #F5F5F7;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 0%, #1E1812 0%, #0D0D0F 70%);
+        }
+
+        /* 卡萨帝 0px 纯直角面板 */
+        .gallery-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-gray);
+            border-radius: 0px !important;
+        }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.05em;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            vertical-align: middle;
+            word-break: break-word;
+        }
+
+        .spec-table th {
+            font-size: 12px;
+            letter-spacing: 0.05em;
+            color: #9CA3AF;
+            background: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+        }
+
+        .spec-table td {
+            font-size: 14px;
+            color: #D1D5DB;
+        }
+
+        .spec-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        /* 海尔 fold-demo 复刻 */
+        .fold-demo-casarte {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(233, 189, 133, 0.2);
+            border-radius: 0px !important;
+        }
+        .fold-row-casarte {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 80px 1fr;
+            gap: 14px;
+        }
+        .fold-row-casarte + .fold-row-casarte {
+            margin-top: 15px;
+        }
+        .fold-label-casarte {
+            font-size: 12px;
+            color: #9CA3AF;
+        }
+        .fold-label-casarte strong {
+            display: block;
+            color: #F5F5F7;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+        .fold-cells-casarte {
+            display: grid;
+            gap: 3px;
+            height: 38px;
+        }
+        .fold-cells-casarte span {
+            border-radius: 0px !important;
+            background: rgba(233, 189, 133, 0.12);
+            border: 1px solid rgba(233, 189, 133, 0.25);
+        }
+        .fold-cells-casarte.is-primary span {
+            background: rgba(233, 189, 133, 0.28);
+            border-color: rgba(233, 189, 133, 0.45);
+        }
+        .fold-note-casarte {
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 12px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+
+        /* 栅格构成图示：W 范围精准贴合 */
+        .grid-anatomy-casarte {
+            position: relative;
+            padding: 56px 24px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(233, 189, 133, 0.2);
+            border-radius: 0px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .grid-anatomy-container-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .grid-anatomy-width-casarte {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -24px;
+            height: 1px;
+            background: rgba(233, 189, 133, 0.6);
+        }
+        .grid-anatomy-width-casarte:before, .grid-anatomy-width-casarte:after {
+            content: "";
+            position: absolute;
+            top: -4px;
+            width: 1px;
+            height: 9px;
+            background: rgba(233, 189, 133, 0.9);
+        }
+        .grid-anatomy-width-casarte:before { left: 0; }
+        .grid-anatomy-width-casarte:after { right: 0; }
+        .grid-anatomy-width-casarte span {
+            position: absolute;
+            left: 50%;
+            top: -11px;
+            transform: translateX(-50%);
+            padding: 0 8px;
+            background: #141418;
+            color: #E9BD85;
+            font-size: 11px;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+        .grid-anatomy-body-casarte {
+            display: grid;
+            grid-template-columns: 48px repeat(4, minmax(0, 1fr)) 48px;
+            gap: 6px;
+            height: 190px;
+            width: 100%;
+        }
+        .grid-margin-casarte {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(233, 189, 133, 0.4);
+            background: rgba(233, 189, 133, 0.05);
+            color: #E9BD85;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 0px !important;
+        }
+        .grid-column-casarte {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(233, 189, 133, 0.35);
+            background: rgba(233, 189, 133, 0.18);
+            color: #E9BD85;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 0px !important;
+        }
+        .grid-gutter-marker-casarte {
+            margin-top: 16px;
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+        }
+
+        /* 硬件屏幕示例复刻 */
+        .screen-example-casarte {
+            position: relative;
+            aspect-ratio: 8/3;
+            min-height: 190px;
+            padding: 28px 6.25%;
+            overflow: hidden;
+            background: #000000;
+            border: 1px solid rgba(233, 189, 133, 0.3);
+            border-radius: 0px !important;
+        }
+        .screen-example-casarte.is-1280 { padding-left: 3.75%; padding-right: 3.75%; }
+        .screen-example-casarte.is-ultrawide { aspect-ratio: 48/11; min-height: 170px; padding-left: 2.5%; padding-right: 2.5%; }
+        .screen-size-casarte {
+            position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+            color: #9CA3AF; font-size: 11px; font-family: monospace;
+        }
+        .screen-margin-casarte {
+            position: absolute; top: 28px; bottom: 28px; width: 6.25%;
+            display: grid; place-items: center; background: rgba(255, 255, 255, 0.05);
+            color: #9CA3AF; font-size: 10px; border-left: 1px dashed rgba(255,255,255,0.2); border-right: 1px dashed rgba(255,255,255,0.2);
+        }
+        .screen-margin-casarte.left { left: 0; }
+        .screen-margin-casarte.right { right: 0; }
+        .screen-example-casarte.is-1280 .screen-margin-casarte { width: 3.75%; }
+        .screen-example-casarte.is-ultrawide .screen-margin-casarte { width: 2.5%; }
+
+        .screen-grid-casarte {
+            display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 2.027027%; height: 100%;
+        }
+        .screen-example-casarte.is-ultrawide .screen-grid-casarte { gap: 1.315789%; }
+        .screen-grid-casarte span {
+            display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px;
+            border: 1px solid rgba(233, 189, 133, 0.35); border-radius: 0px !important;
+            background: rgba(233, 189, 133, 0.15); color: #E9BD85; font-size: 9px; font-weight: 600;
+        }
+
+        /* 档位换算器：双列严格对称 */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .calc-field label {
+            font-size: 13px;
+            color: #D1D5DB;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        /* 基础控件框重置 */
+        input, select {
+            width: 100%; 
+            height: 40px; 
+            line-height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 0px !important;
+            background: rgba(255, 255, 255, 0.05); 
+            color: #FFF; 
+            font-size: 14px; 
+            outline: none; 
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        select {
+            padding: 0 32px 0 16px !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+            text-indent: 0px;
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            padding: 0 10px 0 16px !important;
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-wrapper::after {
+            content: "";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0; 
+            height: 0; 
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid #E9BD85;
+            pointer-events: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--text-gold); 
+            box-shadow: 0 0 0 2px rgba(233, 189, 133, 0.2);
+        }
+
+        select option { background: #16161A; color: #FFF; }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #2A2A30; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-gold); }
+    </style>
+</head>
+
+<body class="antialiased">
+    <div class="ambient-bg"></div>
+
+    <!-- 移动端 Header -->
+    <header class="md:hidden gallery-panel rounded-none fixed top-0 w-full z-50 p-4 flex justify-between items-center border-b border-amber-900/30">
+        <div class="flex items-center">
+            <div class="w-8 h-8 mr-2 bg-[#E9BD85] text-black flex items-center justify-center font-bold text-sm">C</div>
+            <h1 class="font-bold text-base text-white tracking-widest" data-i18n-zh="栅格" data-i18n-en="Grid">栅格</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 bg-white/5 hover:bg-white/10 text-white"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </header>
+
+    <div class="flex h-screen pt-16 md:pt-0">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="hidden md:flex flex-col w-72 h-full fixed top-0 left-0 gallery-panel rounded-none border-r border-gray-800 z-40 overflow-y-auto" aria-label="Haier OS 设计规范导航" aria-hidden="true"></aside>
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 hidden md:hidden" aria-hidden="true"></div>
+
+        <!-- 主内容区 -->
+        <main class="flex-1 md:ml-72 p-6 md:p-12 lg:p-16 overflow-y-auto h-full scroll-smooth" id="main-content">
+            <div class="max-w-[1360px] mx-auto pb-32 space-y-20">
+                
+                <!-- 头部：返回主页按键与大标题 -->
+                <div class="hidden md:flex items-center mb-8">
+                    <a href="haier_os_design_system.html" class="px-5 py-2.5 bg-white/15 hover:bg-white/25 transition-colors flex items-center text-white border border-white/20 rounded-none">
+                        <span class="text-sm font-medium tracking-wide" data-i18n-zh="返回主页" data-i18n-en="Home">返回主页</span>
+                    </a>
+                </div>
+
+                <section class="border-b border-gray-800 pb-8">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6" data-i18n-zh="栅格" data-i18n-en="Grid System">栅格</h1>
+                    <p class="text-base md:text-lg text-gray-300 max-w-4xl leading-relaxed" data-i18n-zh="以可用容器宽度为判断基准，用列、沟槽与边距建立跨家电屏、移动端、平板和桌面端的一致布局秩序。" data-i18n-en="Use available container width as the basis to establish consistent layout order across appliance screens, mobile, tablets, and desktops using columns, gutters, and margins.">
+                        以可用容器宽度为判断基准，用列、沟槽与边距建立跨家电屏、移动端、平板和桌面端的一致布局秩序。
+                    </p>
+                </section>
+
+                <!-- ================= 模块 1：核心规则 ================= -->
+                <section id="module-core-rules" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">01</span>
+                        <div class="space-y-1">
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="核心规则" data-i18n-en="Core Rules">核心规则</h2>
+                            <p class="text-sm text-gray-400" data-i18n-zh="24 列是跨设备统一的布局标尺，不代表每块屏幕都要显示 24 列。内容区域变窄时，系统可映射为 12、8 或 4 个可用列，保持信息顺序与跨列比例。" data-i18n-en="24 columns is the unified layout scale across devices, not a requirement to show 24 columns on every screen.">24 列是跨设备统一的布局标尺，不代表每块屏幕都要显示 24 列。内容区域变窄时，系统可映射为 12、8 或 4 个可用列，保持信息顺序与跨列比例。</p>
+                        </div>
+                    </div>
+
+                    <div class="fold-demo-casarte" aria-label="24、12、8、4 列的响应式折叠关系">
+                        <div class="fold-row-casarte">
+                            <div class="fold-label-casarte"><strong class="text-white" data-i18n-zh="基准" data-i18n-en="Base">基准</strong>24 <span data-i18n-zh="列" data-i18n-en="Cols">列</span></div>
+                            <div class="fold-cells-casarte is-primary" style="grid-template-columns: repeat(24, minmax(0, 1fr))">
+                                <script>for(let i=0;i<24;i++)document.write('<span></span>');</script>
+                            </div>
+                        </div>
+                        <div class="fold-row-casarte">
+                            <div class="fold-label-casarte"><strong class="text-white" data-i18n-zh="宽屏" data-i18n-en="Wide">宽屏</strong>12 <span data-i18n-zh="列" data-i18n-en="Cols">列</span></div>
+                            <div class="fold-cells-casarte" style="grid-template-columns: repeat(12, minmax(0, 1fr))">
+                                <script>for(let i=0;i<12;i++)document.write('<span></span>');</script>
+                            </div>
+                        </div>
+                        <div class="fold-row-casarte">
+                            <div class="fold-label-casarte"><strong class="text-white" data-i18n-zh="常规" data-i18n-en="Regular">常规</strong>8 <span data-i18n-zh="列" data-i18n-en="Cols">列</span></div>
+                            <div class="fold-cells-casarte" style="grid-template-columns: repeat(8, minmax(0, 1fr))">
+                                <script>for(let i=0;i<8;i++)document.write('<span></span>');</script>
+                            </div>
+                        </div>
+                        <div class="fold-row-casarte">
+                            <div class="fold-label-casarte"><strong class="text-white" data-i18n-zh="窄屏" data-i18n-en="Narrow">窄屏</strong>4 <span data-i18n-zh="列" data-i18n-en="Cols">列</span></div>
+                            <div class="fold-cells-casarte" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+                                <script>for(let i=0;i<4;i++)document.write('<span></span>');</script>
+                            </div>
+                        </div>
+                        <p class="fold-note-casarte" data-i18n-zh="同一组件可以用 24 列跨度记录设计意图，再映射到各档位的可用列数。例如半宽区域可表达为 12/24、6/12、4/8、2/4。" data-i18n-en="A component can record design intent using its 24-column span, then map it to usable columns.">
+                            同一组件可以用 24 列跨度记录设计意图，再映射到各档位的可用列数。例如半宽区域可表达为 12/24、6/12、4/8、2/4。
+                        </p>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- ================= 模块 2：栅格构成 ================= -->
+                <section id="module-grid-anatomy" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">02</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="栅格构成" data-i18n-en="Grid Anatomy">栅格构成</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="栅格由容器、边距、列和沟槽共同组成。建议栅格系统的网格大小选定8作为栅格系统的原子单位。" data-i18n-en="A grid consists of a container, margins, columns, and gutters. Use 8 as the recommended atomic unit.">栅格由容器、边距、列和沟槽共同组成。建议栅格系统的网格大小选定8作为栅格系统的原子单位。</p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-[1.12fr_.88fr] gap-8 items-stretch">
+                        <div class="grid-anatomy-casarte" aria-label="容器宽度、外边距、列与沟槽的结构示意">
+                            <div class="grid-anatomy-container-wrapper">
+                                <div class="grid-anatomy-width-casarte"><span data-i18n-zh="W · 可用容器宽度" data-i18n-en="W · Available Container Width">W · 可用容器宽度</span></div>
+                                <div class="grid-anatomy-body-casarte">
+                                    <div class="grid-margin-casarte">M</div>
+                                    <div class="grid-column-casarte">C</div>
+                                    <div class="grid-column-casarte">C</div>
+                                    <div class="grid-column-casarte">C</div>
+                                    <div class="grid-column-casarte">C</div>
+                                    <div class="grid-margin-casarte">M</div>
+                                </div>
+                            </div>
+                            <div class="grid-gutter-marker-casarte" data-i18n-zh=" ｜ G · 沟槽 ｜" data-i18n-en=" ｜ G · Gutter ｜"> ｜ G · 沟槽 ｜</div>
+                        </div>
+
+                        <div class="gallery-panel p-6 space-y-4 flex flex-col justify-center">
+                            <div class="border-b border-white/10 pb-3"><p class="text-[#E9BD85] font-bold text-sm" data-i18n-zh="W · 容器" data-i18n-en="W · Container">W · 容器</p><p class="text-xs text-gray-400" data-i18n-zh="扣除系统栏和安全区后的可用宽度。" data-i18n-en="Available width after subtracting system bars and safe areas.">扣除系统栏和安全区后的可用宽度。</p></div>
+                            <div class="border-b border-white/10 pb-3"><p class="text-[#E9BD85] font-bold text-sm" data-i18n-zh="M · 边距" data-i18n-en="M · Margin">M · 边距</p><p class="text-xs text-gray-400" data-i18n-zh="内容与容器边缘的保护空间。" data-i18n-en="Protective space between content and container edges.">内容与容器边缘的保护空间。</p></div>
+                            <div class="border-b border-white/10 pb-3"><p class="text-[#E9BD85] font-bold text-sm" data-i18n-zh="A · 列数" data-i18n-en="A · Columns">A · 列数</p><p class="text-xs text-gray-400" data-i18n-zh="当前响应式档位实际使用的列数量。" data-i18n-en="The number of columns actually used at the current responsive tier.">当前响应式档位实际使用的列数量。</p></div>
+                            <div class="border-b border-white/10 pb-3"><p class="text-[#E9BD85] font-bold text-sm" data-i18n-zh="C · 列宽" data-i18n-en="C · Column Width">C · 列宽</p><p class="text-xs text-gray-400" data-i18n-zh="承载内容，组件边缘应对齐列边界。" data-i18n-en="Carries content; component edges should align to column boundaries.">承载内容，组件边缘应对齐列边界。</p></div>
+                            <div><p class="text-[#E9BD85] font-bold text-sm" data-i18n-zh="G · 沟槽" data-i18n-en="G · Gutter">G · 沟槽</p><p class="text-xs text-gray-400" data-i18n-zh="相邻列的间距，不放置文本或操作热区。" data-i18n-en="Spacing between adjacent columns; do not place text or interactive targets inside it.">相邻列的间距，不放置文本或操作热区。</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- ================= 模块 3：响应式档位 ================= -->
+                <section id="module-responsive-tiers" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">03</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="响应式档位" data-i18n-en="Responsive Breakpoints">响应式档位</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="断点基于组件所在容器的逻辑宽度，优先使用容器查询；只有页面根布局才使用视口媒体查询。" data-i18n-en="Breakpoints are based on the logical width of the component container.">断点基于组件所在容器的逻辑宽度，优先使用容器查询；只有页面根布局才使用视口媒体查询。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-panel overflow-hidden">
+                        <div class="table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="min-width: 140px;" data-i18n-zh="档位 / 可用宽度" data-i18n-en="Tier / Available Width">档位 / 可用宽度</th>
+                                        <th style="min-width: 80px;" data-i18n-zh="显示列" data-i18n-en="Visible Columns">显示列</th>
+                                        <th style="min-width: 90px;" data-i18n-zh="外边距" data-i18n-en="Margin">外边距</th>
+                                        <th style="min-width: 80px;" data-i18n-zh="沟槽" data-i18n-en="Gutter">沟槽</th>
+                                        <th style="min-width: 280px;" data-i18n-zh="典型硬件与布局策略" data-i18n-en="Typical Hardware & Strategy">典型硬件与布局策略</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong data-i18n-zh="小屏" data-i18n-en="Small Screen">小屏</strong><br>&lt; 360</td><td>4</td><td>12</td><td>8</td><td data-i18n-zh="旋钮屏、窄条屏、小型嵌入屏；单主任务，次要信息换页。" data-i18n-en="Knob displays, strip displays, and small embedded screens. Single main task.">旋钮屏、窄条屏、小型嵌入屏；单主任务，次要信息换页。</td></tr>
+                                    <tr><td><strong data-i18n-zh="窄屏" data-i18n-en="Narrow Screen">窄屏</strong><br>360–599</td><td>4</td><td>16</td><td>12</td><td data-i18n-zh="手机、冰箱窄屏；内容纵向排列，卡片默认跨 4 列。" data-i18n-en="Phones and narrow refrigerator displays; stack content vertically.">手机、冰箱窄屏；内容纵向排列，卡片默认跨 4 列。</td></tr>
+                                    <tr><td><strong data-i18n-zh="常规" data-i18n-en="Regular">常规</strong><br>600–839</td><td>8</td><td>24</td><td>16</td><td data-i18n-zh="平板竖屏、中型中控；允许 4+4 双栏，关键区至少跨 5 列。" data-i18n-en="Portrait tablets and medium control displays; allow 4+4 columns.">平板竖屏、中型中控；允许 4+4 双栏，关键区至少跨 5 列。</td></tr>
+                                    <tr><td><strong data-i18n-zh="宽屏" data-i18n-en="Wide Screen">宽屏</strong><br>840–1199</td><td>12</td><td>32</td><td>20</td><td data-i18n-zh="横屏中控、平板横屏；主次区推荐 8+4 或 7+5。" data-i18n-en="Landscape control displays and tablets; use 8+4 or 7+5.">横屏中控、平板横屏；主次区推荐 8+4 或 7+5。</td></tr>
+                                    <tr><td><strong data-i18n-zh="加宽屏" data-i18n-en="Extra-wide">加宽屏</strong><br>1200–1599</td><td>12</td><td data-i18n-zh="40 / 自动" data-i18n-en="40 / Auto">40 / 自动</td><td>24</td><td data-i18n-zh="桌面与大屏；内容容器最大 1120，避免信息过度拉伸。" data-i18n-en="Desktop and large displays; cap container at 1120.">桌面与大屏；内容容器最大 1120，避免信息过度拉伸。</td></tr>
+                                    <tr><td><strong data-i18n-zh="超宽屏" data-i18n-en="Ultra-wide">超宽屏</strong><br>≥ 1600</td><td>12</td><td data-i18n-zh="48 / 自动" data-i18n-en="48 / Auto">48 / 自动</td><td>24</td><td data-i18n-zh="超宽屏与多面板控制台；内容容器最大 1440，允许 3/6/9 列分区。" data-i18n-en="Ultra-wide displays; cap container at 1440 and allow 3/6/9-column regions.">超宽屏与多面板控制台；内容容器最大 1440，允许 3/6/9 列分区。</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= 模块 4：从硬件分辨率到设计尺寸与档位换算器 ================= -->
+                <section id="module-hardware-calc" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">04</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="从硬件分辨率到设计尺寸" data-i18n-en="From Hardware to Design Size">从硬件分辨率到设计尺寸</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="分辨率只决定像素数量，不能直接决定栅格。先得到逻辑宽度，再选档位。" data-i18n-en="Resolution determines pixel count, not the grid. Calculate logical width first, then select a tier.">分辨率只决定像素数量，不能直接决定栅格。先得到逻辑宽度，再选档位。</p>
+                        </div>
+                    </div>
+
+                    <!-- 左右双列对齐容器 -->
+                    <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                        <!-- 左侧：换算步骤 -->
+                        <div class="gallery-panel p-8 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-6" data-i18n-zh="换算步骤" data-i18n-en="Conversion Steps">换算步骤</h3>
+                                <ol class="space-y-5 text-sm text-gray-300">
+                                    <li><strong class="block text-white mb-1" data-i18n-zh="1. 确认物理像素" data-i18n-en="1. Confirm Physical Pixels">1. 确认物理像素</strong><span class="text-gray-400" data-i18n-zh="以横向像素为例：1280 pt、1920 pt。" data-i18n-en="For horizontal pixels: e.g., 1280 pt, 1920 pt.">以横向像素为例：1280 pt、1920 pt。</span></li>
+                                    <li><strong class="block text-white mb-1" data-i18n-zh="2. 除以系统缩放倍数" data-i18n-en="2. Divide by System Scale Factor">2. 除以系统缩放倍数</strong><span class="text-gray-400" data-i18n-zh="逻辑宽度 = 物理宽度 ÷ DPR / Density。" data-i18n-en="Logical Width = Physical Width ÷ DPR / Density.">逻辑宽度 = 物理宽度 ÷ DPR / Density。</span></li>
+                                    <li><strong class="block text-white mb-1" data-i18n-zh="3. 扣除不可用区域" data-i18n-en="3. Subtract Unavailable Areas">3. 扣除不可用区域</strong><span class="text-gray-400" data-i18n-zh="减去系统栏、固定导航、圆角裁切、包边和安全区。" data-i18n-en="Subtract system bars, fixed navigation, rounded corners, bezels, and safe areas.">减去系统栏、固定导航、圆角裁切、包边和安全区。</span></li>
+                                    <li><strong class="block text-white mb-1" data-i18n-zh="4. 依内容宽度选档" data-i18n-en="4. Select Tier by Content Width">4. 依内容宽度选档</strong><span class="text-gray-400" data-i18n-zh="跨过断点时重排与折叠，不进行整体等比缩放。" data-i18n-en="Rearrange and fold when crossing breakpoints, without proportional scaling.">跨过断点时重排与折叠，不进行整体等比缩放。</span></li>
+                                </ol>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-white/5 text-xs text-gray-500 font-mono" data-i18n-zh="规范标准：跨端等比例换算矩阵" data-i18n-en="Standard: Cross-terminal Proportional Conversion Matrix">
+                                规范标准：跨端等比例换算矩阵
+                            </div>
+                        </div>
+
+                        <!-- 右侧：档位换算器 -->
+                        <div class="gallery-panel p-8 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-6" data-i18n-zh="档位换算器" data-i18n-en="Tier Calculator">档位换算器</h3>
+                                
+                                <div class="calculator-grid">
+                                    <div class="calc-field">
+                                        <label data-i18n-zh="系统" data-i18n-en="System">系统</label>
+                                        <div class="select-wrapper">
+                                            <select id="system">
+                                                <option value="android" data-i18n-zh="Android" data-i18n-en="Android">Android</option>
+                                                <option value="linux" data-i18n-zh="Linux" data-i18n-en="Linux">Linux</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="calc-field">
+                                        <label data-i18n-zh="横向物理像素" data-i18n-en="Horizontal Physical Pixels">横向物理像素</label>
+                                        <input id="physical-width" type="number" value="1920" min="1">
+                                    </div>
+                                    
+                                    <div class="calc-field" id="density-container">
+                                        <label data-i18n-zh="Density (Android)" data-i18n-en="Density (Android)">Density (Android)</label>
+                                        <input id="density" type="number" value="2" min="0.5" step="0.25">
+                                    </div>
+                                    
+                                    <div class="calc-field">
+                                        <label data-i18n-zh="左右两侧不可用宽度（合计）" data-i18n-en="Unavailable Width (Total)">左右两侧不可用宽度（合计）</label>
+                                        <input id="reserved" type="number" value="0" min="0">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-black/40 border border-amber-500/30 rounded-none p-4 mt-6 space-y-2">
+                                <div>
+                                    <p class="text-[#E9BD85] font-semibold mb-1" data-i18n-zh="计算结果" data-i18n-en="Calculation Result">计算结果</p>
+                                    <p id="grid-result" class="font-semibold text-white tracking-wide text-sm" aria-live="polite"></p>
+                                </div>
+                                <div class="pt-2 border-t border-white/10">
+                                    <p class="text-xs text-gray-400 leading-relaxed font-mono" id="grid-formula" data-i18n-zh="运算规则：逻辑宽度 = (物理像素 ÷ 缩放密度) − 左右不可用宽度合计" data-i18n-en="Formula: Logical Width = (Physical Pixels ÷ Density) − Total Unavailable Width">
+                                        运算规则：逻辑宽度 = (物理像素 ÷ 缩放密度) − 左右不可用宽度合计
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 硬件示例表格 -->
+                    <div class="gallery-panel overflow-hidden mt-8">
+                        <div class="table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="min-width: 180px;" data-i18n-zh="硬件示例" data-i18n-en="Hardware Example">硬件示例</th>
+                                        <th style="min-width: 160px;" data-i18n-zh="换算方式" data-i18n-en="Conversion Method">换算方式</th>
+                                        <th style="min-width: 120px;" data-i18n-zh="结果档位" data-i18n-en="Result Tier">结果档位</th>
+                                        <th style="min-width: 260px;" data-i18n-zh="建议" data-i18n-en="Recommendation">建议</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-i18n-zh="480 × 320 小屏 @1x" data-i18n-en="480 × 320 Small Screen @1x">480 × 320 小屏 @1x</td>
+                                        <td>480 − 24 = 456</td>
+                                        <td data-i18n-zh="窄屏 · 4 列" data-i18n-en="Narrow · 4 Cols">窄屏 · 4 列</td>
+                                        <td data-i18n-zh="全宽主任务；不并排两个操作面板。" data-i18n-en="Full-width main task; do not place two operation panels side by side.">全宽主任务；不并排两个操作面板。</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-i18n-zh="1280 × 480 中屏 @1x" data-i18n-en="1280 × 480 Medium Screen @1x">1280 × 480 中屏 @1x</td>
+                                        <td>1280 − 96 = 1184</td>
+                                        <td data-i18n-zh="宽屏 · 12 列" data-i18n-en="Wide · 12 Cols">宽屏 · 12 列</td>
+                                        <td data-i18n-zh="主次内容可并排，关键操作保持在主要视线区。" data-i18n-en="Primary and secondary content can be side by side; keep key operations in main view.">主次内容可并排，关键操作保持在主要视线区。</td>
+                                    </tr>
+                                    <tr>
+                                        <td data-i18n-zh="1920 × 440 大屏 @1x" data-i18n-en="1920 × 440 Large Screen @1x">1920 × 440 大屏 @1x</td>
+                                        <td>1920 − 96 = 1824</td>
+                                        <td data-i18n-zh="加宽屏 · 12 列" data-i18n-en="Extra-wide · 12 Cols">加宽屏 · 12 列</td>
+                                        <td data-i18n-zh="采用横向分区，内容按任务优先级展开。" data-i18n-en="Adopt horizontal partitioning, expanding content by task priority.">采用横向分区，内容按任务优先级展开。</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- ================= 模块 5：使用原则大模块 ================= -->
+                <section id="module-usage-principles" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">05</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="使用原则" data-i18n-en="Usage Principles">使用原则</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="跨端适配与响应式布局的核心执行逻辑。" data-i18n-en="Core execution logic for cross-terminal adaptation and responsive layouts.">跨端适配与响应式布局的核心执行逻辑。</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="gallery-panel p-6 space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="重排" data-i18n-en="Rearrange">重排</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="从 12 列降到 4 列时，8+4 主次布局改为两个 4 列区块，主任务在前；不要把两栏同比缩窄。" data-i18n-en="When scaling from 12 to 4 columns, change 8+4 primary-secondary layout into two 4-column blocks with the main task first; do not proportionally shrink both columns.">从 12 列降到 4 列时，8+4 主次布局改为两个 4 列区块，主任务在前；不要把两栏同比缩窄。</p>
+                        </div>
+                        <div class="gallery-panel p-6 space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="跨列" data-i18n-en="Span Columns">跨列</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="同一组件建议映射：4/4 → 6/8 → 8/12。文本正文在大屏仍控制在约 6–8 列，避免行长失控。" data-i18n-en="Recommended component mapping: 4/4 → 6/8 → 8/12. Keep body text within 6–8 columns on large screens to avoid line length out of control.">同一组件建议映射：4/4 → 6/8 → 8/12。文本正文在大屏仍控制在约 6–8 列，避免行长失控。</p>
+                        </div>
+                        <div class="gallery-panel p-6 space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="固定与流动" data-i18n-en="Fixed and Fluid">固定与流动</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="列与容器可流动；沟槽在同一档位内保持固定。达到最大容器宽度后，只增加外侧留白。" data-i18n-en="Columns and containers are fluid; gutters remain fixed within the same tier. After reaching the maximum container width, only increase outer margins.">列与容器可流动；沟槽在同一档位内保持固定。达到最大容器宽度后，只增加外侧留白。</p>
+                        </div>
+                        <div class="gallery-panel p-6 space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="方向变化" data-i18n-en="Orientation Change">方向变化</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="横竖屏切换后重新测量可用宽度。保持信息优先级和阅读顺序，不保证元素物理位置不变。" data-i18n-en="Re-measure available width after switching orientation. Maintain information priority and reading order, without guaranteeing physical position remains unchanged.">横竖屏切换后重新测量可用宽度。保持信息优先级和阅读顺序，不保证元素物理位置不变。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- ================= 模块 6：布局示例 ================= -->
+                <section id="module-layout-examples" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">06</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="布局示例" data-i18n-en="Layout Examples">布局示例</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="典型白电横屏与全景带状屏的栅格应用范例。" data-i18n-en="Grid application examples for typical appliance landscape and panoramic strip displays.">典型白电横屏与全景带状屏的栅格应用范例。</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-10">
+                        <div class="gallery-panel p-6 md:p-8 space-y-4">
+                            <h3 class="text-lg font-bold text-white">1280 × 480</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n-zh="Linux 1:1 画布，左右各保留 48，合计扣除 96；可用宽度为 1184，对应宽屏档位，采用 12 列与 20 沟槽。" data-i18n-en="Linux 1:1 canvas, 48 reserved on each side, total 96 subtracted; available width is 1184, corresponding to wide tier, using 12 columns and 20 gutters.">Linux 1:1 画布，左右各保留 48，合计扣除 96；可用宽度为 1184，对应宽屏档位，采用 12 列与 20 沟槽。</p>
+                            
+                            <div class="screen-example-casarte is-1280" aria-label="1280 × 480 画布的 12 列栅格示意">
+                                <div class="screen-size-casarte">1280 × 480</div>
+                                <div class="screen-margin-casarte left">48</div>
+                                <div class="screen-margin-casarte right">48</div>
+                                <div class="screen-grid-casarte">
+                                    <script>for(let i=1;i<=12;i++)document.write('<span>'+i+'</span>');</script>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 text-center text-xs text-gray-400 pt-3 border-t border-white/10">
+                                <div><strong class="block text-white text-sm">1184 px</strong><span data-i18n-zh="可用宽度" data-i18n-en="Available Width">可用宽度</span></div>
+                                <div><strong class="block text-[#E9BD85] text-sm" data-i18n-zh="宽屏 · 12 列" data-i18n-en="Wide · 12 Cols">宽屏 · 12 列</strong><span data-i18n-zh="计算档位" data-i18n-en="Calculated Tier">计算档位</span></div>
+                                <div><strong class="block text-white text-sm">20 px</strong><span data-i18n-zh="沟槽大小" data-i18n-en="Gutter Size">沟槽大小</span></div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-panel p-6 md:p-8 space-y-4">
+                            <h3 class="text-lg font-bold text-white">1920 × 440</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n-zh="Linux 1:1 画布，左右各保留 48，合计扣除 96；可用宽度为 1824，对应超宽屏档位，采用 12 列与 24 沟槽。" data-i18n-en="Linux 1:1 canvas, 48 reserved on each side, total 96 subtracted; available width is 1824, corresponding to ultra-wide tier, using 12 columns and 24 gutters.">Linux 1:1 画布，左右各保留 48，合计扣除 96；可用宽度为 1824，对应超宽屏档位，采用 12 列与 24 沟槽。</p>
+                            
+                            <div class="screen-example-casarte is-ultrawide" aria-label="1920 × 440 画布的 12 列栅格示意">
+                                <div class="screen-size-casarte">1920 × 440</div>
+                                <div class="screen-margin-casarte left">48</div>
+                                <div class="screen-margin-casarte right">48</div>
+                                <div class="screen-grid-casarte">
+                                    <script>for(let i=1;i<=12;i++)document.write('<span>'+i+'</span>');</script>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 text-center text-xs text-gray-400 pt-3 border-t border-white/10">
+                                <div><strong class="block text-white text-sm">1824 px</strong><span data-i18n-zh="可用宽度" data-i18n-en="Available Width">可用宽度</span></div>
+                                <div><strong class="block text-[#E9BD85] text-sm" data-i18n-zh="超宽屏 · 12 列" data-i18n-en="Ultra-wide · 12 Cols">超宽屏 · 12 列</strong><span data-i18n-zh="计算档位" data-i18n-en="Calculated Tier">计算档位</span></div>
+                                <div><strong class="block text-white text-sm">24 px</strong><span data-i18n-zh="沟槽大小" data-i18n-en="Gutter Size">沟槽大小</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-t border-gray-800">
+
+                <!-- ================= 模块 7：设计与验收清单 ================= -->
+                <section id="module-qa-checklist" class="space-y-8">
+                    <div class="flex items-baseline gap-4">
+                        <span class="module-num text-3xl text-[#E9BD85]">07</span>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="设计与验收清单" data-i18n-en="Design & QA Checklist">设计与验收清单</h2>
+                            <p class="text-sm text-gray-400 mt-1" data-i18n-zh="规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。" data-i18n-en="Guidelines for designers and developers during UI creation and acceptance delivery.">规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-panel p-8 md:p-12 space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-4">
+                                <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ UI 设计走查项" data-i18n-en="✓ Designer Checklist">✓ UI 设计走查项</h3>
+                                <ul class="space-y-3 text-sm text-gray-300 leading-relaxed">
+                                    <li data-i18n-zh="✓ 设计稿标注视口、缩放倍数、可用宽度与安全区" data-i18n-en="✓ Design annotations for viewport, scale factor, available width, and safe area">✓ 设计稿标注视口、缩放倍数、可用宽度与安全区</li>
+                                    <li data-i18n-zh="✓ 页面主体边缘、卡片和关键控件对齐列线" data-i18n-en="✓ Main edges, cards, and key controls align to column guidelines">✓ 页面主体边缘、卡片和关键控件对齐列线</li>
+                                    <li data-i18n-zh="✓ 每个关键断点都有明确的跨列与重排规则" data-i18n-en="✓ Clear spanning and rearrangement rules for every key breakpoint">✓ 每个关键断点都有明确的跨列与重排规则</li>
+                                    <li data-i18n-zh="✓ 超过最大容器宽度后不继续拉宽正文" data-i18n-en="✓ Prevent body text from stretching further beyond max container width">✓ 超过最大容器宽度后不继续拉宽正文</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-base font-bold text-blue-400 tracking-wider" data-i18n-zh="✓ FE 还原走查项" data-i18n-en="✓ Developer Checklist">✓ FE 还原走查项</h3>
+                                <ul class="space-y-3 text-sm text-gray-300 leading-relaxed">
+                                    <li data-i18n-zh="✓ 触控目标尺寸依据硬件距离规范，不随列宽压缩" data-i18n-en="✓ Touch target sizes follow hardware distance specs without compression">✓ 触控目标尺寸依据硬件距离规范，不随列宽压缩</li>
+                                    <li data-i18n-zh="✓ 200% 字号或长文本下不发生遮挡与溢出" data-i18n-en="✓ No overlapping or overflow under 200% font size or long text">✓ 200% 字号或长文本下不发生遮挡与溢出</li>
+                                    <li data-i18n-zh="✓ 横竖屏、分屏、系统栏出现时按容器重新计算" data-i18n-en="✓ Recalculate based on container on orientation change, split screen, or system bars">✓ 横竖屏、分屏、系统栏出现时按容器重新计算</li>
+                                    <li data-i18n-zh="✓ 在真实硬件上验证圆角、包边、视距和可触达区" data-i18n-en="✓ Verify corner radii, bezels, viewing distance, and touch zones on real hardware">✓ 在真实硬件上验证圆角、包边、视距和可触达区</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <footer class="pt-10 pb-16 text-center text-gray-400 text-sm border-t border-gray-800">
+                <p class="font-light" data-i18n-zh="&copy; 2026 Casarte Design Lab. Internal Confidential." data-i18n-en="&copy; 2026 Casarte Design Lab. Internal Confidential.">&copy; 2026 Casarte Design Lab. Internal Confidential.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- 导入导航脚本 -->
+    <script src="haier-nav.js"></script>
+
+    <!-- 档位换算器动态计算脚本（支持中英双语结果输出） -->
+    <script>
+        (() => {
+            const presets = [
+                {min:1600, zh:'超宽屏', en:'Ultra-wide', cols:12, margin:48, gutter:24},
+                {min:1200, zh:'加宽屏', en:'Extra-wide', cols:12, margin:40, gutter:24},
+                {min:840, zh:'宽屏', en:'Wide', cols:12, margin:32, gutter:20},
+                {min:600, zh:'常规', en:'Regular', cols:8, margin:24, gutter:16},
+                {min:360, zh:'窄屏', en:'Narrow', cols:4, margin:16,gutter:12},
+                {min:0, zh:'小屏', en:'Small', cols:4, margin:12,gutter:8}
+            ];
+            const inputs = ['physical-width','density','reserved'].map(id => document.getElementById(id));
+            const system = document.getElementById('system');
+            const densityInput = document.getElementById('density');
+            const result = document.getElementById('grid-result');
+            const formula = document.getElementById('grid-formula');
+            let androidDensity = Number(densityInput.value) || 2;
+
+            const update = () => {
+                const physical = Math.max(1, Number(inputs[0].value) || 1);
+                const isAndroid = system.value === 'android';
+                const density = isAndroid ? Math.max(.5, Number(inputs[1].value) || 1) : 1;
+                const reserved = Math.max(0, Number(inputs[2].value) || 0);
+                const width = Math.max(0, isAndroid ? physical / density - reserved : physical - reserved);
+                const p = presets.find(item => width >= item.min);
+                const unit = isAndroid ? 'dp' : 'px';
+                
+                const isEn = document.documentElement.lang === 'en' || (window.currentLang && window.currentLang === 'en');
+
+                if (isEn) {
+                    result.textContent = `${Math.round(width)} ${unit} · ${p.en} · ${p.cols} Cols · ${p.margin} Margin · ${p.gutter} Gutter`;
+                    formula.textContent = isAndroid 
+                        ? `Formula: Logical Width = (${physical} ÷ ${density}) − ${reserved} = ${Math.round(width)} dp ➔ Matches [${p.en}] Tier`
+                        : `Formula: Logical Width = ${physical} − ${reserved} = ${Math.round(width)} px ➔ Matches [${p.en}] Tier`;
+                } else {
+                    result.textContent = `${Math.round(width)} ${unit} · ${p.zh} · ${p.cols} 列 · ${p.margin} 外边距 · ${p.gutter} 沟槽`;
+                    formula.textContent = isAndroid 
+                        ? `运算规则：逻辑宽度 = (${physical} ÷ ${density}) − ${reserved} = ${Math.round(width)} dp ➔ 匹配【${p.zh}】档位`
+                        : `运算规则：逻辑宽度 = ${physical} − ${reserved} = ${Math.round(width)} px ➔ 匹配【${p.zh}】档位`;
+                }
+            };
+
+            const updateSystem = () => {
+                const isAndroid = system.value === 'android';
+                if (isAndroid) {
+                    densityInput.disabled = false;
+                    densityInput.value = androidDensity;
+                } else {
+                    androidDensity = Math.max(.5, Number(densityInput.value) || 2);
+                    densityInput.value = 1;
+                    densityInput.disabled = true;
+                }
+                update();
+            };
+
+            inputs.forEach(input => input.addEventListener('input', () => {
+                if (input === densityInput && system.value === 'android') androidDensity = Math.max(.5, Number(input.value) || 1);
+                update();
+            }));
+            system.addEventListener('change', updateSystem);
+
+            // 监听语言切换事件，实时更新计算结果语言
+            const observer = new MutationObserver(() => {
+                update();
+            });
+            observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+            updateSystem();
+        })();
+    </script>
+</body>
+</html>

@@ -18,22 +18,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 font-stretch: normal;
                 -webkit-font-smoothing: antialiased;
             }
+            .spec-table {
+                width: 100%;
+                border-collapse: collapse;
+                min-width: 650px;
+            }
+            .spec-table th, .spec-table td {
+                padding: 16px 20px;
+                text-align: left;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                vertical-align: middle;
+                word-break: break-word;
+            }
+            .spec-table th {
+                font-size: 12px;
+                letter-spacing: 0.05em;
+                color: #9CA3AF;
+                background: rgba(255, 255, 255, 0.03);
+                white-space: nowrap;
+            }
+            .spec-table td {
+                font-size: 14px;
+                color: #D1D5DB;
+            }
+            .spec-table tr:last-child td {
+                border-bottom: 0;
+            }
+            .table-wrap {
+                overflow-x: auto;
+                width: 100%;
+            }
         </style>
 
         <div class="space-y-20">
 
-            <!-- ================= 01 概览与何时使用 ================= -->
+            <!-- ================= 01 概览 ================= -->
             <section id="module-overview" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">01</span>
                     <div>
                         <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="单选按钮概览" data-i18n-en="Overview & When to Use">单选按钮概览</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="单选框用于在一组互斥选项中选择单一结果。卡萨帝家电界面中的单选控件需在极简面板下具备明确的触控热区与选中区分。" data-i18n-en="Radio buttons allow selecting a single option from a set of mutually exclusive choices.">单选框用于在一组互斥选项中选择单一结果。卡萨帝家电界面中的单选控件需在极简面板下具备明确的触控热区与选中区分。</p>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="单选框是用于在一组互斥选项中让用户选择唯一答案的交互组件。卡萨帝多终端统一提供清晰的选中与未选中视觉反馈及颜色语义规范。" data-i18n-en="A radio button is an interactive component that allows the user to select a single option from a set of mutually exclusive choices.">单选框是用于在一组互斥选项中让用户选择唯一答案的交互组件[cite: 4]。卡萨帝多终端统一提供清晰的选中与未选中视觉反馈及颜色语义规范。</p>
                     </div>
                 </div>
 
-                <!-- 模块 01：对应第 1 张图 component_radio_button-1.png (等比缩小 20%，已移除外边框) -->
-                <div class="w-full aspect-[1364/442] bg-black/30 flex items-center justify-center p-8 overflow-hidden">
+                <div class="w-full aspect-[1364/442] bg-black/30 border border-white/5 flex items-center justify-center p-8 overflow-hidden rounded-none">
                     <img src="assets/component_radio_button/component_radio_button-1.png" alt="component_radio_button-1" class="w-[80%] h-[80%] object-contain">
                 </div>
             </section>
@@ -51,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="gallery-panel p-8 space-y-4">
+                    <div class="gallery-panel p-8 space-y-4 rounded-none border border-white/5 bg-black/30">
                         <h3 class="text-lg font-bold text-white" data-i18n-zh="颜色语义" data-i18n-en="Color Semantics">颜色语义</h3>
                         <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="在常规的表单填写、偏好设置等无风险选择场景中，严禁使用红色作为单选组件的常态或选中颜色，以免引起用户的困惑或操作焦虑。" data-i18n-en="In routine, risk-free selection scenarios, the use of red as the default or selected color is strictly prohibited.">在常规的表单填写、偏好设置等无风险选择场景中，严禁使用红色作为单选组件的常态或选中颜色，以免引起用户的困惑或操作焦虑。</p>
                         <div class="pt-2 text-xs space-y-2 text-gray-400">
@@ -60,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
 
-                    <div class="gallery-panel p-8 space-y-4">
+                    <div class="gallery-panel p-8 space-y-4 rounded-none border border-white/5 bg-black/30">
                         <h3 class="text-lg font-bold text-white" data-i18n-zh="状态精简" data-i18n-en="State Simplification">状态精简</h3>
                         <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="按下/点击时状态定义为可选交互状态，而非强制使用。" data-i18n-en="The Pressed state is defined as an optional interaction state, not a mandatory one.">按下/点击时状态定义为可选交互状态，而非强制使用。</p>
                     </div>
@@ -69,62 +98,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 03 单选样式规范矩阵 ================= -->
-            <section id="module-radio-style" class="space-y-10">
+            <!-- ================= 03 类型与交互 (按钮式单选严格应用截图3红框规范：254x88比例，未选中/选中形态) ================= -->
+            <section id="module-type-interaction" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">03</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="单选样式规范矩阵" data-i18n-en="Radio Style Matrix">单选样式规范矩阵</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="全面梳理未选 (Unselected) 与已选 (Selected) 在默认、按下、禁用 三种交互状态下的表现规范。" data-i18n-en="Covers full state matrix for Unselected and Selected radio buttons across Default, Pressed, and Disabled states.">全面梳理未选 (Unselected) 与已选 (Selected) 在默认、按下、禁用 三种交互状态下的表现规范。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="类型与交互" data-i18n-en="Types & Interactions">类型与交互</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="针对基础单选与按钮式单选在智能家电交互上的差异化布局规范。" data-i18n-en="Differentiated layout guidelines for basic radio and button-style radio selections on smart appliance interfaces.">针对基础单选与按钮式单选在智能家电交互上的差异化布局规范。</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- 左侧：未选状态 -> 对应第 2 张图 component_radio_button-2.png -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_radio_button/component_radio_button-2.png" alt="component_radio_button-2" class="w-full h-full object-cover">
+                    <!-- 基础单选 (2px边框，可交互切换) -->
+                    <div class="gallery-panel p-8 space-y-6 rounded-none border border-white/5 bg-black/30">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white" data-i18n-zh="基础单选" data-i18n-en="Basic Radio">基础单选</h3>
+                            <p class="text-xs text-gray-400" data-i18n-zh="短标签横排；整段文字与圆点共同构成点击区域。" data-i18n-en="Short labels horizontal; text and dot form joint click area.">短标签横排；整段文字与圆点共同构成点击区域。</p>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="未选状态" data-i18n-en="Unselected State">未选状态</h3>
-                            <ul class="text-xs text-gray-300 space-y-2 leading-relaxed">
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="默认：" data-i18n-en="Default: ">默认：</strong>
-                                    <span data-i18n-zh="标准暗色环境下的微光描边圆环，配以清晰的文字标签。" data-i18n-en="Standard subtle outlined ring in dark mode with clear text labels.">标准暗色环境下的微光描边圆环，配以清晰的文字标签。</span>
-                                </li>
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="按下：" data-i18n-en="Pressed: ">按下：</strong>
-                                    <span data-i18n-zh="触控按下时的可选交互状态，圆环及文本呈现轻微高亮或透明度变化。" data-i18n-en="Optional interactive state when touched/pressed, showing slight highlight or opacity change.">触控按下时的可选交互状态，圆环及文本呈现轻微高亮或透明度变化。</span>
-                                </li>
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="禁用：" data-i18n-en="Disabled: ">禁用：</strong>
-                                    <span data-i18n-zh="降低整体透明度，不响应任何点击或触摸交互。" data-i18n-en="Reduced overall opacity, unresponsive to any click or touch interactions.">降低整体透明度，不响应任何点击或触摸交互。</span>
-                                </li>
-                            </ul>
+                        <div class="flex items-center gap-8 py-4" id="interactive-basic-radio">
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none group">
+                                <input type="radio" name="demo-basic" value="1" class="hidden">
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-500 group-hover:border-[#E9BD85] flex items-center justify-center transition-colors">
+                                    <div class="w-2.5 h-2.5 bg-[#E9BD85] rounded-full hidden"></div>
+                                </div>
+                                <span class="text-sm text-gray-300 group-hover:text-white">1次</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none group">
+                                <input type="radio" name="demo-basic" value="2" checked class="hidden">
+                                <div class="w-5 h-5 rounded-full border-2 border-[#E9BD85] flex items-center justify-center transition-colors">
+                                    <div class="w-2.5 h-2.5 bg-[#E9BD85] rounded-full"></div>
+                                </div>
+                                <span class="text-sm text-white font-bold">2次</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 cursor-pointer select-none group">
+                                <input type="radio" name="demo-basic" value="3" class="hidden">
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-500 group-hover:border-[#E9BD85] flex items-center justify-center transition-colors">
+                                    <div class="w-2.5 h-2.5 bg-[#E9BD85] rounded-full hidden"></div>
+                                </div>
+                                <span class="text-sm text-gray-300 group-hover:text-white">3次</span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- 右侧：已选状态 -> 对应第 3 张图 component_radio_button-3.png -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_radio_button/component_radio_button-3.png" alt="component_radio_button-3" class="w-full h-full object-cover">
+                    <!-- 按钮式单选 (应用截图3红框：选中项为金框+深褐底色，未选中为细边框) -->
+                    <div class="gallery-panel p-8 space-y-6 rounded-none border border-white/5 bg-black/30">
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-white" data-i18n-zh="按钮式单选" data-i18n-en="Button-style Radio">按钮式单选</h3>
+                            <p class="text-xs text-gray-400" data-i18n-zh="用于短小、同等权重的档位；保持单选语义，窄屏改为纵排。" data-i18n-en="Used for short, equal-weight gears; maintains single-selection semantics, switches to vertical layout on narrow screens.">用于短小、同等权重的档位；保持单选语义，窄屏改为纵排。</p>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="已选状态" data-i18n-en="Selected State">已选状态</h3>
-                            <ul class="text-xs text-gray-300 space-y-2 leading-relaxed">
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="默认：" data-i18n-en="Default: ">默认：</strong>
-                                    <span data-i18n-zh="核心选中反馈，采用卡萨帝品牌金环（或警示红环）与中心圆点高亮。" data-i18n-en="Core selection feedback, featuring Casarte brand gold ring (or warning red ring) with center dot highlight.">核心选中反馈，采用卡萨帝品牌金环（或警示红环）与中心圆点高亮。</span>
-                                </li>
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="按下：" data-i18n-en="Pressed: ">按下：</strong>
-                                    <span data-i18n-zh="选中项在被持续触控或点击瞬间的动态反馈态。" data-i18n-en="Dynamic feedback state when a selected item is continuously touched or clicked.">选中项在被持续触控或点击瞬间的动态反馈态。</span>
-                                </li>
-                                <li>
-                                    <strong class="text-white" data-i18n-zh="禁用：" data-i18n-en="Disabled: ">禁用：</strong>
-                                    <span data-i18n-zh="已选中但处于不可操作状态下的灰色或低饱和度呈现。" data-i18n-en="Grayed out or low saturation presentation when selected but non-operable.">已选中但处于不可操作状态下的灰色或低饱和度呈现。</span>
-                                </li>
-                            </ul>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2" id="interactive-button-radio">
+                            <button type="button" data-val="auto" style="width: 100%; aspect-ratio: 254 / 88;" class="bg-[#3D3123] border border-[#E9BD85] text-white text-xs font-bold text-center rounded-none flex items-center justify-center gap-2 transition-all shadow-md">
+                                <div class="w-2 h-2 bg-[#E9BD85] rounded-none"></div>自动
+                            </button>
+                            <button type="button" data-val="low" style="width: 100%; aspect-ratio: 254 / 88;" class="bg-black/20 border border-white/20 text-gray-300 text-xs text-center rounded-none hover:border-white/40 transition-all flex items-center justify-center">低</button>
+                            <button type="button" data-val="mid" style="width: 100%; aspect-ratio: 254 / 88;" class="bg-black/20 border border-white/20 text-gray-300 text-xs text-center rounded-none hover:border-white/40 transition-all flex items-center justify-center">中</button>
+                            <button type="button" data-val="high" style="width: 100%; aspect-ratio: 254 / 88;" class="bg-black/20 border border-white/20 text-gray-300 text-xs text-center rounded-none hover:border-white/40 transition-all flex items-center justify-center">高</button>
                         </div>
                     </div>
                 </div>
@@ -142,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <div class="gallery-panel p-8 md:p-12 space-y-8">
+                <div class="gallery-panel p-8 md:p-12 space-y-8 rounded-none border border-white/5 bg-black/30">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-4">
                             <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ 应该" data-i18n-en="✓ Recommended">✓ 应该</h3>
@@ -165,7 +193,56 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
 
-    // 健壮的语言切换与同步应用函数
+    // 绑定基础单选点击交互逻辑
+    const basicRadioGroup = document.getElementById('interactive-basic-radio');
+    if (basicRadioGroup) {
+        const labels = basicRadioGroup.querySelectorAll('label');
+        labels.forEach(label => {
+            label.addEventListener('click', () => {
+                labels.forEach(l => {
+                    const radio = l.querySelector('input[type="radio"]');
+                    const dot = l.querySelector('div > div');
+                    const outer = l.querySelector('div');
+                    const txt = l.querySelector('span');
+                    radio.checked = false;
+                    dot.classList.add('hidden');
+                    outer.classList.remove('border-[#E9BD85]');
+                    outer.classList.add('border-gray-500');
+                    txt.classList.remove('text-white', 'font-bold');
+                    txt.classList.add('text-gray-300');
+                });
+                const currentRadio = label.querySelector('input[type="radio"]');
+                const currentDot = label.querySelector('div > div');
+                const currentOuter = label.querySelector('div');
+                const currentTxt = label.querySelector('span');
+                currentRadio.checked = true;
+                currentDot.classList.remove('hidden');
+                currentOuter.classList.remove('border-gray-500');
+                currentOuter.classList.add('border-[#E9BD85]');
+                currentTxt.classList.remove('text-gray-300');
+                currentTxt.classList.add('text-white', 'font-bold');
+            });
+        });
+    }
+
+    // 绑定按钮式单选点击交互逻辑（完美应用截图3红框形态：选中为金框深褐底，未选中为细边框）
+    const buttonRadioGroup = document.getElementById('interactive-button-radio');
+    if (buttonRadioGroup) {
+        const buttons = buttonRadioGroup.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => {
+                    b.className = "bg-black/20 border border-white/20 text-gray-300 text-xs text-center rounded-none hover:border-white/40 transition-all flex items-center justify-center";
+                    b.innerHTML = b.textContent.trim();
+                });
+                btn.className = "bg-[#3D3123] border border-[#E9BD85] text-white text-xs font-bold text-center rounded-none flex items-center justify-center gap-2 transition-all shadow-md";
+                const text = btn.textContent.trim();
+                btn.innerHTML = `<div class="w-2 h-2 bg-[#E9BD85] rounded-none"></div>${text}`;
+            });
+        });
+    }
+
+    // 语言切换与同步应用函数
     const applyLang = () => {
         const lang = localStorage.getItem('haier-guideline-language') || 'zh';
         document.querySelectorAll('[data-i18n-zh][data-i18n-en]').forEach((el) => {
