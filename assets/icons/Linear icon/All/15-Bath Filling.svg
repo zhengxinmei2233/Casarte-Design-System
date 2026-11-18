@@ -1,7 +1,3 @@
-<svg width="95" height="95" viewBox="0 0 95 95" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M69.5999 72.5H25.2999C22.4999 72.5 20.2 70.2 20.2 67.4V49.2C20.2 48.8 20.5 48.5 20.9 48.5H73.9C74.3 48.5 74.5999 48.8 74.5999 49.2V67.3C74.6999 70.2 72.3999 72.5 69.5999 72.5Z" stroke="white" stroke-width="7" stroke-miterlimit="10"/>
-<path d="M23.8999 70.6V78" stroke="white" stroke-width="7" stroke-miterlimit="10"/>
-<path d="M70.8999 70.6V78" stroke="white" stroke-width="7" stroke-miterlimit="10"/>
-<path d="M11.8999 48.5H82.8999" stroke="white" stroke-width="7" stroke-miterlimit="10"/>
-<path d="M46.7 31.3V27C46.7 22 50.7 18 55.7 18C60.7 18 64.6999 22 64.6999 27V47" stroke="white" stroke-width="7" stroke-miterlimit="10"/>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M42 24.1H37.5H34.2V24V23.6V13.7C34.2 10.6 31.7 8 28.7 8C25.7 8 23.2 10.5 23.2 13.7V15.9H25.2V13.7C25.2 11.7 26.7 10 28.7 10C30.7 10 32.2 11.6 32.2 13.7V23.6V24V24.1H10.6H6.09998V26.1H9.29998V34.6C9.29998 36 10.1 37.1 11.2 37.7V40H13.2V38.2H34.9V40H36.9V37.8C37.2 37.6 37.5 37.4 37.8 37.2C38.5 36.5 38.8 35.6 38.8 34.6V26.1H42V24.1Z" fill="white"/>
 </svg>

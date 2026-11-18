@@ -15,20 +15,45 @@ document.addEventListener('DOMContentLoaded', () => {
             .picker-font {
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             }
-            .placeholder-box {
-                background: rgba(255, 255, 255, 0.03);
-                border: 1px dashed rgba(255, 255, 255, 0.2);
-                transition: all 0.3s ease;
+            /* 卡萨帝控件基础样式（白底黑字、直角边角、香槟金聚焦态） */
+            .casarte-select-default {
+                background-color: #FFFFFF;
+                color: #1A1A1A;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                border-radius: 0;
             }
-            .placeholder-box:hover {
-                border-color: #E9BD85;
-                background: rgba(233, 189, 133, 0.05);
+            .casarte-select-active {
+                background-color: #FFFFFF;
+                color: #1A1A1A;
+                border: 1.5px solid #E9BD85;
+                box-shadow: 0 0 12px rgba(233, 189, 133, 0.25);
+                border-radius: 0;
+            }
+            .casarte-select-disabled {
+                background-color: #B8B8BC;
+                color: #6E6E73;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 0;
+                cursor: not-allowed;
+            }
+            .casarte-select-error {
+                background-color: #FFFFFF;
+                color: #1A1A1A;
+                border: 1.5px solid #FF3B30;
+                border-radius: 0;
+            }
+            .casarte-dropdown-menu {
+                background-color: #FFFFFF;
+                color: #1A1A1A;
+                border: 1px solid #E5E5EA;
+                border-radius: 0;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
             }
         </style>
 
         <div class="space-y-20">
 
-            <!-- ================= 01 概览与使用场景 ================= -->
+            <!-- ================= 01 概览与何时使用 ================= -->
             <section id="module-overview" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">01</span>
@@ -38,160 +63,223 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <!-- 01 全景概览图 (图1: 1364 x 511 px) -->
-                <div class="w-full aspect-[1364/511] bg-black/30 flex items-center justify-center p-8 overflow-hidden">
+                <!-- 01 全景概览图 -->
+                <div class="w-full aspect-[1364/511] bg-black/30 flex items-center justify-center p-8 overflow-hidden border border-white/10">
                     <img src="assets/component_wheel_picker/component_wheel_picker-1.png" alt="component_wheel_picker-1" class="w-full h-full object-contain">
                 </div>
 
                 <div class="gallery-panel p-8 space-y-3">
                     <h3 class="text-lg font-bold text-white" data-i18n-zh="何时使用" data-i18n-en="When to Use">何时使用</h3>
-                    <ul class="space-y-2 text-sm text-gray-300 leading-relaxed list-disc list-inside">
-                        <li data-i18n-zh="选项数量超过 5 个时，优先使用下拉选择器，避免平铺单选框占用过多屏幕空间。" data-i18n-en="When options exceed 5 items, drop-down selectors are preferred over inline radio buttons.">选项数量超过 5 个时，优先使用下拉选择器，避免平铺单选框占用过多屏幕空间。</li>
-                        <li data-i18n-zh="单选场景：使用单下拉菜单或带有独立标签提示的选中态；多选场景：结合勾选框与选中标签项表达。" data-i18n-en="Single Select: Uses single dropdown with text tag; Multi-Select: Combines checkboxes and active tags.">单选场景：使用单下拉菜单或带有独立标签提示的选中态；多选场景：结合勾选框与选中标签项表达。</li>
-                        <li data-i18n-zh="带有层级分类的复杂数据，可使用分组/分类选项保持逻辑清晰。" data-i18n-en="For hierarchical option sets, use categorized option layouts to maintain clear sectioning.">带有层级分类的复杂数据，可使用分组/分类选项保持逻辑清晰。</li>
-                    </ul>
+                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="选项多于 5 项、需要节省纵向空间，或需要搜索时使用选择器。2-5 个互斥选项优先直接使用单选框；连续数值使用滑杆或滚轮选择器；立即开启或关闭设置使用开关。" data-i18n-en="Use selectors when there are more than 5 options, vertical space needs to be saved, or search is required. For 2-5 mutually exclusive options, use radio buttons directly; for continuous values, use sliders or wheel pickers; for immediate toggles, use switches.">
+                        选项多于 5 项、需要节省纵向空间，或需要搜索时使用选择器。2-5 个互斥选项优先直接使用单选框；连续数值使用滑杆或滚轮选择器；立即开启或关闭设置使用开关。
+                    </p>
                 </div>
             </section>
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 02 下拉选择器（单选） ================= -->
-            <section id="module-single-select" class="space-y-10">
+            <!-- ================= 02 组件构成 ================= -->
+            <section id="module-composition" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">02</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="下拉选择器（单选）" data-i18n-en="Drop-down Selector (Single Select)">下拉选择器（单选）</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="适用于从单组备选项中精准选取单个参数的单选下拉交互控件规范。" data-i18n-en="Specifications for single-select dropdown components used to pick one parameter from a group of options.">适用于从单组备选项中精准选取单个参数的单选下拉交互控件规范。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="组件构成" data-i18n-en="Component Composition">组件构成</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="选择器由文本标签、选择框和下拉面板组成。" data-i18n-en="Selectors are composed of text labels, selection boxes, and dropdown panels.">选择器由文本标签、选择框和下拉面板组成。</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
-                    
-                    <!-- 1. 默认 (图2) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-2.png" alt="component_wheel_picker-2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="默认" data-i18n-en="Default">默认</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="标准单选下拉框在默认, 激活, 已选及禁用状态下的视觉外观。" data-i18n-en="Visual appearance of standard single-select dropdown across default, active, selected, and disabled states.">标准单选下拉框在默认、激活、已选及禁用状态下的视觉外观。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <!-- 左侧：卡萨帝控件构成结构演示 -->
+                    <div class="lg:col-span-7 gallery-panel p-8 md:p-10 bg-black/40 flex flex-col justify-center">
+                        <div class="w-full max-w-lg mx-auto space-y-2.5">
+                            <!-- 1. 字段标签 -->
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-gray-400 tracking-wide" data-i18n-zh="字段标签" data-i18n-en="Field Label">字段标签</span>
+                                <span class="text-[11px] font-mono text-[#E9BD85] px-1.5 py-0.5 bg-[#E9BD85]/10 border border-[#E9BD85]/30">01</span>
+                            </div>
+
+                            <!-- 2. 选择框（卡萨帝展开态样式） -->
+                            <div class="relative">
+                                <div class="casarte-select-active h-12 px-4 flex items-center justify-between">
+                                    <span class="text-sm font-medium text-[#1A1A1A]">选项1</span>
+                                    <svg class="w-4 h-4 text-[#D49E5A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 15l7-7 7 7"></path>
+                                    </svg>
+                                </div>
+                                <span class="absolute -right-7 top-1/2 -translate-y-1/2 text-[11px] font-mono text-[#E9BD85] px-1.5 py-0.5 bg-[#E9BD85]/10 border border-[#E9BD85]/30">02</span>
+                            </div>
+
+                            <!-- 3. 下拉面板 -->
+                            <div class="relative pt-0.5">
+                                <div class="casarte-dropdown-menu divide-y divide-gray-100">
+                                    <div class="px-4 py-3 bg-[#E9BD85]/15 text-sm font-semibold text-[#9E6B28]">
+                                        <span>选项1</span>
+                                    </div>
+                                    <div class="px-4 py-3 text-sm text-[#1A1A1A] hover:bg-gray-50 transition-colors">
+                                        选项2
+                                    </div>
+                                    <div class="px-4 py-3 text-sm text-[#1A1A1A] hover:bg-gray-50 transition-colors">
+                                        选项3
+                                    </div>
+                                </div>
+                                <span class="absolute -right-7 top-6 text-[11px] font-mono text-[#E9BD85] px-1.5 py-0.5 bg-[#E9BD85]/10 border border-[#E9BD85]/30">03</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- 2. 带文本 (图3) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-3.png" alt="component_wheel_picker-3" class="w-full h-full object-cover">
+                    <!-- 右侧：构成元素解析 -->
+                    <div class="lg:col-span-5 gallery-panel p-8 md:p-10 flex flex-col justify-center space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-7 h-7 bg-[#E9BD85]/15 border border-[#E9BD85]/40 text-[#E9BD85] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
+                            <div class="space-y-1.5">
+                                <h3 class="text-base font-bold text-white" data-i18n-zh="文本标签" data-i18n-en="Text Label">文本标签</h3>
+                                <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="说明选择对象" data-i18n-en="Describes the selection target">说明选择对象</p>
+                            </div>
                         </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="带文本" data-i18n-en="With Text">带文本</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="带有独立前置标签或字段说明的单选下拉选择框样式规范。" data-i18n-en="Single-select dropdown styling specifications with accompanying leading labels or field descriptions.">带有独立前置标签或字段说明的单选下拉选择框样式规范。</p>
+
+                        <div class="border-t border-gray-800/80"></div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-7 h-7 bg-[#E9BD85]/15 border border-[#E9BD85]/40 text-[#E9BD85] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
+                            <div class="space-y-1.5">
+                                <h3 class="text-base font-bold text-white" data-i18n-zh="选择框" data-i18n-en="Selection Box">选择框</h3>
+                                <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="承载当前值或占位信息，并提供展开入口" data-i18n-en="Carries the current value or placeholder info and provides an expansion entry">承载当前值或占位信息，并提供展开入口</p>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-800/80"></div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-7 h-7 bg-[#E9BD85]/15 border border-[#E9BD85]/40 text-[#E9BD85] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
+                            <div class="space-y-1.5">
+                                <h3 class="text-base font-bold text-white" data-i18n-zh="下拉面板" data-i18n-en="Dropdown Panel">下拉面板</h3>
+                                <p class="text-sm text-gray-300 leading-relaxed" data-i18n-zh="承载可供选择的选项" data-i18n-en="Carries selectable options">承载可供选择的选项</p>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </section>
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 03 下拉选择器（多选） ================= -->
-            <section id="module-multi-select" class="space-y-10">
+            <!-- ================= 03 组件规格 ================= -->
+            <section id="module-specs" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">03</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="下拉选择器（多选）" data-i18n-en="Drop-down Selector (Multi-Select)">下拉选择器（多选）</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="包含默认, 选择器选项, 分类选项以及多选+分类选项四种核心形态, 满足家电多维参数输入需求。" data-i18n-en="Includes Default, Selector Options, Categorized Options, and Multi-Select + Categorized Options.">包含默认、选择器选项、分类选项以及多选+分类选项四种核心形态，满足家电多维参数输入需求。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="组件规格" data-i18n-en="Component Specifications">组件规格</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="以 TFT 触控屏为默认载体。根据界面密度、观看距离和操作优先级，在小号、常规、大号三种规格中选择。" data-i18n-en="TFT touchscreen as default carrier. Choose among small, regular, and large specifications based on interface density, viewing distance, and operation priority.">
+                            以 TFT 触控屏为默认载体。根据界面密度、观看距离和操作优先级，在小号、常规、大号三种规格中选择。
+                        </p>
                     </div>
                 </div>
 
-                <!-- 4个小模块网格布局 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
-                    
-                    <!-- 1. 默认 (图4) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-4.png" alt="component_wheel_picker-4" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="默认" data-i18n-en="Default">默认</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="标准未展开状态、已选状态以及禁用状态的视觉规范。" data-i18n-en="Visual specifications for Default, Selected, and Disabled states.">标准未展开状态、已选状态以及禁用状态的视觉规范。</p>
-                        </div>
-                    </div>
-
-                    <!-- 2. 选择器选项 (图5) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-5.png" alt="component_wheel_picker-5" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="选择器选项" data-i18n-en="Selector Options">选择器选项</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="点击展开后的弹层列表, 支持全选及多项勾选操作的布局规范。" data-i18n-en="Expanded dropdown list layout supporting select all and multi-selection items.">点击展开后的弹层列表，支持全选及多项勾选操作的布局规范。</p>
-                        </div>
-                    </div>
-
-                    <!-- 3. 分类选项 (图6) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-6.png" alt="component_wheel_picker-6" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="分类选项" data-i18n-en="Categorized Options">分类选项</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="针对具有层级归类的复杂选项（如分类一、分类二）, 带分割线的下拉列表展示样式。" data-i18n-en="Dropdown list layout with section dividers for hierarchically grouped options.">针对具有层级归类的复杂选项（如分类一、分类二），带分割线的下拉列表展示样式。</p>
-                        </div>
-                    </div>
-
-                    <!-- 4. 多选+分类选项 (图7) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[16/9] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-7.png" alt="component_wheel_picker-7" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="多选+分类选项" data-i18n-en="Multi-Select + Categorized Options">多选+分类选项</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="将多选复选框与多级分类组合的复杂弹层规范, 适用于多分类批量录入场景。" data-i18n-en="Complex overlay specification combining multi-select checkboxes with categorized sections.">将多选复选框与多级分类组合的复杂弹层规范，适用于多分类批量录入场景。</p>
-                        </div>
-                    </div>
-
+                <div class="gallery-panel overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm text-gray-200">
+                        <thead>
+                            <tr class="border-b border-gray-800 bg-white/[0.03] text-[#E9BD85]">
+                                <th class="p-4 md:p-6 font-bold" data-i18n-zh="规格" data-i18n-en="Specification">规格</th>
+                                <th class="p-4 md:p-6 font-bold" data-i18n-zh="选择框" data-i18n-en="Selection Box">选择框</th>
+                                <th class="p-4 md:p-6 font-bold" data-i18n-zh="选项行高" data-i18n-en="Option Line Height">选项行高</th>
+                                <th class="p-4 md:p-6 font-bold" data-i18n-zh="最小热区" data-i18n-en="Min Touch Target">最小热区</th>
+                                <th class="p-4 md:p-6 font-bold" data-i18n-zh="适用场景" data-i18n-en="Applicable Scenario">适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800/60 text-gray-300">
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="p-4 md:p-6 font-semibold text-white" data-i18n-zh="小号" data-i18n-en="Small">小号</td>
+                                <td class="p-4 md:p-6 font-mono text-white">60dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">64dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">64 × 64 dp</td>
+                                <td class="p-4 md:p-6" data-i18n-zh="紧凑型 TFT 界面与次级设置" data-i18n-en="Compact TFT interfaces and secondary settings">紧凑型 TFT 界面与次级设置</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="p-4 md:p-6 font-semibold text-white" data-i18n-zh="常规" data-i18n-en="Regular">常规</td>
+                                <td class="p-4 md:p-6 font-mono text-white">72dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">76dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">72 × 72 dp</td>
+                                <td class="p-4 md:p-6" data-i18n-zh="常规 TFT 触控界面的默认规格" data-i18n-en="Default specification for regular TFT touch interfaces">常规 TFT 触控界面的默认规格</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                <td class="p-4 md:p-6 font-semibold text-white" data-i18n-zh="大号" data-i18n-en="Large">大号</td>
+                                <td class="p-4 md:p-6 font-mono text-white">84dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">88dp</td>
+                                <td class="p-4 md:p-6 font-mono text-white">84 × 84 dp</td>
+                                <td class="p-4 md:p-6" data-i18n-zh="远距离观看或高优先级选择" data-i18n-en="Long-distance viewing or high-priority selection">远距离观看或高优先级选择</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 04 深色模式与浅色模式 ================= -->
-            <section id="module-color-modes" class="space-y-10">
+            <!-- ================= 04 状态示例 ================= -->
+            <section id="module-states" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">04</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="深色与浅色主题适配" data-i18n-en="Dark & Light Mode Adaptation">深色与浅色主题适配</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="卡萨帝选择器控件全面支持深色与浅色双套主题模式, 确保在嵌入式屏幕、不同环境光照及不同面板材质上均具备高对比度与典雅质感。" data-i18n-en="Casarte Selectors adapt smoothly to both Dark and Light themes, preserving optimal legibility and premium feel across various display panels.">卡萨帝选择器控件全面支持深色与浅色双套主题模式，确保在嵌入式屏幕、不同环境光照及不同面板材质上均具备高对比度与典雅质感。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="状态示例" data-i18n-en="State Examples">状态示例</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="展开后高亮当前值；焦点态必须可由旋钮、遥控器和键盘识别。加载、空结果和错误应出现在列表区域，不让旧数据伪装成实时结果。" data-i18n-en="Highlight current value when expanded; focus states must be recognizable by knobs, remotes, and keyboards. Loading, empty results, and errors should appear in the list area so stale data doesn't masquerade as real-time results.">
+                            展开后高亮当前值；焦点态必须可由旋钮、遥控器和键盘识别。加载、空结果和错误应出现在列表区域，不让旧数据伪装成实时结果。
+                        </p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-2">
-                    <!-- 深色模式面板 (图8: 800x600 px -> aspect-[4/3]) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between bg-[#0D0D0F] border border-gray-800">
-                        <div class="w-full aspect-[4/3] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-8.png" alt="component_wheel_picker-8" class="w-full h-full object-cover">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+                    <!-- 1. 默认 -->
+                    <div class="gallery-panel p-8 space-y-5 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-gray-300" data-i18n-zh="默认" data-i18n-en="Default">默认</span>
+                            <span class="text-xs font-mono text-gray-500">DEFAULT</span>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-none bg-[#D49E5A] inline-block"></span>
-                                <h3 class="text-lg font-bold text-white" data-i18n-zh="深色模式" data-i18n-en="Dark Mode">深色模式</h3>
-                            </div>
-                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n-zh="深色暗光背景环境, 采用高对比金/浅灰字和深色微光卡片底色, 激活态赋予金色辉光边框。" data-i18n-en="Dark background with gold/light grey accents, gold glow border for active state.">深色暗光背景环境，采用高对比金/浅灰字和深色微光卡片底色，激活态赋予金色辉光边框。</p>
+                        <div class="casarte-select-default h-12 px-4 flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#1A1A1A]">选项1</span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </div>
                     </div>
 
-                    <!-- 浅色模式面板 (图9: 800x600 px -> aspect-[4/3]) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between bg-[#F5F5F7] text-gray-900 border border-gray-300">
-                        <div class="w-full aspect-[4/3] border-b border-gray-300 bg-white overflow-hidden">
-                            <img src="assets/component_wheel_picker/component_wheel_picker-9.png" alt="component_wheel_picker-9" class="w-full h-full object-cover">
+                    <!-- 2. 展开 -->
+                    <div class="gallery-panel p-8 space-y-5 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#E9BD85]" data-i18n-zh="展开" data-i18n-en="Expanded">展开</span>
+                            <span class="text-xs font-mono text-[#E9BD85]/70">ACTIVE / FOCUS</span>
                         </div>
-                        <div class="p-8 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-none bg-[#D49E5A] inline-block"></span>
-                                <h3 class="text-lg font-bold text-gray-900" data-i18n-zh="浅色模式" data-i18n-en="Light Mode">浅色模式</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 leading-relaxed" data-i18n-zh="高亮日光/浅色面板场景, 背景保持清爽纯净, 边框及文字微调为明亮模式高读性对比度。" data-i18n-en="Clean light background theme with refined dark text and high legibility borders.">高亮日光/浅色面板场景，背景保持清爽纯净，边框及文字微调为明亮模式高读性对比度。</p>
+                        <div class="casarte-select-active h-12 px-4 flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#1A1A1A]">选项2</span>
+                            <svg class="w-4 h-4 text-[#D49E5A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 15l7-7 7 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 3. 禁用 -->
+                    <div class="gallery-panel p-8 space-y-5 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-gray-400" data-i18n-zh="禁用" data-i18n-en="Disabled">禁用</span>
+                            <span class="text-xs font-mono text-gray-500">DISABLED</span>
+                        </div>
+                        <div class="casarte-select-disabled h-12 px-4 flex items-center justify-between">
+                            <span class="text-sm font-medium">设备运行中</span>
+                            <svg class="w-4 h-4 text-[#6E6E73]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 4. 错误 -->
+                    <div class="gallery-panel p-8 space-y-5 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#FF3B30]" data-i18n-zh="错误" data-i18n-en="Error">错误</span>
+                            <span class="text-xs font-mono text-[#FF3B30]/80">ERROR</span>
+                        </div>
+                        <div class="casarte-select-error h-12 px-4 flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#1A1A1A]">同步失败</span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -199,10 +287,92 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 05 使用与验收 ================= -->
-            <section id="module-best-practices" class="space-y-10">
+            <!-- ================= 05 组件类型 ================= -->
+            <section id="module-types" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">05</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="组件类型" data-i18n-en="Component Types">组件类型</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="根据选项数量、是否允许多选以及是否需要搜索选择合适的组件类型。" data-i18n-en="Choose appropriate component types based on option count, multi-select allowance, and search requirements.">根据选项数量、是否允许多选以及是否需要搜索选择合适的组件类型。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+                    <!-- 1. 单选 -->
+                    <div class="gallery-panel p-8 space-y-6 flex flex-col justify-start">
+                        <div class="space-y-2.5 min-h-[68px]">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="单选" data-i18n-en="Single Select">单选</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="从程序、模式、房间等列表选择一个值；选中后关闭浮层。" data-i18n-en="Select a value from program, mode, or room lists; closes popup upon selection.">从程序、模式、房间等列表选择一个值；选中后关闭浮层。</p>
+                        </div>
+                        <div class="casarte-select-default h-12 px-4 flex items-center justify-between">
+                            <span class="text-sm font-medium text-[#1A1A1A]">选项1</span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 2. 多选 -->
+                    <div class="gallery-panel p-8 space-y-6 flex flex-col justify-start">
+                        <div class="space-y-2.5 min-h-[68px]">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="多选" data-i18n-en="Multi-Select">多选</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="仅用于可并存的属性，如消息类型或设备筛选；选择后即时更新已选内容。" data-i18n-en="For co-existing attributes like message types or device filters; updates selected content instantly.">仅用于可并存的属性，如消息类型或设备筛选；选择后即时更新已选内容。</p>
+                        </div>
+                        <div class="casarte-select-default min-h-[48px] px-3 py-2 flex items-center justify-between">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-2.5 py-1 bg-[#F2F2F7] text-xs font-medium text-[#1A1A1A] flex items-center gap-1.5 border border-gray-200">
+                                    选项1 <span class="text-gray-400 hover:text-gray-700 cursor-pointer">×</span>
+                                </span>
+                                <span class="px-2.5 py-1 bg-[#F2F2F7] text-xs font-medium text-[#1A1A1A] flex items-center gap-1.5 border border-gray-200">
+                                    选项2 <span class="text-gray-400 hover:text-gray-700 cursor-pointer">×</span>
+                                </span>
+                            </div>
+                            <svg class="w-4 h-4 text-gray-500 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 3. 搜索（与右侧分组框控件严格顶对齐） -->
+                    <div class="gallery-panel p-8 space-y-6 flex flex-col justify-start">
+                        <div class="space-y-2.5 min-h-[68px]">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="搜索" data-i18n-en="Search">搜索</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="选项超过 20 项或用户已知名称时启用；支持名称、别名与型号关键词。" data-i18n-en="Enabled when options exceed 20 or user knows name; supports name, alias, and model keywords.">选项超过 20 项或用户已知名称时启用；支持名称、别名与型号关键词。</p>
+                        </div>
+                        <div class="casarte-select-default h-12 px-4 flex items-center justify-between">
+                            <div class="flex items-center gap-2.5">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                <span class="text-sm text-gray-400">请输入</span>
+                            </div>
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- 4. 分组 -->
+                    <div class="gallery-panel p-8 space-y-6 flex flex-col justify-start">
+                        <div class="space-y-2.5 min-h-[68px]">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="分组" data-i18n-en="Grouping">分组</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="按空间、产品品类或功能归类；分组标题不可选择。" data-i18n-en="Categorized by space, product category, or function; group titles are not selectable.">按空间、产品品类或功能归类；分组标题不可选择。</p>
+                        </div>
+                        <div class="casarte-dropdown-menu p-4 space-y-2.5">
+                            <div class="text-xs text-gray-400 font-semibold tracking-wider select-none">分组标题</div>
+                            <div class="text-sm font-medium text-[#1A1A1A] py-1">选项1</div>
+                            <div class="text-sm font-medium text-[#1A1A1A] py-1">选项2</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-t border-gray-800">
+
+            <!-- ================= 06 使用与验收 ================= -->
+            <section id="module-best-practices" class="space-y-10">
+                <div class="flex items-baseline gap-4">
+                    <span class="module-num text-3xl text-[#E9BD85]">06</span>
                     <div>
                         <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="使用与验收" data-i18n-en="Usage & Acceptance">使用与验收</h2>
                         <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="指导设计与开发团队在设计搭建与上线验收阶段恪守的规则。" data-i18n-en="Key do's and don'ts for designers and developers during creation and QA.">指导设计与开发团队在设计搭建与上线验收阶段恪守的规则。</p>
@@ -212,18 +382,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="gallery-panel p-8 md:p-12 space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-4">
-                            <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ 应该" data-i18n-en="✓ Recommended">✓ 应该</h3>
+                            <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="推荐" data-i18n-en="Recommended">推荐</h3>
                             <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="为选择框提供清晰的默认占位提示文字（如“请选择”）。" data-i18n-en="Provide clear placeholder text like 'Please Select'.">为选择框提供清晰的默认占位提示文字（如“请选择”）。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="在下拉面板展开时使用明确的高光或金色描边进行焦点聚焦表达。" data-i18n-en="Highlight active state with gold outline/glow during dropdown expansion.">在下拉面板展开时使用明确的高光或金色描边进行焦点聚焦表达。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="家电触控屏上的选择器需特别注意触控热区与弹层展示位置, 防止遮挡核心按钮。" data-i18n-en="Ensure proper touch hit areas and overlay positioning to avoid covering critical buttons.">家电触控屏上的选择器需特别注意触控热区与弹层展示位置，防止遮挡核心按钮。</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span data-i18n-zh="默认回显设备当前值" data-i18n-en="Default to echoing current device value">默认回显设备当前值</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span data-i18n-zh="短列表直接展示，长列表再搜索" data-i18n-en="Display short lists directly, search long lists">短列表直接展示，长列表再搜索</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-emerald-400 font-bold">✓</span> <span data-i18n-zh="保持选项顺序与关键状态位置稳定" data-i18n-en="Keep option order and key state positions stable">保持选项顺序与关键状态位置稳定</span></li>
                             </ul>
                         </div>
                         <div class="space-y-4">
-                            <h3 class="text-base font-bold text-rose-400 tracking-wider" data-i18n-zh="✕ 不应该" data-i18n-en="✕ Avoid">✕ 不应该</h3>
+                            <h3 class="text-base font-bold text-rose-400 tracking-wider" data-i18n-zh="避免" data-i18n-en="Avoid">避免</h3>
                             <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
-                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="禁止遮挡关键核心状态, 展开菜单应具备正确的浮层层级。" data-i18n-en="Do not obscure critical core states; ensure correct overlay layering.">禁止遮挡关键核心状态，展开菜单应具备正确的浮层层级。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="不要在禁用状态的选择器上响应任何点击及弹窗交互。" data-i18n-en="Do not respond with popup interactions on disabled selectors.">不要在禁用状态的选择器上响应任何点击及弹窗交互。</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-rose-400 font-bold">✕</span> <span data-i18n-zh="用占位文字替代永久标签" data-i18n-en="Use placeholder text instead of permanent labels">用占位文字替代永久标签</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-rose-400 font-bold">✕</span> <span data-i18n-zh="加载失败后继续展示旧值且不提示" data-i18n-en="Continue displaying old values without notice after loading failure">加载失败后继续展示旧值且不提示</span></li>
+                                <li class="flex items-start gap-2.5"><span class="text-rose-400 font-bold">✕</span> <span data-i18n-zh="在小屏上压缩出多层悬浮菜单" data-i18n-en="Compress multi-layer floating menus on small screens">在小屏上压缩出多层悬浮菜单</span></li>
                             </ul>
                         </div>
                     </div>

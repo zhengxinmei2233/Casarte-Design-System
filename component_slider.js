@@ -15,130 +15,145 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <!-- 01 全景概览图 (图1: component_slider-1.png, 1364 x 511 px) -> p-0 确保完美贴边填满 -->
+                <!-- 01 全景概览图 -->
                 <div class="w-full aspect-[1364/511] bg-black/30 flex items-center justify-center p-0 overflow-hidden">
-                    <img src="assets/component_slider/component_slider-1.png" alt="component_slider-1" class="w-full h-full object-cover">
+                    <img src="assets/component_slider/component_slider-1.png" alt="component_slider-1" data-i18n-zh="组件全景概览图" data-i18n-en="Component Overview Diagram" class="w-full h-full object-cover">
                 </div>
 
                 <div class="gallery-panel p-8 space-y-3">
                     <h3 class="text-lg font-bold text-white" data-i18n-zh="何时使用" data-i18n-en="When to Use">何时使用</h3>
                     <ul class="space-y-2 text-sm text-gray-300 leading-relaxed list-disc list-inside">
-                        <li data-i18n-zh="点击调控器：用于操作路径短、需要单步精准增减数值的场景（如温度±1℃）。" data-i18n-en="Click Control: Used for short interaction paths requiring step-by-step precise adjustments.">点击调控器：用于操作路径短、需要单步精准增减数值的场景（如温度±1℃）。</li>
-                        <li data-i18n-zh="滚动调控器：用于调节影响程序核心功能、高重要性的参数，通过强视觉引导用户操作。" data-i18n-en="Scroll Control: Used for adjusting key high-priority parameters with strong visual emphasis.">滚动调控器：用于调节影响程序核心功能、高重要性的参数，通过强视觉引导用户操作。</li>
-                        <li data-i18n-zh="滑块调控器：用于高频、低重要性或仅影响局部体验的参数调节（如亮度、音量微调）。" data-i18n-en="Slider Control: Used for frequent, localized adjustments like brightness or volume.">滑块调控器：用于高频、低重要性或仅影响局部体验的参数调节（如亮度、音量微调）。</li>
-                        <li data-i18n-zh="刻度滑块调控器：在数值输入过程中，需要提供实时的可视化数据比例与悬浮气泡反馈时使用。" data-i18n-en="Slider Scale Controller: Used when real-time, visual feedback of proportional data with value bubbles is required during numeric input.">刻度滑块调控器：在数值输入过程中，需要提供实时的可视化数据比例与悬浮气泡反馈时使用。</li>
+                        <li data-i18n-zh="当需要对连续或离散的数值参数（如温度、音量、亮度等）进行实时微调时使用。" data-i18n-en="Used when real-time fine-tuning of continuous or discrete numeric parameters is needed.">当需要对连续或离散的数值参数（如温度、音量、亮度等）进行实时微调时使用。</li>
+                        <li data-i18n-zh="根据交互场景与控件占用空间，灵活选用点击、单滑块、范围滑块或滚动调控形态。" data-i18n-en="Flexibly select click, single slider, range slider, or scroll control based on the interaction scenario.">根据交互场景与控件占用空间，灵活选用点击、单滑块、范围滑块或滚动调控形态。</li>
                     </ul>
                 </div>
             </section>
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 02 基础调控类型 (5个统一规格小模块) ================= -->
-            <section id="module-basic-controls" class="space-y-10">
+            <!-- ================= 02 组件构成 ================= -->
+            <section id="module-component-composition" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">02</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="基础调控类型" data-i18n-en="Basic Control Types">基础调控类型</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="包含点击调控、滚动调控、滑块调控及刻度调控等基础交互模式，满足不同层级参数调节的操作要求。" data-i18n-en="Covers Click, Scroll, Slider, and Scale controls to satisfy different levels of parameter adjustment.">包含点击调控、滚动调控、滑块调控及刻度调控等基础交互模式，满足不同层级参数调节的操作要求。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="组件构成" data-i18n-en="Component Composition">组件构成</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="当前值需标明单位，参数名称与可调范围应始终清晰可见。" data-i18n-en="Current values must indicate units; parameter names and adjustable ranges must remain clearly visible.">当前值需标明单位，参数名称与可调范围应始终清晰可见。</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- 1. 点击调控器 (图2: component_slider-2.png, 960x540) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[960/540] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-2.png" alt="component_slider-2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="点击调控器" data-i18n-en="Click Control">点击调控器</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="加号与减号按钮间的间距不少于设置数值字体宽度或高度。支持水平与垂直摆放。" data-i18n-en="Spacing between plus and minus buttons must equal or exceed setting font size.">加号与减号按钮间的间距不少于设置数值字体宽度或高度。支持水平与垂直摆放。</p>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-300">
+                    <div class="gallery-panel p-6 space-y-2">
+                        <div class="flex items-center gap-3 font-bold text-white"><span class="w-6 h-6 rounded-none bg-[#E9BD85]/20 text-[#E9BD85] flex items-center justify-center text-xs">1</span><span data-i18n-zh="标签与当前值" data-i18n-en="Label & Current Value">标签与当前值</span></div>
+                        <p class="text-xs text-gray-400 pl-9" data-i18n-zh="说明调节对象，固定显示当前值与单位。" data-i18n-en="Indicates the target being adjusted, constantly displaying the current value and unit.">说明调节对象，固定显示当前值与单位。</p>
                     </div>
-
-                    <!-- 2. 滚动调控器 (图3: component_slider-3.png, 960x540) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[960/540] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-3.png" alt="component_slider-3" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="滚动调控器" data-i18n-en="Scroll Control">滚动调控器</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="当前选中数值置于中心并加大字号；相邻数值间距遵守 a*0.5 比例逻辑，两端保持对称。" data-i18n-en="Selected value centered and magnified. Adjacent values follow a*0.5 spacing ratio.">当前选中数值置于中心并加大字号；相邻数值间距遵守 a*0.5 比例逻辑，两端保持对称。</p>
-                        </div>
+                    <div class="gallery-panel p-6 space-y-2">
+                        <div class="flex items-center gap-3 font-bold text-white"><span class="w-6 h-6 rounded-none bg-[#E9BD85]/20 text-[#E9BD85] flex items-center justify-center text-xs">2</span><span data-i18n-zh="轨道" data-i18n-en="Track">轨道</span></div>
+                        <p class="text-xs text-gray-400 pl-9" data-i18n-zh="已选轨道与未选轨道共同表达当前值和可调范围。" data-i18n-en="Selected and unselected tracks jointly express the current value and adjustable range.">已选轨道与未选轨道共同表达当前值和可调范围。</p>
                     </div>
-
-                    <!-- 3. 滑块调控器 (图4: component_slider-4.png, 960x540) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[960/540] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-4.png" alt="component_slider-4" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="滑块调控器" data-i18n-en="Slider Control">滑块调控器</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="提供多种轨道高度与圆点尺寸，轨道总长度可随屏宽自适应，保障基础滑动操作的顺畅度。" data-i18n-en="Offers multiple track sizes with adaptable length to ensure smooth basic sliding operations.">提供多种轨道高度与圆点尺寸，轨道总长度可随屏宽自适应，保障基础滑动操作的顺畅度。</p>
-                        </div>
+                    <div class="gallery-panel p-6 space-y-2">
+                        <div class="flex items-center gap-3 font-bold text-white"><span class="w-6 h-6 rounded-none bg-[#E9BD85]/20 text-[#E9BD85] flex items-center justify-center text-xs">3</span><span data-i18n-zh="滑块" data-i18n-en="Thumb">滑块</span></div>
+                        <p class="text-xs text-gray-400 pl-9" data-i18n-zh="标识当前位置，通过拖动调整数值。" data-i18n-en="Identifies the current position and adjusts the value through dragging.">标识当前位置，通过拖动调整数值。</p>
                     </div>
-
-                    <!-- 4. 滑块调控器 - 特殊 (图5: component_slider-5.png, 960x540) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[960/540] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-5.png" alt="component_slider-5" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="滑块调控器 - 特殊" data-i18n-en="Special Slider Control">滑块调控器 - 特殊</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="针对音量、风量等核心场景定制的胶囊状与高光阴影宽轨道样式，强化界面视觉焦点。" data-i18n-en="Customized wide-track styles for core scenarios such as volume and airflow.">针对音量、风量等核心场景定制的胶囊状与高光阴影宽轨道样式，强化界面视觉焦点。</p>
-                        </div>
+                    <div class="gallery-panel p-6 space-y-2">
+                        <div class="flex items-center gap-3 font-bold text-white"><span class="w-6 h-6 rounded-none bg-[#E9BD85]/20 text-[#E9BD85] flex items-center justify-center text-xs">4</span><span data-i18n-zh="刻度与数值气泡" data-i18n-en="Ticks & Value Bubble">刻度与数值气泡</span></div>
+                        <p class="text-xs text-gray-400 pl-9" data-i18n-zh="按需标记关键数值，并在拖动时反馈当前值。" data-i18n-en="Marks key values on demand and provides real-time feedback during dragging.">按需标记关键数值，并在拖动时反馈当前值。</p>
                     </div>
+                </div>
 
-                    <!-- 5. 刻度滑块调控器 (图6: component_slider-6.png, 960x540) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
-                        <div class="w-full aspect-[960/540] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-6.png" alt="component_slider-6" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-8 space-y-3">
-                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="刻度滑块调控器" data-i18n-en="Slider Scale Controller">刻度滑块调控器</h3>
-                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="刻度标记清晰标示关键节点，配合数值气泡在触摸拖动时实时悬浮显示，提高精准定位效率。" data-i18n-en="Scale marks key positions, with a value bubble following finger placement in real time.">刻度标记清晰标示关键节点，配合数值气泡在触摸拖动时实时悬浮显示，提高精准定位效率。</p>
-                        </div>
+                <!-- 组件构成示意图（1360 × 298 px） -->
+                <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between">
+                    <div class="w-full aspect-[32/7] border-b border-gray-800 bg-black/30 overflow-hidden flex items-center justify-center">
+                        <img
+                            src="assets/component_slider/component_slider-2.png"
+                            alt="组件构成示意图：标签与当前值、轨道、滑块、刻度与数值气泡"
+                            data-i18n-zh="组件构成示意图：标签与当前值、轨道、滑块、刻度与数值气泡"
+                            data-i18n-en="Component Composition Diagram: Label & Current Value, Track, Thumb, Ticks & Value Bubble"
+                            class="w-full h-full object-contain"
+                            loading="lazy"
+                        />
                     </div>
                 </div>
             </section>
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 03 深色模式与浅色模式 ================= -->
-            <section id="module-color-modes" class="space-y-10">
+            <!-- ================= 03 类型与适用场景 ================= -->
+            <section id="module-types-and-scenarios" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">03</span>
                     <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="深色与浅色主题适配" data-i18n-en="Dark & Light Mode Adaptation">深色与浅色主题适配</h2>
-                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="卡萨帝调控组件全面支持深色与浅色双套主题模式，确保在不同环境光照及不同面板材质上均具备高对比度与典雅质感。" data-i18n-en="Casarte controls adapt seamlessly to both Dark and Light themes.">卡萨帝调控组件全面支持深色与浅色双套主题模式，确保在不同环境光照及不同面板材质上均具备高对比度与典雅质感。</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="类型与适用场景" data-i18n-en="Types & Scenarios">类型与适用场景</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="展示点击调控、滑块调控、滑动调控及范围调控等多种形态及具体适用场景。" data-i18n-en="Displays various control types and their applicable scenarios.">展示点击调控、滑块调控、滑动调控及范围调控等多种形态及具体适用场景。</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-2">
-                    <!-- 深色模式面板 (图7: component_slider-7.png, 800x600 -> aspect-[4/3]) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between bg-[#0D0D0F] border border-gray-800">
-                        <div class="w-full aspect-[4/3] border-b border-gray-800 bg-black/30 overflow-hidden">
-                            <img src="assets/component_slider/component_slider-7.png" alt="component_slider-7" class="w-full h-full object-cover">
+                <!-- 4 张示意图 -->
+                <div class="gallery-panel p-8 space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-b border-gray-800 pb-6">
+                        <div class="w-full aspect-[3/1] bg-black/30 overflow-hidden flex items-center justify-center">
+                            <img
+                                src="assets/component_slider/component_slider-3.png"
+                                alt="点击调控示意图：按固定步长精确增减数值"
+                                data-i18n-zh="点击调控示意图：按固定步长精确增减数值"
+                                data-i18n-en="Step Control Diagram: Precise increment/decrement by fixed steps"
+                                class="w-full h-full object-contain"
+                                loading="lazy"
+                            />
                         </div>
-                        <div class="p-8 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-none bg-[#D49E5A] inline-block"></span>
-                                <h3 class="text-lg font-bold text-white" data-i18n-zh="深色模式" data-i18n-en="Dark Mode">深色模式</h3>
-                            </div>
-                            <p class="text-xs text-gray-400 leading-relaxed" data-i18n-zh="暗光背景下采用琥珀金填充轨道与高对比白色数字，配以微微发光的触控圆点，确保夜间调控不刺眼。" data-i18n-en="Dark background featuring amber gold tracks and luminous touch points.">暗光背景下采用琥珀金填充轨道与高对比白色数字，配以微微发光的触控圆点，确保夜间调控不刺眼。</p>
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="点击调控" data-i18n-en="Step Control">点击调控</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="适用于按固定步长精确调整温度、时长等数值。单次点击完成一步增减，操作路径短，并立即反馈调整结果。" data-i18n-en="Suitable for precise adjustments of temperature, duration, etc., by fixed steps. Each tap completes a one-step increment/decrement with immediate feedback.">适用于按固定步长精确调整温度、时长等数值。单次点击完成一步增减，操作路径短，并立即反馈调整结果。</p>
                         </div>
                     </div>
 
-                    <!-- 浅色模式面板 (图8: component_slider-8.png, 800x600 -> aspect-[4/3]) -->
-                    <div class="gallery-panel p-0 overflow-hidden flex flex-col justify-between bg-[#F5F5F7] text-gray-900 border border-gray-300">
-                        <div class="w-full aspect-[4/3] border-b border-gray-300 bg-white overflow-hidden">
-                            <img src="assets/component_slider/component_slider-8.png" alt="component_slider-8" class="w-full h-full object-cover">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-b border-gray-800 pb-6">
+                        <div class="w-full aspect-[3/1] bg-black/30 overflow-hidden flex items-center justify-center">
+                            <img
+                                src="assets/component_slider/component_slider-4.png"
+                                alt="滑块调控示意图：单一连续数值调节"
+                                data-i18n-zh="滑块调控示意图：单一连续数值调节"
+                                data-i18n-en="Slider Control Diagram: Single continuous value adjustment"
+                                class="w-full h-full object-contain"
+                                loading="lazy"
+                            />
                         </div>
-                        <div class="p-8 space-y-4">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-none bg-[#D49E5A] inline-block"></span>
-                                <h3 class="text-lg font-bold text-gray-900" data-i18n-zh="浅色模式" data-i18n-en="Light Mode">浅色模式</h3>
-                            </div>
-                            <p class="text-xs text-gray-600 leading-relaxed" data-i18n-zh="高亮日光场景下保留纯净浅灰背景，轨道与加减号图标使用深色高对比描边，保证日光直射下清晰易读。" data-i18n-en="Clean light background with high-contrast borders for direct sunlight readability.">高亮日光场景下保留纯净浅灰背景，轨道与加减号图标使用深色高对比描边，保证日光直射下清晰易读。</p>
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="滑块调控" data-i18n-en="Slider Control">滑块调控</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="适用于温度、亮度、时长等单一连续数值的高频调节。界面应固定显示当前值、单位与范围边界。" data-i18n-en="Suitable for high-frequency adjustment of single continuous values such as temperature, brightness, and duration. Displays current value, unit, and range boundaries.">适用于温度、亮度、时长等单一连续数值的高频调节。界面应固定显示当前值、单位与范围边界。</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center border-b border-gray-800 pb-6">
+                        <div class="w-full aspect-[3/1] bg-black/30 overflow-hidden flex items-center justify-center">
+                            <img
+                                src="assets/component_slider/component_slider-5.png"
+                                alt="滑动调控示意图：独立参数滑动调节"
+                                data-i18n-zh="滑动调控示意图：独立参数滑动调节"
+                                data-i18n-en="Swipe Control Diagram: Independent parameter swipe adjustment"
+                                class="w-full h-full object-contain"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="滑动调控" data-i18n-en="Swipe/Scroll Control">滑动调控</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="适用于音量等语义明确、可作为页面视觉焦点的独立参数。图标用于辅助识别，不替代参数名称与当前值。" data-i18n-en="Suitable for independent parameters with clear semantics, such as volume. Icons aid recognition without replacing parameter names and current values.">适用于音量等语义明确、可作为页面视觉焦点的独立参数。图标用于辅助识别，不替代参数名称与当前值。</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="w-full aspect-[3/1] bg-black/30 overflow-hidden flex items-center justify-center">
+                            <img
+                                src="assets/component_slider/component_slider-6.png"
+                                alt="范围调控示意图：上下限区间选择"
+                                data-i18n-zh="范围调控示意图：上下限区间选择"
+                                data-i18n-en="Range Control Diagram: Upper and lower limit range selection"
+                                class="w-full h-full object-contain"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="范围调控" data-i18n-en="Range Control">范围调控</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="适用于湿度、温区或预约时段等上下限区间选择。两个滑块分别表达最小值与最大值，并保持合法顺序。" data-i18n-en="Suitable for upper and lower limit range selections such as humidity, temperature zones, or reservation slots. Two thumbs express minimum and maximum values respectively.">适用于湿度、温区或预约时段等上下限区间选择。两个滑块分别表达最小值与最大值，并保持合法顺序。</p>
                         </div>
                     </div>
                 </div>
@@ -146,10 +161,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <hr class="border-t border-gray-800">
 
-            <!-- ================= 04 使用与验收 ================= -->
-            <section id="module-best-practices" class="space-y-10">
+            <!-- ================= 04 尺寸与触控热区 ================= -->
+            <section id="module-sizes-and-touch" class="space-y-10">
                 <div class="flex items-baseline gap-4">
                     <span class="module-num text-3xl text-[#E9BD85]">04</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="尺寸与触控热区" data-i18n-en="Sizes & Touch Targets">尺寸与触控热区</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="轨道长度随容器伸缩，轨道高度与滑块尺寸固定；视觉尺寸之外应保留不小于 44 × 44 dp 的透明触控热区。" data-i18n-en="Track length scales with container; track height and thumb size are fixed.">轨道长度随容器伸缩，轨道高度与滑块尺寸固定；视觉尺寸之外应保留不小于 44 × 44 dp 的透明触控热区。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-panel p-8 overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm text-gray-300">
+                        <thead>
+                            <tr class="border-b border-gray-800 text-white bg-white/5">
+                                <th class="p-4" data-i18n-zh="尺寸" data-i18n-en="Size">尺寸</th>
+                                <th class="p-4" data-i18n-zh="轨道高度" data-i18n-en="Track Height">轨道高度</th>
+                                <th class="p-4" data-i18n-zh="滑块直径" data-i18n-en="Thumb Diameter">滑块直径</th>
+                                <th class="p-4" data-i18n-zh="建议场景" data-i18n-en="Recommended Scenario">建议场景</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800/50">
+                            <tr>
+                                <td class="p-4 font-medium text-[#E9BD85]" data-i18n-zh="小" data-i18n-en="Small">小</td>
+                                <td class="p-4">16 dp</td>
+                                <td class="p-4">32 dp</td>
+                                <td class="p-4" data-i18n-zh="近距、小型控件区" data-i18n-en="Close-range, compact control areas">近距、小型控件区</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-[#E9BD85]" data-i18n-zh="中" data-i18n-en="Medium">中</td>
+                                <td class="p-4">20 dp</td>
+                                <td class="p-4">40 dp</td>
+                                <td class="p-4" data-i18n-zh="常规触控界面" data-i18n-en="Standard touch interfaces">常规触控界面</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-medium text-[#E9BD85]" data-i18n-zh="大" data-i18n-en="Large">大</td>
+                                <td class="p-4">24 dp</td>
+                                <td class="p-4">48 dp</td>
+                                <td class="p-4" data-i18n-zh="远距或核心调节" data-i18n-en="Long-distance or core adjustments">远距或核心调节</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <hr class="border-t border-gray-800">
+
+            <!-- ================= 05 方向与布局 ================= -->
+            <section id="module-orientation" class="space-y-10">
+                <div class="flex items-baseline gap-4">
+                    <span class="module-num text-3xl text-[#E9BD85]">05</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="方向与布局" data-i18n-en="Orientation & Layout">方向与布局</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="支持横向与纵向两套主流布局方向，以适配不同的家电屏幕形态与操作空间。" data-i18n-en="Supports horizontal and vertical layout orientations to adapt to different appliance screen forms.">支持横向与纵向两套主流布局方向，以适配不同的家电屏幕形态与操作空间。</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="gallery-panel p-8 space-y-3">
+                        <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="横向" data-i18n-en="Horizontal">横向</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="默认方向，适合宽度充足的页面与卡片。数值从左到右递增；RTL 或业务语义相反时才反向。" data-i18n-en="Default orientation, suitable for pages and cards with sufficient width. Values increase from left to right; reversed only for RTL or opposite business semantics.">默认方向，适合宽度充足的页面与卡片。数值从左到右递增；RTL 或业务语义相反时才反向。</p>
+                    </div>
+                    <div class="gallery-panel p-8 space-y-3">
+                        <h3 class="text-lg font-bold text-[#E9BD85]" data-i18n-zh="纵向" data-i18n-en="Vertical">纵向</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n-zh="用于窄屏、侧边控制或参数与空间方向一致的场景。数值默认从下向上递增。" data-i18n-en="Used for narrow screens, sidebar controls, or scenarios where parameters align with spatial directions. Values default to increasing from bottom to top.">用于窄屏、侧边控制或参数与空间方向一致的场景。数值默认从下向上递增。</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-t border-gray-800">
+
+            <!-- ================= 06 交互与反馈 ================= -->
+            <section id="module-interaction" class="space-y-10">
+                <div class="flex items-baseline gap-4">
+                    <span class="module-num text-3xl text-[#E9BD85]">06</span>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="交互与反馈" data-i18n-en="Interaction & Feedback">交互与反馈</h2>
+                        <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="规范滑动、点击及设备响应过程中的动态交互与触觉反馈原则。" data-i18n-en="Guidelines for dynamic interaction and tactile feedback during sliding, tapping, and device response.">规范滑动、点击及设备响应过程中的动态交互与触觉反馈原则。</p>
+                    </div>
+                </div>
+
+                <div class="gallery-panel p-8 space-y-4">
+                    <ul class="space-y-3 text-sm text-gray-300 leading-relaxed list-disc list-inside">
+                        <li data-i18n-zh="点击轨道移动到最近合法值；拖动时连续更新界面，按 step 吸附。" data-i18n-en="Tap the track to move to the nearest valid value; continuously update the interface while dragging and snap to steps.">点击轨道移动到最近合法值；拖动时连续更新界面，按 step 吸附。</li>
+                        <li data-i18n-zh="拖动期间显示数值气泡；松开后提交设备指令。关键值也应在固定位置同步显示，避免气泡消失后失去结果。" data-i18n-en="Display value bubbles during dragging; submit device commands upon release. Key values should also be displayed synchronously at fixed positions to avoid losing results when bubbles disappear.">拖动期间显示数值气泡；松开后提交设备指令。关键值也应在固定位置同步显示，避免气泡消失后失去结果。</li>
+                        <li data-i18n-zh="设备响应超过 300 ms 时保留用户目标值并显示同步中；失败时回退到设备真实值并说明原因。" data-i18n-en="When device response exceeds 300ms, retain the user's target value and display 'Syncing'; revert to the actual device value and explain the reason upon failure.">设备响应超过 300 ms 时保留用户目标值并显示同步中；失败时回退到设备真实值并说明原因。</li>
+                        <li data-i18n-zh="加减按钮每次改变一个步长；长按可连续调整，但应逐步加速且允许随时停止。" data-i18n-en="Increment/decrement buttons change by one step per tap; long-press allows continuous adjustment with gradual acceleration and instant stop.">加减按钮每次改变一个步长；长按可连续调整，但应逐步加速且允许随时停止。</li>
+                        <li data-i18n-zh="最小值、最大值、当前值与单位需提供给辅助技术；范围滑块应分别命名上下限。" data-i18n-en="Minimum, maximum, current values, and units must be provided to assistive technologies; range sliders should name upper and lower limits separately.">最小值、最大值、当前值与单位需提供给辅助技术；范围滑块应分别命名上下限。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="border-t border-gray-800">
+
+            <!-- ================= 07 使用与验收 ================= -->
+            <section id="module-best-practices" class="space-y-10">
+                <div class="flex items-baseline gap-4">
+                    <span class="module-num text-3xl text-[#E9BD85]">07</span>
                     <div>
                         <h2 class="text-2xl md:text-3xl font-bold text-white" data-i18n-zh="使用与验收" data-i18n-en="Usage & Acceptance">使用与验收</h2>
                         <p class="text-sm text-gray-300 mt-1.5 leading-relaxed" data-i18n-zh="规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。" data-i18n-en="Guidelines for designers and developers during UI creation and acceptance delivery.">规范设计师与开发团队在搭建 UI 与验收交付时的红线准则。</p>
@@ -159,18 +267,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="gallery-panel p-8 md:p-12 space-y-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div class="space-y-4">
-                            <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ 应该" data-i18n-en="✓ Recommended">✓ 应该</h3>
+                            <h3 class="text-base font-bold text-emerald-400 tracking-wider" data-i18n-zh="✓ 推荐" data-i18n-en="✓ Recommended">✓ 推荐</h3>
                             <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="滑块调控器的热区需扩展至轨道上下至少 12px，提升滑动抓取率。" data-i18n-en="Expand touch target of sliders by at least 12px beyond the track.">滑块调控器的热区需扩展至轨道上下至少 12px，提升滑动抓取率。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="滚动调控器在停止滑动后必须触发自动磁吸对齐。" data-i18n-en="Scroll controls must snap to the nearest value upon gesture release.">滚动调控器在停止滑动后必须触发自动磁吸对齐。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">•</span> <span data-i18n-zh="温度、风速等关键参数调整时需伴随声效提示。" data-i18n-en="Provide audio feedback during adjustments of key parameters like temperature.">温度、风速等关键参数调整时需伴随声效提示。</span></li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span data-i18n-zh="显示当前值、单位和边界" data-i18n-en="Display current values, units, and boundaries">显示当前值、单位和边界</span></li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span data-i18n-zh="让步长匹配设备真实能力" data-i18n-en="Ensure steps match actual device capabilities">让步长匹配设备真实能力</span></li>
+                                <li class="flex items-start gap-2"><span class="text-emerald-400 font-bold">✓</span><span data-i18n-zh="拖动时实时反馈，结束后提交设备" data-i18n-en="Provide real-time feedback during dragging, submit to device upon completion">拖动时实时反馈，结束后提交设备</span></li>
                             </ul>
                         </div>
                         <div class="space-y-4">
-                            <h3 class="text-base font-bold text-rose-400 tracking-wider" data-i18n-zh="✕ 不应该" data-i18n-en="✕ Avoid">✕ 不应该</h3>
+                            <h3 class="text-base font-bold text-rose-400 tracking-wider" data-i18n-zh="✕ 避免" data-i18n-en="✕ Avoid">✕ 避免</h3>
                             <ul class="space-y-3 text-sm text-gray-200 leading-relaxed">
-                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="切勿将点击调控器的加减号按钮放置过于紧凑，防止用户误触报错。" data-i18n-en="Do not place plus and minus buttons too close to avoid mis-touches.">切勿将点击调控器的加减号按钮放置过于紧凑，防止用户误触报错。</span></li>
-                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">•</span> <span data-i18n-zh="避免在滑动过程中发生帧率卡顿，滑块位移动效需保持 60fps 顺畅。" data-i18n-en="Maintain smooth 60fps animations during touch drag.">避免在滑动过程中发生帧率卡顿，滑块位移动效需保持 60fps 顺畅。</span></li>
+                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span><span data-i18n-zh="用滑块输入必须精确记忆的数值" data-i18n-en="Use sliders to input values that require precise memorization">用滑块输入必须精确记忆的数值</span></li>
+                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span><span data-i18n-zh="刻度标签过密或互相遮挡" data-i18n-en="Tick labels that are too dense or overlap with each other">刻度标签过密或互相遮挡</span></li>
+                                <li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span><span data-i18n-zh="用装饰图标替代清晰的参数标签" data-i18n-en="Use decorative icons to replace clear parameter labels">用装饰图标替代清晰的参数标签</span></li>
                             </ul>
                         </div>
                     </div>
@@ -180,11 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     `;
 
-    // 完美衔接全局双语切换
+    // 完美衔接全局双语切换（支持文本内容与图片 alt 属性）
     const applyLang = () => {
         const lang = localStorage.getItem('haier-guideline-language') || 'zh';
         container.querySelectorAll('[data-i18n-zh][data-i18n-en]').forEach((el) => {
-            el.textContent = el.dataset[lang === 'zh' ? 'i18nZh' : 'i18nEn'];
+            if (el.tagName === 'IMG') {
+                el.alt = el.dataset[lang === 'zh' ? 'i18nZh' : 'i18nEn'];
+            } else {
+                el.textContent = el.dataset[lang === 'zh' ? 'i18nZh' : 'i18nEn'];
+            }
         });
     };
 
